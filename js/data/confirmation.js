@@ -61,12 +61,20 @@ sidebar_account_type.innerHTML = acct_type;
 // Query the Submit Button
 const submit_acct_type = document.getElementById('confirmation_advance');
 
+// HERE should be a conditional statement to change the innerHTML of the Submit Button based on the account type selected. For example, if the account type is 'Manager', the button should say 'Complete registration', otherwise it should say 'Complete registration'.
+
 // Change the inner HTML of the Submit Button upon account type selection
 if (acct_type === 'Manager') {
     submit_acct_type.innerHTML = 'Complete registration';
 } else {
     submit_acct_type.innerHTML = 'Complete registration';
 };
+
+// Function to handle the Submit Button click event
+submit_acct_type.addEventListener('click', function() {
+    // Handle the click event here
+    console.log('Confirmation button clicked');
+});
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

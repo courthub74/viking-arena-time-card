@@ -118,17 +118,20 @@ function submitRegistration() {
     pin = encodeURIComponent(pin);
 
     // Conditionals for the account type
+
+    // Original relocation should work you refactored it to use the repoName variable for the path to the dashboard pages on github pages.  
+    // Since we are going to implement PostgresSQL we can restructure this to relocate without the variable repoName for now.
     if (accountType === 'Manager') {
         // Redirect to the manager page
         // Try this:
-        const repoName = "/viking_arena_time_card"
-        window.location.href = `${repoName}/html/dashboards/manager.html?username=${username}&acct_type=${accountType}&encodedPinConfirm=${pin}`;
-        // window.location.href = `../../html/dashboards/manager.html?username=${username}&acct_type=${accountType}&encodedPinConfirm=${pin}`;
+        // const repoName = "/viking_arena_time_card"
+        // window.location.href = `${repoName}/html/dashboards/manager.html?username=${username}&acct_type=${accountType}&encodedPinConfirm=${pin}`;
+        window.location.href = `../../html/dashboards/manager.html?username=${username}&acct_type=${accountType}&encodedPinConfirm=${pin}`;
     } else {
         // Redirect to the customer page
-        const repoName = "/viking_arena_time_card"
-        window.location.href = `${repoName}/html/dashboards/employee.html?username=${username}&acct_type=${accountType}&encodedPinConfirm=${pin}`;
-        // window.location.href = `../../html/dashboards/employee.html?username=${username}&acct_type=${accountType}&encodedPinConfirm=${pin}`;
+        // const repoName = "/viking_arena_time_card"
+        // window.location.href = `${repoName}/html/dashboards/employee.html?username=${username}&acct_type=${accountType}&encodedPinConfirm=${pin}`;
+        window.location.href = `../../html/dashboards/employee.html?username=${username}&acct_type=${accountType}&encodedPinConfirm=${pin}`;
     }
 
     // Set user in session storage as currentUser
