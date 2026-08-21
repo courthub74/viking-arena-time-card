@@ -1,142 +1,126 @@
-# Time Card Application
+<p align="center">
+  <img src="./img/hazel-park-logo/viking_arena_logo.png" alt="Viking Arena Time Card Logo" width="180">
+</p>
 
-### Layout CSS
+<h1 align="center">Viking Arena Time Card</h1>
 
-\*~Mobile Layout~
+<p align="center">
+  <strong>Workflow-driven scheduling and timekeeping software built around the day-to-day operations of an ice arena.</strong>
+</p>
 
-\*Desktop Layout
+## Overview
 
-\*Landscape Layout
+Viking Arena Time Card replaces fragmented employee scheduling and timekeeping workflows with a role-aware system for shift scheduling, hour submission, work-history tracking, and manager oversight.
 
-### Main Login Page
+The project began with the actual workflow of an operating ice arena: employees working different roles and shifts, managers coordinating coverage, staff recording hours, and work history needing to remain accessible and organized.
 
-\*~Pin Code JavaScript for registration page~
+Rather than beginning with a technology stack, the application is designed around how the work actually happens.
 
-\*Pin Code JavaScript for login page
+## The Workflow Problem
 
-\*~Change Color of Submit Button when all 4 pins entered~
+Ice arena staffing involves several connected processes:
 
-\*~Registration Pin Code Error Handle~
+* Employees need a simple way to access their own work information.
+* Managers need to schedule employees across different roles and shifts.
+* Staff need to record hours worked.
+* Work history needs to persist and remain accessible.
+* Different users require different levels of access.
+* Scheduling and timekeeping information needs to remain connected rather than scattered across separate processes.
 
-\*~Add Pin code back spacing~
+Viking Arena Time Card brings those activities into one system.
 
-\*~Add Names registered to Name dropdown at login (read from database)~
+## Workflow
 
-\*~Compare the pin number to the pin number in the Local Storage database~
+The application is organized around two primary users.
 
-\*Compare the pin number to the pin number in the Real database
+### Employees
 
-\*Store the Real login in LocalStorage
-for 'Remember Me' functionality
+Employees can:
 
-## Encryption
+* Authenticate using their individual credentials.
+* View information relevant to their role.
+* Record and review hours worked.
+* Access their work history.
+* View scheduling information.
 
-\*Encrypt the pin numbers
+### Managers
 
-### Registration
+Managers can:
 
-\*~Pin Code Match JavaScript~
+* Authenticate with manager-level access.
+* Create and manage employee schedules.
+* Coordinate staffing across arena roles.
+* Review employee work history.
+* Maintain visibility into scheduling and timekeeping activity.
 
-\*~Implement authorization to the Submit Button at Confirmation~
+## System Design
 
-\*~Login the user upon registration~
+The application separates the user interface from backend services and persistent data storage.
 
-\*~Enable name registration submit even if input was entered by speech~
+The system includes:
 
-\*~Letters and spaces only to the name inputs~
+* Role-aware authentication and authorization
+* Employee and manager workflows
+* Shift scheduling
+* Time-entry management
+* Persistent work-history records
+* REST API communication between frontend and backend
+* Responsive interfaces designed for both desktop and mobile use
 
-### Database
+The goal is not simply to digitize a time card. It is to model the operational relationship between employees, schedules, hours, roles, and management oversight.
 
-\*~Add Account Registration~
+## Engineering Approach
 
-\*~Store Account Information for testing (with LocalStorage)~
+Development is centered on the workflow first.
 
-\*~Add Names registered to Name dropdown at login~
+Each technical decision is evaluated against questions such as:
 
-\*~Profile on slide menu reads profile from the database after login~
+* Who needs access to this information?
+* What actions should each role be allowed to perform?
+* What information needs to persist?
+* Where can scheduling or timekeeping errors occur?
+* How should the frontend communicate with the underlying data?
+* How can the system remain straightforward for employees with different levels of technical comfort?
 
-\*Migrate Account Information (to Mongo DB database)
+This approach keeps the application architecture tied to the real operational problem it is intended to solve.
 
-## Accounts
+## Architecture
 
-\*~Add delete profile feature~
+The system follows a client/server architecture:
 
-\*~Add confirmation button (in Modal) for deleting profile~
+**Frontend → REST API → Application Logic → Database**
 
-## Calendar
+The frontend provides the employee and manager interfaces.
 
-\*~Add a calendar for scheduling~
+The backend handles authentication, business logic, scheduling, employee data, and work-history operations.
 
-\*~Add a modal to the date buttons on calendar~
+Persistent database storage allows employee and scheduling information to survive beyond individual browser sessions.
 
-\*NOTE: for calendar - have all entries on the same calendar just filter out by account name manager will see all accounts hours when clicking the view employee calendar
+## Technology
 
-\*Each employee hours button will lead to a list of hours for the week for that employee
+* JavaScript
+* Node.js
+* Express
+* PostgreSQL
+* REST APIs
+* HTML
+* CSS
+* Git / GitHub
 
-\*~Add JS to the hours entry modal~
+## Current Development
 
-## Messaging
+Viking Arena Time Card remains under active development.
 
-\*Add direct messaging between all users
+Current work is focused on strengthening the production-oriented backend, persistent PostgreSQL data storage, authentication and authorization controls, and continued refinement of the employee and manager experience.
 
-\*Add messaging for tech support
+## Project Principle
 
-\*Add messaging for pin retrieval
+> **Start with the workflow. Build the software around it.**
 
-\*Add phone number to registration process
+Viking Arena Time Card demonstrates an approach to software development centered on understanding an existing operational process and turning that process into a maintainable software system.
 
-\*Scheduling updates will text your phone
+---
 
-## Authentication
+© 2026 CourDevelops. All rights reserved.
 
-\*~Create Login functionality~
-
-\*~Create Logout functionality~
-
-## Authorization
-
-\*~Add Authorization for Employees (see current day to enter hours. Also access to personal calendar)~
-
-\*~Add Authorization for Employers (see Employees in a list. Click on each employee and see hours as a chart)~
-
-\*Grant the Managers a managerial key for registration
-
-\*Add Managerial key enter screen and change the button color for Manager select button
-
-## Challenges
-
-\*Had to consider the user psychology and behavior patterns of users that range from 21 - 81
-
-\*Emplemented design thinking methodology
-
-\*Emplemented architecture thinking methodology
-
-\*Guide AI Assistance for User Metrics
-
-### Next thing
-
-\*Change the sidebar link from 'Messaging' to 'Schedule Requests'
-
-\*Weekly Cal page and scheduler modals will read from 'schedules'
-
-\*~Make the page body freeze and whiteout when modal clicked~
-
-\*~Set up the weekly calendar page~
-
-\*~Render the hours worked for the managerial calendar~
-
-\*~Make the managerial calendar which displays all employees hours~
-
-\*~Make the Modals with entries inputs blue and add an edit pin to each~
-
-\*~Center, add pipes and buttons to date entries~
-
-\*~Get the managers name in the header for the emp_list_page~
-
-\*~The Employee hours page for the manager~
-\*~(so its one page that renders the proper date from db and displays them into output tags)~
-
-\*~The Manager calendar~
-\*~(take the js from emp cal and just display all the employees entry dates)~
-
-![GitHub commit activity](https://img.shields.io/github/commit-activity/t/courthub74/viking_arena_time_card?style=flat&logo=GitHub)
+Source code is publicly available for portfolio and demonstration purposes. This project is not open source.
