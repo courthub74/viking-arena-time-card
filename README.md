@@ -4,10 +4,11 @@
 
 <div align="center">
   <h1>Viking Arena Time Card</h1>
-
-    <!-- Scheduling and timekeeping software built around the day-to-day operations of an ice arena. -->
-
 </div>
+
+# Overview
+
+<p align="center"> Scheduling and timekeeping software built around the day-to-day operations of an ice arena.</p>
 
 ## From Arena Workflow to Working System
 
