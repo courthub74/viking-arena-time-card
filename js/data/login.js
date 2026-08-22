@@ -236,12 +236,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                 
                                 // Redirect to the appropriate page based on account type
                                 if (selectedUser.accountType === 'Manager') {
-                                    window.location.href = `../../html/dashboards/manager.html?username=${encodedUsername}&acct_type=${selectedUser.accountType}&encodedPinConfirm=${encodedPin}`;
-                                    window.location.href = `/viking_arena_time_card/html/dashboards/manager.html?username=${encodedUsername}&acct_type=${selectedUser.accountType}&encodedPinConfirm=${encodedPin}`;
+                                    window.location.href =
+                                    `./html/dashboards/manager.html?username=${encodedUsername}&acct_type=${encodeURIComponent(selectedUser.accountType)}`;
                                 } else {
-                                    window.location.href = `../../html/dashboards/employee.html?username=${encodedUsername}&acct_type=${selectedUser.accountType}&encodedPinConfirm=${encodedPin}`;
-                                    window.location.href = `/viking_arena_time_card/html/dashboards/employee.html?username=${encodedUsername}&acct_type=${selectedUser.accountType}&encodedPinConfirm=${encodedPin}`;
+                                    window.location.href =
+                                    `./html/dashboards/employee.html?username=${encodedUsername}&acct_type=${encodeURIComponent(selectedUser.accountType)}`;
                                 }
+                             
                             });
                         } else {
                             //////////////// IF THE PINS ARE INCORRECT///////////////////////
