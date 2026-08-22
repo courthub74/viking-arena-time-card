@@ -79,12 +79,14 @@ function registerUser(username, accountType, pin) {
         // Redirect to the manager page
         const repoName = "/viking_arena_time_card"
         // this will need to be changed for PostgreSQL implementation to redirect to the manager dashboard page
-        window.location.href = `${repoName}/html/dashboards/manager.html?username=${username}&acct_type=${user.accountType}`;
+        // window.location.href = `${repoName}/html/dashboards/manager.html?username=${username}&acct_type=${user.accountType}`;
+        window.location.href = `../../html/dashboards/manager.html?username=${username}&acct_type=${user.accountType}`;
     } else {
         // Redirect to the customer page
         const repoName = "/viking_arena_time_card"
         // this will need to be changed for PostgreSQL implementation to redirect to the employee dashboard page
-        window.location.href = `${repoName}/html/dashboards/employee.html?username=${username}&acct_type=${user.accountType}`;
+        // window.location.href = `${repoName}/html/dashboards/employee.html?username=${username}&acct_type=${user.accountType}`;
+        window.location.href = `../../html/dashboards/employee.html?username=${username}&acct_type=${user.accountType}`;
     }
     // If ABOVE doesn't work, try this:
     // window.location.href = `../../html/dashboards/employee.html?username=${username}&acct_type=${user.accountType}`;
