@@ -5,7 +5,7 @@
 <div align="center">
   <h1>Viking Arena Time Card</h1>
 
-    Scheduling and timekeeping software built around the day-to-day operations of an ice arena.
+    <!-- Scheduling and timekeeping software built around the day-to-day operations of an ice arena. -->
 
 </div>
 
