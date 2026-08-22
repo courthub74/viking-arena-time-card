@@ -42,7 +42,7 @@ function registerUser(username, accountType, pin) {
     }
 };
 
- // Login function
+ // LOGIN function
  function loginUser(username, pin) {
     // Get item from local storage
     var users = JSON.parse(localStorage.getItem('users')) || [];
@@ -78,10 +78,12 @@ function registerUser(username, accountType, pin) {
     if (user.accountType === 'Manager') {
         // Redirect to the manager page
         const repoName = "/viking_arena_time_card"
+        // this will need to be changed for PostgreSQL implementation to redirect to the manager dashboard page
         window.location.href = `${repoName}/html/dashboards/manager.html?username=${username}&acct_type=${user.accountType}`;
     } else {
         // Redirect to the customer page
         const repoName = "/viking_arena_time_card"
+        // this will need to be changed for PostgreSQL implementation to redirect to the employee dashboard page
         window.location.href = `${repoName}/html/dashboards/employee.html?username=${username}&acct_type=${user.accountType}`;
     }
     // If ABOVE doesn't work, try this:
@@ -99,7 +101,7 @@ function registerUser(username, accountType, pin) {
 }
 
 
-// Submit the Name to Registration
+// Submit the Name to REGISTRATION
 // Get the info from the confirmation page
 // Save the user data to the local storage
 function submitRegistration() {
