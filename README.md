@@ -8,7 +8,7 @@
 
 # Overview
 
-<p align="center"> Scheduling and timekeeping software built around the day-to-day operations of an ice arena.</p>
+<p>Scheduling and timekeeping software built around the day-to-day operations of an ice arena.</p>
 
 ## From Arena Workflow to Working System
 
