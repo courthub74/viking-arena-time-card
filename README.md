@@ -8,7 +8,35 @@
   <strong>Workflow-driven scheduling and timekeeping software built around the day-to-day operations of an ice arena.</strong>
 </p>
 
-## Overview
+## From Arena Workflow to Working System
+
+Viking Arena Time Card replaces paper records, scattered schedule updates, and manual staff coordination with one role-based interface for arena operations.
+
+### Interface
+
+Employees use a PIN-based flow to clock in, clock out, and review their work history. Managers can organize weekly coverage across operational roles—including Zamboni drivers and skate guards—through a responsive scheduling interface designed for quick use during an active shift.
+
+The frontend includes:
+
+- Employee registration and PIN login
+- Role-based clock-in and clock-out flows
+- Personal work-history views
+- Weekly staff scheduling
+- AM/PM coverage assignments
+- Mobile-friendly employee and manager screens
+
+### Backend Structure
+
+The application uses a Node.js and Express API organized around the arena’s core workflow:
+
+- **Employees** — identity, role, PIN authentication, and work history
+- **Time records** — clock-in and clock-out activity
+- **Schedules** — weekly assignments and coverage by role
+- **Authentication** — protected employee and manager access
+
+The current frontend remains usable while persistence is being moved from browser-based storage into a PostgreSQL-backed system. This keeps the interface and workflow logic separate from the data layer, making the project easier to secure, test, and expand.
+
+<!-- ## Overview
 
 Viking Arena Time Card replaces fragmented employee scheduling and timekeeping workflows with a role-aware system for shift scheduling, hour submission, work-history tracking, and manager oversight.
 
@@ -123,4 +151,4 @@ Viking Arena Time Card demonstrates an approach to software development centered
 
 © 2026 CourDevelops. All rights reserved.
 
-Source code is publicly available for portfolio and demonstration purposes. This project is not open source.
+Source code is publicly available for portfolio and demonstration purposes. This project is not open source. -->
