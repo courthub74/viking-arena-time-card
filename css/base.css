@@ -1,0 +1,209 @@
+/* Base Styles *//* Import Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noticia+Text&family=Playfair+Display&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Red+Hat+Display:wght@500;700;900&family=Satisfy&family=Shadows+Into+Light&family=Shadows+Into+Light+Two&display=swap');
+
+/* Import Inria Sans font */
+@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noticia+Text&family=Playfair+Display&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Red+Hat+Display:wght@500;700;900&family=Satisfy&family=Shadows+Into+Light&family=Shadows+Into+Light+Two&display=swap');
+
+:root {
+
+    /* Base */
+    --background-color: #ffffff;
+
+    /* Text */
+    --text-color: #000000;
+
+    /* Menu Text */
+    --menu-text-color: #000000bf; /* 50% opacity */
+
+    /* Menu Colors */
+    --menu-background: #ffffff;
+    --menu-hover: #e0e0e0;
+    --menu-shadow: rgba(0, 0, 0, 0.1);
+
+     /* Input Colors */
+     /* --input-background: #B0CCE2; */
+     /* --input-background: #587790; */
+     /* --input-background: #587790a4; */
+     --input-background: #658cab92;
+     --input-background: #658cab48;
+     --input-background: #5186b148;
+
+
+     /* Button Colors */
+     --button-background: #009DF8;
+     --button-text: white;
+     
+     /* *********************************** */
+     /* *********************************** */
+     /* **********DAY MODE SLIDE IN********** */
+
+     /* Menu Item Colors */
+     --slide-menu-item-background: #5186b148;
+     /* --slide-menu-item-background: white; */
+     --slide-menu-item-trim: #5186b148;
+     /* --slide-menu-item-trim: white; */
+
+
+     /* Slide Menu Icons */
+     --slide-menu-item-icon-filter: brightness(90%) contrast(100%);
+     
+     /* *********************************** */
+     /* *********************************** */
+     /* *********************************** */
+
+     /* ________ */
+}
+
+/* DARK MODE */
+
+body.dark-mode {
+
+    /* Base */
+    --background-color: black;
+
+    /* Text */
+    --text-color: #ffffff;
+
+     /* Menu Text */
+     --menu-text-color: #ffffff75; /* 50% opacity */
+
+    /* Menu Colors */
+    --menu-background: #101010;
+    --menu-background: #000000;
+    --menu-hover: #0d0d0d;
+    --menu-shadow: rgb(18, 27, 31);
+
+     /* Input Colors */
+     /* --input-background: #101316;
+     --input-background: #1b2025; */
+     --input-background: #15191d;
+     /* --input-background: #20252c; */
+     
+     /* Button Colors */
+     --button-background: #009DF8;
+     --button-text: white;
+
+     /* ********************************** */
+     /* ********************************** */
+     /* ************NITE MODE SLIDE******* */
+
+     /* Menu Item Colors */
+     --slide-menu-item-background: #black;
+     --slide-menu-item-background: #20252c;
+     --slide-menu-item-background: #15191d;
+     --slide-menu-item-trim: #2065a578;
+     --slide-menu-item-trim: #3d4a5653;
+     
+     /* *********************************** */
+     /* *********************************** */
+     /* *********************************** */
+    
+}
+
+/* WHOLE BODY */
+* {
+    font-family: 'Poppins';
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    border-radius: 5px;
+}
+
+/* Body for All */
+body {
+    min-height: 100vh;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%; 
+	/* max-width: 1000px; */
+    padding: 1em 0 1em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
+}
+
+
+
+/* DARK MODE */
+
+body.dark-mode {
+
+    /* Base */
+    --background-color: black;
+
+    /* Text */
+    --text-color: #ffffff;
+
+     /* Menu Text */
+     --menu-text-color: #ffffff75; /* 50% opacity */
+
+    /* Menu Colors */
+    --menu-background: #101010;
+    --menu-background: #000000;
+    --menu-hover: #0d0d0d;
+    --menu-shadow: rgb(18, 27, 31);
+
+     /* Input Colors */
+     /* --input-background: #101316;
+     --input-background: #1b2025; */
+     --input-background: #15191d;
+     /* --input-background: #20252c; */
+     
+     /* Button Colors */
+     --button-background: #009DF8;
+     --button-text: white;
+
+     /* ********************************** */
+     /* ********************************** */
+     /* ************NITE MODE SLIDE******* */
+
+     /* Menu Item Colors */
+     --slide-menu-item-background: #black;
+     --slide-menu-item-background: #20252c;
+     --slide-menu-item-background: #15191d;
+     --slide-menu-item-trim: #2065a578;
+     --slide-menu-item-trim: #3d4a5653;
+     
+     /* *********************************** */
+     /* *********************************** */
+     /* *********************************** */
+    
+}
+
+/* WHOLE BODY */
+* {
+    font-family: 'Poppins';
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    border-radius: 5px;
+}
+
+/* Body for All */
+body {
+    min-height: 100vh;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%; 
+	/* max-width: 1000px; */
+    padding: 1em 0 1em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
+}
