@@ -6,7 +6,7 @@
   <h1>Viking Arena Time Card</h1>
 </div>
 
-# Overview
+## Overview
 
 <p>Scheduling and timekeeping software built around the day-to-day operations of an ice arena.</p>
 
