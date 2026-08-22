@@ -2,11 +2,13 @@
   <img src="./img/hazel-park-logo/viking_arena_logo.png" alt="Viking Arena Time Card Logo" width="180">
 </p>
 
-<h1 align="center">Viking Arena Time Card</h1>
+<div align="center">
+  <h1>Viking Arena Time Card</h1>
 
-<p align="center">
-  Scheduling and timekeeping software built around the day-to-day operations of an ice arena.
-</p>
+  <p>
+    Scheduling and timekeeping software built around the day-to-day operations of an ice arena.
+  </p>
+</div>
 
 ## From Arena Workflow to Working System
 
