@@ -1,1 +1,315 @@
 /* Navigation Styles */
+/* NAVBAR */
+
+.main_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color);
+    background: none;
+    width: 100%;
+    /* box-shadow: 0 2px 5px var(--menu-shadow); */
+    position: relative;
+    z-index: 1000;
+    padding: 0 3em 0 3em;
+    margin-top: 2em;
+    margin-top: 40px;
+}
+
+/* Main Logo */
+.viking_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+}
+
+/* Logo Img */
+.viking_img {
+    width: 2.5em;
+    height: 2.5em;
+    width: 2em;
+    height: 2em;
+}
+
+/* Logo Text */
+.logo_text {
+    font-family: 'Inria Sans';
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+/* Menu Burger */
+
+/* Menu Button */
+#menu_burgers {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    /* background-color: blue; */
+}
+
+/* The Burgers */
+.burger {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Order for the Menu button logos */
+
+/* Make the dark mode menu go away */
+/* .menu_button #menu_burgers .burger:last-child {
+    display: none;
+} */
+
+/* Make the lite mode menu come on in dark mode */
+/* .dark-mode .menu_button #menu_burgers .burger:last-child {
+    display: block;
+}  */
+
+/* When Burger button (or burger class) is active */
+.burger.active {
+    transform: rotate(90deg);
+}
+
+/* Day/Nite */
+
+/* Div */
+.theme_switch {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Button */
+#theme_switch {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+/* Stacked Logos */
+.day-nite {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease;
+}
+
+/* Order for the Dark Lite Mode Logos */
+/* body.dark-mode .day-nite:nth-child(2) {
+    opacity: 0;
+}
+
+body:not(.dark-mode) .day-nite:nth-child(1) {
+    opacity: 0;
+} */
+
+/* *****COPY FOR EACH PAGE */
+/* ********************** */
+/* ********************** */
+/* ********************** */
+
+/* Slide-out Menu Styles */
+.side-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: var(--menu-background);
+    transition: transform 0.3s ease-in-out;
+    padding-top: 65px;
+    padding-left: 40px;
+    padding-right: 20px;
+    z-index: 999;
+    /* Make slide menu cover it all */
+    /* z-index: 1000; */
+    border-right: 1px solid var(--nav-shadow);
+}
+
+.side-menu.active {
+    transform: translateX(300px);
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 998;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Logo Header */
+.slide_header_logo {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    opacity: 0;
+}
+
+.slide_header_logo img {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.slide_in_logo_text {
+    font-size: medium;
+    font-weight: bold;
+}
+
+/* Menu Items Div */
+.menu_items {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+
+/* *************************** */
+/* *************************** */
+/* *************************** */
+/* *************************** */
+/* Slide Menu Items to Copy */
+
+
+/* Each Slide Menu Item */
+.menu-item {
+    padding: 1rem 1rem 1rem 0rem;
+    display: flex;
+    gap: 1em;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: small;
+    border-radius: 5px;
+    /* font-weight: bold; */
+    /* border: 1px solid var(--slide-menu-item-trim); */
+    background-color: var(--slide-menu-item-background);
+}
+
+#theme_switch {
+    background-color: var(--slide-menu-item-background);
+    /* border: 1px solid var(--slide-menu-item-trim); */
+    width: 100%;
+    padding: 1.5rem 1rem 1.5rem 0rem;
+    /* padding: 1rem 1rem 1rem 0rem; */
+}
+
+/* Profile on the slide menu */
+.profile {
+    /* margin-top: 1em; */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--slide-menu-item-background);
+    /* When logged in make color slightly brighter */
+}
+
+/* Whole Profile Div */
+.profile_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1rem 1rem .7rem;
+    border-bottom: 1px solid var(--slide-menu-item-trim);
+}
+
+/* Profile IMG */
+
+/* Profile header text */
+.profile_text {
+    font-size: small;
+    font-weight: bold;
+}
+
+/* Profile header img */
+.profile_circle {
+    filter: var(--slide-menu-item-icon-filter);
+    width: 1.2em;
+    height: 1.2em;
+}
+
+/* The Profile Text Info */
+.profile_text_data {
+    opacity: 25%;
+}
+
+/* **************************************** */
+/* **************************************** */
+/* **************************************** */
+/* **************************************** */
+
+/* Profile Info Boxes */
+.profile_info {
+    /* background-color: var(--input-background); */
+    font-size: small;
+    padding: .5em 1em;
+}
+
+.profile_info label {
+    opacity: 50%;
+    font-size: small;
+}
+
+/* Pin Number Profile Div */
+.pin_and_peak {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#pin_code_peak {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#pin_code_peak img {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+/* Each menu item icon */
+.menu-item img {
+    width: 1.5em;
+    height: 1.5em;
+    filter: var(--slide-menu-item-icon-filter);
+}
+
+.menu-item:hover {
+    background-color: var(--menu-hover);
+}
+
+/* For demonstrating menu items */
+.menu-item span {
+    margin-left: 10px;
+}
