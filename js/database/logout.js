@@ -36,9 +36,18 @@ function logoutUser() {
     sessionStorage.removeItem('session');
 
     // Redirect to login page
+
+    // BEFORE
+    // For GitHub Pages deployment path:
+    // window.location.href = "/viking-arena-time-card/index.html";
+
+    // AFTER 
+    // Root-relative application path:
     window.location.href = '../../index.html';
+
     // Test Redirect to google.com for testing purposes
     // window.location.href = 'https://www.google.com';
+
 }
 
 
