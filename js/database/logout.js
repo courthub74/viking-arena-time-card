@@ -27,6 +27,8 @@ const logoutManager = document.getElementById('logout_manager');
 
 // Log out function
 function logoutUser() {
+    // Test print the current user
+    console.log(`Logging out user: ${currentUser.username} and their role is: ${currentUser.accountType} session: ${currentUser.sessionId} from (logout.js)`);
     // Delete the session storage item
     sessionStorage.removeItem('currentUser');
 
@@ -34,8 +36,17 @@ function logoutUser() {
     sessionStorage.removeItem('session');
 
     // Redirect to login page
+
+    // BEFORE
+    // For GitHub Pages deployment path:
+    // window.location.href = "/viking-arena-time-card/index.html";
+
+    // AFTER 
+    // Root-relative application path:
     window.location.href = '../../index.html';
-    window.location.href = '/viking_arena_time_card/index.html';
+
+    // Test Redirect to google.com for testing purposes
+    // window.location.href = 'https://www.google.com';
 
 }
 
