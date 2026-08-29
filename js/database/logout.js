@@ -37,6 +37,7 @@ function logoutUser() {
 
     // Redirect to login page
     window.location.href = '../../index.html';
+    
     // Test Redirect to google.com for testing purposes
     // window.location.href = 'https://www.google.com';
 }
