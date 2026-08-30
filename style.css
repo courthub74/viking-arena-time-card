@@ -18,86 +18,7 @@
 
 /* Delete Account */
 
-/* Whole Button */
-/* .delete_account_button {
-    border: none;
-    background-color: rgb(192, 52, 52);;
-    color: white;
-    width: 100%;
-    padding: 1em;
-    cursor: pointer;
-    font-weight: bold;
-} */
 
-/* Just Text */
-.delete_account_button {
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    font-weight: bold;
-    color: rgb(192, 52, 52);
-    color: red;
-    font-size: small;
-    background: none;
-    border: none;
-    cursor: pointer;
-    gap: .4em;
-    /* margin-top: 1em; */
-    margin-bottom: .5em;
-}
-
-.delete_can {
-    width: 15px;
-    height: 15px;
-}
-
-/* Log Out */
-.logout_account_div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
-}
-
-
-
-/* Just Text */
-/* .logout_account_button {
-    display: flex;
-    align-items: center;
-    background: none;
-    color: #009DF8;
-    border: none;
-    gap: .5em;
-    font-size: small;
-    font-weight: bold;
-    cursor: pointer;
-} */
-
-/* Whole Button */
-.logout_account_button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5em;
-    background-color: #009DF8;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: .8em 1em;
-    cursor: pointer;
-    margin-top: 1em;
-    font-size: medium;
-    font-size: small;
-    font-weight: bold;
-}
-
-
-.logout_logo {
-    width: 1.1em;
-    height: 1.1em;
-}
 
 /* COPY ABOVE FOR MENU */
 /* *************** */
@@ -409,11 +330,6 @@ label {
     height: 1.5em;
   }
 
-footer {
-    font-size: x-small;
-    opacity: 40%;
-    /* width: 100%; */
-}
   
 
 /* For wider screens narrow the form */
@@ -426,107 +342,6 @@ footer {
     }
 }
 
-/* Desktop */
-@media screen and (min-width: 1200px) {
-
-    /* Main Nav */
-
-    .burger {
-        width: 40px;
-        height: 40px;
-    }
-
-    .viking_img {
-        /* make bigger */
-        width: 3em;
-        height: 3em;
-    }
-
-    .logo_text {
-        font-size: 2rem;
-    }
-
-    /* Slide Menu */
-
-    /* slider logo */
-    .slide_header_logo img {
-        width: 3.5em;
-        height: 3.5em;
-    }
-
-    /* slider logo text */
-    .slide_in_logo_text {
-        font-size: x-large;
-    }
-
-    /* slider selections */
-    .menu-item {
-        font-size: medium;
-    }
-
-    /* Delete Button */
-    .delete_account_div {
-        margin-top: 2em;
-    }
-
-    /* form */
-    form {
-        width: 25%;
-        display: flex;
-        flex-direction: column;
-        gap: 3em;
-        margin-top: 5em;
-    }
-
-    .day-nite {
-        width: 40px;
-        height: 40px;
-    }
-
-    .menu-item {
-        font-size: small;
-    }
-
-    /* Header with more gap */
-    .logo_name {
-        display: flex;
-        justify-content: center;
-        /* justify-content: center; */
-        align-items: center;
-        width: 100%;
-        gap: .5em;
-        /* gap: 2.5em;   */
-    }
-
-    /* Logo a bit bigger */
-    .logo_name p {
-        font-size: 3rem;
-        font-size: medium;
-        font-weight: bold;
-    }
-
-    .hazel_park_logo {
-        width: 5em;
-        height: 5em;
-    }
-
-    /* Form Elements */
-    label {
-        font-size: medium;
-    }
-
-    /* Submit Button */
-    
-    footer {
-        font-size: small;
-        opacity: 30%;
-        margin-top: 2em;
-    }
-
-    .or, .create_acct {
-        font-size: medium;
-    }
-} 
 
 
 @media screen and (min-width: 1600px) {

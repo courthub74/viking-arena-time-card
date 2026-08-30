@@ -313,3 +313,85 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 .menu-item span {
     margin-left: 10px;
 }
+
+/* Whole Button */
+/* .delete_account_button {
+    border: none;
+    background-color: rgb(192, 52, 52);;
+    color: white;
+    width: 100%;
+    padding: 1em;
+    cursor: pointer;
+    font-weight: bold;
+} */
+
+/* Just Text */
+.delete_account_button {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    font-weight: bold;
+    color: rgb(192, 52, 52);
+    color: red;
+    font-size: small;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: .4em;
+    /* margin-top: 1em; */
+    margin-bottom: .5em;
+}
+
+.delete_can {
+    width: 15px;
+    height: 15px;
+}
+
+/* Log Out */
+.logout_account_div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+
+
+/* Just Text */
+/* .logout_account_button {
+    display: flex;
+    align-items: center;
+    background: none;
+    color: #009DF8;
+    border: none;
+    gap: .5em;
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+} */
+
+/* Whole Button */
+.logout_account_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+    background-color: #009DF8;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: .8em 1em;
+    cursor: pointer;
+    margin-top: 1em;
+    font-size: medium;
+    font-size: small;
+    font-weight: bold;
+}
+
+
+.logout_logo {
+    width: 1.1em;
+    height: 1.1em;
+}
+

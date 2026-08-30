@@ -207,3 +207,9 @@ body {
     align-items: center;
     gap: 3em;
 }
+
+footer {
+    font-size: x-small;
+    opacity: 40%;
+    /* width: 100%; */
+}
