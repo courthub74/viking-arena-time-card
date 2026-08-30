@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./img/hazel-park-logo/viking_arena_logo.png" alt="Viking Arena Time Card Logo" width="180">
+  <img src="./img/hazel-park-logo/viking-arena-logo.png" alt="Viking Arena Time Card Logo" width="180">
 </p>
 
 <div align="center">
