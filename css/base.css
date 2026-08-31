@@ -132,51 +132,6 @@ body {
 
 
 
-/* DARK MODE */
-
-body.dark-mode {
-
-    /* Base */
-    --background-color: black;
-
-    /* Text */
-    --text-color: #ffffff;
-
-     /* Menu Text */
-     --menu-text-color: #ffffff75; /* 50% opacity */
-
-    /* Menu Colors */
-    --menu-background: #101010;
-    --menu-background: #000000;
-    --menu-hover: #0d0d0d;
-    --menu-shadow: rgb(18, 27, 31);
-
-     /* Input Colors */
-     /* --input-background: #101316;
-     --input-background: #1b2025; */
-     --input-background: #15191d;
-     /* --input-background: #20252c; */
-     
-     /* Button Colors */
-     --button-background: #009DF8;
-     --button-text: white;
-
-     /* ********************************** */
-     /* ********************************** */
-     /* ************NITE MODE SLIDE******* */
-
-     /* Menu Item Colors */
-     --slide-menu-item-background: #black;
-     --slide-menu-item-background: #20252c;
-     --slide-menu-item-background: #15191d;
-     --slide-menu-item-trim: #2065a578;
-     --slide-menu-item-trim: #3d4a5653;
-     
-     /* *********************************** */
-     /* *********************************** */
-     /* *********************************** */
-    
-}
 
 /* WHOLE BODY */
 * {

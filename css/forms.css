@@ -249,8 +249,9 @@ label {
 }
 
 /* No outline on focus */
-.submit:focus {
+.submit:focus-visible {
     outline: none;
+    filter: brightness(90%);
 }
 
  /* Submit Disabled */
