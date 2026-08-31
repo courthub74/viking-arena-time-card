@@ -97,9 +97,15 @@
 
     /* Form Elements */
     label {
+        color: var(--text-color);
         font-size: medium;
+        opacity: 0.65;
     }
-
+    
+    .reset_button {
+        color: var(--text-color);
+        opacity: 0.58;
+    }
     /* Submit Button */
     
     footer {
