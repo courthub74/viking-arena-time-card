@@ -47,10 +47,13 @@ label {
 }
 
 @media screen and (min-width: 768px) {
+    #users_dropdown,
     .pin_field input {
         height: 3.5rem;
     }
 }
+
+
 
 /* DESKTOP BREAKPOINT LOGIN PAGE */
 @media screen and (min-width: 1200px) {
