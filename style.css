@@ -45,6 +45,13 @@ label {
 .submit:not(:disabled):active {
     filter: brightness(0.9);
 }
+
+@media screen and (min-width: 768px) {
+    .pin_field input {
+        height: 3.5rem;
+    }
+}
+
 /* DESKTOP BREAKPOINT LOGIN PAGE */
 @media screen and (min-width: 1200px) {
 
