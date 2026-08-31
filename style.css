@@ -106,7 +106,12 @@
         color: var(--text-color);
         opacity: 0.58;
     }
-    /* Submit Button */
+
+    #users_dropdown,
+    .pin_field input {
+        border: 1px solid rgba(81, 134, 177, 0.28);
+    }
+   
     
     footer {
         font-size: small;
