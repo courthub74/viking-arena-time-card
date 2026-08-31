@@ -1,11 +1,56 @@
 
 /* *********************************** */
-/* DESKTOP LOGIN PAGE */
+/* MAIN CHANGES */
+label {
+    color: var(--text-color);
+    opacity: 0.65;
+}
+
+.reset_button {
+    color: var(--text-color);
+    opacity: 0.58;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.reset_button:hover,
+.reset_button:focus-visible {
+    color: var(--button-background);
+    opacity: 1;
+    outline: none;
+}
+
+.reset_button:active {
+    opacity: 0.7;
+}
+
+#users_dropdown,
+.pin_field input {
+    border: 1px solid rgba(81, 134, 177, 0.28);
+}
+
+.submit {
+    transition: filter 0.2s ease;
+}
+
+.submit:not(:disabled) {
+    font-weight: 500;
+}
+
+@media (hover: hover) {
+    .submit:not(:disabled):hover {
+        filter: brightness(1.08);
+    }
+}
+
+.submit:not(:disabled):active {
+    filter: brightness(0.9);
+}
+/* DESKTOP BREAKPOINT LOGIN PAGE */
 @media screen and (min-width: 1200px) {
 
-    /* body {
-        background-color: red
-    } */
+    .container {
+        min-height: 100vh;
+    }
 
     /* Main Nav */
 
@@ -60,7 +105,7 @@
     }
 
     .create_acct_div {
-        margin-top: 0;
+        margin-top: -0.75em;
     }
 
     .day-nite {
@@ -94,32 +139,29 @@
         width: 5em;
         height: 5em;
     }
-
-    /* Form Elements */
-    label {
-        color: var(--text-color);
-        font-size: medium;
-        opacity: 0.65;
-    }
-    
-    .reset_button {
-        color: var(--text-color);
-        opacity: 0.58;
-    }
-
-    #users_dropdown,
-    .pin_field input {
-        border: 1px solid rgba(81, 134, 177, 0.28);
-    }
-   
     
     footer {
         font-size: small;
         opacity: 30%;
-        margin-top: 2em;
+        margin-top: auto;
     }
 
     .or, .create_acct {
         font-size: medium;
     }
+
+    /* .submit:not(:disabled) {
+        font-weight: 500;
+    }
+
+    @media (hover: hover) {
+        .submit:not(:disabled):hover {
+            filter: brightness(1.08);
+        }
+    }
+
+    .submit:not(:disabled):active {
+        filter: brightness(0.9);
+        transform: translateY(0);
+    } */
 }  
