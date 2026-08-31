@@ -55,6 +55,14 @@
         margin-top: 5em;
     }
 
+    .submit {
+        margin-top: -2em;
+    }
+
+    .create_acct_div {
+        margin-top: 0;
+    }
+
     .day-nite {
         width: 40px;
         height: 40px;
