@@ -814,13 +814,13 @@ header {
 
     /* Desktop Form */
     form {
-        width: 30%;
+        width: calc(100% - 4rem);
+        max-width: 42rem;
         display: flex;
         flex-direction: column;
         gap: 2em;
         margin-top: 1em;
     }
-
     .burger {
         width: 40px;
         height: 40px;

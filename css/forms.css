@@ -334,18 +334,13 @@ label {
 
 /* For wider screens narrow the form */
 
-/* Landscape */
-@media screen and (min-width: 700px) {
+/* Medium Screens */
+@media screen and (min-width: 700px) and (max-width: 1199px) {
     form {
-        width: 50%;
-        gap: 1em;
+        width: calc(100% - 4rem);
+        max-width: 32rem;
+        gap: 2em;
+        margin-inline: auto;
     }
 }
 
-
-/* Large Screens */
-@media screen and (min-width: 1600px) {
-    form {
-        width: 20%;
-    }
-}

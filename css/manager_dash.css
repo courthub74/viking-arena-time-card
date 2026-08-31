@@ -800,7 +800,8 @@ header {
     }
 
     form {
-        width: 30%;
+        width: calc(100% - 4rem);
+        max-width: 42rem;
         display: flex;
         flex-direction: column;
         gap: 2em;
