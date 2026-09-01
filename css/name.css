@@ -571,16 +571,21 @@ header {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: .5em;
-    background-color: var(--input-background);
+    gap: 0.5em;
+    background: transparent;
+    border: none;
+}
+
+.registration_names input {
+    width: 100%;
     border: 1px solid rgba(81, 134, 177, 0.28);
 }
 
 /* Name Inputs */
 label {
     font-size: small;
-    /* font-weight: bold; */
-    opacity: 50%;
+    color: var(--text-color);
+    opacity: 0.65;
 }
 
 input {
@@ -611,7 +616,8 @@ input {
     cursor: pointer;
     font-size: medium;
     font-size: small;
-    transition: all 0.3s ease;
+    /* transition: all 0.3s ease; */
+    transition: filter 0.2s ease;
 }
 
 /* No outline on focus */
@@ -632,8 +638,51 @@ input {
     text-decoration: none;
     color: var(--text-color);
     font-size: small;
-    font-weight: bold;
-    opacity: 50%;
+    font-weight: 400;
+    opacity: 0.65;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.submit:not(:disabled) {
+    font-weight: 500;
+}
+
+@media (hover: hover) {
+    .submit:not(:disabled):hover {
+        filter: brightness(1.08);
+    }
+
+    .go_back:hover {
+        color: var(--button-background);
+        opacity: 1;
+    }
+}
+
+.submit:not(:disabled) {
+    background-color: #006fba;
+    color: #ffffff;
+    font-weight: 500;
+}
+/* .submit:not(:disabled):focus-visible {
+    filter: brightness(0.9);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+} */
+
+.go_back:focus-visible {
+    color: var(--button-background);
+    opacity: 1;
+    outline: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.submit:not(:disabled):active {
+    filter: brightness(0.9);
+}
+
+.go_back:active {
+    opacity: 0.7;
 }
 
 /* For wider screens narrow the form */
@@ -641,10 +690,9 @@ input {
 /* Landscape */
 @media screen and (min-width: 700px) {
     form {
-        width: 50%;
-        /* display: flex;
-        flex-direction: column;
-        gap: 1em; */
+        width: calc(100% - 4rem);
+        max-width: 32rem;
+        margin-inline: auto;
     }
 }
 
@@ -669,7 +717,7 @@ input {
 
     /* form */
     form {
-        width: 25%;
+        /* width: 25%; */
         display: flex;
         flex-direction: column;
         gap: 2em;
@@ -720,8 +768,8 @@ input {
     }
 }
 
-@media screen and (min-width: 1600px) {
+/* @media screen and (min-width: 1600px) {
     form {
         width: 20%;
     }
-}
+} */
