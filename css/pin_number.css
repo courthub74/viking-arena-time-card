@@ -313,84 +313,9 @@ label {
     cursor: not-allowed;
 }
 
-/* Form Labels */
+/* New Form Updates */
 form > label {
     color: var(--text-color);
-    font-size: 1rem;
-    font-weight: 400;
-    opacity: 0.65;
-}
-
-.name_label {
-    color: var(--text-color);
-    font-weight: 400;
-    opacity: 0.65;
-}
-
-#reset_button {
-    color: var(--text-color);
-    opacity: 0.58;
-    transition: color 0.2s ease, opacity 0.2s ease;
-}
-
-#reset_button:hover,
-#reset_button:focus-visible {
-    color: var(--button-background);
-    opacity: 1;
-    outline: none;
-}
-
-#reset_button:active {
-    opacity: 0.7;
-}
-
-.pin_match_confirm {
-    min-height: 1.25rem;
-    padding: 0;
-    margin-top: 0;
-}
-
-.pin_match_confirm {
-    height: 0;
-    min-height: 0;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-}
-
-/* For Collapsing Pin sections */
-.pin_put_set,
-.pin_put_confirm {
-    flex: 1 1 0;
-    min-width: 0;
-    width: auto;
-    height: 3.5em;
-    box-sizing: border-box;
-    border: 1px solid rgba(81, 134, 177, 0.28);
-}
-
-.pin_put_set:focus,
-.pin_put_confirm:focus {
-    border-color: var(--button-background);
-}
-
-/* Form Stability */
-form {
-    width: min(calc(100% - 2rem), 32rem);
-    padding-inline: 0;
-    box-sizing: border-box;
-}
-
-.pin_match_confirm {
-    height: auto;
-    min-height: 1.25rem;
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-}
-
-.pin_match_confirm p {
-    margin: 0;
 }
 
 /* For wider screens narrow the form */
@@ -451,12 +376,9 @@ form {
         font-size: medium;
     }
 
-   .pin_match_confirm {
-        height: 0;
-        min-height: 0;
-        padding: 0;
-        margin: 0;
-        overflow: hidden;
+    .pin_match_confirm {
+        padding: 25px;
+        margin-top: 1em;
     }
 
     label {
@@ -479,15 +401,4 @@ form {
         font-size: small;
         font-weight: normal;
     }
-}
-
-/* Pinfield Borders */
-.pin_field .pin_put_set,
-.pin_field .pin_put_confirm {
-    border: 1px solid rgba(81, 134, 177, 0.55);
-}
-
-.pin_field .pin_put_set:focus,
-.pin_field .pin_put_confirm:focus {
-    border-color: var(--button-background);
 }

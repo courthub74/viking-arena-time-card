@@ -698,25 +698,20 @@ header {
     height: 3.5em;
 }
 
-/* Page Header */
-/* label {
-    opacity: 100%;
-    font-size: medium;
-    font-size: small;
-    font-size: .8rem;
-    display: flex;
-    gap: .5em;
-    width: 100%;
-} */
 
-/* The Dashboard Header */
+/* Dashboard Header */
 .page_header_label {
-    font-size: medium;
-    font-size: small;
-    font-size: .8rem;
     display: flex;
-    /* gap: .5em; */
     width: 100%;
+    font-size: 0.8rem;
+}
+
+/* Secondary Page Title */
+.page_header {
+    display: flex;
+    color: var(--text-color);
+    font-weight: bold;
+    opacity: 0.7;
 }
 
 /* The Blue and the Name */
@@ -1568,4 +1563,22 @@ option {
     .submit {
         margin-top: 1em;
     }
+}
+
+/* Desktop Form */
+@media screen and (min-width: 1200px) {
+    form {
+        width: 30rem;
+    }
+}
+
+/* Page Header */
+.page_header {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+/* Weekly List */
+.weekly_list {
+    margin-top: 0.75rem;
 }
