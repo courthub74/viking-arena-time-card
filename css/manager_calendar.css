@@ -876,7 +876,7 @@ header {
 }
 
 /* Calendar Table */
-#calendar-body {
+.calendar_table {
   width: 100%;
   height: 100%; /* Use full height of container */
   border-collapse: collapse;
@@ -1377,4 +1377,32 @@ input:focus {
 .page_header {
   color: var(--text-color);
   opacity: 0.7;
+}
+
+/* Calendar Weekdays */
+.calendar_weekdays {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.calendar_weekdays th {
+  width: calc(100% / 7);
+  color: var(--text-color);
+  font-size: 0.75rem;
+  font-weight: 400;
+  opacity: 0.7;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.calendar_table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+#calendar-body td {
+  width: calc(100% / 7);
+  text-align: center;
 }
