@@ -727,11 +727,10 @@ header {
 }
 
 /* Dashboard for */
+/* Page Header */
 .page_header {
-    display: flex;
-    font-weight: bold;
-    /* width: 100%; */
-    opacity: 50%;
+    color: var(--text-color);
+    opacity: 0.7;
 }
 
 /* EDIT BUTTON */

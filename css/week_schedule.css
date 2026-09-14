@@ -706,13 +706,6 @@ header {
     font-size: 0.8rem;
 }
 
-/* Secondary Page Title */
-.page_header {
-    display: flex;
-    color: var(--text-color);
-    font-weight: bold;
-    opacity: 0.7;
-}
 
 /* The Blue and the Name */
 .acct_type_label {
@@ -721,13 +714,6 @@ header {
     opacity: 100%;
 }
 
-/* Dashboard for */
-.page_header {
-    display: flex;
-    font-weight: bold;
-    /* width: 100%; */
-    opacity: 50%;
-}
 
 /* EDIT BUTTON */
 .edit-time-button {
@@ -1576,7 +1562,7 @@ option {
 .page_header {
     color: var(--text-color);
     opacity: 0.7;
-}
+} 
 
 /* Weekly List */
 .weekly_list {
