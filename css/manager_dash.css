@@ -1,220 +1,214 @@
-
 :root {
+  /* Base */
+  --background-color: #ffffff;
 
-    /* Base */
-    --background-color: #ffffff;
+  /* Text */
+  --text-color: #000000;
 
-    /* Text */
-    --text-color: #000000;
+  /* Menu Text */
+  --menu-text-color: #00000080; /* 50% opacity */
 
-    /* Menu Text */
-    --menu-text-color: #00000080; /* 50% opacity */
+  /* Menu Colors */
+  --menu-background: #ffffff;
+  --menu-hover: #e0e0e0;
+  --menu-shadow: rgba(0, 0, 0, 0.1);
 
-    /* Menu Colors */
-    --menu-background: #ffffff;
-    --menu-hover: #e0e0e0;
-    --menu-shadow: rgba(0, 0, 0, 0.1);
+  /* Input Colors */
+  --input-background: #658cab92;
+  --input-background: #658cab48;
+  --input-background: #5186b148;
 
-     /* Input Colors */
-     --input-background: #658cab92;
-     --input-background: #658cab48;
-     --input-background: #5186b148;
+  /* Submit Button Colors */
+  --button-background: #009df8;
+  --button-text: white;
 
+  /* Dashboard Button Colors */
+  --dashboard-button-background: #5186b148;
 
-     /* Submit Button Colors */
-     --button-background: #009DF8;
-     --button-text: white;
+  /* Bluer Vers */
+  /* --dashboard-button-background: #007DD4; */
+  --dashboard-button-trim: none;
 
-     /* Dashboard Button Colors */
-     --dashboard-button-background: #5186b148;
+  /* Account Type Colors */
+  --dashboard-selected: #2065a58a;
+  /* Trim */
+  --dashboard-trim: #000000;
+  /* Hover */
+  --dashboard-hover: #e8e8e8;
 
-     /* Bluer Vers */
-     /* --dashboard-button-background: #007DD4; */
-     --dashboard-button-trim: none;
+  /* *********************************** */
+  /* *********************************** */
+  /* **********DAY MODE SLIDE IN********** */
 
-     /* Account Type Colors */
-     --dashboard-selected: #2065a58a;
-     /* Trim */
-     --dashboard-trim: #000000;
-     /* Hover */
-     --dashboard-hover: #e8e8e8;
+  /* Menu Item Colors */
+  --slide-menu-item-background: #5186b148;
+  /* --slide-menu-item-background: white; */
+  --slide-menu-item-trim: #5186b148;
+  /* --slide-menu-item-trim: white; */
 
-    /* *********************************** */
-     /* *********************************** */
-     /* **********DAY MODE SLIDE IN********** */
+  /* Slide Menu Icons */
+  --slide-menu-item-icon-filter: brightness(90%) contrast(100%);
 
-     /* Menu Item Colors */
-     --slide-menu-item-background: #5186b148;
-     /* --slide-menu-item-background: white; */
-     --slide-menu-item-trim: #5186b148;
-     /* --slide-menu-item-trim: white; */
-
-
-     /* Slide Menu Icons */
-     --slide-menu-item-icon-filter: brightness(90%) contrast(100%);
-     
-     /* *********************************** */
-     /* *********************************** */
-     /* *********************************** */
-
+  /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
 }
 
 /* DARK MODE */
 
 body.dark-mode {
+  /* Base */
+  --background-color: black;
 
-    /* Base */
-    --background-color: black;
+  /* Text */
+  --text-color: #ffffff;
 
-    /* Text */
-    --text-color: #ffffff;
+  /* Menu Text */
+  --menu-text-color: #ffffff75; /* 50% opacity */
 
-     /* Menu Text */
-     --menu-text-color: #ffffff75; /* 50% opacity */
+  /* Menu Colors */
+  --menu-background: #101010;
+  --menu-background: #000000;
+  --menu-hover: #0d0d0d;
+  --menu-shadow: rgb(22, 33, 38);
 
-    /* Menu Colors */
-    --menu-background: #101010;
-    --menu-background: #000000;
-    --menu-hover: #0d0d0d;
-    --menu-shadow: rgb(22, 33, 38);
-
-     /* Input Colors */
-     /* --input-background: #101316;
+  /* Input Colors */
+  /* --input-background: #101316;
      --input-background: #1b2025;
      --input-background: #15191d; */
-     --input-background: #121418;
-     
-     /* Button Colors */
-     --button-background: #009DF8;
-     --button-text: white;
+  --input-background: #121418;
 
-      /* Dashboard Button Colors */
-      --dashboard-button-background: black;
+  /* Button Colors */
+  --button-background: #009df8;
+  --button-text: white;
 
-        /* Grey Vers */
-      --dashboard-button-background: #15191d;
+  /* Dashboard Button Colors */
+  --dashboard-button-background: black;
 
-      /* Bluer Vers */
-     /* --dashboard-button-background: #007cd43d; */
-     --dashboard-button-trim: none;
+  /* Grey Vers */
+  --dashboard-button-background: #15191d;
 
-     /* Account Type Colors */
-      --dashboard-selected: #17426b7c;
-      --dashboard-selected: #2366a67c;
-     /* Trim */
-     --dashboard-trim: #009DF8;
-     /* Hover */
-     --dashboard-hover: #17426b;
+  /* Bluer Vers */
+  /* --dashboard-button-background: #007cd43d; */
+  --dashboard-button-trim: none;
 
-     /* ********************************** */
-     /* ********************************** */
-     /* ************NITE MODE SLIDE******* */
+  /* Account Type Colors */
+  --dashboard-selected: #17426b7c;
+  --dashboard-selected: #2366a67c;
+  /* Trim */
+  --dashboard-trim: #009df8;
+  /* Hover */
+  --dashboard-hover: #17426b;
 
-     /* Menu Item Colors */
-     --slide-menu-item-background: #black;
-     --slide-menu-item-background: #20252c;
-     --slide-menu-item-background: #15191d;
-     --slide-menu-item-trim: #2065a578;
-     --slide-menu-item-trim: #3d4a5653;
-     
-     /* *********************************** */
-     /* *********************************** */
-     /* *********************************** */
+  /* ********************************** */
+  /* ********************************** */
+  /* ************NITE MODE SLIDE******* */
+
+  /* Menu Item Colors */
+  --slide-menu-item-background: #black;
+  --slide-menu-item-background: #20252c;
+  --slide-menu-item-background: #15191d;
+  --slide-menu-item-trim: #2065a578;
+  --slide-menu-item-trim: #3d4a5653;
+
+  /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
 }
 
 /* WHOLE BODY */
 * {
-    font-family: 'Poppins';
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    border-radius: 5px;
+  font-family: "Poppins";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 /* Body for All */
 body {
-    min-height: 100vh;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .container {
-    width: 100%; 
-	/* max-width: 1000px; */
-    padding: 1em 0 1em 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3em;
+  width: 100%;
+  /* max-width: 1000px; */
+  padding: 1em 0 1em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3em;
 }
 
 /* NAVBAR */
 
 .main_nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--background-color);
-    background: none;
-    width: 100%;
-    /* box-shadow: 0 2px 5px var(--menu-shadow); */
-    position: relative;
-    z-index: 1000;
-    /* z-index: 997; */
-    padding: 0 3em 0 3em;
-    margin-top: 2em;
-    margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color);
+  background: none;
+  width: 100%;
+  /* box-shadow: 0 2px 5px var(--menu-shadow); */
+  position: relative;
+  z-index: 1000;
+  /* z-index: 997; */
+  padding: 0 3em 0 3em;
+  margin-top: 2em;
+  margin-top: 40px;
 }
 
 /* Main Logo */
 .viking_logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 /* Logo Img */
 .viking_img {
-    width: 2.5em;
-    height: 2.5em;
-    width: 2em;
-    height: 2em;
+  width: 2.5em;
+  height: 2.5em;
+  width: 2em;
+  height: 2em;
 }
 
 /* Logo Text */
 .logo_text {
-    font-family: 'Inria Sans';
-    font-size: 1.6rem;
-    font-weight: bold;
+  font-family: "Inria Sans";
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 /* Menu Burger */
 
 /* Menu Button */
 #menu_burgers {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    /* background-color: blue; */
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  /* background-color: blue; */
 }
 
 /* The Burgers */
 .burger {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.3s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* Order for the Menu button logos */
@@ -231,38 +225,38 @@ body {
 
 /* When Burger button (or burger class) is active */
 .burger.active {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 /* Day/Nite */
 
 /* Div */
 .theme_switch {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 /* Button */
 #theme_switch {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    position: relative;
-    width: 30px;
-    height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  width: 30px;
+  height: 30px;
 }
 
 /* Stacked Logos */
 .day-nite {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
 }
 
 /* Order for the Dark Lite Mode Logos */
@@ -281,71 +275,71 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Slide-out Menu Styles */
 .side-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 300px;
-    height: 100vh;
-    background-color: var(--menu-background);
-    transition: transform 0.3s ease-in-out;
-    padding-top: 65px;
-    padding-left: 40px;
-    padding-right: 20px;
-    z-index: 999;
-    /* Make slide menu cover it all */
-    /* z-index: 1000; */
-    /* border-right: 1px solid var(--nav-shadow); */
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--menu-background);
+  transition: transform 0.3s ease-in-out;
+  padding-top: 65px;
+  padding-left: 40px;
+  padding-right: 20px;
+  z-index: 999;
+  /* Make slide menu cover it all */
+  /* z-index: 1000; */
+  /* border-right: 1px solid var(--nav-shadow); */
 }
 
 .side-menu.active {
-    transform: translateX(300px);
+  transform: translateX(300px);
 }
 
 .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 998;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 998;
 }
 
 .menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Logo Header */
 .slide_header_logo {
-    display: flex;
-    align-items: center;
-    gap: .5em;
-    opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  opacity: 0;
 }
 
 .slide_header_logo img {
-    width: 2.5em;
-    height: 2.5em;
+  width: 2.5em;
+  height: 2.5em;
 }
 
 .slide_in_logo_text {
-    font-size: medium;
-    font-weight: bold;
+  font-size: medium;
+  font-weight: bold;
 }
 
 /* Menu Items Div */
 .menu_items {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 1em;
 }
 
 /* *************************** */
@@ -354,66 +348,65 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* *************************** */
 /* Slide Menu Items to Copy */
 
-
 /* Each Slide Menu Item */
 .menu-item {
-    padding: 1rem 1rem 1rem 0rem;
-    display: flex;
-    gap: 1em;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: small;
-    border-radius: 5px;
-    /* font-weight: bold; */
-    /* border: 1px solid var(--slide-menu-item-trim); */
-    background-color: var(--slide-menu-item-background);
+  padding: 1rem 1rem 1rem 0rem;
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: small;
+  border-radius: 5px;
+  /* font-weight: bold; */
+  /* border: 1px solid var(--slide-menu-item-trim); */
+  background-color: var(--slide-menu-item-background);
 }
 
 #theme_switch {
-    background-color: var(--slide-menu-item-background);
-    /* border: 1px solid var(--slide-menu-item-trim); */
-    width: 100%;
-    padding: 1.5rem 1rem 1.5rem 0rem;
-    /* padding: 1rem 1rem 1rem 0rem; */
+  background-color: var(--slide-menu-item-background);
+  /* border: 1px solid var(--slide-menu-item-trim); */
+  width: 100%;
+  padding: 1.5rem 1rem 1.5rem 0rem;
+  /* padding: 1rem 1rem 1rem 0rem; */
 }
 
 /* Profile on the slide menu */
 .profile {
-    /* margin-top: 1em; */
-    display: flex;
-    flex-direction: column;
-    background-color: var(--slide-menu-item-background);
-    /* When logged in make color slightly brighter */
+  /* margin-top: 1em; */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--slide-menu-item-background);
+  /* When logged in make color slightly brighter */
 }
 
 /* Whole Profile Div */
 .profile_header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 1rem 1rem .7rem;
-    border-bottom: 1px solid var(--slide-menu-item-trim);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem 1rem 0.7rem;
+  border-bottom: 1px solid var(--slide-menu-item-trim);
 }
 
 /* Profile IMG */
 
 /* Profile header text */
 .profile_text {
-    font-size: small;
-    font-weight: bold;
+  font-size: small;
+  font-weight: bold;
 }
 
 /* Profile header img */
 .profile_circle {
-    filter: var(--slide-menu-item-icon-filter);
-    width: 1.2em;
-    height: 1.2em;
+  filter: var(--slide-menu-item-icon-filter);
+  width: 1.2em;
+  height: 1.2em;
 }
 
 /* The Profile Text Info */
 .profile_text_data {
-    opacity: 100%;
+  opacity: 100%;
 }
 
 /* **************************************** */
@@ -423,49 +416,49 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Profile Info Boxes */
 .profile_info {
-    /* background-color: var(--input-background); */
-    font-size: small;
-    padding: .5em 1em;
+  /* background-color: var(--input-background); */
+  font-size: small;
+  padding: 0.5em 1em;
 }
 
 .profile_info label {
-    opacity: 50%;
-    font-size: small;
+  opacity: 50%;
+  font-size: small;
 }
 
 /* Pin Number Profile Div */
 .pin_and_peak {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #pin_code_peak {
-    background: none;
-    border: none;
-    cursor: pointer;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 #pin_code_peak img {
-    width: 1.5em;
-    height: 1.5em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 /* Each menu item icon */
 .menu-item img {
-    width: 1.5em;
-    height: 1.5em;
-    filter: brightness(90%);
-    /* filter: brightness(150%) contrast(180%); */
+  width: 1.5em;
+  height: 1.5em;
+  filter: brightness(90%);
+  /* filter: brightness(150%) contrast(180%); */
 }
 
 .menu-item:hover {
-    background-color: var(--menu-hover);
+  background-color: var(--menu-hover);
 }
 
 /* For demonstrating menu items */
 .menu-item span {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 /* Delete Account */
@@ -483,44 +476,42 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Just Text */
 .delete_account_button {
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    font-weight: bold;
-    color: rgb(192, 52, 52);
-    color: red;
-    font-size: small;
-    background: none;
-    border: none;
-    cursor: pointer;
-    gap: .4em;
-    /* margin-top: 1em; */
-    margin-bottom: .5em;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  font-weight: bold;
+  color: rgb(192, 52, 52);
+  color: red;
+  font-size: small;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 0.4em;
+  /* margin-top: 1em; */
+  margin-bottom: 0.5em;
 }
 
 .delete_can {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 /* Log Out */
 .logout_account_div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
 }
 
 .logout_text a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: white;
 }
-
-
 
 /* Just Text */
 /* .logout_account_button {
@@ -537,26 +528,25 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Whole Button */
 .logout_account_button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5em;
-    background-color: #009DF8;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: .8em 1em;
-    cursor: pointer;
-    margin-top: 1em;
-    font-size: medium;
-    font-size: small;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  background-color: #009df8;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 0.8em 1em;
+  cursor: pointer;
+  margin-top: 1em;
+  font-size: medium;
+  font-size: small;
+  font-weight: bold;
 }
 
-
 .logout_logo {
-    width: 1.1em;
-    height: 1.1em;
+  width: 1.1em;
+  height: 1.1em;
 }
 
 /* COPY ABOVE FOR MENU */
@@ -565,7 +555,6 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* *************** */
 /* *************** */
 
-
 /* *************** */
 /* *************** */
 /* *************** */
@@ -573,46 +562,45 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* THE FORM */
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 3em;
-    width: 100%;
-    padding: 0 3em 0 3em;
-    /* margin-top: 1em; */
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  width: 100%;
+  padding: 0 3em 0 3em;
+  /* margin-top: 1em; */
 }
 
 /* THE HEADER */
 header {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    gap: 2em;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 2em;
+  width: 100%;
 }
 
 .logo_name {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: left;
-    align-items: center;
-    gap: .5em;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: left;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .logo_name p {
-    font-size: 2.5rem;
-    font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .app_state p {
-    text-decoration: underline;
-    text-decoration-color: var(--button-background);
-    text-decoration-thickness: 2px;
+  text-decoration: underline;
+  text-decoration-color: var(--button-background);
+  text-decoration-thickness: 2px;
 }
 
-
 .hazel_park_logo {
-    width: 3.5em;
-    height: 3.5em;
+  width: 3.5em;
+  height: 3.5em;
 }
 
 /* Page Header */
@@ -625,35 +613,35 @@ header {
 
 /* The Dashboard Header */
 .page_header_label {
-    font-size: medium;
-    font-size: small;
-    font-size: .8rem;
-    display: flex;
-    /* gap: .5em; */
-    width: 100%;
+  font-size: medium;
+  font-size: small;
+  font-size: 0.8rem;
+  display: flex;
+  /* gap: .5em; */
+  width: 100%;
 }
 
 /* The Blue and the Name */
 .acct_type_label {
-    color: var(--button-background);
-    font-weight: bold;
-    opacity: 100%;
+  color: var(--button-background);
+  font-weight: bold;
+  opacity: 100%;
 }
 
 /* Dashboard for */
 .page_header {
-    display: flex;
-    font-weight: bold;
-    opacity: 50%;
+  display: flex;
+  font-weight: bold;
+  opacity: 50%;
 }
 
 /* Radio Button Squares */
 .employee_selects {
-    /* background-color: blue; */
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    /* margin-top: 1em; */
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  /* margin-top: 1em; */
 }
 
 /* FOR THE RADIO DIAL VERSION */
@@ -666,7 +654,6 @@ header {
     width: 0;
     height: 0;
   } */
-
 
 /* .radio-container label {
     display: flex;
@@ -681,58 +668,58 @@ header {
     cursor: pointer;
     font-family: 'Poppins';
   } */
-  
-  /* FOR REGULAR BUTTON  */
-  /* ************************** */
-  .radio-container{
-    display: flex;
-    /* justify-content: center; */
-    justify-content: space-between;
-    width: 100%;
-    background-color: var(--dashboard-button-background);
-    /* background-color: red; */
-    border: 1px solid var(--dashboard-button-trim);
-    padding: 3em;
-    height: 8em;
-    /* padding: 10px; */
-    color: var(--text-color);
-    font-size: medium;
-    font-size: small;
-    /* font-weight: bold; */
-    cursor: pointer;
-    font-family: 'Poppins';
-  }
 
-    /* Dashboard Images */
+/* FOR REGULAR BUTTON  */
+/* ************************** */
+.radio-container {
+  display: flex;
+  /* justify-content: center; */
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--dashboard-button-background);
+  /* background-color: red; */
+  border: 1px solid var(--dashboard-button-trim);
+  padding: 3em;
+  height: 8em;
+  /* padding: 10px; */
+  color: var(--text-color);
+  font-size: medium;
+  font-size: small;
+  /* font-weight: bold; */
+  cursor: pointer;
+  font-family: "Poppins";
+}
 
-  /* Clock */
-  .dash_hours {
-    width: 20px;
-    height: 20px;
-    /* filter: var(--dashboard-logo); */
-  }
+/* Dashboard Images */
 
-  /* Calendar */
-  .dash_calendar {
-    width: 19px;
-    height: 19px;
-    /* filter: var(--dashboard-logo); */
-  }
-  
-  .radio-container:hover {
-    background-color: none;
-  }
+/* Clock */
+.dash_hours {
+  width: 20px;
+  height: 20px;
+  /* filter: var(--dashboard-logo); */
+}
 
-  /* BUTTON VERSION */
-  .radio-container.clicked {
-    box-sizing: border-box;
-    background-color: var(--dashboard-selected);
-    border: 1px solid var(--dashboard-trim);
-    color: var(--text-color);
-    transition: all 0.3s ease;
-  }
+/* Calendar */
+.dash_calendar {
+  width: 19px;
+  height: 19px;
+  /* filter: var(--dashboard-logo); */
+}
 
-  /* .dashboard_button:checked + label {
+.radio-container:hover {
+  background-color: none;
+}
+
+/* BUTTON VERSION */
+.radio-container.clicked {
+  box-sizing: border-box;
+  background-color: var(--dashboard-selected);
+  border: 1px solid var(--dashboard-trim);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+/* .dashboard_button:checked + label {
     box-sizing: border-box;
     background-color: var(--dashboard-selected);
     border: 1px solid var(--dashboard-trim);
@@ -741,99 +728,109 @@ header {
 
 /* Submit Button */
 .submit {
-    background-color: var(--button-background);
-    color: white;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    font-size: medium;
-    font-size: small;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    /* margin-top: 1em; */
+  background-color: var(--button-background);
+  color: white;
+  border: none;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  font-size: medium;
+  font-size: small;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  /* margin-top: 1em; */
 }
 
 /* No outline on focus */
 .submit:focus {
-    outline: none;
+  outline: none;
 }
 
- /* Submit Disabled */
- .submit:disabled {
-    background-color: var(--button-background);
-    color: var(--text-color);
-    opacity: .6;
-    cursor: not-allowed;
+/* Submit Disabled */
+.submit:disabled {
+  background-color: var(--button-background);
+  color: var(--text-color);
+  opacity: 0.6;
+  cursor: not-allowed;
 }
-
 
 /* For wider screens narrow the form */
 
 /* Landscape */
 @media screen and (min-width: 700px) {
-    form {
-        width: 50%;
-        /* display: flex;
+  form {
+    width: 50%;
+    /* display: flex;
         flex-direction: column;
         gap: 1em; */
-    }
+  }
 }
 
 /* Desktop */
 @media screen and (min-width: 1200px) {
+  /* Main Nav */
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
 
-     /* Main Nav */
-     .burger {
-        width: 40px;
-        height: 40px;
-    }
+  .viking_img {
+    /* make bigger */
+    width: 3em;
+    height: 3em;
+  }
 
-    .viking_img {
-        /* make bigger */
-        width: 3em;
-        height: 3em;
-    }
+  .logo_text {
+    font-size: 2rem;
+  }
 
-    .logo_text {
-        font-size: 2rem;
-    }
+  form {
+    width: calc(100% - 4rem);
+    max-width: 42rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-top: 1em;
+  }
 
-    form {
-        width: calc(100% - 4rem);
-        max-width: 42rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
-        margin-top: 1em;
-    }
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
 
-    .burger {
-        width: 40px;
-        height: 40px;
-    }
+  .day-nite {
+    width: 40px;
+    height: 40px;
+  }
 
-    .day-nite {
-        width: 40px;
-        height: 40px;
-    }
+  .menu-item {
+    font-size: medium;
+  }
 
-    .menu-item {
-        font-size: medium;
-    }
+  .page_header_label {
+    font-size: medium;
+  }
 
-    .page_header_label {
-        font-size: medium;
-    }
+  .dashboard_button {
+    font-size: medium;
+  }
 
-    .dashboard_button {
-        font-size: medium;
-    }
+  .employee_selects {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-top: 2em;
+  }
+}
 
-    .employee_selects {
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
-        margin-top: 2em;
-    }
+/* Improve dashboard heading contrast */
+.page_header {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+/* Dashboard card borders */
+.employee_selects .radio-container {
+  border: 1px solid rgba(81, 134, 177, 0.55);
+  box-sizing: border-box;
 }

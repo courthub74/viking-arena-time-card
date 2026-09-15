@@ -1,230 +1,287 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../img/hazel-park-logo/viking-arena-logo.png" type="image/png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="../../img/hazel-park-logo/viking-arena-logo.png"
+      type="image/png"
+    />
     <title>Viking Time Card</title>
 
-      <!-- CSS -->
+    <!-- CSS -->
 
-      <!-- BASE STYLES -->
-      <link rel="stylesheet" href="../../css/base.css">
+    <!-- BASE STYLES -->
+    <link rel="stylesheet" href="../../css/base.css" />
 
-      <!-- NAVIGATION STYLES -->
-      <link rel="stylesheet" href="../../css/navigation.css">
+    <!-- NAVIGATION STYLES -->
+    <link rel="stylesheet" href="../../css/navigation.css" />
 
-      <!-- FORMS STYLES -->
-      <link rel="stylesheet" href="../../css/forms.css">
+    <!-- FORMS STYLES -->
+    <link rel="stylesheet" href="../../css/forms.css" />
 
-      <!-- DELETE ACCOUNT PIN STYLES -->
-      <link rel="stylesheet" href="../../css/delete_acct_pin.css">
-</head>
-<body>
-
+    <!-- DELETE ACCOUNT PIN STYLES -->
+    <link rel="stylesheet" href="../../css/delete_acct_pin.css" />
+  </head>
+  <body>
     <!-- Container -->
     <div class="container">
+      <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
 
+      <!-- THE NAVBAR AND SIDE MENU-->
+      <nav class="main_nav">
+        <!-- Burger -->
+        <div class="viking_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            class="viking_img"
+            alt="viking_ice_arena"
+          />
+          <p class="logo_text">Time Card</p>
+        </div>
 
-        <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
+        <!-- Light/Dark -->
+        <div class="menu_button">
+          <!-- Day/Nite -->
+          <button id="menu_burgers">
+            <img
+              src="../../img/hamburgers/hamburger_blue.png"
+              class="burger"
+              id="burger_one"
+              alt="menu"
+            />
+            <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
+          </button>
+        </div>
+      </nav>
 
-        
+      <!-- SLIDE IN MENU -->
+      <div class="side-menu">
+        <!-- Header Logo -->
+        <div class="slide_header_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            alt="logo"
+          />
+          <p class="slide_in_logo_text">Time Card</p>
+        </div>
 
-        <!-- THE NAVBAR AND SIDE MENU-->
-        <nav class="main_nav">
-            <!-- Burger -->
-            <div class="viking_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png" class="viking_img" alt="viking_ice_arena">
-                <p class="logo_text">Time Card</p>
-            </div>
-            
-            <!-- Light/Dark -->
-            <div class="menu_button">
-                <!-- Day/Nite -->
-                <button id="menu_burgers">
-                    <img src="../../img/hamburgers/hamburger_blue.png" class="burger" id="burger_one" alt="menu">
-                    <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
-                </button>
-            </div>
-        </nav>
+        <!-- Menu Items -->
+        <div class="menu_items">
+          <a href="#" class="menu-item"
+            ><span>Tech Support</span
+            ><img
+              src="../../img/slide-in-menu/tech_support.png"
+              alt="tech_support"
+          /></a>
+          <a href="#" class="menu-item"
+            ><span>Schedule Requests</span
+            ><img src="../../img/slide-in-menu/messaging.png" alt="messaging"
+          /></a>
+          <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
+          <button id="theme_switch" class="menu-item">
+            <span>Day/Nite Mode</span
+            ><img
+              src="../../img/slide-in-menu/day_nite.png"
+              alt="theme_switch"
+            />
+          </button>
+        </div>
+        <!-- Logged in Profile -->
+        <!-- Logged in Profile -->
+        <div class="profile">
+          <div class="profile_header">
+            <p class="profile_text">Profile</p>
+            <img
+              src="../../img/slide-in-menu/profile.png"
+              class="profile_circle"
+            />
+          </div>
 
-        <!-- SLIDE IN MENU -->
-        <div class="side-menu">
-            <!-- Header Logo -->
-             <div class="slide_header_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png"  alt="logo">
-                <p class="slide_in_logo_text">Time Card</p>
-             </div>
-            
-             <!-- Menu Items -->
-             <div class="menu_items">
-                <a href="#" class="menu-item"><span>Tech Support</span><img src="../../img/slide-in-menu/tech_support.png" alt="tech_support"></a>
-                <a href="#" class="menu-item"><span>Schedule Requests</span><img src="../../img/slide-in-menu/messaging.png" alt="messaging"></a>
-                <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
-                <button id="theme_switch" class="menu-item"><span>Day/Nite Mode</span><img src="../../img/slide-in-menu/day_nite.png" alt="theme_switch"></button>
-             </div>
-            <!-- Logged in Profile -->
-            <!-- Logged in Profile -->
-            <div class="profile">
-                <div class="profile_header">
-                    <p class="profile_text">Profile</p>
-                    <img src="../../img/slide-in-menu/profile.png" class="profile_circle">
-                </div>
+          <!-- Profile Name -->
+          <div class="profile_info">
+            <label>Name:</label>
+            <p class="profile_text_data" id="profile_name"></p>
+          </div>
 
-                <!-- Profile Name -->
-                <div class="profile_info">
-                    <label>Name:</label>
-                    <p class="profile_text_data" id="profile_name"></p>
-                 </div>
+          <!-- Profile Account Type -->
+          <div class="profile_info">
+            <label>Account type:</label>
+            <p class="profile_text_data" id="profile_account"></p>
+          </div>
 
-                 <!-- Profile Account Type -->
-                 <div class="profile_info">
-                    <label>Account type:</label>
-                    <p class="profile_text_data" id="profile_account"></p>
-                 </div>
-
-                 <!-- Profile Pin Number -->
-                  <!-- This you will turn into a password output -->
-                 <div class="profile_info">
-                    <div class="pin_and_peak">
-                        <!-- <button class="delete_account_button" id="delete_account">
+          <!-- Profile Pin Number -->
+          <!-- This you will turn into a password output -->
+          <div class="profile_info">
+            <div class="pin_and_peak">
+              <!-- <button class="delete_account_button" id="delete_account">
                             <p class="delete_text">Delete Account</p>
                         </button> -->
-                        <!-- Pin Number -->
-                        <!-- <div class="pin_profile_div">
+              <!-- Pin Number -->
+              <!-- <div class="pin_profile_div">
                             <label>Pin #:</label>
                             <p class="profile_pin" id="profile_pin">****</p>
                         </div> -->
 
-                         <!-- Pin Code peak -->
-                        <!-- <div class="pin_code_peak">
+              <!-- Pin Code peak -->
+              <!-- <div class="pin_code_peak">
                             <button id="pin_code_peak">
                                 <img src="./img/slide-in-menu/pin_peek.png">
                             </button>
                         </div> -->
-                    </div>
-                 </div>
             </div>
-             <!-- Delete Button -->
-             <div class="delete_account_div">
-                <!-- This button needs to delete the session storage -->
-                 <!-- and redirect to the index page -->
-                  <!-- Give the button an onclick to do this -->
-                <button class="logout_account_button" id="logout_employee" onclick="logoutUser()">
-                    <img src="../../img/logout/white_logout.png" class="logout_logo">
-                    <p class="logout_text">
-                        <!-- <a href="../../index.html">Log Out</a> -->
-                        Log Out
-                    </p>
-                </button>
-             </div> 
-           
+          </div>
+        </div>
+        <!-- Delete Button -->
+        <div class="delete_account_div">
+          <!-- This button needs to delete the session storage -->
+          <!-- and redirect to the index page -->
+          <!-- Give the button an onclick to do this -->
+          <button
+            class="logout_account_button"
+            id="logout_employee"
+            onclick="logoutUser()"
+          >
+            <img src="../../img/logout/white_logout.png" class="logout_logo" />
+            <p class="logout_text">
+              <!-- <a href="../../index.html">Log Out</a> -->
+              Log Out
+            </p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Overlay -->
+      <div class="menu-overlay"></div>
+
+      <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+
+      <!-- THE PAGE -->
+
+      <!-- THE FORM -->
+      <form>
+        <!-- Page Header -->
+        <label class="page_header_label" for="employee_name">
+          <span class="del_acct_label" id="employee_name_delete"></span>
+          <span class="page_header">&nbsp;|&nbsp;Delete Account</span>
+        </label>
+
+        <!-- <label class="delete_account">First enter your pin#</label> -->
+
+        <!-- Pin # -->
+        <div class="pin_number">
+          <label for="pin_num">Enter pin# to delete account:</label>
+          <div class="pin_field" id="login_pin_field">
+            <input
+              type="password"
+              class="pin_put"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+          </div>
+
+          <!-- Pin Handling Buttons -->
+          <div class="pin_buttons" id="pin_buttons">
+            <!-- Reset Pins Button -->
+            <button class="reset_button" id="reset_button">
+              Clear Pin fields
+            </button>
+            <!-- Forgot Pin Button -->
+            <button class="reset_button" id="forgot_button">Forgot Pin?</button>
+          </div>
         </div>
 
-        <!-- Overlay -->
-        <div class="menu-overlay"></div>
+        <!-- Submit Button -->
+        <button class="delete_acct" id="delete_acct" disabled>
+          Delete Account
+        </button>
 
-        <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+        <!-- CONFIRMATION MODAL -->
+        <div class="modal" id="confirmation_modal">
+          <!-- Page Header -->
+          <label class="page_header_label" for="employee_name">
+            <span class="acct_type_label" id="employee_name">Name Here</span>
+            <span class="page_header">&nbsp;|&nbsp;Delete Account</span>
+          </label>
 
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
+          <div class="modal-content">
+            <p class="modal_header">Are you sure you want to delete profile?</p>
+            <!-- Account Info Square -->
+            <div class="account_info_square">
+              <div class="account_info_div">
+                <!-- Employee Name -->
+                <p class="delete_account_title">Employee Name:</p>
+                <!-- Get name from the session storage -->
+                <p class="delete_account_info" id="confirm_employee_name"></p>
+              </div>
 
-        <!-- THE PAGE -->
-
-        <!-- THE FORM -->
-        <form>
-
-            <!-- Page Header -->
-            <label class="page_header_label" for="employee_name">
-                <span class="del_acct_label" id="employee_name_delete"></span>
-                <span class="page_header">&nbsp;|&nbsp;Delete Account</span>
-            </label>
-
-            <!-- <label class="delete_account">First enter your pin#</label> -->
-
-            <!-- Pin # -->
-            <div class="pin_number">
-                <label for="pin_num">Enter pin# to delete account:</label>
-                    <div class="pin_field" id="login_pin_field">
-                        <input type="password" class="pin_put" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin_put" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin_put" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin_put" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    </div>
-
-                    <!-- Pin Handling Buttons -->
-                    <div class="pin_buttons" id="pin_buttons">
-                        <!-- Reset Pins Button -->
-                        <button class="reset_button" id="reset_button">Clear Pin fields</button>
-                        <!-- Forgot Pin Button -->
-                        <button class="reset_button" id="forgot_button">Forgot Pin?</button>
-                    </div>
+              <div class="account_info_div">
+                <!-- Account Type -->
+                <p class="delete_account_title">Account Type:</p>
+                <!-- Get account type from the session storage -->
+                <p class="delete_account_info" id="confirm_account_type"></p>
+              </div>
             </div>
 
-            <!-- Submit Button -->
-            <button class="delete_acct" id="delete_acct" disabled>Delete Account</button>
-
-            <!-- CONFIRMATION MODAL -->
-            <div class="modal" id="confirmation_modal">
-
-                <!-- Page Header -->
-                <label class="page_header_label" for="employee_name">
-                    <span class="acct_type_label" id="employee_name">Name Here</span>
-                    <span class="page_header">&nbsp;|&nbsp;Delete Account</span>
-                </label>
-
-                <div class="modal-content">
-
-                    <p class="modal_header">Are you sure you want to delete profile?</p>
-                    <!-- Account Info Square -->
-                    <div class="account_info_square">
-
-                        <div class="account_info_div">
-                            <!-- Employee Name -->
-                            <p class="delete_account_title">Employee Name:</p>
-                            <!-- Get name from the session storage -->
-                            <p class="delete_account_info" id="confirm_employee_name"></p>
-                        </div>
-
-                        <div class="account_info_div">
-                            <!-- Account Type -->
-                            <p class="delete_account_title">Account Type:</p>
-                            <!-- Get account type from the session storage -->
-                            <p class="delete_account_info" id="confirm_account_type"></p>
-                        </div>
-
-                    </div>
-
-                    <!-- Delete Account Buttons -->
-                    <div class="del_acct_buttons">
-                        <button class="confirm_delete" id="confirm_delete">Yes, Delete it</button>
-                        <button class="cancel_delete" id="cancel_delete">Cancel</button>
-                    </div>
-                </div>
-                <!-- <span class="close">&times;</span> -->
+            <!-- Delete Account Buttons -->
+            <div class="del_acct_buttons">
+              <button class="confirm_delete" id="confirm_delete">
+                Yes, Delete it
+              </button>
+              <button class="cancel_delete" id="cancel_delete">Cancel</button>
             </div>
+          </div>
+          <!-- <span class="close">&times;</span> -->
+        </div>
 
-            <!-- Back Button -->
-            <button class="back_to_dashboard" id="link_back_delete">Back to Dashboard</button>
-        </form>
-
+        <!-- Back Button -->
+        <button class="back_to_dashboard" id="link_back_delete">
+          Back to Dashboard
+        </button>
+      </form>
     </div>
 
     <!-- DARKMODE -->
@@ -240,7 +297,6 @@
     <script src="../../js/database/delete_acct.js"></script>
 
     <!-- LOGOUT -->
-   <script src="../../js/database/logout.js"></script>
-    
-</body>
+    <script src="../../js/database/logout.js"></script>
+  </body>
 </html>

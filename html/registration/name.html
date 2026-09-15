@@ -149,13 +149,21 @@
                 <label>Create your account:</label>
                 
                 <div class="registration_names">
-                    <!-- <label>First Name:</label> -->
-                    <input type="text" id="firstname" placeholder="Enter First Name:">
+                    <label for="firstname">First name</label>
+                    <input
+                        type="text"
+                        id="firstname"
+                        autocomplete="given-name"
+                    >
                 </div>
 
                 <div class="registration_names">
-                    <!-- <label>Last Name:</label> -->
-                    <input type="text" id="lastname" placeholder="Enter Last Name:">
+                    <label for="lastname">Last name</label>
+                    <input
+                        type="text"
+                        id="lastname"
+                        autocomplete="family-name"
+                    >
                 </div>
 
             </div>

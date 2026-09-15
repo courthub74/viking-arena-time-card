@@ -1,199 +1,192 @@
-
-
 :root {
+  /* Base */
+  --background-color: #ffffff;
 
-    /* Base */
-    --background-color: #ffffff;
+  /* Text */
+  --text-color: #000000;
 
-    /* Text */
-    --text-color: #000000;
+  /* Menu Text */
+  --menu-text-color: #000000bf; /* 50% opacity */
 
-    /* Menu Text */
-    --menu-text-color: #000000bf; /* 50% opacity */
+  /* Menu Colors */
+  --menu-background: #ffffff;
+  --menu-hover: #e0e0e0;
+  --menu-shadow: rgba(0, 0, 0, 0.1);
 
-    /* Menu Colors */
-    --menu-background: #ffffff;
-    --menu-hover: #e0e0e0;
-    --menu-shadow: rgba(0, 0, 0, 0.1);
+  /* Input Colors */
+  /* --input-background: #B0CCE2; */
+  /* --input-background: #587790; */
+  /* --input-background: #587790a4; */
+  --input-background: #658cab92;
+  --input-background: #658cab48;
+  --input-background: #5186b148;
 
-     /* Input Colors */
-     /* --input-background: #B0CCE2; */
-     /* --input-background: #587790; */
-     /* --input-background: #587790a4; */
-     --input-background: #658cab92;
-     --input-background: #658cab48;
-     --input-background: #5186b148;
+  /* Button Colors */
+  --button-background: #009df8;
+  --button-text: white;
 
+  /* *********************************** */
+  /* *********************************** */
+  /* **********DAY MODE SLIDE IN********** */
 
-     /* Button Colors */
-     --button-background: #009DF8;
-     --button-text: white;
-     
-     /* *********************************** */
-     /* *********************************** */
-     /* **********DAY MODE SLIDE IN********** */
+  /* Menu Item Colors */
+  --slide-menu-item-background: #5186b148;
+  /* --slide-menu-item-background: white; */
+  --slide-menu-item-trim: #5186b148;
+  /* --slide-menu-item-trim: white; */
 
-     /* Menu Item Colors */
-     --slide-menu-item-background: #5186b148;
-     /* --slide-menu-item-background: white; */
-     --slide-menu-item-trim: #5186b148;
-     /* --slide-menu-item-trim: white; */
+  /* Slide Menu Icons */
+  --slide-menu-item-icon-filter: brightness(90%) contrast(100%);
 
+  /* Modal Box Shadow */
+  --modal-box-shadow: 0 -28px 15px 0 rgba(255, 255, 255, 0.664);
 
-     /* Slide Menu Icons */
-     --slide-menu-item-icon-filter: brightness(90%) contrast(100%);
-     
-     /* Modal Box Shadow */
-    --modal-box-shadow: 0 -28px 15px 0 rgba(255, 255, 255, 0.664);
+  /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
 
-     /* *********************************** */
-     /* *********************************** */
-     /* *********************************** */
-
-     /* ________ */
+  /* ________ */
 }
 
 /* DARK MODE */
 
 body.dark-mode {
+  /* Base */
+  --background-color: black;
 
-    /* Base */
-    --background-color: black;
+  /* Text */
+  --text-color: #ffffff;
 
-    /* Text */
-    --text-color: #ffffff;
+  /* Menu Text */
+  --menu-text-color: #ffffff75; /* 50% opacity */
 
-     /* Menu Text */
-     --menu-text-color: #ffffff75; /* 50% opacity */
+  /* Menu Colors */
+  --menu-background: #101010;
+  --menu-background: #000000;
+  --menu-hover: #0d0d0d;
+  --menu-shadow: rgb(18, 27, 31);
 
-    /* Menu Colors */
-    --menu-background: #101010;
-    --menu-background: #000000;
-    --menu-hover: #0d0d0d;
-    --menu-shadow: rgb(18, 27, 31);
-
-     /* Input Colors */
-     /* --input-background: #101316;
+  /* Input Colors */
+  /* --input-background: #101316;
      --input-background: #1b2025; */
-     --input-background: #15191d;
-     /* --input-background: #20252c; */
-     
-     /* Button Colors */
-     --button-background: #009DF8;
-     --button-text: white;
+  --input-background: #15191d;
+  /* --input-background: #20252c; */
 
-     /* ********************************** */
-     /* ********************************** */
-     /* ************NITE MODE SLIDE******* */
+  /* Button Colors */
+  --button-background: #009df8;
+  --button-text: white;
 
-     /* Menu Item Colors */
-     --slide-menu-item-background: #black;
-     --slide-menu-item-background: #20252c;
-     --slide-menu-item-background: #15191d;
-     --slide-menu-item-trim: #2065a578;
-     --slide-menu-item-trim: #3d4a5653;
+  /* ********************************** */
+  /* ********************************** */
+  /* ************NITE MODE SLIDE******* */
 
-     /* Modal Box Shadow */
-     --modal-box-shadow: 0 -28px 15px 0 rgba(0, 0, 0, 0.78);
-     
-     /* *********************************** */
-     /* *********************************** */
-     /* *********************************** */
-    
+  /* Menu Item Colors */
+  --slide-menu-item-background: #black;
+  --slide-menu-item-background: #20252c;
+  --slide-menu-item-background: #15191d;
+  --slide-menu-item-trim: #2065a578;
+  --slide-menu-item-trim: #3d4a5653;
+
+  /* Modal Box Shadow */
+  --modal-box-shadow: 0 -28px 15px 0 rgba(0, 0, 0, 0.78);
+
+  /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
 }
 
 /* WHOLE BODY */
 * {
-    font-family: 'Poppins';
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    border-radius: 5px;
+  font-family: "Poppins";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 /* Body for All */
 body {
-    min-height: 100vh;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .container {
-    width: 100%; 
-	/* max-width: 1000px; */
-    padding: 1em 0 1em 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3em;
+  width: 100%;
+  /* max-width: 1000px; */
+  padding: 1em 0 1em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3em;
 }
 
 /* NAVBAR */
 
 .main_nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--background-color);
-    background: none;
-    width: 100%;
-    /* box-shadow: 0 2px 5px var(--menu-shadow); */
-    position: relative;
-    z-index: 1000;
-    padding: 0 3em 0 3em;
-    margin-top: 2em;
-    margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color);
+  background: none;
+  width: 100%;
+  /* box-shadow: 0 2px 5px var(--menu-shadow); */
+  position: relative;
+  z-index: 1000;
+  padding: 0 3em 0 3em;
+  margin-top: 2em;
+  margin-top: 40px;
 }
 
 /* Main Logo */
 .viking_logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 /* Logo Img */
 .viking_img {
-    width: 2.5em;
-    height: 2.5em;
-    width: 2em;
-    height: 2em;
+  width: 2.5em;
+  height: 2.5em;
+  width: 2em;
+  height: 2em;
 }
 
 /* Logo Text */
 .logo_text {
-    font-family: 'Inria Sans';
-    font-size: 1.6rem;
-    font-weight: bold;
+  font-family: "Inria Sans";
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 /* Menu Burger */
 
 /* Menu Button */
 #menu_burgers {
-    position: relative;
-    width: 35px;
-    height: 35px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    /* background-color: blue; */
+  position: relative;
+  width: 35px;
+  height: 35px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  /* background-color: blue; */
 }
 
 /* The Burgers */
 .burger {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.3s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* Order for the Menu button logos */
@@ -210,38 +203,38 @@ body {
 
 /* When Burger button (or burger class) is active */
 .burger.active {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 /* Day/Nite */
 
 /* Div */
 .theme_switch {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 /* Button */
 #theme_switch {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    position: relative;
-    width: 30px;
-    height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  width: 30px;
+  height: 30px;
 }
 
 /* Stacked Logos */
 .day-nite {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
 }
 
 /* Order for the Dark Lite Mode Logos */
@@ -260,73 +253,72 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Slide-out Menu Styles */
 .side-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 300px;
-    height: 100vh;
-    background-color: var(--menu-background);
-    transition: transform 0.3s ease-in-out;
-    padding-top: 65px;
-    padding-left: 40px;
-    padding-right: 20px;
-    z-index: 999;
-    /* Make slide menu cover it all */
-    /* z-index: 1000; */
-    border-right: 1px solid var(--nav-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--menu-background);
+  transition: transform 0.3s ease-in-out;
+  padding-top: 65px;
+  padding-left: 40px;
+  padding-right: 20px;
+  z-index: 999;
+  /* Make slide menu cover it all */
+  /* z-index: 1000; */
+  border-right: 1px solid var(--nav-shadow);
 }
 
 .side-menu.active {
-    transform: translateX(300px);
+  transform: translateX(300px);
 }
 
 .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 998;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 998;
 }
 
 .menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Logo Header */
 .slide_header_logo {
-    display: flex;
-    align-items: center;
-    gap: .5em;
-    opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  opacity: 0;
 }
 
 .slide_header_logo img {
-    width: 2.5em;
-    height: 2.5em;
+  width: 2.5em;
+  height: 2.5em;
 }
 
 .slide_in_logo_text {
-    font-size: medium;
-    font-weight: bold;
+  font-size: medium;
+  font-weight: bold;
 }
 
 /* Menu Items Div */
 .menu_items {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 1em;
 }
-
 
 /* *************************** */
 /* *************************** */
@@ -334,67 +326,66 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* *************************** */
 /* Slide Menu Items to Copy */
 
-
 /* Each Slide Menu Item */
 .menu-item {
-    padding: 1rem 1rem 1rem 0rem;
-    display: flex;
-    gap: 1em;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: small;
-    border-radius: 5px;
-    /* font-weight: bold; */
-    /* border: 1px solid var(--slide-menu-item-trim); */
-    background-color: var(--slide-menu-item-background);
+  padding: 1rem 1rem 1rem 0rem;
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: small;
+  border-radius: 5px;
+  /* font-weight: bold; */
+  /* border: 1px solid var(--slide-menu-item-trim); */
+  background-color: var(--slide-menu-item-background);
 }
 
 #theme_switch {
-    background-color: var(--slide-menu-item-background);
-    /* border: 1px solid var(--slide-menu-item-trim); */
-    width: 100%;
-    padding: 1.5rem 1rem 1.5rem 0rem;
-    /* padding: 1rem 1rem 1rem 0rem; */
+  background-color: var(--slide-menu-item-background);
+  /* border: 1px solid var(--slide-menu-item-trim); */
+  width: 100%;
+  padding: 1.5rem 1rem 1.5rem 0rem;
+  /* padding: 1rem 1rem 1rem 0rem; */
 }
 
 /* Profile on the slide menu */
 .profile {
-    /* margin-top: 1em; */
-    display: flex;
-    flex-direction: column;
-    background-color: var(--slide-menu-item-background);
-    /* When logged in make color slightly brighter */
+  /* margin-top: 1em; */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--slide-menu-item-background);
+  /* When logged in make color slightly brighter */
 }
 
 /* Whole Profile Div */
 .profile_header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 1rem 1rem .7rem;
-    border-bottom: 1px solid var(--slide-menu-item-trim);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem 1rem 0.7rem;
+  border-bottom: 1px solid var(--slide-menu-item-trim);
 }
 
 /* Profile IMG */
 
 /* Profile header text */
 .profile_text {
-    font-size: small;
-    font-weight: bold;
+  font-size: small;
+  font-weight: bold;
 }
 
 /* Profile header img */
 .profile_circle {
-    filter: var(--slide-menu-item-icon-filter);
-    width: 1.2em;
-    height: 1.2em;
+  filter: var(--slide-menu-item-icon-filter);
+  width: 1.2em;
+  height: 1.2em;
 }
 
 /* The Profile Text Info */
 .profile_text_data {
-    color: rgb(173, 29, 29);
-    opacity: 100%;
+  color: rgb(173, 29, 29);
+  opacity: 100%;
 }
 
 /* **************************************** */
@@ -404,48 +395,48 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Profile Info Boxes */
 .profile_info {
-    /* background-color: var(--input-background); */
-    font-size: small;
-    padding: .5em 1em;
+  /* background-color: var(--input-background); */
+  font-size: small;
+  padding: 0.5em 1em;
 }
 
 .profile_info label {
-    opacity: 50%;
-    font-size: small;
+  opacity: 50%;
+  font-size: small;
 }
 
 /* Pin Number Profile Div */
 .pin_and_peak {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #pin_code_peak {
-    background: none;
-    border: none;
-    cursor: pointer;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 #pin_code_peak img {
-    width: 1.2em;
-    height: 1.2em;
+  width: 1.2em;
+  height: 1.2em;
 }
 
 /* Each menu item icon */
 .menu-item img {
-    width: 1.5em;
-    height: 1.5em;
-    filter: var(--slide-menu-item-icon-filter);
+  width: 1.5em;
+  height: 1.5em;
+  filter: var(--slide-menu-item-icon-filter);
 }
 
 .menu-item:hover {
-    background-color: var(--menu-hover);
+  background-color: var(--menu-hover);
 }
 
 /* For demonstrating menu items */
 .menu-item span {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 /* Delete Account */
@@ -463,36 +454,33 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Just Text */
 .delete_account_button {
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    font-weight: bold;
-    color: rgb(192, 52, 52);
-    color: red;
-    font-size: small;
-    background: none;
-    border: none;
-    cursor: pointer;
-    gap: .4em;
-    /* margin-top: 1em; */
-    margin-bottom: .5em;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  font-weight: bold;
+  color: red;
+  font-size: small;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 0.4em;
+  /* margin-top: 1em; */
+  margin-bottom: 0.5em;
 }
 
 .delete_can {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 /* Log Out */
 .logout_account_div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
 }
-
-
 
 /* Just Text */
 /* .logout_account_button {
@@ -509,26 +497,25 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Whole Button */
 .logout_account_button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5em;
-    background-color: #009DF8;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: .8em 1em;
-    cursor: pointer;
-    margin-top: 1em;
-    font-size: medium;
-    font-size: small;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  background-color: #009df8;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 0.8em 1em;
+  cursor: pointer;
+  margin-top: 1em;
+  font-size: medium;
+  font-size: small;
+  font-weight: bold;
 }
 
-
 .logout_logo {
-    width: 1.1em;
-    height: 1.1em;
+  width: 1.1em;
+  height: 1.1em;
 }
 
 /* COPY ABOVE FOR MENU */
@@ -537,64 +524,60 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* *************** */
 /* *************** */
 
-
 /* THE FORM */
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  width: 100%;
+  padding: 0 3em;
+  box-sizing: border-box;
+}
 
 /* The Blue and the Name */
 .page_header_label {
-    display: flex;
+  display: flex;
 }
 .del_acct_label {
-    color: var(--button-background);
-    font-weight: bold;
-    opacity: 100%;
-    color: rgb(173, 29, 29);;
+  color: var(--button-background);
+  font-weight: bold;
+  opacity: 100%;
+  color: rgb(173, 29, 29);
 }
 
 /* Dashboard for */
 .page_header {
-    display: flex;
-    font-weight: bold;
-    /* width: 100%; */
-    opacity: 70%;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 3em;
-    width: 100%;
-    padding: 0 3em 0 3em;
-    /* margin-top: 1em; */
+  display: flex;
+  font-weight: bold;
+  /* width: 100%; */
+  opacity: 70%;
 }
 
 /* THE HEADER */
 header {
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    width: 100%;
-    /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 100%;
+  /* background-color: blue; */
 }
 
 .logo_name {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: .5em;
-    /* gap: 1em; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.5em;
+  /* gap: 1em; */
 }
 
 .logo_name p {
-    font-size: 2.5rem;
-    /* font-size: 2rem; */
-    font-weight: bold;
+  font-size: 2.5rem;
+  /* font-size: 2rem; */
+  font-weight: bold;
 }
-
-
 
 /* Users select Drop */
 /* ***************** */
@@ -602,542 +585,531 @@ header {
 
 .users_drop_container,
 .pin_number {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 700px;
-    margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 700px;
+  margin-top: 1em;
 }
 
 .users_drop_container label,
 .pin_number label {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .users_drop_container select,
 .pin_field {
-    display: flex;
-    width: 100%;
-    gap: 8px;
-    color: var(--text-color);
-    font-family: 'Poppins';
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  color: var(--text-color);
+  font-family: "Poppins";
 }
 
 .users_drop_container select,
 .pin_field input {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    /* padding: 10px; */
-    padding: 1em;
-    /* padding: .7em; */
-    /* border: 1px solid #ccc; */
-    border: none;
-    background-color: var(--input-background);
-    border-radius: 5px;
-    font-size: 16px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* padding: 10px; */
+  padding: 1em;
+  /* padding: .7em; */
+  /* border: 1px solid #ccc; */
+  /* border: none; */
+  background-color: var(--input-background);
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-#users_dropdown, #users_dropdown option {
-    font-family: 'Poppins', sans-serif;
-    font-size: small;
-  }
+#users_dropdown,
+#users_dropdown option {
+  font-family: "Poppins", sans-serif;
+  font-size: small;
+}
 
 /* Custom dropdown arrow */
 .users_drop_container {
-    position: relative;
+  position: relative;
 }
 
 .users_drop_container::after {
-    content: '▼';
-    content: '⌄'; 
-    content: '⏷';
-    position: absolute;
-    top: 43%;
-    top: 35%;
-    opacity: 50%;
-    right: 20px;
-    transform: translateY(20%);
-    pointer-events: none;
-    color: #666;
-    /* color: var(--button-background); */
-    /* font-size: .5em; */
-    font-size: 1.3em;
+  content: "▼";
+  content: "⌄";
+  content: "⏷";
+  position: absolute;
+  top: 43%;
+  top: 35%;
+  opacity: 50%;
+  right: 20px;
+  transform: translateY(20%);
+  pointer-events: none;
+  color: #666;
+  /* color: var(--button-background); */
+  /* font-size: .5em; */
+  font-size: 1.3em;
 }
 
 .pin_field {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
-.pin_field input {
-    flex: 1;
-    text-align: center;
-    max-width: 100px;
-    border: none;
-    height: 50px;
-}
-
-
+/* .pin_field input {
+  flex: 1;
+  text-align: center;
+  max-width: 100px;
+  height: 50px;
+} */
 
 /* Pin Number Login */
 /* ***************** */
 /* ***************** */
 
 .pin_number {
-    display: flex;
-    flex-direction: column;
-    /* gap: .5em; */
-    /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  /* gap: .5em; */
+  /* width: 100%; */
 }
 
 label {
-    opacity: 100%;
-    /* opacity: 50%; */
-    color: var(--menu-text-color);
+  opacity: 100%;
+  /* opacity: 50%; */
+  color: var(--menu-text-color);
 
-    font-size: small;
-    /* font-size: medium; */
+  font-size: small;
+  /* font-size: medium; */
 }
 
 .pin_field {
-    display: flex;
-    /* gap: 1.7em; */
-    gap: 1.1em;
-    gap: .6em;
-    width: 100%;
+  display: flex;
+  gap: 0.6em;
+  width: 100%;
 }
 
 .pin_put {
-    flex: 1;
-    background-color: var(--input-background);
-    border: none;
-    color: var(--text-color);
-    text-align: center;
-    width: 4em;
-    height: 4em;
-    outline: none;
-    font-size: 16px;
-    max-height: 100%;
-    -webkit-appearance: none;
+  flex: 1;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border: 1px solid #d66a6a;
+  text-align: center;
+  width: 4em;
+  height: 4em;
+  outline: none;
+  font-size: 16px;
+  max-height: 100%;
+  -webkit-appearance: none;
 }
 
 /* Pin Buttons Div */
 .pin_buttons {
-    display: flex;
-    gap: 1em;
-    justify-content: space-between;
-    margin-top: .5em;
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  margin-top: 0.5em;
 }
 
 /* Reset Pins Button */
 .reset_button {
-    background: none;
-    color: var(--menu-text-color);
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: small;
-    /* font-weight: bold; */
+  background: none;
+  color: var(--menu-text-color);
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: small;
+  /* font-weight: bold; */
 }
-
-
 
 /* Create Account Links */
 
 .create_acct_div {
-    margin-top: .5em;
-    font-size: small;
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  margin-top: 0.5em;
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
-
 
 /* Create Account Link */
 .create_acct {
-    text-decoration: none;
-    color: var(--text-color);
-    color: var(--button-background);
-    /* font-weight: bold; */
-    width: 100%;
-    text-align: center;
-
+  text-decoration: none;
+  color: var(--text-color);
+  color: var(--button-background);
+  /* font-weight: bold; */
+  width: 100%;
+  text-align: center;
 }
 
-/* Submit Button */
+/* Delete Account Button */
 .delete_acct {
-    background-color: var(--button-background);
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 12px;
-    /* font-weight: bold; */
-    cursor: pointer;
-    font-size: medium;
-    font-size: small;
-    transition: all 0.3s ease;
-    margin-top: 2em;
+  /* background-color: var(--button-background); */
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 12px;
+  /* font-weight: bold; */
+  cursor: pointer;
+  /* font-size: medium; */
+  font-size: small;
+  transition: all 0.3s ease;
+  margin-top: 2em;
+
+  width: 100%;
+  max-width: 700px;
 }
 
 /* No outline on focus */
 .delete_acct:focus {
-    outline: none;
+  outline: none;
 }
 
- /* Submit Disabled */
- .delete_acct:disabled {
-    background-color: var(--button-background);
-    background-color: red;
-    color: var(--text-color);
-    opacity: .6;
-    cursor: not-allowed;
+/* Submit Disabled */
+.delete_acct:disabled {
+  background-color: var(--button-background);
+  background-color: red;
+  color: var(--text-color);
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* PINS NOTIFY DIV */
 .pin_match_confirm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: all .3s ease-in;
-    width: 100%;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in;
+  width: 100%;
+  position: relative;
 }
 
 /* Match (first-child)*/
 .match_ {
-    display: none;
-    /* opacity: 0; */
+  display: none;
+  /* opacity: 0; */
 }
 
 .match_.entered {
-    opacity: 1;
-    /* position: absolute; */
-    display: flex;
-    /* display: inline-block; */
-    justify-content: center;
-    align-items: center;
-    color: var(--pins-match);
-    color: green;
-    /* background-color: var(--match-background); */
-    font-size: medium;
-    width: 100%;
-    transition: all 0.3s ease;
+  opacity: 1;
+  /* position: absolute; */
+  display: flex;
+  /* display: inline-block; */
+  justify-content: center;
+  align-items: center;
+  color: var(--pins-match);
+  color: green;
+  /* background-color: var(--match-background); */
+  font-size: medium;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
 /* No Match (last-child) */
 .no_match {
-    display: none;
-    /* opacity: 0; */
+  display: none;
+  /* opacity: 0; */
 }
 
 .no_match.entered {
-    opacity: 1;
-    /* position: relative; */
-    /* display: inline-block; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--pins-no-match);
-    color: red;
-    /* margin-top: -1em; */
-    background-color: var(--match-background);
-    border-radius: 5px;
-    font-size: 1rem;
-    font-size: medium;
-    width: 100%;
-    transition: all 0.3s ease;
+  opacity: 1;
+  /* position: relative; */
+  /* display: inline-block; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--pins-no-match);
+  color: red;
+  /* margin-top: -1em; */
+  background-color: var(--match-background);
+  border-radius: 5px;
+  font-size: 1rem;
+  font-size: medium;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
-.match_, .no_match {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-  }
+.match_,
+.no_match {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
 
-  .pin_match {
-    width: 1.5em;
-    height: 1.5em;
-  }
+.pin_match {
+  width: 1.5em;
+  height: 1.5em;
+}
 
 /* Back to Dashboard Button */
 .back_to_dashboard {
-    background: none;
-    color: var(--text-color);
-    border: none;
-    opacity: 50%;
-    font-weight: bold;
-    cursor: pointer;
+  background: none;
+  color: var(--text-color);
+  border: none;
+  opacity: 50%;
+  font-weight: 400;
+  cursor: pointer;
 }
 
 footer {
-    font-size: x-small;
-    opacity: 50%;
-    /* width: 100%; */
+  font-size: x-small;
+  opacity: 50%;
+  /* width: 100%; */
 }
 
 /* MODAL FOR CONFIRMATION */
 /* Modal Container */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 70px;
-    left: 50%;
-    /* Change from left: 0 and width: 100% to use these centering properties */
-    left: 50%;
-    transform: translateX(-50%); /* This centers the modal horizontally */
-    width: 80%; /* Reduce width to 80% of viewport (adjust as needed) */
-    max-width: 800px; /* Optional: Set a maximum width */
-    height: 75%;
-    /* display: flex; */
-    flex-direction: column;
-    justify-content: center;
-    /* align-items: center; */
-    max-width: 500px;
-    padding: 2em 1em 2em 1em;
-    background-color: var(--background-color);
-    border: 1px solid red;
-    border-radius: 5px;
-    box-shadow: var(--modal-box-shadow);
-    z-index: 9999;
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  /* Change from left: 0 and width: 100% to use these centering properties */
+  left: 50%;
+  transform: translateX(-50%); /* This centers the modal horizontally */
+  width: 80%; /* Reduce width to 80% of viewport (adjust as needed) */
+  max-width: 800px; /* Optional: Set a maximum width */
+  height: 75%;
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  max-width: 500px;
+  padding: 2em 1em 2em 1em;
+  background-color: var(--background-color);
+  border: 1px solid red;
+  border-radius: 5px;
+  box-shadow: var(--modal-box-shadow);
+  z-index: 9999;
 }
 
 /* Account type label */
 .acct_type_label {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
 
 /* Modal Content */
 .modal-content {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Poppins';
-    margin-top: 4em;
-    gap: 1em;
-    width: 100%;
-    height: 100%;
-    font-size: small;
-    color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins";
+  margin-top: 4em;
+  gap: 1em;
+  width: 100%;
+  height: 100%;
+  font-size: small;
+  color: var(--text-color);
 }
 
 .modal_header {
-    font-size: small;
-    color: var(--text-color);
-    font-weight: bold;
-    /* color: red; */
+  font-size: small;
+  color: var(--text-color);
+  font-weight: bold;
+  /* color: red; */
 }
 
 /* Delete Account Buttons */
 .del_acct_buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    width: 100%;
-    margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+  margin-top: 2em;
 }
 
 /* Yes Delete it */
 .confirm_delete {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: .7em;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: small;
-    width: 100%;
-    transition: all 0.3s ease;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.7em;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: small;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
 /* Cancel Delete it */
 .cancel_delete {
-    background-color: var(--input-background);
-    color: var(--text-color);
-    border: none;
-    padding: .7em;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: small;
-    width: 100%;
-    transition: all 0.3s ease;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border: none;
+  padding: 0.7em;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: small;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
 /* Account Info Square */
 .account_info_square {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    gap: 1.5em;
-    width: 100%;
-    height: 50%;
-    background-color: var(--input-background);
-    border-radius: 5px;
-    padding: 3em 1em 1em 1em;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  gap: 1.5em;
+  width: 100%;
+  height: 50%;
+  background-color: var(--input-background);
+  border-radius: 5px;
+  padding: 3em 1em 1em 1em;
 }
 
 /* Account Square Content */
 .delete_account_title {
-    font-size: small;
-    opacity: 50%;
+  font-size: small;
+  opacity: 50%;
 }
 
 .delete_account_info {
-    font-size: small;
-    color: var(--text-color);
-    color: red;
-    /* font-weight: bold; */
+  font-size: small;
+  color: var(--text-color);
+  color: red;
+  /* font-weight: bold; */
 }
 
 .account_info_div {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 /* Modal On */
 .modal.modal_active {
-    display: flex;
-    /* display: block; */
+  display: flex;
+  /* display: block; */
 }
-
-  
 
 /* For wider screens narrow the form */
 
 /* Landscape */
 @media screen and (min-width: 700px) {
-    form {
-        width: 50%;
-        gap: 1em;
-    }
+  form {
+    width: 100%;
+    max-width: 500px;
+    gap: 1em;
+  }
 }
 
 /* Desktop */
 @media screen and (min-width: 1200px) {
-    /* form {
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        gap: 3em;
-        margin-top: 1em;
-    } */
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
 
-    .burger {
-        width: 40px;
-        height: 40px;
-    }
+  .day-nite {
+    width: 40px;
+    height: 40px;
+  }
 
-    .day-nite {
-        width: 40px;
-        height: 40px;
-    }
+  .menu-item {
+    font-size: x-large;
+  }
 
-    .menu-item {
-        font-size: x-large;
-    }
+  /* Logo a bit bigger */
+  .logo_name p {
+    font-size: 3rem;
+    font-weight: bold;
+  }
 
-    /* Logo a bit bigger */
-    .logo_name p {
-        font-size: 3rem;
-        font-weight: bold;
-    }
+  .hazel_park_logo {
+    width: 5em;
+    height: 5em;
+  }
 
-    .hazel_park_logo {
-        width: 5em;
-        height: 5em;
-    }
+  /* Slide Menu */
 
-    /* Slide Menu */
+  /* slider logo */
+  .slide_header_logo img {
+    width: 3em;
+    height: 3em;
+  }
 
-    /* slider logo */
-    .slide_header_logo img {
-        width: 3em;
-        height: 3em;
-    }
+  /* slider logo text */
+  .slide_in_logo_text {
+    font-size: x-large;
+  }
 
-    /* slider logo text */
-    .slide_in_logo_text {
-        font-size: x-large;
-    }
+  /* slider selections */
+  .menu-item {
+    font-size: medium;
+  }
 
-    /* slider selections */
-    .menu-item {
-        font-size: medium;
-    }
+  /* Delete Button */
+  .delete_account_div {
+    margin-top: 2em;
+  }
 
-    /* Delete Button */
-    .delete_account_div {
-        margin-top: 2em;
-    }
+  /* form */
+  form {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    margin-top: 5em;
+  }
 
-    /* form */
-    form {
-        width: 25%;
-        display: flex;
-        flex-direction: column;
-        gap: 3em;
-        margin-top: 5em;
-    }
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
 
-    .burger {
-        width: 40px;
-        height: 40px;
-    }
+  .day-nite {
+    width: 40px;
+    height: 40px;
+  }
 
-    .day-nite {
-        width: 40px;
-        height: 40px;
-    }
+  .menu-item {
+    font-size: small;
+  }
 
-    .menu-item {
-        font-size: small;
-    }
+  /* Header with more gap */
+  .logo_name {
+    display: flex;
+    justify-content: center;
+    /* justify-content: center; */
+    align-items: center;
+    width: 100%;
+    gap: 0.5em;
+    /* gap: 2.5em;   */
+  }
 
-    /* Header with more gap */
-    .logo_name {
-        display: flex;
-        justify-content: center;
-        /* justify-content: center; */
-        align-items: center;
-        width: 100%;
-        gap: .5em;
-        /* gap: 2.5em;   */
-    }
+  /* Logo a bit bigger */
+  .logo_name p {
+    font-size: 3rem;
+    font-size: medium;
+    font-weight: bold;
+  }
 
-    /* Logo a bit bigger */
-    .logo_name p {
-        font-size: 3rem;
-        font-size: medium;
-        font-weight: bold;
-    }
+  .hazel_park_logo {
+    width: 5em;
+    height: 5em;
+  }
 
-    .hazel_park_logo {
-        width: 5em;
-        height: 5em;
-    }
+  /* Form Elements */
+  label {
+    font-size: medium;
+  }
 
-    /* Form Elements */
-    label {
-        font-size: medium;
-    }
+  /* Submit Button */
 
-    /* Submit Button */
-    
-    footer {
-        font-size: small;
-    }
+  footer {
+    font-size: small;
+  }
 
-    .or, .create_acct {
-        font-size: medium;
-    }
-} 
-
+  .or,
+  .create_acct {
+    font-size: medium;
+  }
+}
 
 @media screen and (min-width: 1600px) {
-    form {
-        width: 20%;
-    }
+  form {
+    width: 100%;
+    max-width: 500px;
+  }
 }

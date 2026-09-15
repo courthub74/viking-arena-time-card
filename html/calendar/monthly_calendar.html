@@ -175,9 +175,24 @@
 
                             </div>
 
-                            <!-- THE CALENDAR -->
-                            <table id="calendar-body">
-                            <!-- Calendar will be populated by JavaScript -->
+
+                            <!-- THE CALENDAR DATES RENDERED -->
+                            <table class="calendar_table">
+                                <!-- CALENDAR WEEKDAYS -->
+                                <thead class="calendar_weekdays">
+                                    <tr>
+                                        <th>Sun</th>
+                                        <th>Mon</th>
+                                        <th>Tue</th>
+                                        <th>Wed</th>
+                                        <th>Thu</th>
+                                        <th>Fri</th>
+                                        <th>Sat</th>
+                                    </tr>
+                                </thead>
+
+                                <!-- Calendar dates will be populated by JavaScript -->
+                                <tbody id="calendar-body"></tbody>
                             </table>
 
                             <!-- ---------------------------- -->

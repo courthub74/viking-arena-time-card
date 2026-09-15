@@ -1,242 +1,240 @@
-
-
 :root {
+  /* Base */
+  --background-color: #ffffff;
 
-    /* Base */
-    --background-color: #ffffff;
+  /* Text */
+  --text-color: #000000;
 
-    /* Text */
-    --text-color: #000000;
+  /* Menu Text */
+  --menu-text-color: #00000080; /* 50% opacity */
 
-    /* Menu Text */
-    --menu-text-color: #00000080; /* 50% opacity */
+  /* Menu Colors */
+  --menu-background: #ffffff;
+  --menu-hover: #e0e0e0;
+  --menu-shadow: rgba(0, 0, 0, 0.1);
 
-    /* Menu Colors */
-    --menu-background: #ffffff;
-    --menu-hover: #e0e0e0;
-    --menu-shadow: rgba(0, 0, 0, 0.1);
+  /* Input Colors */
+  --input-background: #658cab92;
+  --input-background: #658cab48;
+  --input-background: #5186b148;
 
-     /* Input Colors */
-     --input-background: #658cab92;
-     --input-background: #658cab48;
-     --input-background: #5186b148;
+  /* Button Colors */
+  --button-background: #009df8;
+  --button-text: white;
 
+  /* Dashboard Button Colors */
+  --dashboard-button-background: #5186b148;
+  --dashboard-button-trim: none;
 
-     /* Button Colors */
-     --button-background: #009DF8;
-     --button-text: white;
+  /* Account Type Colors */
+  --dashboard-selected: #2065a58a;
+  /* Trim */
+  --dashboard-trim: #000000;
+  /* Hover */
+  --dashboard-hover: #e8e8e8;
 
-     /* Dashboard Button Colors */
-     --dashboard-button-background: #5186b148;
-     --dashboard-button-trim: none;
+  /* Calendar Arrow Buttons */
+  --calendar-arrow: #009df8;
+  --calendar-arrow: #2065a58a;
 
-     /* Account Type Colors */
-     --dashboard-selected: #2065a58a;
-     /* Trim */
-     --dashboard-trim: #000000;
-     /* Hover */
-     --dashboard-hover: #e8e8e8;
+  /* Dashboard Logos */
+  --dashboard-logo: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg)
+    brightness(0%) contrast(100%);
 
-     /* Calendar Arrow Buttons */
-     --calendar-arrow: #009DF8;
-     --calendar-arrow: #2065a58a;
+  /* Calendar Datepicker Logo */
+  --calendar-logo: invert(100%) sepia(0%) saturate(20%) hue-rotate(0deg)
+    brightness(0%) contrast(100%);
 
-     /* Dashboard Logos */
-     --dashboard-logo: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+  /* The Success Square */
+  --success-square: #16bc004f;
 
-     /* Calendar Datepicker Logo */
-     --calendar-logo: invert(100%) sepia(0%) saturate(20%) hue-rotate(0deg) brightness(0%) contrast(100%);
+  /* *********************************** */
+  /* *********************************** */
+  /* **********DAY MODE SLIDE IN******** */
 
-     /* The Success Square */
-     --success-square: #16bc004f;
+  /* Menu Item Colors */
+  --slide-menu-item-background: #5186b148;
+  /* --slide-menu-item-background: white; */
+  --slide-menu-item-trim: #5186b148;
+  /* --slide-menu-item-trim: white; */
 
-    /* *********************************** */
-     /* *********************************** */
-     /* **********DAY MODE SLIDE IN******** */
+  /* Slide Menu Icons */
+  --slide-menu-item-icon-filter: brightness(90%) contrast(100%);
 
-     /* Menu Item Colors */
-     --slide-menu-item-background: #5186b148;
-     /* --slide-menu-item-background: white; */
-     --slide-menu-item-trim: #5186b148;
-     /* --slide-menu-item-trim: white; */
+  /* Successful Entry Notify */
+  --successfull-entry: #18630fe5;
+  --successfull-entry-trim: rgb(14, 28, 14);
+  --successfull-entry-trim: #2065a578;
+  --successfull-entry-text: rgba(5, 5, 5, 0.724);
 
-
-     /* Slide Menu Icons */
-     --slide-menu-item-icon-filter: brightness(90%) contrast(100%);
-     
-     /* Successful Entry Notify */
-     --successfull-entry: #18630fe5;
-     --successfull-entry-trim: rgb(14, 28, 14);
-     --successfull-entry-trim: #2065a578;
-     --successfull-entry-text: rgba(5, 5, 5, 0.724);
-
-     /* *********************************** */
-     /* *********************************** */
-     /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
 }
 
 /* DARK MODE */
 
 body.dark-mode {
+  /* Base */
+  --background-color: black;
 
-    /* Base */
-    --background-color: black;
+  /* Text */
+  --text-color: #ffffff;
 
-    /* Text */
-    --text-color: #ffffff;
+  /* Menu Text */
+  --menu-text-color: #ffffff75; /* 50% opacity */
 
-     /* Menu Text */
-     --menu-text-color: #ffffff75; /* 50% opacity */
+  /* Menu Colors */
+  --menu-background: #101010;
+  --menu-background: #000000;
+  --menu-hover: #0d0d0d;
+  --menu-shadow: rgb(22, 33, 38);
 
-    /* Menu Colors */
-    --menu-background: #101010;
-    --menu-background: #000000;
-    --menu-hover: #0d0d0d;
-    --menu-shadow: rgb(22, 33, 38);
-
-     /* Input Colors */
-     /* --input-background: #101316;
+  /* Input Colors */
+  /* --input-background: #101316;
      --input-background: #1b2025;
      --input-background: #15191d; */
-     --input-background: #121418;
-     
-     /* Button Colors */
-     --button-background: #009DF8;
-     --button-text: white;
+  --input-background: #121418;
 
-      /* Dashboard Button Colors */
-      --dashboard-button-background: black;
-      --dashboard-button-background: #15191d;
-      --dashboard-button-trim: #009df88c;
-      --dashboard-button-trim: none;
+  /* Button Colors */
+  --button-background: #009df8;
+  --button-text: white;
 
-     /* Account Type Colors */
-      --dashboard-selected: #17426b7c;
-     /* Trim */
-     --dashboard-trim: #009DF8;
-     /* Hover */
-     --dashboard-hover: #17426b;
+  /* Dashboard Button Colors */
+  --dashboard-button-background: black;
+  --dashboard-button-background: #15191d;
+  --dashboard-button-trim: #009df88c;
+  --dashboard-button-trim: none;
 
-     /* Dashboard Logo */
-     --dashboard-logo: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  /* Account Type Colors */
+  --dashboard-selected: #17426b7c;
+  /* Trim */
+  --dashboard-trim: #009df8;
+  /* Hover */
+  --dashboard-hover: #17426b;
 
-     --calendar-logo: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  /* Dashboard Logo */
+  --dashboard-logo: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg)
+    brightness(100%) contrast(100%);
 
-     /* ********************************** */
-     /* ********************************** */
-     /* ************NITE MODE SLIDE******* */
+  --calendar-logo: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg)
+    brightness(100%) contrast(100%);
 
-     /* Menu Item Colors */
-     --slide-menu-item-background: #black;
-     --slide-menu-item-background: #20252c;
-     --slide-menu-item-background: #15191d;
-     --slide-menu-item-trim: #2065a578;
-     --slide-menu-item-trim: #3d4a5653;
+  /* ********************************** */
+  /* ********************************** */
+  /* ************NITE MODE SLIDE******* */
 
-      /* Successful Entry Notify */
-      --successfull-entry: #16bc004f;
-      --successfull-entry-trim: green;
-      --successfull-entry-trim: #009df88c;
-      --successfull-entry-text: rgba(255, 255, 255, 0.737);
-     
-     /* *********************************** */
-     /* *********************************** */
-     /* *********************************** */
+  /* Menu Item Colors */
+  --slide-menu-item-background: #black;
+  --slide-menu-item-background: #20252c;
+  --slide-menu-item-background: #15191d;
+  --slide-menu-item-trim: #2065a578;
+  --slide-menu-item-trim: #3d4a5653;
+
+  /* Successful Entry Notify */
+  --successfull-entry: #16bc004f;
+  --successfull-entry-trim: green;
+  --successfull-entry-trim: #009df88c;
+  --successfull-entry-text: rgba(255, 255, 255, 0.737);
+
+  /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
 }
 
 /* WHOLE BODY */
 * {
-    font-family: 'Poppins';
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    border-radius: 5px;
+  font-family: "Poppins";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 /* Body for All */
 body {
-    min-height: 100vh;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .container {
-    width: 100%; 
-	/* max-width: 1000px; */
-    padding: 1em 0 1em 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3em;
+  width: 100%;
+  /* max-width: 1000px; */
+  padding: 1em 0 1em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3em;
 }
 
 /* NAVBAR */
 
 .main_nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--background-color);
-    background: none;
-    width: 100%;
-    /* box-shadow: 0 2px 5px var(--menu-shadow); */
-    position: relative;
-    z-index: 1000;
-    /* z-index: 997; */
-    padding: 0 3em 0 3em;
-    margin-top: 2em;
-    margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color);
+  background: none;
+  width: 100%;
+  /* box-shadow: 0 2px 5px var(--menu-shadow); */
+  position: relative;
+  z-index: 1000;
+  /* z-index: 997; */
+  padding: 0 3em 0 3em;
+  margin-top: 2em;
+  margin-top: 40px;
 }
 
 /* Main Logo */
 .viking_logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 /* Logo Img */
 .viking_img {
-    width: 2.5em;
-    height: 2.5em;
-    width: 2em;
-    height: 2em;
+  width: 2.5em;
+  height: 2.5em;
+  width: 2em;
+  height: 2em;
 }
 
 /* Logo Text */
 .logo_text {
-    font-family: 'Inria Sans';
-    font-size: 1.6rem;
-    font-weight: bold;
+  font-family: "Inria Sans";
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 /* Menu Burger */
 
 /* Menu Button */
 #menu_burgers {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    /* background-color: blue; */
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  /* background-color: blue; */
 }
 
 /* The Burgers */
 .burger {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.3s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* Order for the Menu button logos */
@@ -253,38 +251,38 @@ body {
 
 /* When Burger button (or burger class) is active */
 .burger.active {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 /* Day/Nite */
 
 /* Div */
 .theme_switch {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 /* Button */
 #theme_switch {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    position: relative;
-    width: 30px;
-    height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  width: 30px;
+  height: 30px;
 }
 
 /* Stacked Logos */
 .day-nite {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
 }
 
 /* Order for the Dark Lite Mode Logos */
@@ -303,77 +301,77 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Slide-out Menu Styles */
 .side-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    /* New slide Gap */
-    /* gap: 2em; */
-    /* ************* */
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 300px;
-    height: 100vh;
-    background-color: var(--menu-background);
-    transition: transform 0.3s ease-in-out;
-    padding-top: 65px;
-    padding-left: 40px;
-    padding-right: 20px;
-    z-index: 999;
-    /* Make slide menu cover it all */
-    /* z-index: 1000; */
-    /* border-right: 1px solid var(--nav-shadow); */
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  /* New slide Gap */
+  /* gap: 2em; */
+  /* ************* */
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--menu-background);
+  transition: transform 0.3s ease-in-out;
+  padding-top: 65px;
+  padding-left: 40px;
+  padding-right: 20px;
+  z-index: 999;
+  /* Make slide menu cover it all */
+  /* z-index: 1000; */
+  /* border-right: 1px solid var(--nav-shadow); */
 }
 
 .side-menu.active {
-    transform: translateX(300px);
+  transform: translateX(300px);
 }
 
 .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 998;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 998;
 }
 
 .menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Logo Header */
 .slide_header_logo {
-    display: flex;
-    align-items: center;
-    gap: .5em;
-    opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  opacity: 0;
 }
 
 .slide_header_logo img {
-    width: 2.5em;
-    height: 2.5em;
+  width: 2.5em;
+  height: 2.5em;
 }
 
 .slide_in_logo_text {
-    font-size: medium;
-    font-weight: bold;
+  font-size: medium;
+  font-weight: bold;
 }
 
 /* Menu Items Div */
 .menu_items {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    /* New Gap */
-    /* gap: 2em; */
-    /* ******* */
-    margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  /* New Gap */
+  /* gap: 2em; */
+  /* ******* */
+  margin-top: 1em;
 }
 
 /* *************************** */
@@ -382,66 +380,65 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* *************************** */
 /* Slide Menu Items to Copy */
 
-
 /* Each Slide Menu Item */
 .menu-item {
-    padding: 1rem 1rem 1rem 0rem;
-    display: flex;
-    gap: 1em;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: small;
-    border-radius: 5px;
-    /* font-weight: bold; */
-    /* border: 1px solid var(--slide-menu-item-trim); */
-    background-color: var(--slide-menu-item-background);
+  padding: 1rem 1rem 1rem 0rem;
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: small;
+  border-radius: 5px;
+  /* font-weight: bold; */
+  /* border: 1px solid var(--slide-menu-item-trim); */
+  background-color: var(--slide-menu-item-background);
 }
 
 #theme_switch {
-    background-color: var(--slide-menu-item-background);
-    /* border: 1px solid var(--slide-menu-item-trim); */
-    width: 100%;
-    padding: 1.5rem 1rem 1.5rem 0rem;
-    /* padding: 1rem 1rem 1rem 0rem; */
+  background-color: var(--slide-menu-item-background);
+  /* border: 1px solid var(--slide-menu-item-trim); */
+  width: 100%;
+  padding: 1.5rem 1rem 1.5rem 0rem;
+  /* padding: 1rem 1rem 1rem 0rem; */
 }
 
 /* Profile on the slide menu */
 .profile {
-    /* margin-top: 1em; */
-    display: flex;
-    flex-direction: column;
-    background-color: var(--slide-menu-item-background);
-    /* When logged in make color slightly brighter */
+  /* margin-top: 1em; */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--slide-menu-item-background);
+  /* When logged in make color slightly brighter */
 }
 
 /* Whole Profile Div */
 .profile_header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 1rem 1rem .7rem;
-    border-bottom: 1px solid var(--slide-menu-item-trim);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem 1rem 0.7rem;
+  border-bottom: 1px solid var(--slide-menu-item-trim);
 }
 
 /* Profile IMG */
 
 /* Profile header text */
 .profile_text {
-    font-size: small;
-    font-weight: bold;
+  font-size: small;
+  font-weight: bold;
 }
 
 /* Profile header img */
 .profile_circle {
-    filter: var(--slide-menu-item-icon-filter);
-    width: 1.2em;
-    height: 1.2em;
+  filter: var(--slide-menu-item-icon-filter);
+  width: 1.2em;
+  height: 1.2em;
 }
 
 /* The Profile Text Info */
 .profile_text_data {
-    opacity: 100%;
+  opacity: 100%;
 }
 
 /* **************************************** */
@@ -451,49 +448,49 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Profile Info Boxes */
 .profile_info {
-    /* background-color: var(--input-background); */
-    font-size: small;
-    padding: .5em 1em;
+  /* background-color: var(--input-background); */
+  font-size: small;
+  padding: 0.5em 1em;
 }
 
 .profile_info label {
-    opacity: 50%;
-    font-size: small;
+  opacity: 50%;
+  font-size: small;
 }
 
 /* Pin Number Profile Div */
 .pin_and_peak {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #pin_code_peak {
-    background: none;
-    border: none;
-    cursor: pointer;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 #pin_code_peak img {
-    width: 1.5em;
-    height: 1.5em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 /* Each menu item icon */
 .menu-item img {
-    width: 1.5em;
-    height: 1.5em;
-    filter: brightness(90%);
-    /* filter: brightness(150%) contrast(180%); */
+  width: 1.5em;
+  height: 1.5em;
+  filter: brightness(90%);
+  /* filter: brightness(150%) contrast(180%); */
 }
 
 .menu-item:hover {
-    background-color: var(--menu-hover);
+  background-color: var(--menu-hover);
 }
 
 /* For demonstrating menu items */
 .menu-item span {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 /* Delete Account */
@@ -511,44 +508,42 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Just Text */
 .delete_account_button {
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    font-weight: bold;
-    color: rgb(192, 52, 52);
-    color: red;
-    font-size: small;
-    background: none;
-    border: none;
-    cursor: pointer;
-    gap: .4em;
-    /* margin-top: 1em; */
-    margin-bottom: .5em;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  font-weight: bold;
+  color: rgb(192, 52, 52);
+  color: red;
+  font-size: small;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 0.4em;
+  /* margin-top: 1em; */
+  margin-bottom: 0.5em;
 }
 
 .delete_can {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 /* Log Out */
 .logout_account_div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
 }
 
 .logout_text a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: white;
 }
-
-
 
 /* Just Text */
 /* .logout_account_button {
@@ -565,26 +560,25 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Whole Button */
 .logout_account_button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5em;
-    background-color: #009DF8;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: .8em 1em;
-    cursor: pointer;
-    margin-top: 1em;
-    font-size: medium;
-    font-size: small;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  background-color: #009df8;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 0.8em 1em;
+  cursor: pointer;
+  margin-top: 1em;
+  font-size: medium;
+  font-size: small;
+  font-weight: bold;
 }
 
-
 .logout_logo {
-    width: 1.1em;
-    height: 1.1em;
+  width: 1.1em;
+  height: 1.1em;
 }
 
 /* COPY ABOVE FOR MENU */
@@ -593,7 +587,6 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* *************** */
 /* *************** */
 
-
 /* *************** */
 /* *************** */
 /* *************** */
@@ -601,39 +594,39 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* THE FORM */
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 3em;
-    width: 100%;
-    padding: 0 3em 0 3em;
-    /* margin-top: 1em; */
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  width: 100%;
+  padding: 0 3em 0 3em;
+  /* margin-top: 1em; */
 }
 
 /* THE HEADER */
 header {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    gap: 2em;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 2em;
+  width: 100%;
 }
 
 .logo_name {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    align-items: center;
-    gap: .5em;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .logo_name p {
-    font-size: 2.5rem;
-    font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .hazel_park_logo {
-    width: 3.5em;
-    height: 3.5em;
+  width: 3.5em;
+  height: 3.5em;
 }
 
 /* Page Header */
@@ -649,38 +642,37 @@ header {
 
 /* The Dashboard Header */
 .page_header_label {
-    font-size: medium;
-    font-size: small;
-    font-size: .8rem;
-    display: flex;
-    /* gap: .5em; */
-    width: 100%;
+  font-size: medium;
+  font-size: small;
+  font-size: 0.8rem;
+  display: flex;
+  /* gap: .5em; */
+  width: 100%;
 }
 
 /* The Blue and the Name */
 .acct_type_label {
-    color: var(--button-background);
-    font-weight: bold;
-    opacity: 100%;
+  color: var(--button-background);
+  font-weight: bold;
+  opacity: 100%;
 }
 
 /* Dashboard for */
 .page_header {
-    display: flex;
-    font-weight: bold;
-    /* width: 100%; */
-    opacity: 50%;
+  display: flex;
+  font-weight: bold;
+  /* width: 100%; */
+  opacity: 100%;
 }
 
 /* Radio Button Squares */
 .employee_selects {
-    /* background-color: blue; */
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    /* margin-top: 1em; */
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  /* margin-top: 1em; */
 }
-
 
 /* The Button */
 /* .dashboard_button {
@@ -689,7 +681,6 @@ header {
     width: 0;
     height: 0;
 } */
-
 
 /* .radio-container label {
     display: flex;
@@ -707,41 +698,41 @@ header {
     font-family: 'Poppins';
   } */
 
-  /* FOR REGULAR BUTTON  */
-  /* ************************** */
-  .radio-container{
-    display: flex;
-    /* justify-content: center; */
-    justify-content: space-between;
-    width: 100%;
-    background-color: var(--dashboard-button-background);
-    /* background-color: red; */
-    border: 1px solid var(--dashboard-button-trim);
-    padding: 3em;
-    height: 8em;
-    /* padding: 10px; */
-    color: var(--text-color);
-    font-size: medium;
-    font-size: small;
-    /* font-weight: bold; */
-    cursor: pointer;
-    font-family: 'Poppins';
-  }
-  
-  .radio-container:hover {
-    background-color: none;
-  }
+/* FOR REGULAR BUTTON  */
+/* ************************** */
+.radio-container {
+  display: flex;
+  /* justify-content: center; */
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--dashboard-button-background);
+  /* background-color: red; */
+  border: 1px solid var(--dashboard-button-trim);
+  padding: 3em;
+  height: 8em;
+  /* padding: 10px; */
+  color: var(--text-color);
+  font-size: medium;
+  font-size: small;
+  /* font-weight: bold; */
+  cursor: pointer;
+  font-family: "Poppins";
+}
 
-  /* BUTTON VERSION */
-  .radio-container.clicked {
-    box-sizing: border-box;
-    background-color: var(--dashboard-selected);
-    border: 1px solid var(--dashboard-trim);
-    color: var(--text-color);
-    transition: all 0.3s ease;
-  }
+.radio-container:hover {
+  background-color: none;
+}
 
-  /* .dashboard_button:checked + label {
+/* BUTTON VERSION */
+.radio-container.clicked {
+  box-sizing: border-box;
+  background-color: var(--dashboard-selected);
+  border: 1px solid var(--dashboard-trim);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+/* .dashboard_button:checked + label {
     box-sizing: border-box;
     background-color: var(--dashboard-selected);
     border: 1px solid var(--dashboard-trim);
@@ -749,73 +740,71 @@ header {
     transition: all 0.3s ease;
   } */
 
-  /* Dashboard Images */
+/* Dashboard Images */
 
-  /* Clock */
-  .dash_hours {
-    width: 20px;
-    height: 20px;
-    /* filter: var(--dashboard-logo); */
-  }
+/* Clock */
+.dash_hours {
+  width: 20px;
+  height: 20px;
+  /* filter: var(--dashboard-logo); */
+}
 
-  /* Calendar */
-  .dash_calendar {
-    width: 19px;
-    height: 19px;
-    /* filter: var(--dashboard-logo); */
-  }
-
-
+/* Calendar */
+.dash_calendar {
+  width: 19px;
+  height: 19px;
+  /* filter: var(--dashboard-logo); */
+}
 
 /* Submit Button */
 .submit {
-    background-color: var(--button-background);
-    color: white;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    font-size: medium;
-    font-size: small;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    margin-top: -1.5em;
+  background-color: var(--button-background);
+  color: white;
+  border: none;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  font-size: medium;
+  font-size: small;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-top: -1.5em;
 }
 
 /* No outline on focus */
 .submit:focus {
-    outline: none;
+  outline: none;
 }
 
- /* Submit Disabled */
- .submit:disabled {
-    background-color: var(--button-background);
-    color: var(--text-color);
-    opacity: .6;
-    cursor: not-allowed;
+/* Submit Disabled */
+.submit:disabled {
+  background-color: var(--button-background);
+  color: var(--text-color);
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Back to Dashboard */
 .back_to_div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 60%;
-    font-weight: bold;
-    border: none;
-    text-align: center;
-    cursor: pointer;
-    /* background-color: blue; */
-    margin-top: -1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 60%;
+  font-weight: 400;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  /* background-color: blue; */
+  margin-top: -1.5em;
 }
 
 .back_to_div a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-color);
-    font-size: small;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  font-size: small;
 }
 
 /* ********************************* */
@@ -826,346 +815,341 @@ header {
 /* THE CALENDAR */
 
 .calendarContainer {
-    border: 1px solid var(--button-background);
+  border: 1px solid var(--button-background);
 }
 
 /* Calendar Header */
 .calendarheader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em;
-    background-color: var(--background-color);
-    border-bottom: 1px solid var(--button-background);
-    color: white;
-    font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--button-background);
+  color: white;
+  font-weight: bold;
 }
 
 #monthDisplay {
-    font-size: medium;
-    font-size: small;
-    color: var(--text-color);
-    font-weight: bold;
+  font-size: medium;
+  font-size: small;
+  color: var(--text-color);
+  font-weight: bold;
 }
 
 #weekdays {
-    display: flex;
-    width: 100%; /* Stretches across the full width of the parent container */
-  }
-  
-  #weekdays div {
-    flex: 1; /* Makes each day div grow equally to fill the available space */
-    text-align: center; /* Centers the text within each div */
-    padding: 10px 0; /* Optional: adds some vertical padding */
-  }
+  display: flex;
+  width: 100%; /* Stretches across the full width of the parent container */
+}
 
-  /* Pops in when you select a Day */
-  /* #newEventModal {
+#weekdays div {
+  flex: 1; /* Makes each day div grow equally to fill the available space */
+  text-align: center; /* Centers the text within each div */
+  padding: 10px 0; /* Optional: adds some vertical padding */
+}
+
+/* Pops in when you select a Day */
+/* #newEventModal {
     display: none;
   } */
 
-  .current_day_div {
+.current_day_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  background-color: none;
+  color: var(--text-color);
+  border-radius: 5px;
+  font-size: medium;
+  font-size: small;
+  gap: 1.5em;
+}
+
+.input_divs {
+  display: flex;
+  flex-direction: column;
+  /* gap: 1em; */
+  width: 100%;
+  /* margin-top: 1em; */
+  /* background-color: blue; */
+}
+
+.form_label {
+  font-size: small;
+  font-size: 0.7rem;
+  color: var(--text-color);
+  opacity: 60%;
+}
+
+/* Success Alert */
+.success_div {
+  background-color: var(--background-color);
+  margin-top: -1.5em;
+  /* border: 1px solid var(--button-background); */
+}
+
+/* The Times Confirmed */
+.input_divs {
+  background-color: var(--background-color);
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border: 1px solid var(--button-background);
+  border: none;
+  padding: 0.8em;
+  width: 100%;
+  font-size: small;
+  /* font-size: medium; */
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid var(--button-background);
+  box-shadow: 0 0 5px var(--button-background);
+}
+
+/* For the Date Picker */
+
+.current_day_datepicker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  /* gap: 3em; */
+  /* Gap Smaller */
+  gap: 1em;
+  /* Make BELOW a CSS variable */
+  background-color: var(--successfull-entry);
+  background-color: var(--background-color);
+  font-size: 0.7rem;
+  /* Make BELOW a CSS variable */
+  color: var(--successfull-entry-text);
+  font-weight: bold;
+  border: 1px solid var(--successfull-entry-trim);
+}
+
+.hours_entered_check {
+  width: 2.5em;
+  height: 2.5em;
+  /* Make Bigger */
+  width: 3.5em;
+  height: 3.5em;
+}
+
+#current_day {
+  border: none;
+  font-size: small;
+  cursor: pointer;
+  opacity: 55%;
+}
+
+.current_day_logo {
+  filter: var(--calendar-logo);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 50%;
+  margin: 6px 1em 0 0;
+}
+
+.current_day_logo.dark-mode {
+  filter: var(--calendar-logo);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 50%;
+  margin: 6px 1em 0 0;
+}
+
+#current_day {
+  background: none;
+}
+
+/* Time Clock */
+
+.time-picker {
+  display: inline-block;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border: 1px solid var(--button-background);
+  border: none;
+  padding: 1em;
+  display: flex;
+  gap: 0.5em;
+  width: 100%;
+  /* font-size: medium; */
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Time picker select */
+.time-picker select {
+  /* display: inline-block; */
+  /* padding: 1em; */
+  background-color: var(--input-background);
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-family: "Poppins";
+  opacity: 60%;
+  font-weight: bold;
+  font-size: 0.9rem;
+  /* padding: 0 .5em 0 .5em; */
+}
+
+.time-picker span {
+  opacity: 50%;
+}
+
+/* ********************************* */
+/* ********************************* */
+/* ********************************* */
+/* ********************************* */
+/* ********************************* */
+/* ********************************* */
+/* ********************************* */
+
+/* For wider screens narrow the form */
+
+/* Landscape */
+@media screen and (min-width: 700px) {
+  form {
+    width: 50%;
+    /* display: flex;
+        flex-direction: column;
+        gap: 1em; */
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1200px) {
+  /* Main Nav */
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
+
+  .viking_img {
+    /* make bigger */
+    width: 3em;
+    height: 3em;
+  }
+
+  .logo_text {
+    font-size: 2rem;
+  }
+
+  /* Desktop Form */
+  form {
+    width: 30%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    /* align-items: center; */
-    background-color: none;
-    color: var(--text-color);
-    border-radius: 5px;
+    gap: 2em;
+    margin-top: 1em;
+  }
+
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
+
+  .day-nite {
+    width: 40px;
+    height: 40px;
+  }
+
+  .menu-item {
     font-size: medium;
-    font-size: small;
-    gap: 1.5em;
   }
 
-  .input_divs {
-    display: flex;
-    flex-direction: column;
-    /* gap: 1em; */
+  .profile_header .profile_text {
+    font-size: medium;
+  }
+
+  .page_header_label {
+    font-size: medium;
+  }
+
+  /* Logo a bit bigger */
+  .logo_name p {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .hazel_park_logo {
+    width: 5em;
+    height: 5em;
+  }
+
+  /* Form Elements */
+  label {
+    font-size: medium;
+  }
+
+  .radio-container label {
+    padding: 4em;
+    padding: 2em;
     width: 100%;
-    /* margin-top: 1em; */
-    /* background-color: blue; */
+    font-size: medium;
   }
 
-
-  .form_label {
-    font-size: small;
-    font-size: .7rem;
-    color: var(--text-color);
-    opacity: 60%;
+  /* Employee Selects Buttons */
+  .employee_selects {
+    margin-top: 2em;
   }
 
-  /* Success Alert */
+  /* Clock */
+  .dash_hours {
+    width: 20px;
+    height: 20px;
+    filter: var(--dashboard-logo);
+  }
+
+  /* Calendar */
+  .dash_calendar {
+    width: 20px;
+    height: 20px;
+    filter: var(--dashboard-logo);
+  }
+
+  /* Success Div */
   .success_div {
-    background-color: var(--background-color);
-    margin-top: -1.5em;
-    /* border: 1px solid var(--button-background); */
+    margin-top: 0.5em;
   }
-
-  /* The Times Confirmed */
-  .input_divs {
-    background-color: var(--background-color);
-    background-color: var(--input-background);
-    color: var(--text-color);
-    border: 1px solid var(--button-background);
-    border: none;
-    padding: .8em;
-    width: 100%;
-    font-size: small;
-    /* font-size: medium; */
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-
-  input:focus{
-    outline: none;
-    border: 1px solid var(--button-background);
-    box-shadow: 0 0 5px var(--button-background);
-  }
-
-  /* For the Date Picker */
 
   .current_day_datepicker {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1em;
-    /* gap: 3em; */
+    /* gap: 6.5em; */
     /* Gap Smaller */
     gap: 1em;
-    /* Make BELOW a CSS variable */
-    background-color: var(--successfull-entry);
-    background-color: var(--background-color);
-    font-size: .7rem;
-    /* Make BELOW a CSS variable */
-    color: var(--successfull-entry-text);
-    font-weight: bold;
-    border: 1px solid var(--successfull-entry-trim);
+    font-size: 0.8rem;
+    align-items: center;
+    margin-bottom: 1em;
   }
 
   .hours_entered_check {
     width: 2.5em;
     height: 2.5em;
     /* Make Bigger */
-    width: 3.5em;
-    height: 3.5em;
+    width: 4em;
+    height: 4em;
   }
 
-  #current_day {
-    border: none;
-    font-size: small;
-    cursor: pointer;
-    opacity: 55%;
+  /* Confirms Bigger */
+  .input_divs {
+    font-size: medium;
   }
 
-  .current_day_logo {
-    filter: var(--calendar-logo);
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    opacity: 50%;
-    margin: 6px 1em 0 0;
+  .submit {
+    margin-top: 1em;
+    font-size: medium;
   }
 
-  .current_day_logo.dark-mode {
-    filter: var(--calendar-logo);
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    opacity: 50%;
-    margin: 6px 1em 0 0;
-}
-
-#current_day {
-    background: none;
-}
-
-/* Time Clock */
-
-.time-picker {
-    display: inline-block;
-    background-color: var(--input-background);
-    color: var(--text-color);
-    border: 1px solid var(--button-background);
-    border: none;
-    padding: 1em;
-    display: flex;
-    gap: .5em;
-    width: 100%;
-    /* font-size: medium; */
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-/* Time picker select */
-.time-picker select {
-    /* display: inline-block; */
-    /* padding: 1em; */
-    background-color: var(--input-background);
-    background: none;
-    border: none;
-    color: var(--text-color);
-    font-family: 'Poppins';
-    opacity: 60%;
-    font-weight: bold;
-    font-size: .9rem;
-    /* padding: 0 .5em 0 .5em; */
-}
-
-.time-picker span {
-    opacity: 50%;
-}
-
-/* ********************************* */
-/* ********************************* */
-/* ********************************* */
-/* ********************************* */
-/* ********************************* */
-/* ********************************* */
-/* ********************************* */
-
-
-/* For wider screens narrow the form */
-
-/* Landscape */
-@media screen and (min-width: 700px) {
-    form {
-        width: 50%;
-        /* display: flex;
-        flex-direction: column;
-        gap: 1em; */
-    }
-}
-
-/* Desktop */
-@media screen and (min-width: 1200px) {
-
-    /* Main Nav */
-    .burger {
-        width: 40px;
-        height: 40px;
-    }
-
-    .viking_img {
-        /* make bigger */
-        width: 3em;
-        height: 3em;
-    }
-
-    .logo_text {
-        font-size: 2rem;
-    }
-
-    /* Desktop Form */
-    form {
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
-        margin-top: 1em;
-    }
-
-    .burger {
-        width: 40px;
-        height: 40px;
-    }
-
-    .day-nite {
-        width: 40px;
-        height: 40px;
-    }
-
-    .menu-item {
-        font-size: medium;
-    }
-
-    .profile_header .profile_text {
-        font-size: medium;
-    }
-
-    .page_header_label {
-        font-size: medium;
-    }
-
-   /* Logo a bit bigger */
-   .logo_name p {
-        font-size: 3rem;
-        font-weight: bold;
-   }
-
-    .hazel_park_logo {
-        width: 5em;
-        height: 5em;
-    }
-
-    /* Form Elements */
-    label {
-        font-size: medium;
-    }
-
-    .radio-container label {
-        padding: 4em;
-        padding: 2em;
-        width: 100%;
-        font-size: medium;
-    }
-
-    /* Employee Selects Buttons */
-    .employee_selects {
-        margin-top: 2em;
-    }
-
-    /* Clock */
-    .dash_hours {
-        width: 20px;
-        height: 20px;
-        filter: var(--dashboard-logo);
-    }
-
-    /* Calendar */
-    .dash_calendar {
-        width: 20px;
-        height: 20px;
-        filter: var(--dashboard-logo);
-    }
-
-    /* Success Div */
-    .success_div {
-        margin-top: .5em;
-    }
-
-    .current_day_datepicker {
-        display: flex;
-        /* gap: 6.5em; */
-        /* Gap Smaller */
-        gap: 1em;
-        font-size: .8rem;
-        align-items: center;
-        margin-bottom: 1em;
-    }
-
-    .hours_entered_check {
-        width: 2.5em;
-        height: 2.5em;
-        /* Make Bigger */
-        width: 4em;
-        height: 4em;
-      }
-
-    /* Confirms Bigger */
-    .input_divs {
-        font-size: medium;
-
-    }
-
-
-    .submit {
-        margin-top: 1em;
-        font-size: medium;
-    }
-
-    .back_to_div a {
-        margin-top: 2em;
-        font-size: medium;
-    }
+  .back_to_div a {
+    margin-top: 2em;
+    font-size: medium;
+  }
 }

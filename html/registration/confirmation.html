@@ -1,184 +1,211 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../img/hazel-park-logo/viking-arena-logo.png" type="image/png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="../../img/hazel-park-logo/viking-arena-logo.png"
+      type="image/png"
+    />
     <title>Viking Time Card</title>
 
-      <!-- CSS -->
+    <!-- CSS -->
 
-      <!-- BASE STYLES -->
-      <link rel="stylesheet" href="../../css/base.css">
+    <!-- BASE STYLES -->
+    <link rel="stylesheet" href="../../css/base.css" />
 
-      <!-- NAVIGATION STYLES -->
-      <link rel="stylesheet" href="../../css/navigation.css">
+    <!-- NAVIGATION STYLES -->
+    <link rel="stylesheet" href="../../css/navigation.css" />
 
-      <!-- FORMS STYLES -->
-      <link rel="stylesheet" href="../../css/forms.css">
+    <!-- FORMS STYLES -->
+    <link rel="stylesheet" href="../../css/forms.css" />
 
-      <!-- CONFIRMATION STYLES -->
-      <link rel="stylesheet" href="../../css/confirmation.css">
-</head>
-<body>
-
+    <!-- CONFIRMATION STYLES -->
+    <link rel="stylesheet" href="../../css/confirmation.css" />
+  </head>
+  <body>
     <!-- Container -->
     <div class="container">
+      <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
 
-         <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
+      <!-- THE NAVBAR AND SIDE MENU-->
+      <nav class="main_nav">
+        <!-- Burger -->
+        <div class="viking_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            class="viking_img"
+            alt="viking_ice_arena"
+          />
+          <p class="logo_text">Time Card</p>
+        </div>
 
+        <!-- Light/Dark -->
+        <div class="menu_button">
+          <!-- Day/Nite -->
+          <button id="menu_burgers">
+            <img
+              src="../../img/hamburgers/hamburger_blue.png"
+              class="burger"
+              id="burger_one"
+              alt="menu"
+            />
+            <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
+          </button>
+        </div>
+      </nav>
 
-        <!-- THE NAVBAR AND SIDE MENU-->
-        <nav class="main_nav">
-            <!-- Burger -->
-            <div class="viking_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png" class="viking_img" alt="viking_ice_arena">
-                <p class="logo_text">Time Card</p>
-            </div>
-            
-            <!-- Light/Dark -->
-            <div class="menu_button">
-                <!-- Day/Nite -->
-                <button id="menu_burgers">
-                    <img src="../../img/hamburgers/hamburger_blue.png" class="burger" id="burger_one" alt="menu">
-                    <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
-                </button>
-            </div>
-        </nav>
+      <!-- SLIDE IN MENU -->
+      <div class="side-menu">
+        <!-- Header Logo -->
+        <div class="slide_header_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            alt="logo"
+          />
+          <p class="slide_in_logo_text">Time Card</p>
+        </div>
 
-        <!-- SLIDE IN MENU -->
-        <div class="side-menu">
-            <!-- Header Logo -->
-             <div class="slide_header_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png"  alt="logo">
-                <p class="slide_in_logo_text">Time Card</p>
-             </div>
-            
-             <!-- Menu Items -->
-             <div class="menu_items">
-                <a href="#" class="menu-item"><span>Tech Support</span><img src="../../img/slide-in-menu/tech_support.png" alt="tech_support"></a>
-                <!-- <a href="#" class="menu-item"><span>Messaging</span><img src="../../img/slide-in-menu/messaging.png" alt="messaging"></a> -->
-                <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
-                <button id="theme_switch" class="menu-item"><span>Day/Nite Mode</span><img src="../../img/slide-in-menu/day_nite.png" alt="theme_switch"></button>
-             </div>
-            <!-- Logged in Profile -->
-            <div class="profile">
-                <div class="profile_header">
-                    <p class="profile_text">Profile</p>
-                    <img src="../../img/slide-in-menu/profile.png" class="profile_circle">
-                </div>
+        <!-- Menu Items -->
+        <div class="menu_items">
+          <a href="#" class="menu-item"
+            ><span>Tech Support</span
+            ><img
+              src="../../img/slide-in-menu/tech_support.png"
+              alt="tech_support"
+          /></a>
+          <!-- <a href="#" class="menu-item"><span>Messaging</span><img src="../../img/slide-in-menu/messaging.png" alt="messaging"></a> -->
+          <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
+          <button id="theme_switch" class="menu-item">
+            <span>Day/Nite Mode</span
+            ><img
+              src="../../img/slide-in-menu/day_nite.png"
+              alt="theme_switch"
+            />
+          </button>
+        </div>
+        <!-- Logged in Profile -->
+        <div class="profile">
+          <div class="profile_header">
+            <p class="profile_text">Profile</p>
+            <img
+              src="../../img/slide-in-menu/profile.png"
+              class="profile_circle"
+            />
+          </div>
 
-                <!-- Profile Name -->
-                <div class="profile_info">
-                    <label>Name:</label>
-                    <p class="profile_text_data" id="profile_name">Not logged in</p>
-                 </div>
+          <!-- Profile Name -->
+          <div class="profile_info">
+            <label>Name:</label>
+            <p class="profile_text_data" id="profile_name">Not logged in</p>
+          </div>
 
-                 <!-- Profile Account Type -->
-                 <div class="profile_info">
-                    <label>Account type:</label>
-                    <p class="profile_text_data" id="profile_account">N/A</p>
-                 </div>
+          <!-- Profile Account Type -->
+          <div class="profile_info">
+            <label>Account type:</label>
+            <p class="profile_text_data" id="profile_account">N/A</p>
+          </div>
 
-                 <!-- Profile Pin Number -->
-                  <!-- This you will turn into a password output -->
-                 <div class="profile_info">
-                    <div class="pin_and_peak">
-                        <!-- <button class="delete_account_button" id="delete_account">
+          <!-- Profile Pin Number -->
+          <!-- This you will turn into a password output -->
+          <div class="profile_info">
+            <div class="pin_and_peak">
+              <!-- <button class="delete_account_button" id="delete_account">
                             <p class="delete_text">Delete Account</p>
                         </button> -->
-                        <!-- Pin Number -->
-                        <!-- <div class="pin_profile_div">
+              <!-- Pin Number -->
+              <!-- <div class="pin_profile_div">
                             <label>Pin #:</label>
                             <p class="profile_pin" id="profile_pin">****</p>
                         </div> -->
 
-                         <!-- Pin Code peak -->
-                        <!-- <div class="pin_code_peak">
+              <!-- Pin Code peak -->
+              <!-- <div class="pin_code_peak">
                             <button id="pin_code_peak">
                                 <img src="./img/slide-in-menu/pin_peek.png">
                             </button>
                         </div> -->
-                    </div>
-                 </div>
             </div>
-             <!-- Delete Button -->
-             <!-- <div class="delete_account_div">
+          </div>
+        </div>
+        <!-- Delete Button -->
+        <!-- <div class="delete_account_div">
                 <button class="logout_account_button" id="logout_account">
                     <img src="../../img/logout/white_logout.png" class="logout_logo">
                     <p class="logout_text">Log Out</p>
                 </button>
              </div>  -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="menu-overlay"></div>
+
+      <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+
+      <!-- THE PAGE -->
+
+      <!-- THE FORM -->
+      <form>
+        <!-- CONFIRMED FIELDS (Change the HTML with JS on these) -->
+
+        <div class="confirmed_fields">
+          <label class="confirm_title">You are registering as:</label>
+
+          <!-- NAME -->
+          <div class="confirmed_field">
+            <label for="confirmed_name" class="confirmed_label">Name:</label>
+            <p class="confirmed_info" id="confirmed_name"></p>
+          </div>
+
+          <!-- ACCOUNT TYPE -->
+          <div class="confirmed_field">
+            <label for="confirmed_acct_type" class="confirmed_label"
+              >Account Type:</label
+            >
+            <p class="confirmed_info" id="confirmed_acct_type"></p>
+          </div>
+
+          <!-- NAME -->
+          <div class="confirmed_field">
+            <label for="confirmed_pin_num" class="confirmed_label"
+              >Pin #:</label
+            >
+            <p class="confirmed_info" id="confirmed_pin"></p>
+            <small>Keep this number confidential</small>
+          </div>
         </div>
 
-        <!-- Overlay -->
-        <div class="menu-overlay"></div>
+        <!-- EDIT OPTION -->
+        <p class="confirmation_edit">
+          <button type="button" class="edit" id="edit_info">Click Here</button>
+          if anything is wrong
+        </p>
 
-        <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+        <!-- Submit Button -->
 
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-  
-
-        <!-- THE PAGE -->
-
-        <!-- THE FORM -->
-        <form>
-          
-            <!-- CONFIRMED FIELDS (Change the HTML with JS on these) -->
-
-            <div class="confirmed_fields">
-
-                <label class="confirm_title">You are registering as:</label>
-
-                
-                <!-- NAME -->
-                <div class="confirmed_field">
-                    <label for="confirmed_name" class="confirmed_label">Name:</label>
-                    <p class="confirmed_info" id="confirmed_name"></p>
-                </div>
-
-                <!-- ACCOUNT TYPE -->
-                <div class="confirmed_field">
-                    <label for="confirmed_acct_type" class="confirmed_label">Account Type:</label>
-                    <p class="confirmed_info" id="confirmed_acct_type"></p>
-                </div>
-
-                <!-- NAME -->
-                <div class="confirmed_field">
-                    <label for="confirmed_pin_num" class="confirmed_label">Pin #:</label>
-                    <p class="confirmed_info" id="confirmed_pin"></p>
-                    <small>Keep this number confidential</small>
-                </div>
-                
-                 
-            </div>
-
-            <!-- EDIT OPTION -->
-            <p class="confirmation_edit"><button class="edit" id="edit_info">Click Here</button> if anything is wrong</p>
-
-
-            <!-- Submit Button -->
-
-            <!-- This is where Authorization comes into play -->
-            <!-- If Manager Account / Button should say (Go to Employee hours) -->
-            <!-- If Employee Account / Button should say (Go to your Calendar) -->
-            <button class="submit" id="confirmation_advance"></button>
-        </form>
+        <!-- This is where Authorization comes into play -->
+        <!-- If Manager Account / Button should say (Go to Employee hours) -->
+        <!-- If Employee Account / Button should say (Go to your Calendar) -->
+        <button class="submit" id="confirmation_advance"></button>
+      </form>
     </div>
 
     <!-- DARKMODE -->
@@ -196,6 +223,5 @@
     <!-- LOCAL STORAGE DB (for Demo purpose) -->
     <!-- <script src="/viking_arena_time_card/js/database/local_storage.js"></script> -->
     <script src="../../js/database/localstorage.js"></script>
-    
-</body>
+  </body>
 </html>

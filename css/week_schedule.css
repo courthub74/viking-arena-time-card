@@ -1,224 +1,217 @@
-
 :root {
+  /* Base */
+  --background-color: #ffffff;
 
-    /* Base */
-    --background-color: #ffffff;
+  /* Text */
+  --text-color: #000000;
 
-    /* Text */
-    --text-color: #000000;
+  /* Menu Text */
+  --menu-text-color: #00000080; /* 50% opacity */
 
-    /* Menu Text */
-    --menu-text-color: #00000080; /* 50% opacity */
+  /* Menu Colors */
+  --menu-background: #ffffff;
+  --menu-hover: #e0e0e0;
+  --menu-shadow: rgba(0, 0, 0, 0.1);
 
-    /* Menu Colors */
-    --menu-background: #ffffff;
-    --menu-hover: #e0e0e0;
-    --menu-shadow: rgba(0, 0, 0, 0.1);
+  /* Input Colors */
+  --input-background: #658cab92;
+  --input-background: #658cab48;
+  --input-background: #5186b148;
+  /* Filled Input */
+  --input-filled: #0460a5;
 
-     /* Input Colors */
-     --input-background: #658cab92;
-     --input-background: #658cab48;
-     --input-background: #5186b148;
-     /* Filled Input */
-     --input-filled: #0460a5;
+  /* Button Colors */
+  --button-background: #009df8;
+  --button-text: white;
 
+  /* Dashboard Button Colors */
+  --dashboard-button-background: #5186b148;
+  --dashboard-button-trim: none;
 
-     /* Button Colors */
-     --button-background: #009DF8;
-     --button-text: white;
+  /* Account Type Colors */
+  --dashboard-selected: #2065a58a;
+  /* Trim */
+  --dashboard-trim: #000000;
+  /* Hover */
+  --dashboard-hover: #e8e8e8;
 
-     /* Dashboard Button Colors */
-     --dashboard-button-background: #5186b148;
-     --dashboard-button-trim: none;
+  /* Calendar Arrow Buttons */
+  --calendar-arrow: #009df8;
+  --calendar-arrow: #297ece8a;
 
-     /* Account Type Colors */
-     --dashboard-selected: #2065a58a;
-     /* Trim */
-     --dashboard-trim: #000000;
-     /* Hover */
-     --dashboard-hover: #e8e8e8;
+  /* Dashboard Logos */
+  --dashboard-logo: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg)
+    brightness(0%) contrast(100%);
 
-         /* Calendar Arrow Buttons */
-         --calendar-arrow: #009DF8;
-         --calendar-arrow: #297ece8a;
+  /* *********************************** */
+  /* *********************************** */
+  /* **********DAY MODE SLIDE IN********** */
 
-     /* Dashboard Logos */
-     --dashboard-logo: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+  /* Menu Item Colors */
+  --slide-menu-item-background: #5186b148;
+  /* --slide-menu-item-background: white; */
+  --slide-menu-item-trim: #5186b148;
+  /* --slide-menu-item-trim: white; */
 
-    /* *********************************** */
-     /* *********************************** */
-     /* **********DAY MODE SLIDE IN********** */
+  /* Slide Menu Icons */
+  --slide-menu-item-icon-filter: brightness(90%) contrast(100%);
 
-     /* Menu Item Colors */
-     --slide-menu-item-background: #5186b148;
-     /* --slide-menu-item-background: white; */
-     --slide-menu-item-trim: #5186b148;
-     /* --slide-menu-item-trim: white; */
+  /* Calendar Colors */
+  --calendar-border: #444444a7;
 
+  --month-buttons: #6ebce9;
+  --empty-day: #f9f9f9;
+  --empty-day: none;
+  --day-border: #eaeaea;
+  --day-border: none;
+  --date-color: #444;
+  --today-color: #6ebce9;
+  --today-color: #009df8;
+  /* --today-color: #009df849; */
 
-     /* Slide Menu Icons */
-     --slide-menu-item-icon-filter: brightness(90%) contrast(100%);
-     
+  /* May be taken care of in JS */
+  --filled-color: #6fbce8c2;
+  /* --filled-color: #2065a58a; */
+  --date-filled-color: rgba(78, 161, 202, 0.987);
+  --date-filled-color: #009df8;
 
-     /* Calendar Colors */
-     --calendar-border: #444444a7;
+  /* Modal Filter */
+  --modal-filter: brightness(20%) contrast(50%);
 
-     --month-buttons: #6ebce9; 
-     --empty-day: #f9f9f9;
-     --empty-day: none;
-     --day-border: #eaeaea;
-     --day-border: none;
-     --date-color: #444;
-     --today-color: #6ebce9;
-     --today-color: #009DF8;
-     /* --today-color: #009df849; */
+  /* Modal Box Shadow */
+  --modal-box-shadow: 0 -28px 15px 0 rgba(255, 255, 255, 0.664);
 
-     /* May be taken care of in JS */
-     --filled-color: #6fbce8c2;
-     /* --filled-color: #2065a58a; */
-     --date-filled-color: rgba(78, 161, 202, 0.987);
-     --date-filled-color: #009DF8;
+  --day-button-today: #009df865;
 
-     /* Modal Filter */
-    --modal-filter: brightness(20%) contrast(50%);
+  --trim-and-in-out-buttons: #0076cb;
+  --trim-and-in-out-buttons: #009df8;
 
-    /* Modal Box Shadow */
-    --modal-box-shadow: 0 -28px 15px 0 rgba(255, 255, 255, 0.664);
+  --name-picker-trim: #000000;
 
-    --day-button-today: #009df865;
+  --time-picker-background: #0076cb98;
 
-    --trim-and-in-out-buttons: #0076CB;
-    --trim-and-in-out-buttons: #009DF8;
-
-    --name-picker-trim: #000000;
-
-    --time-picker-background: #0076cb98;
-
-     /* *********************************** */
-     /* *********************************** */
-     /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
 }
 
 /* DARK MODE */
 
 body.dark-mode {
+  /* Base */
+  --background-color: black;
 
-    /* Base */
-    --background-color: black;
+  /* Text */
+  --text-color: #ffffff;
 
-    /* Text */
-    --text-color: #ffffff;
+  /* Menu Text */
+  --menu-text-color: #ffffff75; /* 50% opacity */
 
-     /* Menu Text */
-     --menu-text-color: #ffffff75; /* 50% opacity */
+  /* Menu Colors */
+  --menu-background: #101010;
+  --menu-background: #000000;
+  --menu-hover: #0d0d0d;
+  --menu-shadow: rgb(22, 33, 38);
 
-    /* Menu Colors */
-    --menu-background: #101010;
-    --menu-background: #000000;
-    --menu-hover: #0d0d0d;
-    --menu-shadow: rgb(22, 33, 38);
+  /* Input Colors */
+  --input-background: #101316;
+  --input-background: #1b2025;
+  --input-background: #15191d;
+  /* Filled Input */
+  --input-filled: #002f54;
 
-     /* Input Colors */
-     --input-background: #101316;
-     --input-background: #1b2025;
-     --input-background: #15191d;
-     /* Filled Input */
-     --input-filled: #002F54;
-     
-     /* Button Colors */
-     --button-background: #009DF8;
-     --button-text: white;
+  /* Button Colors */
+  --button-background: #009df8;
+  --button-text: white;
 
-      /* Dashboard Button Colors */
-      --dashboard-button-background: black;
-      --dashboard-button-background: #15191d;
-      --dashboard-button-trim: #009df88c;
-      --dashboard-button-trim: none;
+  /* Dashboard Button Colors */
+  --dashboard-button-background: black;
+  --dashboard-button-background: #15191d;
+  --dashboard-button-trim: #009df88c;
+  --dashboard-button-trim: none;
 
-     /* Account Type Colors */
-      --dashboard-selected: #17426b7c;
-     /* Trim */
-     --dashboard-trim: #009DF8;
-     /* Hover */
-     --dashboard-hover: #17426b;
+  /* Account Type Colors */
+  --dashboard-selected: #17426b7c;
+  /* Trim */
+  --dashboard-trim: #009df8;
+  /* Hover */
+  --dashboard-hover: #17426b;
 
-         /* Calendar Arrow Buttons */
-         --calendar-arrow: #009DF8;
-         --calendar-arrow: #009df8c2;
-         /* --calendar-arrow: #297ece8a; */
+  /* Calendar Arrow Buttons */
+  --calendar-arrow: #009df8;
+  --calendar-arrow: #009df8c2;
+  /* --calendar-arrow: #297ece8a; */
 
-     /* Dashboard Logo */
-     --dashboard-logo: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  /* Dashboard Logo */
+  --dashboard-logo: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg)
+    brightness(100%) contrast(100%);
 
-     /* ********************************** */
-     /* ********************************** */
-     /* ************NITE MODE SLIDE******* */
+  /* ********************************** */
+  /* ********************************** */
+  /* ************NITE MODE SLIDE******* */
 
-     /* Menu Item Colors */
-     --slide-menu-item-background: #black;
-     --slide-menu-item-background: #20252c;
-     --slide-menu-item-background: #15191d;
-     --slide-menu-item-trim: #2065a578;
-     --slide-menu-item-trim: #3d4a5653;
+  /* Menu Item Colors */
+  --slide-menu-item-background: #black;
+  --slide-menu-item-background: #20252c;
+  --slide-menu-item-background: #15191d;
+  --slide-menu-item-trim: #2065a578;
+  --slide-menu-item-trim: #3d4a5653;
 
+  /* Calendar Colors */
+  --calendar-border: #444;
 
-     /* Calendar Colors */
-     --calendar-border: #444;
+  --month-buttons: #009df88b;
+  --empty-day: #121a21a7;
+  --empty-day: none;
+  --day-border: #243d5453;
+  --day-border: none;
+  --date-color: #d1cfcf;
+  --today-color: #009df8c2;
+  --today-color: #009df88b;
+  /* --today-color: #009df847; */
 
-     --month-buttons: #009df88b;
-     --empty-day: #121a21a7;
-     --empty-day: none;
-     --day-border: #243d5453;
-     --day-border: none;
-     --date-color: #d1cfcf;
-     --today-color: #009df8c2;
-     --today-color: #009df88b;
-     /* --today-color: #009df847; */
+  /* May be taken care of in JS */
+  --filled-color: #009df8c2;
+  --filled-color: #17426b7c;
+  --date-filled-color: rgba(75, 185, 239, 0.648);
 
-     /* May be taken care of in JS */
-     --filled-color: #009df8c2;
-     --filled-color: #17426b7c;
-     --date-filled-color: rgba(75, 185, 239, 0.648);
+  /* Modal colors filter */
+  --modal-filter: brightness(100%) contrast(100%);
 
-      /* Modal colors filter */
-      --modal-filter: brightness(100%) contrast(100%);
+  /* Modal Box Shadow */
+  --modal-box-shadow: 0 -28px 15px 0 rgba(0, 0, 0, 0.78);
 
-      /* Modal Box Shadow */
-      --modal-box-shadow: 0 -28px 15px 0 rgba(0, 0, 0, 0.78);
+  --day-button-today: #009df88b;
 
-      --day-button-today: #009df88b;
+  --trim-and-in-out-buttons: #009df8;
 
-      --trim-and-in-out-buttons: #009DF8;
+  --name-picker-trim: #0076cb98;
 
-      --name-picker-trim: #0076cb98;
+  --time-picker-background: #0076cb98;
 
-      --time-picker-background: #0076cb98;
-
-     /* *********************************** */
-     /* *********************************** */
-     /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
+  /* *********************************** */
 }
 
 /* WHOLE BODY */
 * {
-    font-family: 'Poppins';
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    /* border-radius: 5px; */
+  font-family: "Poppins";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* border-radius: 5px; */
 }
-
-
 
 /* Body for All */
 body {
-    min-height: 100vh;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* No Scroll */
@@ -229,117 +222,115 @@ body {
 }
 
 .container {
-    width: 100%; 
-	/* max-width: 1000px; */
-    padding: 1em 0 1em 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* gap: 3em; */
-    gap: 1.5em;
+  width: 100%;
+  /* max-width: 1000px; */
+  padding: 1em 0 1em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 3em; */
+  gap: 1.5em;
 }
 
 /* NAVBAR */
 
 .main_nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--background-color);
-    background: none;
-    width: 100%;
-    /* box-shadow: 0 2px 5px var(--menu-shadow); */
-    position: relative;
-    z-index: 1000;
-    /* z-index: 997; */
-    padding: 0 3em 0 3em;
-    margin-top: 2em;
-    margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color);
+  background: none;
+  width: 100%;
+  /* box-shadow: 0 2px 5px var(--menu-shadow); */
+  position: relative;
+  z-index: 1000;
+  /* z-index: 997; */
+  padding: 0 3em 0 3em;
+  margin-top: 2em;
+  margin-top: 40px;
 }
 
 /* Main Logo */
 .viking_logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 /* Logo Img */
 .viking_img {
-    width: 2.5em;
-    height: 2.5em;
-    width: 2em;
-    height: 2em;
+  width: 2.5em;
+  height: 2.5em;
+  width: 2em;
+  height: 2em;
 }
 
 /* Logo Text */
 .logo_text {
-    font-family: 'Inria Sans';
-    font-size: 1.6rem;
-    font-weight: bold;
+  font-family: "Inria Sans";
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 /* Menu Burger */
 
 /* Menu Button */
 #menu_burgers {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    /* background-color: blue; */
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  /* background-color: blue; */
 }
 
 /* The Burgers */
 .burger {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.3s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-
-
 
 /* When Burger button (or burger class) is active */
 .burger.active {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 /* Day/Nite */
 
 /* Div */
 .theme_switch {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 /* Button */
 #theme_switch {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    position: relative;
-    width: 30px;
-    height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  width: 30px;
+  height: 30px;
 }
 
 /* Stacked Logos */
 .day-nite {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
 }
 
 /* Order for the Dark Lite Mode Logos */
@@ -358,77 +349,77 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Slide-out Menu Styles */
 .side-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    /* New slide Gap */
-    /* gap: 2em; */
-    /* ************* */
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 300px;
-    height: 100vh;
-    background-color: var(--menu-background);
-    transition: transform 0.3s ease-in-out;
-    padding-top: 65px;
-    padding-left: 40px;
-    padding-right: 20px;
-    z-index: 999;
-    /* Make slide menu cover it all */
-    /* z-index: 1000; */
-    /* border-right: 1px solid var(--nav-shadow); */
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  /* New slide Gap */
+  /* gap: 2em; */
+  /* ************* */
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--menu-background);
+  transition: transform 0.3s ease-in-out;
+  padding-top: 65px;
+  padding-left: 40px;
+  padding-right: 20px;
+  z-index: 999;
+  /* Make slide menu cover it all */
+  /* z-index: 1000; */
+  /* border-right: 1px solid var(--nav-shadow); */
 }
 
 .side-menu.active {
-    transform: translateX(300px);
+  transform: translateX(300px);
 }
 
 .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 998;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 998;
 }
 
 .menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Logo Header */
 .slide_header_logo {
-    display: flex;
-    align-items: center;
-    gap: .5em;
-    opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  opacity: 0;
 }
 
 .slide_header_logo img {
-    width: 2.5em;
-    height: 2.5em;
+  width: 2.5em;
+  height: 2.5em;
 }
 
 .slide_in_logo_text {
-    font-size: medium;
-    font-weight: bold;
+  font-size: medium;
+  font-weight: bold;
 }
 
 /* Menu Items Div */
 .menu_items {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    /* New Gap */
-    /* gap: 2em; */
-    /* ******* */
-    margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  /* New Gap */
+  /* gap: 2em; */
+  /* ******* */
+  margin-top: 1em;
 }
 
 /* *************************** */
@@ -437,66 +428,65 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* *************************** */
 /* Slide Menu Items to Copy */
 
-
 /* Each Slide Menu Item */
 .menu-item {
-    padding: 1rem 1rem 1rem 0rem;
-    display: flex;
-    gap: 1em;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: small;
-    border-radius: 5px;
-    /* font-weight: bold; */
-    /* border: 1px solid var(--slide-menu-item-trim); */
-    background-color: var(--slide-menu-item-background);
+  padding: 1rem 1rem 1rem 0rem;
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: small;
+  border-radius: 5px;
+  /* font-weight: bold; */
+  /* border: 1px solid var(--slide-menu-item-trim); */
+  background-color: var(--slide-menu-item-background);
 }
 
 #theme_switch {
-    background-color: var(--slide-menu-item-background);
-    /* border: 1px solid var(--slide-menu-item-trim); */
-    width: 100%;
-    padding: 1.5rem 1rem 1.5rem 0rem;
-    /* padding: 1rem 1rem 1rem 0rem; */
+  background-color: var(--slide-menu-item-background);
+  /* border: 1px solid var(--slide-menu-item-trim); */
+  width: 100%;
+  padding: 1.5rem 1rem 1.5rem 0rem;
+  /* padding: 1rem 1rem 1rem 0rem; */
 }
 
 /* Profile on the slide menu */
 .profile {
-    /* margin-top: 1em; */
-    display: flex;
-    flex-direction: column;
-    background-color: var(--slide-menu-item-background);
-    /* When logged in make color slightly brighter */
+  /* margin-top: 1em; */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--slide-menu-item-background);
+  /* When logged in make color slightly brighter */
 }
 
 /* Whole Profile Div */
 .profile_header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 1rem 1rem .7rem;
-    border-bottom: 1px solid var(--slide-menu-item-trim);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem 1rem 0.7rem;
+  border-bottom: 1px solid var(--slide-menu-item-trim);
 }
 
 /* Profile IMG */
 
 /* Profile header text */
 .profile_text {
-    font-size: small;
-    font-weight: bold;
+  font-size: small;
+  font-weight: bold;
 }
 
 /* Profile header img */
 .profile_circle {
-    filter: var(--slide-menu-item-icon-filter);
-    width: 1.2em;
-    height: 1.2em;
+  filter: var(--slide-menu-item-icon-filter);
+  width: 1.2em;
+  height: 1.2em;
 }
 
 /* The Profile Text Info */
 .profile_text_data {
-    opacity: 100%;
+  opacity: 100%;
 }
 
 /* **************************************** */
@@ -506,14 +496,14 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Profile Info Boxes */
 .profile_info {
-    /* background-color: var(--input-background); */
-    font-size: small;
-    padding: .5em 1em;
+  /* background-color: var(--input-background); */
+  font-size: small;
+  padding: 0.5em 1em;
 }
 
 .profile_info label {
-    opacity: 50%;
-    font-size: small;
+  opacity: 50%;
+  font-size: small;
 }
 
 /* Pin Number Profile Div */
@@ -536,19 +526,19 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Each menu item icon */
 .menu-item img {
-    width: 1.5em;
-    height: 1.5em;
-    filter: brightness(90%);
-    /* filter: brightness(150%) contrast(180%); */
+  width: 1.5em;
+  height: 1.5em;
+  filter: brightness(90%);
+  /* filter: brightness(150%) contrast(180%); */
 }
 
 .menu-item:hover {
-    background-color: var(--menu-hover);
+  background-color: var(--menu-hover);
 }
 
 /* For demonstrating menu items */
 .menu-item span {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 /* Delete Account */
@@ -566,44 +556,42 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Just Text */
 .delete_account_button {
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    font-weight: bold;
-    color: rgb(192, 52, 52);
-    color: red;
-    font-size: small;
-    background: none;
-    border: none;
-    cursor: pointer;
-    gap: .4em;
-    /* margin-top: 1em; */
-    margin-bottom: .5em;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  font-weight: bold;
+  color: rgb(192, 52, 52);
+  color: red;
+  font-size: small;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 0.4em;
+  /* margin-top: 1em; */
+  margin-bottom: 0.5em;
 }
 
 .delete_can {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 /* Log Out */
 .logout_account_div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
 }
 
 .logout_text a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: white;
 }
-
-
 
 /* Just Text */
 /* .logout_account_button {
@@ -620,26 +608,25 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 
 /* Whole Button */
 .logout_account_button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5em;
-    background-color: #009DF8;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: .8em 1em;
-    cursor: pointer;
-    margin-top: 1em;
-    font-size: medium;
-    font-size: small;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  background-color: #009df8;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 0.8em 1em;
+  cursor: pointer;
+  margin-top: 1em;
+  font-size: medium;
+  font-size: small;
+  font-weight: bold;
 }
 
-
 .logout_logo {
-    width: 1.1em;
-    height: 1.1em;
+  width: 1.1em;
+  height: 1.1em;
 }
 
 /* COPY ABOVE FOR MENU */
@@ -648,7 +635,6 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* *************** */
 /* *************** */
 
-
 /* *************** */
 /* *************** */
 /* *************** */
@@ -656,95 +642,72 @@ body:not(.dark-mode) .day-nite:nth-child(1) {
 /* THE FORM */
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 3em;
-    width: 100%;
-    padding: 0 3em 0 3em;
-    /* margin-top: 1em; */
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  width: 100%;
+  padding: 0 3em 0 3em;
+  /* margin-top: 1em; */
 }
 
 /* THE HEADER */
 header {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    gap: 2em;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 2em;
+  width: 100%;
 }
 
 .logo_name {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    align-items: center;
-    gap: .5em;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .logo_name p {
-    font-size: 2.5rem;
-    font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .app_state p {
-    text-decoration: underline;
-    text-decoration-color: var(--button-background);
-    text-decoration-thickness: 2px;
+  text-decoration: underline;
+  text-decoration-color: var(--button-background);
+  text-decoration-thickness: 2px;
 }
-
 
 .hazel_park_logo {
-    width: 3.5em;
-    height: 3.5em;
+  width: 3.5em;
+  height: 3.5em;
 }
 
-/* Page Header */
-/* label {
-    opacity: 100%;
-    font-size: medium;
-    font-size: small;
-    font-size: .8rem;
-    display: flex;
-    gap: .5em;
-    width: 100%;
-} */
-
-/* The Dashboard Header */
+/* Dashboard Header */
 .page_header_label {
-    font-size: medium;
-    font-size: small;
-    font-size: .8rem;
-    display: flex;
-    /* gap: .5em; */
-    width: 100%;
+  display: flex;
+  width: 100%;
+  font-size: 0.8rem;
 }
 
 /* The Blue and the Name */
 .acct_type_label {
-    color: var(--button-background);
-    font-weight: bold;
-    opacity: 100%;
-}
-
-/* Dashboard for */
-.page_header {
-    display: flex;
-    font-weight: bold;
-    /* width: 100%; */
-    opacity: 50%;
+  color: var(--button-background);
+  font-weight: bold;
+  opacity: 100%;
 }
 
 /* EDIT BUTTON */
 .edit-time-button {
-    background-color: var(--input-filled);
-    color: white;
-    border: none;
-    /* padding: 10px 15px; */
-    text-align: center;
-    cursor: pointer;
-    font-size: small;
-    font-weight: bold;
-    transition: all 0.3s ease;
+  background-color: var(--input-filled);
+  color: white;
+  border: none;
+  /* padding: 10px 15px; */
+  text-align: center;
+  cursor: pointer;
+  font-size: small;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 /* Main Nav and main form opacity 50%
@@ -761,101 +724,97 @@ header {
 
 /* Radio Button Squares */
 .employee_selects {
-    /* background-color: blue; */
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    /* margin-top: 1em; */
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  /* margin-top: 1em; */
 }
 
-  /* Dashboard Images */
+/* Dashboard Images */
 
-  /* Clock */
-  .dash_hours {
-    width: 20px;
-    height: 20px;
-    /* filter: var(--dashboard-logo); */
-  }
+/* Clock */
+.dash_hours {
+  width: 20px;
+  height: 20px;
+  /* filter: var(--dashboard-logo); */
+}
 
-  /* Calendar */
-  .dash_calendar {
-    width: 19px;
-    height: 19px;
-    /* filter: var(--dashboard-logo); */
-  }
-
-
+/* Calendar */
+.dash_calendar {
+  width: 19px;
+  height: 19px;
+  /* filter: var(--dashboard-logo); */
+}
 
 /* Submit Button */
 .submit {
-    background-color: var(--button-background);
-    color: white;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    font-size: medium;
-    font-size: small;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    margin-top: 1em;
+  background-color: var(--button-background);
+  color: white;
+  border: none;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  font-size: medium;
+  font-size: small;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-top: 1em;
 }
 
 /* No outline on focus */
 .submit:focus {
-    outline: none;
+  outline: none;
 }
 
- /* Submit Disabled */
- .submit:disabled {
-    background-color: var(--button-background);
-    color: var(--text-color);
-    opacity: .6;
-    cursor: not-allowed;
+/* Submit Disabled */
+.submit:disabled {
+  background-color: var(--button-background);
+  color: var(--text-color);
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Scheduled Dropdown */
 .scheduled {
-    display: flex;
-    flex-direction: column;
-    gap: .5em;
-    font-size: small;
-    list-style: none;
-    background-color: var(--filled-color);
-    padding: 8px;
-    box-sizing: border-box;
-    border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  font-size: small;
+  list-style: none;
+  background-color: var(--filled-color);
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .sched_name {
-    display: flex;
-    justify-content: space-between;
-    
+  display: flex;
+  justify-content: space-between;
 }
 
 .edit_sched {
-    font-size: .6rem;
+  font-size: 0.6rem;
 }
-
 
 /* Back to Dashboard */
 .back_to_div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
 }
 
 .back_to_div a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: var(--text-color);
-    font-size: small;
-    opacity: 50%;
-    cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  color: var(--text-color);
+  font-size: small;
+  opacity: 50%;
+  cursor: pointer;
 }
 
 /* ********************************* */
@@ -865,77 +824,94 @@ header {
 /* ********************************* */
 /* THE CALENDAR */
 #calendar-container {
-    border: 2px solid var(--today-color);
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    /* padding: 5px 5px 5px 5px; */
-    /* padding: 10px; */
+  border: 2px solid var(--today-color);
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  /* padding: 5px 5px 5px 5px; */
+  /* padding: 10px; */
 }
 
 /* Calendar Header */
 .calendar-header {
-    display: flex;
-    /* justify-content: space-between; */
-    justify-content: center;
-    align-items: center;
-    padding: 1em;
-    background-color: var(--background-color);
-    /* border-bottom: 2px solid var(--calendar-border); */
-    color: var(--text-color);
-    font-weight: bold;
-    width: 100%;
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  background-color: var(--background-color);
+  /* border-bottom: 2px solid var(--calendar-border); */
+  color: var(--text-color);
+  font-weight: bold;
+  width: 100%;
 }
 
 /* Calendar Header Text */
 .calendar-header h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-/* Week Buttons Div */
-.day_buttons {
-    display: flex;
-    align-items: stretch; /* Change from 'center' to 'stretch' */
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .day_prev {
-    background-color: var(--today-color);
-    border: none;
-    color: white;
-    font-size: 12px;
-    cursor: pointer;
-    padding: 5px 10px;
-    display: flex; /* Add this */
-    align-items: center; /* Add this */
-    border-bottom-left-radius: 5px; /* Add this */
-    border-top-left-radius: 5px; /* Add this */
+  background-color: var(--today-color);
+  border: none;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 5px 10px;
+  display: flex; /* Add this */
+  align-items: center; /* Add this */
+  border-bottom-left-radius: 5px; /* Add this */
+  border-top-left-radius: 5px; /* Add this */
 }
 
 .day_next {
-    background-color: var(--today-color);
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 5px 10px;
-    display: flex; /* Add this */
-    align-items: center; /* Add this */
-    border-bottom-right-radius: 5px; /* Add this */
-    border-top-right-radius: 5px; /* Add this */
+  background-color: var(--today-color);
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 10px;
+  display: flex; /* Add this */
+  align-items: center; /* Add this */
+  border-bottom-right-radius: 5px; /* Add this */
+  border-top-right-radius: 5px; /* Add this */
 }
 
 .current-day {
-    font-size: .9rem;
-    font-weight: bold;
-    color: var(--text-color);
-    background-color: var(--today-color);
-    padding: 5px 10px;
-    text-align: center;
-    width: 100%;
-    display: flex; /* Add this */
-    align-items: center; /* Add this */
-    justify-content: center; /* Add this */
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--text-color);
+  background-color: var(--today-color);
+  padding: 5px 10px;
+  text-align: center;
+  width: 100%;
+  display: flex; /* Add this */
+  align-items: center; /* Add this */
+  justify-content: center; /* Add this */
+}
+
+.day_buttons {
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+  /* border-radius: 999px; */
+  background-color: var(--primary-color);
+}
+
+.day_buttons .day_prev {
+  margin: 0;
+  border-radius: 999px 0 0 999px;
+}
+
+.day_buttons .current-day {
+  margin: 0;
+  border-radius: 0;
+}
+
+.day_buttons .day_next {
+  margin: 0;
+  border-radius: 0 999px 999px 0;
 }
 
 #calendar-body {
@@ -955,7 +931,6 @@ header {
   border: none;
   color: var(--text-color);
   border: 1px solid var(--dashboard-selected);
-  border: none;
   border-radius: 5px;
   padding: 12px 12px;
   /* padding: 25px 25px; */
@@ -968,13 +943,13 @@ header {
 .week-day-button.today {
   /* background-color: var(--); */
   border-color: var(--dashboard-trim);
- border: 2px solid var(--dashboard-selected);
+  border: 2px solid var(--dashboard-selected);
   font-weight: bold;
 }
 
 #current-week {
   /* font-size: 15px; */
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: normal;
   font-weight: bold;
   margin: 0;
@@ -990,12 +965,9 @@ header {
   padding: 10px 20px 10px 20px;
 }
 
-
 /* ************************************ */
 /* ************************************ */
 /* ************************************ */
-
-
 
 /* ************************************** */
 /* ************************************** */
@@ -1004,46 +976,49 @@ header {
 
 /* paste here */
 .cal_modal {
-    display: none;
-    position: fixed;
-    top: 70px;
-    top: 40px;
-    /* Change from left: 0 and width: 100% to use these centering properties */
-    left: 50%;
-    transform: translateX(-50%); /* This centers the modal horizontally */
-    width: 85%; /* Reduce width to 80% of viewport (adjust as needed) */
-    width: 90%;
-    max-width: 800px; /* Optional: Set a maximum width */
-    height: 85%;
-    height: calc(100vh - 65px); /* Use calc to ensure it fits screen minus top margin */
-    /* height: 100%; */
-    padding: 2em 1em 2em 1em;
-    background-color: var(--background-color);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid var(--today-color);
-    border-radius: 5px;
-    transition: all 0.5s ease;
-    box-shadow: var(--modal-box-shadow);
+  display: none;
+  position: fixed;
+  top: 70px;
+  top: 40px;
+  /* Change from left: 0 and width: 100% to use these centering properties */
+  left: 50%;
+  transform: translateX(-50%); /* This centers the modal horizontally */
+  width: 85%; /* Reduce width to 80% of viewport (adjust as needed) */
+  width: 90%;
+  max-width: 800px; /* Optional: Set a maximum width */
+  height: 85%;
+  height: calc(
+    100vh - 65px
+  ); /* Use calc to ensure it fits screen minus top margin */
+  /* height: 100%; */
+  padding: 2em 1em 2em 1em;
+  background-color: var(--background-color);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--today-color);
+  border-radius: 5px;
+  transition: all 0.5s ease;
+  box-shadow: var(--modal-box-shadow);
 }
 
 /* Day Buttons */
-.calendar-cell, .week-day-button {
-    padding: .6em;
+.calendar-cell,
+.week-day-button {
+  padding: 0.6em;
 }
 
 .day-button-content {
-    font-size: small;
+  font-size: small;
 }
 
 .day_selected {
-    background-color: var(--input-background);
-    border-radius: 5px;
-    border: 1px solid var(--dashboard-selected);
-    text-align: center;
-    padding: 5px;
-    font-size: small;
+  background-color: var(--input-background);
+  border-radius: 5px;
+  border: 1px solid var(--dashboard-selected);
+  text-align: center;
+  padding: 5px;
+  font-size: small;
 }
 
 /* .calendar-cell-weekday-button {
@@ -1053,7 +1028,7 @@ header {
 
 /* For showing the modal, ensure you use display: flex */
 .cal_modal.modal_active {
-    display: flex;
+  display: flex;
 }
 
 /* ************************************************** */
@@ -1076,164 +1051,164 @@ header {
 
 /* Container styling */
 .driver_div {
-    display: flex;
-    gap: 2px;
-    align-items: center;
+  display: flex;
+  gap: 2px;
+  align-items: center;
 }
 
 .am_divs_inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    /* gap: 2px; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* gap: 2px; */
 }
 
 .input_divs {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Name Picker Container */
 .name-picker {
-    background-color: var(--input-background);
-    border: 1px solid var(--name-picker-trim);
-    border-radius: 5px;
-    /* border: 1px solid var(--dashboard-selected); */
-    /* padding: 1px; */
-    width: 70%;
-    height: 2em;
-    position: relative;
-    /* font-size: small; */
+  background-color: var(--input-background);
+  border: 1px solid var(--name-picker-trim);
+  border-radius: 5px;
+  /* border: 1px solid var(--dashboard-selected); */
+  /* padding: 1px; */
+  width: 70%;
+  height: 2em;
+  position: relative;
+  /* font-size: small; */
 }
 
 /* For Driver Dropdowns */
 .name-picker .blank-option:hover {
-    background-color: var(--input-background);
+  background-color: var(--input-background);
 }
 .name-picker .driver-option:hover {
-    background-color: var(--input-background);
+  background-color: var(--input-background);
 }
 
 option {
-    background-color: var(--input-background);
+  background-color: var(--input-background);
 }
 
 .name-picker::after {
-    position: absolute;
-    font-size: .7em;
-    color: #666;
-    top: 50%;
-    right: 70px;
-    font-size: smaller;
-    background-color: var(--input-background);
-    padding: 2px 0 2px 0;
+  position: absolute;
+  font-size: 0.7em;
+  color: #666;
+  top: 50%;
+  right: 70px;
+  font-size: smaller;
+  background-color: var(--input-background);
+  padding: 2px 0 2px 0;
 }
 
 /* Time Picker Container with In Label */
 .time-picker-weekly-in {
-    background-color: var(--trim-and-in-out-buttons);
-    background-color: var(--input-background);
-    /* border: 1px solid var(--dashboard-selected); */
-    background-color: var(--dashboard-selected);
-    border-radius: 5px;
-    width: 30%;
-    height: 2em;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* padding: 1px; */
+  background-color: var(--trim-and-in-out-buttons);
+  background-color: var(--input-background);
+  /* border: 1px solid var(--dashboard-selected); */
+  background-color: var(--dashboard-selected);
+  border-radius: 5px;
+  width: 30%;
+  height: 2em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 1px; */
 }
 
 .time-picker-weekly-out {
-    background-color: var(--trim-and-in-out-buttons);
-    background-color: var(--input-background);
-    /* border: 1px solid var(--dashboard-selected); */
-    background-color: var(--dashboard-selected);
-    border-radius: 5px;
-    width: 30%;
-    height: 2em;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* padding: 1px; */
+  background-color: var(--trim-and-in-out-buttons);
+  background-color: var(--input-background);
+  /* border: 1px solid var(--dashboard-selected); */
+  background-color: var(--dashboard-selected);
+  border-radius: 5px;
+  width: 30%;
+  height: 2em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 1px; */
 }
 
 /* Add "In" label - centered */
 .time-picker-weekly-in::after {
-    /* content: "in"; */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    font-size: .9em;
-    /* color: rgb(255, 255, 255); */
+  /* content: "in"; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  font-size: 0.9em;
+  /* color: rgb(255, 255, 255); */
 }
 
 /* Add "Out" label - centered */
 .time-picker-weekly-out::after {
-    /* content: "out"; */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    left: calc(50% - 6px);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    font-size: .9em;
-    /* color: rgb(255, 255, 255); */
-    /* background-color: red; */
+  /* content: "out"; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  left: calc(50% - 6px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  font-size: 0.9em;
+  /* color: rgb(255, 255, 255); */
+  /* background-color: red; */
 }
 
 /* Select Element Styling */
 .name-picker select,
 .time-picker-weekly-in select,
 .time-picker-weekly-out select {
-    width: 100%;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    background-color: transparent;
-    font-size: 14px;
-    color: var(--text-color, #333);
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  font-size: 14px;
+  color: var(--text-color, #333);
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 /* Custom dropdown arrow */
 .name-picker select,
 .time-picker-weekly-in select,
 .time-picker-weekly-out select {
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-image: url("../img/arrows/white_down_arrow.png");
-    background-repeat: no-repeat;
-    background-position: right 8px center;
-    background-size: 16px;
-    padding-right: 32px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-image: url("../img/arrows/white_down_arrow.png");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 32px;
 }
 
 /* Hover effects */
 .name-picker:hover {
-    background: none;
-    /* border-color: var(--button-background, #007bff);
+  background: none;
+  /* border-color: var(--button-background, #007bff);
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1); */
 }
 
 .time-picker-weekly:hover {
-    background-color: var(--button-background, #007bff);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--button-background, #007bff);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Focus states */
 .name-picker select:focus,
 .time-picker-weekly select:focus {
-    outline: none;
-    /* outline: 2px solid var(--button-background, #007bff);
+  outline: none;
+  /* outline: 2px solid var(--button-background, #007bff);
     outline-offset: 2px; */
 }
 
@@ -1241,21 +1216,21 @@ option {
 .name-picker select option,
 .time-picker-weekly-in select option,
 .time-picker-weekly-in select option {
-    padding: 8px;
-    background-color: var(--input-background);
-    color: var(--text-color, #333);
+  padding: 8px;
+  background-color: var(--input-background);
+  color: var(--text-color, #333);
 }
 
 /* The Label on the Time Picker */
 .time-picker-weekly-in .label,
 .time-picker-weekly-out .label {
-    font-size: 12px;
-    font-size: small;
-    font-weight: bold;
-    color: var(--text-color, #333);
-    display: block;
-    margin-bottom: 3px;
-    text-align: center;
+  font-size: 12px;
+  font-size: small;
+  font-weight: bold;
+  color: var(--text-color, #333);
+  display: block;
+  margin-bottom: 3px;
+  text-align: center;
 }
 /* *************************************************** */
 /* *************************************************** */
@@ -1264,196 +1239,169 @@ option {
 /* *************************************************** */
 /* *************************************************** */
 
-
 .modal-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-    height: 100%;
-    width: 100%;
-    /* padding: 2em 2em 2em 2em; */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  height: 100%;
+  width: 100%;
+  /* padding: 2em 2em 2em 2em; */
 }
 
 .submit_hours {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: var(--button-background);
-    width: 100%;
-    float: right;
-    font-size: small;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    padding: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: var(--button-background);
+  width: 100%;
+  float: right;
+  font-size: small;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5em;
 }
 
 .close_modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color);
-    background-color: var(--input-background);
-    /* Possible */
-    border: 1px solid var(--dashboard-selected);
-    width: 100%;
-    float: right;
-    font-size: small;
-    cursor: pointer;
-    border-radius: 5px;
-    padding: .5em;
-    padding: 1em;
-    /* display: none; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  background-color: var(--input-background);
+  /* Possible */
+  border: 1px solid var(--dashboard-selected);
+  width: 100%;
+  float: right;
+  font-size: small;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5em;
+  padding: 1em;
+  /* display: none; */
 }
 
 .back_arrow {
-    width: 1em;
-    height: 1em;
-    /* Need to filter it darker for day mode */
-    filter: var(--modal-filter);
-
+  width: 1em;
+  height: 1em;
+  /* Need to filter it darker for day mode */
+  filter: var(--modal-filter);
 }
 
 .form_label {
-    font-size: small;
-    font-size: .7rem;
-    color: var(--text-color);
-    opacity: 60%;
-  }
-
-
-/* MODAL INPUT */
-  input {
-    background-color: var(--background-color);
-    background-color: var(--input-background);
-    color: var(--text-color);
-    border: 1px solid var(--button-background);
-    border: none;
-    /* padding: .5em; */
-    width: 100%;
-    font-size: small;
-    /* font-size: medium; */
-    font-weight: bold;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-
-  input:focus{
-    outline: none;
-    border: 1px solid var(--button-background);
-    box-shadow: 0 0 5px var(--button-background);
-  }
-
-  .input_divs_dissapear {
-    display: none;
-  }
-
-  .submit_hours {
-    display: none;
-  }
-
-  /* For the Date Picker */
-
-  .current_day_div {
-    display: flex;
-    flex-direction: column;
-    gap: 3em;
-    gap: 1em;
-    margin-top: 1em;
+  font-size: small;
+  font-size: 0.7rem;
+  color: var(--text-color);
+  opacity: 60%;
 }
 
+/* MODAL INPUT */
+input {
+  background-color: var(--background-color);
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border: 1px solid var(--button-background);
+  border: none;
+  /* padding: .5em; */
+  width: 100%;
+  font-size: small;
+  /* font-size: medium; */
+  font-weight: bold;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
 
-  .current_day_datepicker {
-    background-color: var(--background-color);
-    background-color: var(--input-background);
-    color: var(--text-color);
-    border: 1px solid var(--button-background);
-    border: none;
-    padding: .5em;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    /* font-size: medium; */
-    font-weight: bold;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
+input:focus {
+  outline: none;
+  border: 1px solid var(--button-background);
+  box-shadow: 0 0 5px var(--button-background);
+}
 
-  #current_day {
-    border: none;
-    font-size: small;
-    cursor: pointer;
-    opacity: 80%;
-  }
+.input_divs_dissapear {
+  display: none;
+}
 
-  .current_day_logo {
-    filter: var(--calendar-logo);
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    opacity: 50%;
-    margin: 6px 1em 0 0;
-  }
+.submit_hours {
+  display: none;
+}
 
-  .current_day_logo.dark-mode {
-    filter: var(--calendar-logo);
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    opacity: 50%;
-    margin: 6px 1em 0 0;
+/* For the Date Picker */
+
+.current_day_div {
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+.current_day_datepicker {
+  background-color: var(--background-color);
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border: 1px solid var(--button-background);
+  border: none;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* font-size: medium; */
+  font-weight: bold;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 #current_day {
-    background: none;
+  border: none;
+  font-size: small;
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.current_day_logo {
+  filter: var(--calendar-logo);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 50%;
+  margin: 6px 1em 0 0;
+}
+
+.current_day_logo.dark-mode {
+  filter: var(--calendar-logo);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 50%;
+  margin: 6px 1em 0 0;
+}
+
+#current_day {
+  background: none;
 }
 
 .edit-button {
-    background-color: var(--input-background);
-    border: none;
-    padding: 1px;
+  background-color: var(--input-background);
+  border: none;
+  padding: 1px;
 }
-
-/* Back to Dashboard */
-.back_to_div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-top: 1em; */
-    /* background-color: var(--input-background); */
-}
-
-.back_to_div a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: var(--text-color);
-    font-size: small;
-    opacity: 50%;
-    cursor: pointer;
-}
-
 
 /* The Employees name and hours */
 .zam-day-work {
-    background-color: var(--input-background);
-    border: 1px solid var(--dashboard-trim);
-    display: flex;
+  background-color: var(--input-background);
+  border: 1px solid var(--dashboard-trim);
+  display: flex;
 }
 
 .submit {
-    border-radius: 5px;
-    /* margin-top: 2em; */
-    padding: .5em;
-    padding: 1em;
-    font-size: small;
-    /* display: none; */
+  border-radius: 5px;
+  /* margin-top: 2em; */
+  padding: 0.5em;
+  padding: 1em;
+  font-size: small;
+  /* display: none; */
 }
- 
 
 /* ********************************* */
 /* ********************************* */
@@ -1462,110 +1410,157 @@ option {
 /* ********************************* */
 /* ********************************* */
 /* ********************************* */
-
 
 /* For wider screens narrow the form */
 
 /* Landscape */
 @media screen and (min-width: 700px) {
-    form {
-        width: 50%;
-        /* display: flex;
+  form {
+    width: 50%;
+    /* display: flex;
         flex-direction: column;
         gap: 1em; */
-    }
+  }
 }
 
 /* Desktop */
 @media screen and (min-width: 1200px) {
+  /* Main Nav */
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
 
-     /* Main Nav */
-     .burger {
-        width: 40px;
-        height: 40px;
-    }
+  .viking_img {
+    /* make bigger */
+    width: 3em;
+    height: 3em;
+  }
 
-    .viking_img {
-        /* make bigger */
-        width: 3em;
-        height: 3em;
-    }
+  .logo_text {
+    font-size: 2rem;
+  }
 
-    .logo_text {
-        font-size: 2rem;
-    }
+  /* Desktop Form */
+  form {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-top: 1em;
+  }
 
-    /* Desktop Form */
-    form {
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
-        margin-top: 1em;
-    }
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
 
-    .burger {
-        width: 40px;
-        height: 40px;
-    }
+  .day-nite {
+    width: 40px;
+    height: 40px;
+  }
 
-    .day-nite {
-        width: 40px;
-        height: 40px;
-    }
+  .menu-item {
+    font-size: medium;
+  }
 
-    .menu-item {
-        font-size: medium;
-    }
+  .profile_header .profile_text {
+    font-size: medium;
+  }
 
-    .profile_header .profile_text {
-        font-size: medium;
-    }
+  /* Logo a bit bigger */
+  .logo_name p {
+    font-size: 3rem;
+    font-weight: bold;
+  }
 
-   /* Logo a bit bigger */
-   .logo_name p {
-        font-size: 3rem;
-        font-weight: bold;
-   }
+  .hazel_park_logo {
+    width: 5em;
+    height: 5em;
+  }
 
-    .hazel_park_logo {
-        width: 5em;
-        height: 5em;
-    }
+  /* Form Elements */
+  label {
+    font-size: medium;
+  }
 
-    /* Form Elements */
-    label {
-        font-size: medium;
-    }
+  .page_header_label {
+    font-size: medium;
+  }
+  /* Employee Selects Buttons */
+  .employee_selects {
+    margin-top: 2em;
+  }
 
-    .page_header_label {
-        font-size: medium;
-    }
-    /* Employee Selects Buttons */
-    .employee_selects {
-        margin-top: 2em;
-    }
+  /* Clock */
+  .dash_hours {
+    width: 20px;
+    height: 20px;
+    filter: var(--dashboard-logo);
+  }
 
-    /* Clock */
-    .dash_hours {
-        width: 20px;
-        height: 20px;
-        filter: var(--dashboard-logo);
-    }
+  /* Calendar */
+  .dash_calendar {
+    width: 20px;
+    height: 20px;
+    filter: var(--dashboard-logo);
+  }
 
-    /* Calendar */
-    .dash_calendar {
-        width: 20px;
-        height: 20px;
-        filter: var(--dashboard-logo);
-    }
+  .back_to_div a {
+    font-size: medium;
+  }
 
-    .back_to_div a {
-        font-size: medium;
-    }
+  .submit {
+    margin-top: 1em;
+  }
+}
 
+/* Desktop Form */
+@media screen and (min-width: 1200px) {
+  form {
+    width: 30rem;
+  }
+}
 
-    .submit {
-        margin-top: 1em;
-    }
+/* Page Header */
+.page_header {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+/* Weekly List */
+.weekly_list {
+  margin-top: 0.75rem;
+}
+
+/* Week Buttons */
+.week_buttons {
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.week_buttons .week_prev {
+  border-radius: 999px 0 0 999px;
+  border-radius: 0;
+}
+
+.week_buttons .current-week {
+  border-radius: 0;
+}
+
+.week_buttons .week_next {
+  border-radius: 0 999px 999px 0;
+}
+
+/* Role Headers */
+.role-header {
+  font-size: 1em;
+  font-weight: normal;
+  /* Old cool Blue */
+  /* color: "#0076cb"; */
+  color: #736969;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
 }
