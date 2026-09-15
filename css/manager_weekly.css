@@ -830,7 +830,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  font-weight: 400;
   color: var(--text-color);
   font-size: small;
   opacity: 50%;

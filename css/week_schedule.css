@@ -810,7 +810,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  font-weight: 400;
   color: var(--text-color);
   font-size: small;
   opacity: 50%;
@@ -1386,27 +1386,6 @@ input:focus {
   background-color: var(--input-background);
   border: none;
   padding: 1px;
-}
-
-/* Back to Dashboard */
-.back_to_div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* margin-top: 1em; */
-  /* background-color: var(--input-background); */
-}
-
-.back_to_div a {
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: var(--text-color);
-  font-size: small;
-  opacity: 50%;
-  cursor: pointer;
 }
 
 /* The Employees name and hours */
