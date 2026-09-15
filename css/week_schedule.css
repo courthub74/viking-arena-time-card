@@ -931,7 +931,6 @@ header {
   border: none;
   color: var(--text-color);
   border: 1px solid var(--dashboard-selected);
-  border: none;
   border-radius: 5px;
   padding: 12px 12px;
   /* padding: 25px 25px; */
@@ -1553,4 +1552,15 @@ input:focus {
 
 .week_buttons .week_next {
   border-radius: 0 999px 999px 0;
+}
+
+/* Role Headers */
+.role-header {
+  font-size: 1em;
+  font-weight: normal;
+  /* Old cool Blue */
+  /* color: "#0076cb"; */
+  color: #736969;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
 }
