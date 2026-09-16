@@ -1,211 +1,254 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../img/hazel-park-logo/viking-arena-logo.png" type="image/png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="../../img/hazel-park-logo/viking-arena-logo.png"
+      type="image/png"
+    />
     <title>Viking Time Card</title>
 
-      <!-- CSS -->
+    <!-- CSS -->
 
-      <!-- BASE STYLES -->
-      <link rel="stylesheet" href="../../css/base.css">
+    <!-- BASE STYLES -->
+    <link rel="stylesheet" href="../../css/base.css" />
 
-      <!-- NAVIGATION STYLES -->
-      <link rel="stylesheet" href="../../css/navigation.css">
+    <!-- NAVIGATION STYLES -->
+    <link rel="stylesheet" href="../../css/navigation.css" />
 
-      <!-- FORMS STYLES -->
-      <link rel="stylesheet" href="../../css/forms.css">
+    <!-- FORMS STYLES -->
+    <link rel="stylesheet" href="../../css/forms.css" />
 
-      <!-- WEEKLY SCHEDULE STYLES -->
-      <link rel="stylesheet" href="../../css/week_schedule.css">
-</head>
-<body>
-
+    <!-- WEEKLY SCHEDULE STYLES -->
+    <link rel="stylesheet" href="../../css/week_schedule.css" />
+  </head>
+  <body>
     <!-- Container -->
     <div class="container">
+      <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
 
-        <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
+      <!-- THE NAVBAR AND SIDE MENU-->
+      <nav class="main_nav">
+        <!-- Burger -->
+        <div class="viking_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            class="viking_img"
+            alt="viking_ice_arena"
+          />
+          <p class="logo_text">Time Card</p>
+        </div>
 
+        <!-- Light/Dark -->
+        <div class="menu_button">
+          <!-- Day/Nite -->
+          <button id="menu_burgers">
+            <img
+              src="../../img/hamburgers/hamburger_blue.png"
+              class="burger"
+              id="burger_one"
+              alt="menu"
+            />
+            <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
+          </button>
+        </div>
+      </nav>
 
-        <!-- THE NAVBAR AND SIDE MENU-->
-        <nav class="main_nav">
-            <!-- Burger -->
-            <div class="viking_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png" class="viking_img" alt="viking_ice_arena">
-                <p class="logo_text">Time Card</p>
-            </div>
-            
-            <!-- Light/Dark -->
-            <div class="menu_button">
-                <!-- Day/Nite -->
-                <button id="menu_burgers">
-                    <img src="../../img/hamburgers/hamburger_blue.png" class="burger" id="burger_one" alt="menu">
-                    <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
-                </button>
-            </div>
-        </nav>
+      <!-- SLIDE IN MENU -->
+      <div class="side-menu">
+        <!-- Header Logo -->
+        <div class="slide_header_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            alt="logo"
+          />
+          <p class="slide_in_logo_text">Time Card</p>
+        </div>
 
-        <!-- SLIDE IN MENU -->
-        <div class="side-menu">
-            <!-- Header Logo -->
-             <div class="slide_header_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png"  alt="logo">
-                <p class="slide_in_logo_text">Time Card</p>
-             </div>
-            
-             <!-- Menu Items -->
-             <div class="menu_items">
-                <a href="#" class="menu-item"><span>Tech Support</span><img src="../../img/slide-in-menu/tech_support.png" alt="tech_support"></a>
-                <a href="#" class="menu-item"><span>Schedule Requests</span><img src="../../img/slide-in-menu/messaging.png" alt="messaging"></a>
-                <button id="theme_switch" class="menu-item"><span>Day/Nite Mode</span><img src="../../img/slide-in-menu/day_nite.png" alt="theme_switch"></button>
-             </div>
-            <!-- Logged in Profile -->
-            <div class="profile">
-                <div class="profile_header">
-                    <p class="profile_text">Profile</p>
-                    <img src="../../img/slide-in-menu/profile.png" class="profile_circle">
-                </div>
+        <!-- Menu Items -->
+        <div class="menu_items">
+          <a href="#" class="menu-item"
+            ><span>Tech Support</span
+            ><img
+              src="../../img/slide-in-menu/tech_support.png"
+              alt="tech_support"
+          /></a>
+          <a href="#" class="menu-item"
+            ><span>Schedule Requests</span
+            ><img src="../../img/slide-in-menu/messaging.png" alt="messaging"
+          /></a>
+          <button id="theme_switch" class="menu-item">
+            <span>Day/Nite Mode</span
+            ><img
+              src="../../img/slide-in-menu/day_nite.png"
+              alt="theme_switch"
+            />
+          </button>
+        </div>
+        <!-- Logged in Profile -->
+        <div class="profile">
+          <div class="profile_header">
+            <p class="profile_text">Profile</p>
+            <img
+              src="../../img/slide-in-menu/profile.png"
+              class="profile_circle"
+            />
+          </div>
 
-                <!-- Profile Name -->
-                <div class="profile_info">
-                    <label>Name:</label>
-                    <p class="profile_text_data" id="profile_name"></p>
-                 </div>
+          <!-- Profile Name -->
+          <div class="profile_info">
+            <label>Name:</label>
+            <p class="profile_text_data" id="profile_name"></p>
+          </div>
 
-                 <!-- Profile Account Type -->
-                 <div class="profile_info">
-                    <label>Account type:</label>
-                    <p class="profile_text_data" id="profile_account"></p>
-                 </div>
+          <!-- Profile Account Type -->
+          <div class="profile_info">
+            <label>Account type:</label>
+            <p class="profile_text_data" id="profile_account"></p>
+          </div>
 
-                 <!-- Profile Pin Number -->
-                  <!-- This you will turn into a password output -->
-                 <div class="profile_info">
-                    <div class="pin_and_peak">
-                        <button class="delete_account_button" id="delete_acct_slide">
-                            <p class="delete_text">Delete Profile</p>
-                        </button>
-                        <!-- Pin Number -->
-                        <!-- <div class="pin_profile_div">
+          <!-- Profile Pin Number -->
+          <!-- This you will turn into a password output -->
+          <div class="profile_info">
+            <div class="pin_and_peak">
+              <button class="delete_account_button" id="delete_acct_slide">
+                <p class="delete_text">Delete Profile</p>
+              </button>
+              <!-- Pin Number -->
+              <!-- <div class="pin_profile_div">
                             <label>Pin #:</label>
                             <p class="profile_pin" id="profile_pin">****</p>
                         </div> -->
 
-                         <!-- Pin Code peak -->
-                        <!-- <div class="pin_code_peak">
+              <!-- Pin Code peak -->
+              <!-- <div class="pin_code_peak">
                             <button id="pin_code_peak">
                                 <img src="./img/slide-in-menu/pin_peek.png">
                             </button>
                         </div> -->
-                    </div>
-                 </div>
             </div>
-             <!-- Delete Button -->
-             <div class="delete_account_div">
-                <button class="logout_account_button" id="logout_manager" onclick="logoutUser()">
-                    <img src="../../img/logout/white_logout.png" class="logout_logo">
-                    <p class="logout_text">
-                        <!-- <a href="../../index.html">Log Out</a> -->
-                        Log Out
-                    </p>
-                </button>
-             </div> 
+          </div>
         </div>
+        <!-- Delete Button -->
+        <div class="delete_account_div">
+          <button
+            class="logout_account_button"
+            id="logout_manager"
+            onclick="logoutUser()"
+          >
+            <img src="../../img/logout/white_logout.png" class="logout_logo" />
+            <p class="logout_text">
+              <!-- <a href="../../index.html">Log Out</a> -->
+              Log Out
+            </p>
+          </button>
+        </div>
+      </div>
 
-        <!-- Overlay -->
-        <div class="menu-overlay"></div>
+      <!-- Overlay -->
+      <div class="menu-overlay"></div>
 
-        <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+      <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
 
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
 
-        <!-- THE PAGE -->
+      <!-- THE PAGE -->
 
-        <!-- THE FORM -->
-        <form>
-           
-             <!-- Page Header -->
-             <label class="page_header_label" for="manager_name">
-                <span class="acct_type_label" id="manager_name"></span>
-                <span class="page_header">&nbsp;|&nbsp;Dashboard</span>
-            </label>
+      <!-- THE FORM -->
+      <form>
+        <!-- Page Header -->
+        <label class="page_header_label" for="manager_name">
+          <span class="acct_type_label" id="manager_name"></span>
+          <span class="page_header">&nbsp;|&nbsp;Schedule</span>
+        </label>
 
-            <!-- The Weekly Calendar -->
-             <div class="manager_calendar_div">
+        <!-- The Weekly Calendar -->
+        <div class="manager_calendar_div">
+          <!-- The Daily Buttons -->
+          <div class="day_buttons">
+            <button
+              class="day_prev"
+              onclick="
+                prevDay();
+                return false;
+              "
+            >
+              &lt;
+            </button>
+            <p class="current-day" id="current-day">Daily</p>
+            <button
+              class="day_next"
+              onclick="
+                nextDay();
+                return false;
+              "
+            >
+              &gt;
+            </button>
+          </div>
 
-                    <!-- The Daily Buttons -->
-                    <div class="day_buttons">
-                        <button class="day_prev" onclick="prevDay(); return false;">&lt;</button>
-                        <p class="current-day" id="current-day">Daily</p>
-                        <button class="day_next" onclick="nextDay(); return false;">&gt;</button>
-                    </div>
+          <!-- The Schedule lists go HERE -->
+          <div class="weekly_list" id="weekly_schedule">
+            <!-- Retreive the Name and Times worked -->
+            <!-- For each entry (name and times) display Below-->
 
-                    <!-- The Schedule lists go HERE -->
-                     <div class="weekly_list" id="weekly_schedule">
-                        <!-- Retreive the Name and Times worked -->
-                         <!-- For each entry (name and times) display Below-->
-                        
-                         <!-- The Days work -->
-                          <!-- These change with the day_buttons -->
-                        <!-- <label class="work_type_label">Zam Drivers:</label> -->
-                        <table id="zam-day-table" class="zam-day-table">
-                            <!-- Will be populated by js -->
-                             <!-- <div class="employee-hours">
+            <!-- The Days work -->
+            <!-- These change with the day_buttons -->
+            <!-- <label class="work_type_label">Zam Drivers:</label> -->
+            <table id="zam-day-table" class="zam-day-table">
+              <!-- Will be populated by js -->
+              <!-- <div class="employee-hours">
                                 <p class="zam-day-name">Name</p>
                                 <p class="zam-day-time">Time</p>
                                 <button class="zam-day-one-edit">Edit</button>
                              </div>  -->
-                        </table>
+            </table>
 
-                        <!-- <label class="work_type_label">Skate Guards:</label> -->
-                        <table id="skate-guard-one-table">
-                            <!-- Will be populated by js -->
-                             <!-- <div class="employee-hours">
+            <!-- <label class="work_type_label">Skate Guards:</label> -->
+            <table id="skate-guard-one-table">
+              <!-- Will be populated by js -->
+              <!-- <div class="employee-hours">
                                 <p class="skate-guard-name">Name</p>
                                 <p class="skate-guard-time">Time</p>
                                 <button class="skate-guard-edit">Edit</button>
                              </div> -->
-                        </table>
-                         
-                        
-                     </div>
-                 
-             </div>
+            </table>
+          </div>
+        </div>
 
-             <!-- Link Back To Dashboard -->
-            <!-- Needs a conditional to determine which dashboard (employee or manager) -->
-            <div class="back_to_div">
-                <a class="link_back" id="link_back">Back to Dashboard</a>
-            </div>
+        <!-- Link Back To Dashboard -->
+        <!-- Needs a conditional to determine which dashboard (employee or manager) -->
+        <div class="back_to_div">
+          <a class="link_back" id="link_back">Back to Dashboard</a>
+        </div>
 
+        <!-- Submit Button -->
 
-            <!-- Submit Button -->
-
-            <!-- This is where Authorization comes into play -->
-            <!-- If Manager Account / Button should say (Go to Employee hours) -->
-            <!-- If Employee Account / Button should say (Go to your Calendar) -->
-            <!-- <button class="submit" id="dashboard_advance" disabled>Next</button> -->
-
-        </form>
+        <!-- This is where Authorization comes into play -->
+        <!-- If Manager Account / Button should say (Go to Employee hours) -->
+        <!-- If Employee Account / Button should say (Go to your Calendar) -->
+        <!-- <button class="submit" id="dashboard_advance" disabled>Next</button> -->
+      </form>
     </div>
 
     <!-- DARKMODE -->
@@ -225,13 +268,13 @@
     <!-- DASHBOARD -->
     <!-- <script src="../../js/dashboard/manager_buttons.js"></script> -->
 
-   <!-- LOGOUT -->
-   <script src="../../js/database/logout.js"></script>
+    <!-- LOGOUT -->
+    <script src="../../js/database/logout.js"></script>
 
-   <!-- WEEK SCHEDULE -->
+    <!-- WEEK SCHEDULE -->
     <script src="../../js/calendar/emp_week_schedule.js"></script>
 
-   <!-- CALENDAR -->
+    <!-- CALENDAR -->
     <!-- <script src="../../js/calendar/manager_calendar.js"></script> -->
-</body>
+  </body>
 </html>
