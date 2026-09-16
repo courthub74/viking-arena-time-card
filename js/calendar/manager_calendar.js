@@ -116,173 +116,7 @@ function renderCalendar(month, year) {
           ////////////////////////////////////////////////////////////////
           ////////////////////////////////////////////////////////////////
 
-          // HERE IS THE OLD WORKFLOW FOR THE DROPDOWN EMPLOYEE FUNCTIONALITY
-          ///////////////////////////////////////////////////////////////////
-          // PUT THE DROPDOWN EMPLOYEE FUNCTIONALITY HERE
-          // Query the dropdown
-          const manager_dropdown = document.getElementById("employee_dropdown");
-          // Grab the employees
-          const users = JSON.parse(localStorage.getItem("users")) || [];
-          // Test Print
-          console.log(users);
-          console.log(`Line 86: the Users`);
-
-          // clear the dropdown
-          manager_dropdown.innerHTML = "";
-
-          // create option
-          const manageroption = document.createElement("option");
-          manageroption.value = "";
-          manageroption.selected = true;
-          manageroption.disabled = true;
-          manageroption.style.color = "white";
-          manager_dropdown.appendChild(manageroption);
-
-          // For each user
-          users.forEach((user) => {
-            // Filter out the Mangers
-            if (user.accountType === "Manager") {
-              // Test to see if the user is a manager
-              //  console.log(user);
-              return; // skip this user
-            }
-            const option = document.createElement("option");
-            option.value = user.username;
-            option.textContent = decodeURIComponent(user.username);
-            manager_dropdown.appendChild(option);
-          });
-
-          // Store current clicked date
-          // let currentClickedDate = null;
-
-          // Store referencr to clicked cell for use in dropdown handler
-          const clickedCell = this;
-
-          // Remove any existing change listeners to prevent duplicates
-          manager_dropdown.replaceWith(manager_dropdown.cloneNode(true));
-          const newDropdown = document.getElementById("employee_dropdown");
-
-          newDropdown.selectedIndex = 0;
-          // Reset the Hours worked output
-          // Query the Hours_worked output
-          const hours_worked = document.getElementById("sched_hours");
-          hours_worked.innerHTML = "\u00A0";
-
-          // Add Padding to output
-          // hours_worked.style.padding = '10px';
-          hours_worked.style.boxSizing = "border-box";
-
-          // Handle dropdown change
-          newDropdown.addEventListener("change", function () {
-            console.log("A name was picked");
-            // Set to first blank option
-
-            ////////////////////////////////////////////////////
-            // Empty the hours worked field every time
-            const hours_worked = document.getElementById("sched_hours");
-            hours_worked.innerHTML = "No hours worked";
-
-            const selectedUsername = this.value;
-            if (selectedUsername) {
-              const selectedUser = users.find(
-                (user) => user.username === selectedUsername,
-              );
-              // Test Print
-              console.log(`The Selected User:`, selectedUser);
-
-              // Get clicked date info from the stored cell reference
-              const cellDate = clickedCell.getAttribute("data-date");
-              const cellMonth = clickedCell.getAttribute("data-month");
-              const cellYear = clickedCell.getAttribute("data-year");
-
-              // Test Print
-              console.log(`Cell Data:`, { cellDate, cellMonth, cellYear });
-
-              // Format the date - ensure proper padding
-              const formattedMonth = monthNames[parseInt(cellMonth)]; // Get month name (e.g., "May")
-              const formattedDate = String(cellDate).padStart(2, "0"); // Ensure date is two digits (e.g., "10")
-              // const formattedMonth = String(parseInt(cellMonth) + 1).padStart(2, '0');
-              // const formattedDate = String(cellDate).padStart(2, '0');
-              const clickedDate = `${formattedMonth} ${formattedDate}, ${cellYear}`;
-
-              // Test Print
-              console.log(`Looking for the Date of: ${clickedDate}`);
-              console.log(
-                `${selectedUsername} hours array:`,
-                selectedUser.hours,
-              );
-
-              // Debug: Show all dates in the hours array
-              if (selectedUser && selectedUser.hours) {
-                console.log(
-                  `Available dates in hours:`,
-                  selectedUser.hours.map((h) => h.date),
-                );
-
-                const userHours = selectedUser.hours.find(
-                  (hour) => hour.date === clickedDate,
-                );
-                console.log(userHours);
-                if (userHours) {
-                  console.log(
-                    `✅ Found hours for ${selectedUser.username} on ${clickedDate}:`,
-                    userHours,
-                  );
-
-                  // Populate the Field HERE
-                  // Query the hours worked element
-                  const hours_worked = document.getElementById("sched_hours");
-                  // Change the inner HTML to the worked hours for that day
-                  // Place In time and Out time
-                  const whole_time = `${userHours.inTime} - ${userHours.outTime}`;
-                  hours_worked.innerText = whole_time;
-                  // Still gotta clear for each new select
-                  // add padding to keep field at size
-                } else {
-                  // Clear the hours_worked field
-                  // Query the field
-                  const hours_worked = document.getElementById("sched_hours");
-                  // Set it to blank string
-                  hours_worked.innerHTML = "Not scheduled this day";
-                  console.log(
-                    `❌ No hours found for ${selectedUser.username} on ${clickedDate}`,
-                  );
-
-                  // Try alternative date formats for debugging
-                  const altDate1 = `${formattedMonth}/${formattedDate}/${cellYear}`;
-                  const altDate2 = `${cellMonth + 1}/${cellDate}/${cellYear}`;
-                  const altDate3 = `${formattedMonth} ${formattedDate}, ${cellYear}`;
-
-                  console.log("Trying alternative formats:");
-                  console.log(`  Format MM/DD/YYYY: ${altDate1}`);
-                  console.log(`  Format M/D/YYYY: ${altDate2}`);
-                  console.log(`  Format Month Day, Year: ${altDate3}`);
-
-                  const altMatch1 = selectedUser.hours.find(
-                    (hour) => hour.date === altDate1,
-                  );
-                  const altMatch2 = selectedUser.hours.find(
-                    (hour) => hour.date === altDate2,
-                  );
-
-                  if (altMatch1)
-                    console.log("✅ Found with MM/DD/YYYY format:", altMatch1);
-                  if (altMatch2)
-                    console.log("✅ Found with M/D/YYYY format:", altMatch2);
-                }
-              } else {
-                console.log(
-                  `No hours data found for user: ${selectedUser?.username}`,
-                );
-              }
-            }
-          });
-
-          ////////////////////////////////////////////////////////////////
-          ////////////////////////////////////////////////////////////////
-          // Query the modal to open and close it
-          // const modal = document.getElementById('cal_modal');
-          // Populate the header with the Logged User name
+          // Populate the PAGE HEADER with the Logged User name
           const pageHeader = document.getElementById("employee_name_month");
           console.log(`This is the Page Header: ${pageHeader.innerText}`);
           // Parse the user name
@@ -305,6 +139,34 @@ function renderCalendar(month, year) {
           const cellMonth = month + 1; // Add 1 to month since it's 0-indexed
           const cellYear = year;
 
+          // Create date format used by employee hours data
+          const formattedMonth = monthNames[cellMonth - 1];
+          const formattedDate = String(cellDate).padStart(2, "0");
+
+          const clickedDate = `${formattedMonth} ${formattedDate}, ${cellYear}`;
+
+          console.log(`Clicked Date: ${clickedDate}`);
+
+          // EMPLOYEES WORKED HOURS IN THE MODAL
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+
+          const employeesWorked = users
+            .filter((user) => user.accountType !== "Manager")
+            .map((user) => {
+              const hoursWorked = user.hours?.find(
+                (hour) => hour.date === clickedDate,
+              );
+
+              return {
+                username: decodeURIComponent(user.username),
+                hours: hoursWorked,
+              };
+            })
+            .filter((employee) => employee.hours);
+
+          console.log("Employees Worked:", employeesWorked);
+
+          // DATE ESTABLISHED IN THE MODAL
           // Set The DatePicker to the clicked date
           const now = new Date(); // This goes in the top date picker
           // make now the date in the cell clicked
@@ -319,6 +181,8 @@ function renderCalendar(month, year) {
             month: "long",
             day: "2-digit",
           });
+
+          renderEmployeesWorked(employeesWorked);
 
           // Open modal or perform action here
           console.log(`Clicked on ${cell.textContent}`);
@@ -377,6 +241,39 @@ function renderCalendar(month, year) {
     }
     calendarBody.appendChild(row);
   }
+}
+
+// RENDER EMPLOYEES WORKED FUNCTION
+function renderEmployeesWorked(employees) {
+  const container = document.getElementById("employees_worked");
+
+  // Clear results from previously clicked date
+  container.innerHTML = "";
+
+  // No employees worked this date
+  if (employees.length === 0) {
+    container.textContent = "No employee hours recorded for this date.";
+    return;
+  }
+
+  // Render every employee who worked this date
+  employees.forEach((employee) => {
+    const employeeRow = document.createElement("div");
+    employeeRow.className = "employee-worked-row";
+
+    const employeeName = document.createElement("span");
+    employeeName.className = "employee-worked-name";
+    employeeName.textContent = employee.username;
+
+    const employeeHours = document.createElement("span");
+    employeeHours.className = "employee-worked-hours";
+    employeeHours.textContent = `${employee.hours.inTime} - ${employee.hours.outTime}`;
+
+    employeeRow.appendChild(employeeName);
+    employeeRow.appendChild(employeeHours);
+
+    container.appendChild(employeeRow);
+  });
 }
 
 // CANCEL BUTTON
