@@ -74,6 +74,34 @@ function renderCalendar(month, year) {
       // Add data attribute to each cell for the day of the week
       cell.setAttribute("data-day", `${j}`);
 
+      //////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////////
+      // Query the modal to open and close it
+      const modal = document.getElementById("cal_modal");
+      // CLOSE MODAL BUTTON
+      const closeModal = document.getElementById("close_modal");
+      // These event listeners are to be relocated outside of the eachDay.forEach function to prevent multiple event listeners being added each time a cell is clicked.  This will cause the modal to close immediately after opening it.
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.classList.remove("modal_active"); // Hide the modal
+          console.log(`${modal.classList} normal class of the modal`);
+        }
+      });
+      // Add event listener to close the modal when clicking the close button
+      closeModal.addEventListener("click", function () {
+        modal.classList.remove("modal_active"); // Hide the modal
+        console.log(`${modal.classList} normal class of the modal`);
+      });
+      // Add event listener to close the modal when pressing the escape key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          // closeModal();
+          modal.classList.remove("modal_active"); // Hide the modal
+          console.log(`${modal.classList} normal class of the modal`);
+        }
+      });
+
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////
@@ -87,6 +115,9 @@ function renderCalendar(month, year) {
           e.preventDefault(); // Prevent default action if used in onclick
           ////////////////////////////////////////////////////////////////
           ////////////////////////////////////////////////////////////////
+
+          // HERE IS THE OLD WORKFLOW FOR THE DROPDOWN EMPLOYEE FUNCTIONALITY
+          ///////////////////////////////////////////////////////////////////
           // PUT THE DROPDOWN EMPLOYEE FUNCTIONALITY HERE
           // Query the dropdown
           const manager_dropdown = document.getElementById("employee_dropdown");
@@ -247,9 +278,6 @@ function renderCalendar(month, year) {
             }
           });
 
-          // Query the modal to open and close it
-          const modal = document.getElementById("cal_modal");
-
           ////////////////////////////////////////////////////////////////
           ////////////////////////////////////////////////////////////////
           // Query the modal to open and close it
@@ -292,8 +320,6 @@ function renderCalendar(month, year) {
             day: "2-digit",
           });
 
-          // CLOSE MODAL BUTTON
-          const closeModal = document.getElementById("close_modal");
           // Open modal or perform action here
           console.log(`Clicked on ${cell.textContent}`);
           // Open the modal (you can use a library or custom code to show the modal)
@@ -303,25 +329,6 @@ function renderCalendar(month, year) {
           console.log(`${modal.classList}the new class of the modal`);
           // console.log(`${pageHeader.classList} the new class of the page header`);
           // Add event listener to close the modal when clicking outside of it
-          window.addEventListener("click", function (event) {
-            if (event.target === modal) {
-              modal.classList.remove("modal_active"); // Hide the modal
-              console.log(`${modal.classList} normal class of the modal`);
-            }
-          });
-          // Add event listener to close the modal when clicking the close button
-          closeModal.addEventListener("click", function () {
-            modal.classList.remove("modal_active"); // Hide the modal
-            console.log(`${modal.classList} normal class of the modal`);
-          });
-          // Add event listener to close the modal when pressing the escape key
-          document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape") {
-              // closeModal();
-              modal.classList.remove("modal_active"); // Hide the modal
-              console.log(`${modal.classList} normal class of the modal`);
-            }
-          });
         });
       });
 
