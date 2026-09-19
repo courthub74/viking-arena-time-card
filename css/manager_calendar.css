@@ -689,7 +689,7 @@ header {
 /* Dashboard for */
 .page_header {
   display: flex;
-  font-weight: bold;
+  font-weight: 400;
   /* width: 100%; */
   opacity: 50%;
 }
@@ -946,13 +946,16 @@ tr {
   transform: translate(-50%, -50%);
 }
 
-#calendar-body td:hover {
+/* Hover effect for calendar days */
+#calendar-body td:not(:empty):hover {
   background-color: #f0f8ff;
+  color: var(--button-background);
+  cursor: pointer;
 }
 
-/* Empty cells */
-#calendar-body td.empty {
-  background-color: var(--empty-day);
+/* Empty cell hover effect */
+#calendar-body td.empty:hover {
+  background-color: black;
   cursor: default;
 }
 

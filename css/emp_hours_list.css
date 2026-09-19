@@ -720,9 +720,26 @@ header {
   margin-left: 2em;
 }
 
+/* Copy Logo */
 .copy_logo {
   width: 15px;
   height: 15px;
+}
+
+/* Copy Button Font */
+.copy-button {
+  font-size: 10px;
+  font-weight: 400;
+  padding: 5px 8px;
+  transition:
+    background-color 0.8s ease,
+    color 0.8s ease,
+    transform 0.8s ease;
+}
+
+/* Copy Button Copied */
+.copy-button.copied {
+  background-color: #28a745;
 }
 
 /* .copy-button img {
@@ -843,10 +860,10 @@ header {
 .link_back {
   text-decoration: none;
   color: var(--text-color);
-  opacity: 60%;
+  /* opacity: 60%; */
   /* filter: brightness(50%); */
   /* background-color: red; */
-  font-weight: bold;
+  font-weight: 400;
   font-size: small;
   font-size: 0.8rem;
   display: flex;
