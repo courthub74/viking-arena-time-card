@@ -743,7 +743,7 @@ header {
   opacity: 60%;
   /* filter: brightness(50%); */
   /* background-color: red; */
-  font-weight: bold;
+  font-weight: 400;
   font-size: small;
   font-size: 0.8rem;
   display: flex;

@@ -924,13 +924,17 @@ tr {
   transform: translate(-50%, -50%);
 }
 
-#calendar-body td:hover {
+/* Hover effect for calendar days */
+/* Also applies to cells without dates */
+#calendar-body td:not(:empty):hover {
   background-color: #f0f8ff;
+  color: var(--button-background);
+  cursor: pointer;
 }
 
-/* Empty cells */
-#calendar-body td.empty {
-  background-color: var(--empty-day);
+/* Empty cell hover effect */
+#calendar-body td.empty:hover {
+  background-color: black;
   cursor: default;
 }
 
