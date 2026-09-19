@@ -1409,3 +1409,22 @@ input:focus {
   width: calc(100% / 7);
   text-align: center;
 }
+
+/* Employees worked */
+.employee-worked-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.employee-worked-name {
+  font-weight: 600;
+}
+
+.employee-worked-hours {
+  font-weight: 400;
+  white-space: nowrap;
+}
