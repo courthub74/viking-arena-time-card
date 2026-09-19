@@ -1,0 +1,1 @@
+<img src="../../img/edit-buttons/copy-buttons.png" alt="Copy" class="copy_logo">

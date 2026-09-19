@@ -48,11 +48,19 @@ console.log("allUsers:", allUsers);
 console.log("cleanEmployeeName:", cleanEmployeeName);
 
 // copy to clipboard function HERE
-function copyToClipboard(text) {
+function copyToClipboard(text, button) {
   navigator.clipboard
     .writeText(text)
     .then(() => {
       console.log("Copied to clipboard:", text);
+
+      button.textContent = "✓Copied";
+      button.classList.add("copied");
+
+      setTimeout(() => {
+        button.textContent = "Copy";
+        button.classList.remove("copied");
+      }, 2500);
     })
     .catch((error) => {
       console.error("Failed to copy:", error);
@@ -150,7 +158,7 @@ allUsers.forEach((user, index) => {
                         <span class="line">-</span>
                         <div class="emp_hours_list_item">${hour.outTime}</div>
                         
-                        <button type="button" class="copy-button" onclick="copyToClipboard('${hour.date} | ${hour.inTime} | ${hour.outTime}')"> <img src="../../img/edit-buttons/copy-buttons.png" alt="Copy" class="copy_logo"></button>
+                        <button type="button" class="copy-button" onclick="copyToClipboard('${hour.date} | ${hour.inTime} | ${hour.outTime}', this)">Copy</button>
                     </div>
                 `;
         empHoursList.appendChild(li);
