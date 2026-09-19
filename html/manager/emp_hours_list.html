@@ -1,190 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../img/hazel-park-logo/viking-arena-logo.png" type="image/png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="../../img/hazel-park-logo/viking-arena-logo.png"
+      type="image/png"
+    />
     <title>Viking Time Card</title>
 
-      <!-- CSS -->
+    <!-- CSS -->
 
-      <!-- BASE STYLES -->
-      <link rel="stylesheet" href="../../css/base.css">
+    <!-- BASE STYLES -->
+    <link rel="stylesheet" href="../../css/base.css" />
 
-      <!-- NAVIGATION STYLES -->
-      <link rel="stylesheet" href="../../css/navigation.css">
+    <!-- NAVIGATION STYLES -->
+    <link rel="stylesheet" href="../../css/navigation.css" />
 
-      <!-- FORMS STYLES -->
-      <link rel="stylesheet" href="../../css/forms.css">
+    <!-- FORMS STYLES -->
+    <link rel="stylesheet" href="../../css/forms.css" />
 
-      <!-- EMPLOYEE HOURS LIST STYLES -->
-      <link rel="stylesheet" href="../../css/emp_hours_list.css">
+    <!-- EMPLOYEE HOURS LIST STYLES -->
+    <link rel="stylesheet" href="../../css/emp_hours_list.css" />
 
-      <!-- Calendar for NOW -->
-      <!-- <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet' /> -->
-      
-    
-</head>
-<body>
-
+    <!-- Calendar for NOW -->
+    <!-- <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet' /> -->
+  </head>
+  <body>
     <!-- Container -->
     <div class="container">
+      <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
 
-        <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
+      <!-- THE NAVBAR AND SIDE MENU-->
+      <nav class="main_nav">
+        <!-- Burger -->
+        <div class="viking_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            class="viking_img"
+            alt="viking_ice_arena"
+          />
+          <p class="logo_text">Time Card</p>
+        </div>
 
+        <!-- Light/Dark -->
+        <div class="menu_button">
+          <!-- Day/Nite -->
+          <button id="menu_burgers">
+            <img
+              src="../../img/hamburgers/hamburger_blue.png"
+              class="burger"
+              id="burger_one"
+              alt="menu"
+            />
+            <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
+          </button>
+        </div>
+      </nav>
 
-        <!-- THE NAVBAR AND SIDE MENU-->
-        <nav class="main_nav">
-            <!-- Burger -->
-            <div class="viking_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png" class="viking_img" alt="viking_ice_arena">
-                <p class="logo_text">Time Card</p>
-            </div>
-            
-            <!-- Light/Dark -->
-            <div class="menu_button">
-                <!-- Day/Nite -->
-                <button id="menu_burgers">
-                    <img src="../../img/hamburgers/hamburger_blue.png" class="burger" id="burger_one" alt="menu">
-                    <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
-                </button>
-            </div>
-        </nav>
+      <!-- SLIDE IN MENU -->
+      <div class="side-menu">
+        <!-- Header Logo -->
+        <div class="slide_header_logo">
+          <img src="../../img/hazel-park-logo/Logo.png" alt="logo" />
+          <p class="slide_in_logo_text">Time Card</p>
+        </div>
 
-        <!-- SLIDE IN MENU -->
-        <div class="side-menu">
-            <!-- Header Logo -->
-             <div class="slide_header_logo">
-                <img src="../../img/hazel-park-logo/Logo.png"  alt="logo">
-                <p class="slide_in_logo_text">Time Card</p>
-             </div>
-            
-             <!-- Menu Items -->
-             <div class="menu_items">
-                <a href="#" class="menu-item"><span>Tech Support</span><img src="../../img/slide-in-menu/tech_support.png" alt="tech_support"></a>
-                <a href="#" class="menu-item"><span>Schedule Requests</span><img src="../../img/slide-in-menu/messaging.png" alt="messaging"></a>
-                <button id="theme_switch" class="menu-item"><span>Day/Nite Mode</span><img src="../../img/slide-in-menu/day_nite.png" alt="theme_switch"></button>
-             </div>
-            <!-- Logged in Profile -->
-            <div class="profile">
-                <div class="profile_header">
-                    <p class="profile_text">Profile</p>
-                    <img src="../../img/slide-in-menu/profile.png" class="profile_circle">
-                </div>
+        <!-- Menu Items -->
+        <div class="menu_items">
+          <a href="#" class="menu-item"
+            ><span>Tech Support</span
+            ><img
+              src="../../img/slide-in-menu/tech_support.png"
+              alt="tech_support"
+          /></a>
+          <a href="#" class="menu-item"
+            ><span>Schedule Requests</span
+            ><img src="../../img/slide-in-menu/messaging.png" alt="messaging"
+          /></a>
+          <button id="theme_switch" class="menu-item">
+            <span>Day/Nite Mode</span
+            ><img
+              src="../../img/slide-in-menu/day_nite.png"
+              alt="theme_switch"
+            />
+          </button>
+        </div>
+        <!-- Logged in Profile -->
+        <div class="profile">
+          <div class="profile_header">
+            <p class="profile_text">Profile</p>
+            <img
+              src="../../img/slide-in-menu/profile.png"
+              class="profile_circle"
+            />
+          </div>
 
-                <!-- Profile Name -->
-                <div class="profile_info">
-                    <label>Name:</label>
-                    <p class="profile_text_data" id="profile_scheduler_name"></p>
-                 </div>
+          <!-- Profile Name -->
+          <div class="profile_info">
+            <label>Name:</label>
+            <p class="profile_text_data" id="profile_scheduler_name"></p>
+          </div>
 
-                 <!-- Profile Account Type -->
-                 <div class="profile_info">
-                    <label>Account type:</label>
-                    <p class="profile_text_data" id="profile_scheduler_account"></p>
-                 </div>
+          <!-- Profile Account Type -->
+          <div class="profile_info">
+            <label>Account type:</label>
+            <p class="profile_text_data" id="profile_scheduler_account"></p>
+          </div>
 
-                 <!-- Profile Pin Number -->
-                  <!-- This you will turn into a password output -->
-                 <div class="profile_info">
-                    <div class="pin_and_peak">
-                        <button class="delete_account_button" id="delete_acct_slide">
-                            <p class="delete_text">Delete Profile</p>
-                        </button>
-                        <!-- Pin Number -->
-                        <!-- <div class="pin_profile_div">
+          <!-- Profile Pin Number -->
+          <!-- This you will turn into a password output -->
+          <div class="profile_info">
+            <div class="pin_and_peak">
+              <button class="delete_account_button" id="delete_acct_slide">
+                <p class="delete_text">Delete Profile</p>
+              </button>
+              <!-- Pin Number -->
+              <!-- <div class="pin_profile_div">
                             <label>Pin #:</label>
                             <p class="profile_pin" id="profile_pin">****</p>
                         </div> -->
 
-                         <!-- Pin Code peak -->
-                        <!-- <div class="pin_code_peak">
+              <!-- Pin Code peak -->
+              <!-- <div class="pin_code_peak">
                             <button id="pin_code_peak">
                                 <img src="./img/slide-in-menu/pin_peek.png">
                             </button>
                         </div> -->
-                    </div>
-                 </div>
             </div>
-             <!-- Delete Button -->
-             <div class="delete_account_div">
-                <!-- This button needs to delete the session storage -->
-                 <!-- and redirect to the index page -->
-                  <!-- Give the button an onclick to do this -->
-                <button class="logout_account_button" id="logout_employee" onclick="logoutUser()">
-                    <img src="../../img/logout/white_logout.png" class="logout_logo">
-                    <p class="logout_text">
-                        <!-- <a href="../../index.html">Log Out</a> -->
-                        Log Out
-                    </p>
-                </button>
-             </div> 
+          </div>
         </div>
+        <!-- Delete Button -->
+        <div class="delete_account_div">
+          <!-- This button needs to delete the session storage -->
+          <!-- and redirect to the index page -->
+          <!-- Give the button an onclick to do this -->
+          <button
+            class="logout_account_button"
+            id="logout_employee"
+            onclick="logoutUser()"
+          >
+            <img src="../../img/logout/white_logout.png" class="logout_logo" />
+            <p class="logout_text">
+              <!-- <a href="../../index.html">Log Out</a> -->
+              Log Out
+            </p>
+          </button>
+        </div>
+      </div>
 
-        <!-- Overlay -->
-        <div class="menu-overlay"></div>
+      <!-- Overlay -->
+      <div class="menu-overlay"></div>
 
-        <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+      <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
 
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
 
-        <!-- THE PAGE -->
+      <!-- THE PAGE -->
 
-        <!-- THE FORM -->
-        <form>
-                <!-- Page Header -->
-                <label class="page_header_label" for="manager_name">
-                    <span class="acct_type_label" id="manager_name"></span>
-                    <span class="page_header">&nbsp;|&nbsp;Employee Hours</span>
-                </label>
+      <!-- THE FORM -->
+      <form>
+        <!-- Page Header -->
+        <label class="page_header_label" for="manager_name">
+          <span class="acct_type_label" id="manager_name"></span>
+          <span class="page_header">&nbsp;|&nbsp;Employee Hours</span>
+        </label>
 
-
-                <!-- Employee Selected Render -->
-                 <div class="selected_employee" id="selected_employee">
-                    <!-- Employee Box Header -->
-                     <div class="emp_name_box" id="emp_name_box">Name in Here</div>
-                     <!-- Hours Stack -->
-                    <div class="emp_hours_box" id="emp_hours_box">
-                        <!-- This will be filled with the employee's hours -->
-                        <div class="emp_hours" id="emp_hours">
-                            <!-- Example of an hour entry -->
-                            <!-- <div class="hour_entry">
+        <!-- Employee Selected Render -->
+        <div class="selected_employee" id="selected_employee">
+          <!-- Employee Box Header -->
+          <div class="emp_name_box" id="emp_name_box">Name in Here</div>
+          <!-- Hours Stack -->
+          <div class="emp_hours_box" id="emp_hours_box">
+            <!-- This will be filled with the employee's hours -->
+            <div class="emp_hours" id="emp_hours">
+              <!-- Example of an hour entry -->
+              <!-- <div class="hour_entry">
                                 <span class="day">Monday</span>
                                 <span class="date">March 1,2023</span>
                                 <span class="time_in">09:00 AM</span>
                                 <span class="time_out">05:00 PM</span>
-                                <button class="copy_hours" id="copy_hours_button">Copy</button>
+                                <button class="copy_hours" onclick="copyToClipboard('Sample text to copy')">Copy</button>
                                 <button class="send_hours" id="send_hours_button">Send</button>
                             </div> -->
-                        </div>
-                    </div>
-                 </div>
+            </div>
+          </div>
+        </div>
 
-                <!-- Link Back To Dashboard -->
-                <div class="submit">
-                    <a href="../../html/calendar/manager_scheduler.html" class="link_back">Back to employee hours list</a>
-                </div>
-            </form>           
-           
-      
+        <!-- Link Back To Dashboard -->
+        <div class="submit">
+          <a href="../../html/calendar/manager_scheduler.html" class="link_back"
+            >Back to employee hours list</a
+          >
+        </div>
+      </form>
     </div>
 
     <!-- DARKMODE -->
@@ -196,24 +224,21 @@
     <script src="../../js/slide-in.js"></script>
 
     <!-- SIDEBARS -->
-     <!-- <script src="../../js/sidebars.js"></script> -->
+    <!-- <script src="../../js/sidebars.js"></script> -->
 
     <!-- DELETE ACCOUNT SLIDE IN BUTTON -->
     <script src="../../js/dashboard/delete_acct_slide.js"></script>
 
+    <!-- LOGOUT -->
+    <script src="../../js/database/logout.js"></script>
 
-     <!-- LOGOUT -->
-   <script src="../../js/database/logout.js"></script>
+    <!-- CALENDAR -->
+    <!-- <script src="../../js/calendar/calendar.js"></script>  -->
 
-   <!-- CALENDAR -->
-   <!-- <script src="../../js/calendar/calendar.js"></script>  -->
-   
-   <!-- MANAGER SCHEDULER -->
-   <!-- <script src="../../js/calendar/manager_scheduler.js"></script> -->
+    <!-- MANAGER SCHEDULER -->
+    <!-- <script src="../../js/calendar/manager_scheduler.js"></script> -->
 
-   <!-- EMPLOYEE HOURS LIST -->
+    <!-- EMPLOYEE HOURS LIST -->
     <script src="../../js/calendar/emp_hours_list.js"></script>
-
-    
-</body>
+  </body>
 </html>
