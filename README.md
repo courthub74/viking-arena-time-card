@@ -151,6 +151,107 @@ Viking Arena Time Card demonstrates an approach to software development centered
 
 ---
 
+## Local Setup
+
+### Prerequisites
+
+Install the following before running the project locally:
+
+- [Node.js](https://nodejs.org/)
+- npm
+- [PostgreSQL](https://www.postgresql.org/)
+- A local web server such as the VS Code Live Server extension
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/courthub74/viking-arena-time-card.git
+cd viking-arena-time-card
+git checkout backend-postgresql
+```
+
+### 2. Install backend dependencies
+
+```bash
+cd backend
+npm install
+cd ..
+```
+
+### 3. Create the PostgreSQL database
+
+Make sure PostgreSQL is running, then create the local database:
+
+```bash
+createdb viking_arena
+```
+
+If the database already exists, PostgreSQL will report that it already exists and you can continue.
+
+### 4. Create the database tables
+
+From the repository root, run:
+
+```bash
+psql -d viking_arena -f backend/sql/schema.sql
+```
+
+This creates the tables required by the application.
+
+### 5. Configure environment variables
+
+Create `backend/.env`:
+
+```env
+DB_USER=your_postgresql_username
+DB_HOST=localhost
+DB_NAME=viking_arena
+DB_PASSWORD=your_postgresql_password
+DB_PORT=5432
+PORT=3000
+```
+
+Replace the placeholder values with your local PostgreSQL credentials.
+
+Do not commit the `.env` file. Local environment files are excluded through `.gitignore`.
+
+### 6. Start the backend
+
+```bash
+cd backend
+node index.js
+```
+
+The API should be available at:
+
+```text
+http://localhost:3000
+```
+
+### 7. Verify the database connection
+
+Open these addresses in a browser:
+
+```text
+http://localhost:3000/db-test
+http://localhost:3000/users
+```
+
+The database test route should confirm that PostgreSQL is connected. The users route should return the users currently stored in the database.
+
+### 8. Start the frontend
+
+Open the project with a local development server. If you use the VS Code Live Server extension, right-click the main HTML file and select **Open with Live Server**.
+
+## Security Notes
+
+- Never commit `.env` or real database credentials.
+- Never store real PINs as plain text.
+- `pin_hash` must contain a securely generated password hash before the application is used with real employee data.
+- Test records must not contain real employee information.
+
+---
+
 © 2026 CourDevelops. All rights reserved.
 
 Source code is publicly available for portfolio and demonstration purposes. This project is not open source. -->

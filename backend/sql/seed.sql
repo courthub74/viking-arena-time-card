@@ -1,0 +1,14 @@
+-- // SAMPLE DATA FOR SEEDING THE DATABASE
+-- INSERT INTO users ( 
+--     first_name, l
+--     last_name, 
+--     role, 
+--     pin_hash 
+-- ) 
+    
+-- VALUES ( 
+--     'Test', 
+--     'Employee', 
+--     'employee', 
+--     'temporary-test-hash' 
+-- );
