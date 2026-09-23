@@ -31,7 +31,7 @@ app.get("/db-test", async (req, res) => {
   }
 });
 
-// Get all users
+// GET all users
 app.get("/users", async (req, res) => {
   try {
     const result = await pool.query(
@@ -50,7 +50,67 @@ app.get("/users", async (req, res) => {
   }
 });
 
-// Create a user
+// Verify a user's login credentials
+app.post("/login", async (req, res) => {
+  try {
+    const { userId, pin } = req.body;
+    const normalizedUserId = Number(userId);
+
+    if (
+      !Number.isInteger(normalizedUserId) ||
+      normalizedUserId <= 0 ||
+      typeof pin !== "string" ||
+      !/^\d{4}$/.test(pin)
+    ) {
+      return res.status(400).json({
+        error: "A valid user and four-digit PIN are required",
+      });
+    }
+
+    const result = await pool.query(
+      `SELECT id, first_name, last_name, role, pin_hash
+       FROM users
+       WHERE id = $1`,
+      [normalizedUserId],
+    );
+
+    const user = result.rows[0];
+
+    // Use one generic message so the response does not reveal
+    // whether the user or PIN was incorrect.
+    if (!user) {
+      return res.status(401).json({
+        error: "Invalid user or PIN",
+      });
+    }
+
+    const pinMatches = await bcrypt.compare(pin, user.pin_hash);
+
+    if (!pinMatches) {
+      return res.status(401).json({
+        error: "Invalid user or PIN",
+      });
+    }
+
+    return res.json({
+      message: "Login successful",
+      user: {
+        id: user.id,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Failed to process login",
+    });
+  }
+});
+
+// CREATE a user
 app.post("/users", async (req, res) => {
   try {
     const { firstName, lastName, role, pin } = req.body;
