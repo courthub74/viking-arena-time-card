@@ -123,7 +123,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// CREATE a user
+// PUBLIC employee registration
 app.post("/users", async (req, res) => {
   try {
     const { firstName, lastName, role, pin } = req.body;
@@ -163,10 +163,10 @@ app.post("/users", async (req, res) => {
       });
     }
 
-    // Match the database role constraint
-    if (!["employee", "manager"].includes(normalizedRole)) {
-      return res.status(400).json({
-        error: "Role must be employee or manager",
+    /// Manager accounts must not be created through public registration.
+    if (normalizedRole !== "employee") {
+      return res.status(403).json({
+        error: "Manager accounts must be provisioned by an administrator",
       });
     }
 
