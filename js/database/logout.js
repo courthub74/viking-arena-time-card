@@ -1,53 +1,29 @@
-// Test Print the current user
-// First get the current user from the session storage
-// var currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+// This file is responsible for handling the logout functionality of the application. It checks if a user is currently logged in by looking for a "currentUser" item in the sessionStorage. If no user is found, it redirects to the index page. If a user is found, it logs their username and account type to the console. The logoutUser function removes the "currentUser" and any legacy "session" from sessionStorage and redirects to the index page.
+const storedCurrentUser = sessionStorage.getItem("currentUser");
 
-// Then print the current user
-// console.log(`The current user is: ${currentUser.username}`);
-
-// Retrieve the current user from session storage
-var currentUser = sessionStorage.getItem('currentUser') || sessionStorage.getItem('session');
-// Parse the current user from JSON string to object
-var currentUser = JSON.parse(currentUser);
-// Test print the current user
-console.log(`The current user is: ${currentUser.username} and their role is: ${currentUser.accountType} session: ${currentUser.sessionId} from (logout.js)`);
-// Check if the current user is null or undefined
-if (currentUser === null || currentUser === undefined) {
-    // If the user is not logged in, redirect to the login page
-    window.location.href = '../../index.html';
-    window.location.href = '/viking_arena_time_card/index.html';
+if (!storedCurrentUser) {
+  window.location.replace("../../index.html");
 }
 
-// Display the current user's name in the header
-const userNameHeader = document.getElementById('user_name_header');
+const currentUser = storedCurrentUser ? JSON.parse(storedCurrentUser) : null;
 
+if (currentUser) {
+  console.log(
+    `The current user is ${currentUser.username} and their role is ${currentUser.accountType} (logout.js)`,
+  );
+}
 
-// Query the logout button from the dashboard page
-const logoutManager = document.getElementById('logout_manager');
-
-// Log out function
 function logoutUser() {
-    // Test print the current user
-    console.log(`Logging out user: ${currentUser.username} and their role is: ${currentUser.accountType} session: ${currentUser.sessionId} from (logout.js)`);
-    // Delete the session storage item
-    sessionStorage.removeItem('currentUser');
+  if (currentUser) {
+    console.log(
+      `Logging out ${currentUser.username} (${currentUser.accountType})`,
+    );
+  }
 
-    // Also if the user is logged in as a session 
-    sessionStorage.removeItem('session');
+  sessionStorage.removeItem("currentUser");
 
-    // Redirect to login page
+  // Remove any legacy session left from the localStorage version.
+  sessionStorage.removeItem("session");
 
-    // BEFORE
-    // For GitHub Pages deployment path:
-    // window.location.href = "/viking-arena-time-card/index.html";
-
-    // AFTER 
-    // Root-relative application path:
-    window.location.href = '../../index.html';
-
-    // Test Redirect to google.com for testing purposes
-    // window.location.href = 'https://www.google.com';
-
+  window.location.replace("../../index.html");
 }
-
-

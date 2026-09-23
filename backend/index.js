@@ -1,13 +1,26 @@
 // API
 
 // Import required modules
+
+// express
 const express = require("express");
+
+// pool database connection
 const pool = require("./db");
+
+// bcrypt for hashing and comparing PINs
 const bcrypt = require("bcrypt");
 
+// cors for cross-origin requests
+const cors = require("cors");
+
+// Create an Express app
 const app = express();
+
+// port for the server to listen on
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 
 // Define routes
