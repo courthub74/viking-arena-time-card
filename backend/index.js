@@ -48,7 +48,7 @@ app.get("/db-test", async (req, res) => {
 app.get("/users", async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT id, first_name, last_name, role, created_at
+      `SELECT id, first_name, last_name, role, job_title, created_at
        FROM users
        ORDER BY id`,
     );
@@ -81,7 +81,7 @@ app.post("/login", async (req, res) => {
     }
 
     const result = await pool.query(
-      `SELECT id, first_name, last_name, role, pin_hash
+      `SELECT id, first_name, last_name, role, job_title, pin_hash
        FROM users
        WHERE id = $1`,
       [normalizedUserId],
@@ -112,6 +112,7 @@ app.post("/login", async (req, res) => {
         firstName: user.first_name,
         lastName: user.last_name,
         role: user.role,
+        jobTitle: user.job_title,
       },
     });
   } catch (error) {
@@ -126,47 +127,54 @@ app.post("/login", async (req, res) => {
 // PUBLIC employee registration
 app.post("/users", async (req, res) => {
   try {
-    const { firstName, lastName, role, pin } = req.body;
+    const { firstName, lastName, jobTitle, pin } = req.body;
 
-    // Require all inputs to be strings
     if (
       typeof firstName !== "string" ||
       typeof lastName !== "string" ||
-      typeof role !== "string" ||
+      typeof jobTitle !== "string" ||
       typeof pin !== "string"
     ) {
       return res.status(400).json({
-        error: "First name, last name, role, and PIN are required",
+        error: "First name, last name, job title, and PIN are required",
       });
     }
 
     const normalizedFirstName = firstName.trim();
     const normalizedLastName = lastName.trim();
-    const normalizedRole = role.trim().toLowerCase();
+    const normalizedJobTitle = jobTitle
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "_");
     const normalizedPin = pin.trim();
 
     if (
       !normalizedFirstName ||
       !normalizedLastName ||
-      !normalizedRole ||
+      !normalizedJobTitle ||
       !normalizedPin
     ) {
       return res.status(400).json({
-        error: "First name, last name, role, and PIN are required",
+        error: "First name, last name, job title, and PIN are required",
       });
     }
 
-    // Match the varchar(50) database columns
     if (normalizedFirstName.length > 50 || normalizedLastName.length > 50) {
       return res.status(400).json({
         error: "First name and last name must not exceed 50 characters",
       });
     }
 
-    /// Manager accounts must not be created through public registration.
-    if (normalizedRole !== "employee") {
-      return res.status(403).json({
-        error: "Manager accounts must be provisioned by an administrator",
+    const allowedJobTitles = [
+      "employee",
+      "zamboni_driver",
+      "skate_instructor",
+      "skate_guard",
+    ];
+
+    if (!allowedJobTitles.includes(normalizedJobTitle)) {
+      return res.status(400).json({
+        error: "Invalid employee job title",
       });
     }
 
@@ -179,10 +187,22 @@ app.post("/users", async (req, res) => {
     const pinHash = await bcrypt.hash(normalizedPin, 12);
 
     const result = await pool.query(
-      `INSERT INTO users (first_name, last_name, role, pin_hash)
-       VALUES ($1, $2, $3, $4)
-       RETURNING id, first_name, last_name, role, created_at`,
-      [normalizedFirstName, normalizedLastName, normalizedRole, pinHash],
+      `INSERT INTO users (
+         first_name,
+         last_name,
+         role,
+         job_title,
+         pin_hash
+       )
+       VALUES ($1, $2, 'employee', $3, $4)
+       RETURNING
+         id,
+         first_name,
+         last_name,
+         role,
+         job_title,
+         created_at`,
+      [normalizedFirstName, normalizedLastName, normalizedJobTitle, pinHash],
     );
 
     return res.status(201).json(result.rows[0]);
