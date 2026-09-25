@@ -194,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
         lastName: authenticatedUser.lastName,
         role: authenticatedUser.role,
         accountType,
+        jobTitle: authenticatedUser.jobTitle,
         loginTime: new Date().toISOString(),
       }),
     );

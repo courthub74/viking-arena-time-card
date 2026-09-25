@@ -1,184 +1,228 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../img/hazel-park-logo/viking-arena-logo.png" type="image/png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="../../img/hazel-park-logo/viking-arena-logo.png"
+      type="image/png"
+    />
     <title>Viking Time Card</title>
 
-      <!-- CSS -->
+    <!-- CSS -->
 
-      <!-- BASE STYLES -->
-      <link rel="stylesheet" href="../../css/base.css">
+    <!-- BASE STYLES -->
+    <link rel="stylesheet" href="../../css/base.css" />
 
-      <!-- NAVIGATION STYLES -->
-      <link rel="stylesheet" href="../../css/navigation.css">
+    <!-- NAVIGATION STYLES -->
+    <link rel="stylesheet" href="../../css/navigation.css" />
 
-      <!-- FORMS STYLES -->
-      <link rel="stylesheet" href="../../css/forms.css">
+    <!-- FORMS STYLES -->
+    <link rel="stylesheet" href="../../css/forms.css" />
 
-      <!-- ACCOUNT TYPE STYLES -->
-      <link rel="stylesheet" href="../../css/acct_type.css">
-</head>
-<body>
-
+    <!-- ACCOUNT TYPE STYLES -->
+    <link rel="stylesheet" href="../../css/acct_type.css" />
+  </head>
+  <body>
     <!-- Container -->
     <div class="container">
+      <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
 
-        <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
+      <!-- THE NAVBAR AND SIDE MENU-->
+      <nav class="main_nav">
+        <!-- Burger -->
+        <div class="viking_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            class="viking_img"
+            alt="viking_ice_arena"
+          />
+          <p class="logo_text">Time Card</p>
+        </div>
 
+        <!-- Light/Dark -->
+        <div class="menu_button">
+          <!-- Day/Nite -->
+          <button id="menu_burgers">
+            <img
+              src="../../img/hamburgers/hamburger_blue.png"
+              class="burger"
+              id="burger_one"
+              alt="menu"
+            />
+            <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
+          </button>
+        </div>
+      </nav>
 
-        <!-- THE NAVBAR AND SIDE MENU-->
-        <nav class="main_nav">
-            <!-- Burger -->
-            <div class="viking_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png" class="viking_img" alt="viking_ice_arena">
-                <p class="logo_text">Time Card</p>
-            </div>
-            
-            <!-- Light/Dark -->
-            <div class="menu_button">
-                <!-- Day/Nite -->
-                <button id="menu_burgers">
-                    <img src="../../img/hamburgers/hamburger_blue.png" class="burger" id="burger_one" alt="menu">
-                    <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
-                </button>
-            </div>
-        </nav>
+      <!-- SLIDE IN MENU -->
+      <div class="side-menu">
+        <!-- Header Logo -->
+        <div class="slide_header_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            alt="logo"
+          />
+          <p class="slide_in_logo_text">Time Card</p>
+        </div>
 
-        <!-- SLIDE IN MENU -->
-        <div class="side-menu">
-            <!-- Header Logo -->
-             <div class="slide_header_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png"  alt="logo">
-                <p class="slide_in_logo_text">Time Card</p>
-             </div>
-            
-             <!-- Menu Items -->
-             <div class="menu_items">
-                <a href="#" class="menu-item"><span>Tech Support</span><img src="../../img/slide-in-menu/tech_support.png" alt="tech_support"></a>
-                <!-- <a href="#" class="menu-item"><span>Messaging</span><img src="../../img/slide-in-menu/messaging.png" alt="messaging"></a> -->
-                <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
-                <button id="theme_switch" class="menu-item"><span>Day/Nite Mode</span><img src="../../img/slide-in-menu/day_nite.png" alt="theme_switch"></button>
-             </div>
-            <!-- Logged in Profile -->
-            <div class="profile">
-                <div class="profile_header">
-                    <p class="profile_text">Profile</p>
-                    <img src="../../img/slide-in-menu/profile.png" class="profile_circle">
-                </div>
+        <!-- Menu Items -->
+        <div class="menu_items">
+          <a href="#" class="menu-item"
+            ><span>Tech Support</span
+            ><img
+              src="../../img/slide-in-menu/tech_support.png"
+              alt="tech_support"
+          /></a>
+          <!-- <a href="#" class="menu-item"><span>Messaging</span><img src="../../img/slide-in-menu/messaging.png" alt="messaging"></a> -->
+          <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
+          <button id="theme_switch" class="menu-item">
+            <span>Day/Nite Mode</span
+            ><img
+              src="../../img/slide-in-menu/day_nite.png"
+              alt="theme_switch"
+            />
+          </button>
+        </div>
+        <!-- Logged in Profile -->
+        <div class="profile">
+          <div class="profile_header">
+            <p class="profile_text">Profile</p>
+            <img
+              src="../../img/slide-in-menu/profile.png"
+              class="profile_circle"
+            />
+          </div>
 
-                <!-- Profile Name -->
-                <div class="profile_info">
-                    <label>Name:</label>
-                    <p class="profile_text_data" id="profile_name">________</p>
-                 </div>
+          <!-- Profile Name -->
+          <div class="profile_info">
+            <label>Name:</label>
+            <p class="profile_text_data" id="profile_name">________</p>
+          </div>
 
-                 <!-- Profile Account Type -->
-                 <div class="profile_info">
-                    <label>Account type:</label>
-                    <p class="profile_text_data" id="profile_account">________</p>
-                 </div>
+          <!-- Profile Account Type -->
+          <div class="profile_info">
+            <label>Account type:</label>
+            <p class="profile_text_data" id="profile_account">________</p>
+          </div>
 
-                 <!-- Profile Pin Number -->
-                  <!-- This you will turn into a password output -->
-                 <div class="profile_info">
-                    <div class="pin_and_peak">
-                        <!-- <button class="delete_account_button" id="delete_account">
+          <!-- Profile Pin Number -->
+          <!-- This you will turn into a password output -->
+          <div class="profile_info">
+            <div class="pin_and_peak">
+              <!-- <button class="delete_account_button" id="delete_account">
                             <p class="delete_text">Delete Account</p>
                         </button> -->
-                        <!-- Pin Number -->
-                        <!-- <div class="pin_profile_div">
+              <!-- Pin Number -->
+              <!-- <div class="pin_profile_div">
                             <label>Pin #:</label>
                             <p class="profile_pin" id="profile_pin">****</p>
                         </div> -->
 
-                         <!-- Pin Code peak -->
-                        <!-- <div class="pin_code_peak">
+              <!-- Pin Code peak -->
+              <!-- <div class="pin_code_peak">
                             <button id="pin_code_peak">
                                 <img src="./img/slide-in-menu/pin_peek.png">
                             </button>
                         </div> -->
-                    </div>
-                 </div>
             </div>
-             <!-- Delete Button -->
-             <!-- <div class="delete_account_div">
+          </div>
+        </div>
+        <!-- Delete Button -->
+        <!-- <div class="delete_account_div">
                 <button class="logout_account_button" id="logout_account">
                     <img src="../../img/logout/white_logout.png" class="logout_logo">
                     <p class="logout_text">Log Out</p>
                 </button>
              </div>  -->
-        </div>
+      </div>
 
-        <!-- Overlay -->
-        <div class="menu-overlay"></div>
+      <!-- Overlay -->
+      <div class="menu-overlay"></div>
 
-        <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+      <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
 
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
 
+      <!-- THE PAGE -->
 
-        <!-- THE PAGE -->
+      <!-- THE FORM -->
+      <form>
+        <!-- <label>Now choose your account type:</label> -->
+        <label class="acct_title"
+          >Select your position at Viking Ice Arena:</label
+        >
 
-        <!-- THE FORM -->
-        <form>
-            <!-- <label>Now choose your account type:</label> -->
-             <label class="acct_title">Select your position at Viking Ice Arena:</label>
+        <!-- ACCOUNT TYPE BUTTONS -->
+        <div class="acct_types">
+          <!-- Each button -->
 
-            <!-- ACCOUNT TYPE BUTTONS -->
-            <div class="acct_types">
-
-                <!-- Each button -->
-
-                <!-- Manager -->
-                <div class="radio-container">
+          <!-- Manager -->
+          <!-- Muted for PostGre SQL implementation -->
+          <!-- <div class="radio-container">
                     <input type="radio" name="role" value="manager" id="manager" class="acct_radio">
                     <label for="manager">Manager</label>
-                </div>
+                </div> -->
 
-                <!-- Zamboni -->
-                <div class="radio-container">
-                    <input type="radio" name="role" value="zamboni" id="zamboni_driver" class="acct_radio">
-                    <label for="zamboni_driver">Zamboni Driver</label>
-                </div>
+          <!-- Zamboni -->
+          <div class="radio-container">
+            <input
+              type="radio"
+              name="job_title"
+              value="zamboni_driver"
+              id="zamboni_driver"
+              class="acct_radio"
+            />
+            <label for="zamboni_driver">Zamboni Driver</label>
+          </div>
 
-                <!-- Zamboni -->
-                <div class="radio-container">
-                    <input type="radio" name="role" value="instructor" id="skate_instructor" class="acct_radio">
-                    <label for="skate_instructor">Skate Instructor</label>
-                </div>
+          <!-- Skate Instructor -->
+          <div class="radio-container">
+            <input
+              type="radio"
+              name="job_title"
+              value="skate_instructor"
+              id="skate_instructor"
+              class="acct_radio"
+            />
+            <label for="skate_instructor">Skate Instructor</label>
+          </div>
 
-                <!-- Zamboni -->
-                <div class="radio-container">
-                    <input type="radio" name="role" value="guard" id="skate_guard" class="acct_radio">
-                    <label for="skate_guard">Skate Guard</label>
-                </div>
+          <!-- Skate Guard -->
+          <div class="radio-container">
+            <input
+              type="radio"
+              name="job_title"
+              value="skate_guard"
+              id="skate_guard"
+              class="acct_radio"
+            />
+            <label for="skate_guard">Skate Guard</label>
+          </div>
 
-                <!-- Submit Button -->
-            <button class="submit" id="submit_acct_type" disabled>Next</button>
-
-            </div>
-
-        </form>
+          <!-- Submit Button -->
+          <button class="submit" id="submit_acct_type" disabled>Next</button>
+        </div>
+      </form>
     </div>
 
     <!-- DARKMODE -->
@@ -192,6 +236,5 @@
     <!-- ACCOUNT TYPE JS -->
     <!-- <script src="/viking_arena_time_card/js/data/acct_type.js"></script> -->
     <script src="../../js/data/acct_type.js"></script>
-    
-</body>
+  </body>
 </html>

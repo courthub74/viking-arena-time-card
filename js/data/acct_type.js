@@ -1,70 +1,42 @@
-// Query the Form
-const form = document.querySelector('form');
+const form = document.querySelector("form");
+const submitAccountType = document.getElementById("submit_acct_type");
+const jobTitleInputs = document.querySelectorAll('input[name="job_title"]');
 
-// Query the Buttons
-
-/////////// Employer ///////////
-
-// Manager
-const manager = document.getElementById('manager');
-
-/////////// Employees ///////////
-
-// Zamboni
-const zamboni = document.getElementById('zamboni_driver');
-
-// Skate Instructor
-const skateInstructor = document.getElementById('skate_instructor');
-
-// Skate Guard
-const skateGuard = document.getElementById('skate_guard');
-
-
-// Query the Submit Button
-const submit_acct_type = document.getElementById('submit_acct_type');
-
-// Enable the Submit Button after a Radio Button is Clicked
-form.addEventListener('click', function() {
-    if (manager.checked || zamboni.checked || skateInstructor.checked || skateGuard.checked) {
-        submit_acct_type.disabled = false;
-        console.log('Submit Button Enabled');
-    }
+// Enable the submit button after an employee position is selected
+jobTitleInputs.forEach((input) => {
+  input.addEventListener("change", () => {
+    submitAccountType.disabled = false;
+    console.log("Submit Button Enabled");
+  });
 });
 
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
+  const selectedJobTitle = document.querySelector(
+    'input[name="job_title"]:checked',
+  );
 
-// Add Event Listener to Submit Button
-form.addEventListener('submit', (e) => {
-    // so submit doesn't refresh the page
-    e.preventDefault();
+  if (!selectedJobTitle) {
+    return;
+  }
 
-    // Test print button function
-    console.log("Submit Button Pressed");
+  const pendingRegistration = JSON.parse(
+    sessionStorage.getItem("pendingRegistration"),
+  );
 
-    // Retrieve the URL Parameters
-    const urlParams = new URLSearchParams(window.location.search);
+  if (!pendingRegistration) {
+    console.error("No pending registration was found.");
+    return;
+  }
 
-    // Get the Encoded First Name from the URL Parameters and decode it
-    const encodedFirstName = urlParams.get('first_name') ? decodeURIComponent(urlParams.get('first_name')) : 'No First Name';
-    console.log(encodedFirstName);
+  pendingRegistration.jobTitle = selectedJobTitle.value;
 
-    // Get the Encoded Last Name from the URL Parameters and decode it
-    const encodedLastName = urlParams.get('last_name') ? decodeURIComponent(urlParams.get('last_name')) : 'No Last Name';
-    console.log(encodedLastName);
+  sessionStorage.setItem(
+    "pendingRegistration",
+    JSON.stringify(pendingRegistration),
+  );
 
-    // Get the Encoded Pin Confirm from the URL Parameters and decode it
-    const encodedPinConfirm = urlParams.get('pin_confirm') ? decodeURIComponent(urlParams.get('pin_confirm')) : 'No Pin Number';
-    console.log(encodedPinConfirm);
-
-    // Redirect to the next page (pin number) with URL parameters 
-    if (manager.checked) {
-        window.location.href = `confirmation.html?acct_type=Manager&first_name=${encodedFirstName}&last_name=${encodedLastName}&encodedPinConfirm=${encodedPinConfirm}`;
-    } else if (zamboni.checked) {
-        window.location.href = `confirmation.html?acct_type=Zamboni Driver&first_name=${encodedFirstName}&last_name=${encodedLastName}&encodedPinConfirm=${encodedPinConfirm}`;
-    } else if (skateInstructor.checked) {
-        window.location.href = `confirmation.html?acct_type=Skate Instructor&first_name=${encodedFirstName}&last_name=${encodedLastName}&encodedPinConfirm=${encodedPinConfirm}`;
-    } else if (skateGuard.checked) {
-        window.location.href = `confirmation.html?acct_type=Skate Guard&first_name=${encodedFirstName}&last_name=${encodedLastName}&encodedPinConfirm=${encodedPinConfirm}`;
-    }
+  // Continue without placing registration data in the URL
+  window.location.href = "confirmation.html";
 });
-

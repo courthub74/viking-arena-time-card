@@ -1,87 +1,84 @@
 // Query the pin inputs by whole div
 
 // Query Set Pin field
-const pin_set = document.querySelectorAll('.pin_put_set');
+const pin_set = document.querySelectorAll(".pin_put_set");
 
 // Query Confirm Pin field
-const pin_confirm = document.querySelectorAll('.pin_put_confirm');
+const pin_confirm = document.querySelectorAll(".pin_put_confirm");
 
 // Query Submit Button
-const submit_pins = document.getElementById('submit_login');
+const submit_pins = document.getElementById("submit_login");
 
 // Query the reset pins button
-const reset_pins = document.getElementById('reset_button');
+const reset_pins = document.getElementById("reset_button");
 
 // Query Match Confirm
 
 // Match
-let match_notify = document.querySelector('.match_');
+let match_notify = document.querySelector(".match_");
 
 // No Match
-let no_match_notify = document.querySelector('.no_match');
+let no_match_notify = document.querySelector(".no_match");
 
 // Query the form
-const form = document.querySelector('form');
-
+const form = document.querySelector("form");
 
 // Optional: Auto-focus the first input when the page loads
-document.addEventListener('DOMContentLoaded', (e) => {
+document.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
-   // Focus the first PIN input when the page loads
-   const firstPinInput = document.querySelector('.pin_put_set');
-   if (firstPinInput) {
+  // Focus the first PIN input when the page loads
+  const firstPinInput = document.querySelector(".pin_put_set");
+  if (firstPinInput) {
     console.log("Auto-focus the first input");
-     firstPinInput.focus();
-   }
+    firstPinInput.focus();
+  }
 });
-
 
 //////// NUMERIC INPUT BEHAVIOR (for mobile devices) ////////
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
 // Get all PIN inputs for the pin set and confirm fields for numeric input
-const pinInputs = document.querySelectorAll('.pin_put_set');
+const pinInputs = document.querySelectorAll(".pin_put_set");
 
-const pinInputsConfirm = document.querySelectorAll('.pin_put_confirm');
+const pinInputsConfirm = document.querySelectorAll(".pin_put_confirm");
 
 // For set pin inputs
 pinInputs.forEach((input, index) => {
   // Add input type="number" or pattern attribute to HTML elements
-  input.setAttribute('inputmode', 'numeric'); // Shows number keyboard on mobile
-  
+  input.setAttribute("inputmode", "numeric"); // Shows number keyboard on mobile
+
   // Prevent non-numeric input
-  input.addEventListener('keypress', function(event) {
+  input.addEventListener("keypress", function (event) {
     // Allow only digits (0-9)
     if (!/[0-9]/.test(event.key)) {
       event.preventDefault();
     }
   });
-  
+
   // Clean any non-numeric characters that might get pasted
-  input.addEventListener('input', function() {
-    this.value = this.value.replace(/[^0-9]/g, '');
-    
+  input.addEventListener("input", function () {
+    this.value = this.value.replace(/[^0-9]/g, "");
+
     // Move to next input when a digit is entered
     if (this.value.length === 1 && index < pinInputs.length - 1) {
       pinInputs[index + 1].focus();
     }
   });
-  
+
   // Handle backspace to go to previous input
-  input.addEventListener('keydown', function(event) {
-    if (event.key === 'Backspace' && this.value.length === 0 && index > 0) {
+  input.addEventListener("keydown", function (event) {
+    if (event.key === "Backspace" && this.value.length === 0 && index > 0) {
       pinInputs[index - 1].focus();
     }
   });
 });
 
-
 // For confirm pin inputs
 pinInputsConfirm.forEach((input, index) => {
   // Add input type="number" or pattern attribute to HTML elements
-  input.setAttribute('inputmode', 'numeric'); // Shows number keyboard on mobile
+  input.setAttribute("inputmode", "numeric"); // Shows number keyboard on mobile
   // Prevent non-numeric input
-  input.addEventListener('keypress', function(event) {
+  input.addEventListener("keypress", function (event) {
     // Allow only digits (0-9)
     if (!/[0-9]/.test(event.key)) {
       event.preventDefault();
@@ -89,9 +86,9 @@ pinInputsConfirm.forEach((input, index) => {
   });
 
   // Clean any non-numeric characters that might get pasted
-  input.addEventListener('input', function() {
-    this.value = this.value.replace(/[^0-9]/g, '');
-    
+  input.addEventListener("input", function () {
+    this.value = this.value.replace(/[^0-9]/g, "");
+
     // Move to next input when a digit is entered
     if (this.value.length === 1 && index < pinInputsConfirm.length - 1) {
       pinInputsConfirm[index + 1].focus();
@@ -99,14 +96,12 @@ pinInputsConfirm.forEach((input, index) => {
   });
 
   // Handle backspace to go to previous input
-  input.addEventListener('keydown', function(event) {
-    if (event.key === 'Backspace' && this.value.length === 0 && index > 0) {
+  input.addEventListener("keydown", function (event) {
+    if (event.key === "Backspace" && this.value.length === 0 && index > 0) {
       pinInputsConfirm[index - 1].focus();
     }
   });
 });
-  
-
 
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
@@ -117,18 +112,20 @@ pin_set.forEach((input, key) => {
   // Add event listener function to input that iterates through the inputs
   input.addEventListener("keyup", (e) => {
     if (input.value) {
-        // If all 4 inputs are filled, focus on the first confirm input
-        if (key === 3) {
-            // Let's read the Pin Nums for matching to the confirm pin
-            const pin_set_value = [...pin_set].map((each_pin_set) => each_pin_set.value).join("");
-            // Print digits to console
-            console.log(`The First Pin #: ${pin_set_value}`);
-            // Focus on the first confirm input
-            pin_confirm[0].focus();
-        } else {
-            // Focus on the next input
-            pin_set[key + 1].focus();
-        }
+      // If all 4 inputs are filled, focus on the first confirm input
+      if (key === 3) {
+        // Let's read the Pin Nums for matching to the confirm pin
+        const pin_set_value = [...pin_set]
+          .map((each_pin_set) => each_pin_set.value)
+          .join("");
+        // Print digits to console
+        console.log(`The First Pin #: ${pin_set_value}`);
+        // Focus on the first confirm input
+        pin_confirm[0].focus();
+      } else {
+        // Focus on the next input
+        pin_set[key + 1].focus();
+      }
     }
   });
 });
@@ -138,18 +135,20 @@ pin_confirm.forEach((input_2, key_2) => {
   // Add event listener function to input that iterates through the inputs
   input_2.addEventListener("keyup", (e) => {
     if (input_2.value) {
-        // If all 4 inputs are filled, focus on the submit button
-        if (key_2 === 3) {
-            // Let's read the Pin Nums for matching to the confirm pin
-            const pin_confirm_value = [...pin_confirm].map((each_pin_confirm) => each_pin_confirm.value).join("");
-            // Print digits to console
-            console.log(`The Confirm Pin #: ${pin_confirm_value}`);
-            // Focus on the submit button
-            submit_pins.focus();
-        } else {
-            // Focus on the next input
-            pin_confirm[key_2 + 1].focus();
-        }
+      // If all 4 inputs are filled, focus on the submit button
+      if (key_2 === 3) {
+        // Let's read the Pin Nums for matching to the confirm pin
+        const pin_confirm_value = [...pin_confirm]
+          .map((each_pin_confirm) => each_pin_confirm.value)
+          .join("");
+        // Print digits to console
+        console.log(`The Confirm Pin #: ${pin_confirm_value}`);
+        // Focus on the submit button
+        submit_pins.focus();
+      } else {
+        // Focus on the next input
+        pin_confirm[key_2 + 1].focus();
+      }
     }
   });
 });
@@ -170,7 +169,9 @@ pin_set.forEach((input_1) => {
       // Test print
       console.log("pin set row: compare");
       // Map through the inputs for pin set row
-      const pin_set_compare = [...pin_set].map((compare_pin_set) => compare_pin_set.value).join("");
+      const pin_set_compare = [...pin_set]
+        .map((compare_pin_set) => compare_pin_set.value)
+        .join("");
       // Print digits to console
       console.log(`The First Pin #: ${pin_set_compare}`);
     }
@@ -190,7 +191,9 @@ pin_confirm.forEach((input_2, key_2) => {
         // Test print
         console.log("pin confirm row: compare");
         // Map through the inputs for pin confirm row
-        const pin_confirm_compare = [...pin_confirm].map((compare_pin_confirm) => compare_pin_confirm.value).join("");
+        const pin_confirm_compare = [...pin_confirm]
+          .map((compare_pin_confirm) => compare_pin_confirm.value)
+          .join("");
         // Print digits to console
         console.log(`The Confirm Pin #: ${pin_confirm_compare}`);
         // Compare the values (for the match)
@@ -198,7 +201,9 @@ pin_confirm.forEach((input_2, key_2) => {
         pin_set.forEach((input_1) => {
           if (input_1.value) {
             // Map through the inputs for pin set row
-            const pin_set_compare = [...pin_set].map((compare_pin_set) => compare_pin_set.value).join("");
+            const pin_set_compare = [...pin_set]
+              .map((compare_pin_set) => compare_pin_set.value)
+              .join("");
             // Print digits to console
             console.log(`The First Pin #: ${pin_set_compare}`);
             // Compare the values
@@ -214,7 +219,8 @@ pin_confirm.forEach((input_2, key_2) => {
               // check if the dark mode is active
               // then write a ternery operator to set the color accordingly
               pin_set.forEach((input_1) => {
-                const isDarkMode = document.body.classList.contains('dark-mode');
+                const isDarkMode =
+                  document.body.classList.contains("dark-mode");
                 // Set color based on theme
                 input_1.style.color = isDarkMode ? "#00FF00" : "#16BC00"; // Darker Green for light mode
                 // Green for dark mode
@@ -222,7 +228,8 @@ pin_confirm.forEach((input_2, key_2) => {
                 input_1.style.transition = "color 0.5s ease-in-out";
               });
               pin_confirm.forEach((input_2) => {
-                const isDarkMode = document.body.classList.contains('dark-mode');
+                const isDarkMode =
+                  document.body.classList.contains("dark-mode");
                 // Set color based on theme
                 input_2.style.color = isDarkMode ? "#00FF00" : "#16BC00"; // Darker Green for light mode
                 // input_2.style.color = "#00FF00";
@@ -230,21 +237,22 @@ pin_confirm.forEach((input_2, key_2) => {
               });
 
               // Replace the clear pins button with new HTML
-              const reset_button = document.getElementById('reset_button');
+              const reset_button = document.getElementById("reset_button");
               reset_button.innerHTML = `Pins Match`;
               // Set the color based on theme
-              const isDarkMode = document.body.classList.contains('dark-mode');
+              const isDarkMode = document.body.classList.contains("dark-mode");
               reset_button.style.color = isDarkMode ? "#00FF00" : "#16BC00"; // Darker Green for light mode
               // reset_button.style.color = "#00FF00";
 
               // Time it to clear pins and reset the button
               setTimeout(() => {
                 reset_button.innerHTML = `Clear Pin fields`;
-                 // Check if dark mode is active
+                // Check if dark mode is active
                 // const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
                 // Or alternatively check for a dark mode class on your document if you implement your own toggle
-                const isDarkMode = document.body.classList.contains('dark-mode');
-                
+                const isDarkMode =
+                  document.body.classList.contains("dark-mode");
+
                 // Set color based on theme
                 reset_button.style.color = isDarkMode ? "#ffffff" : "#000000";
                 reset_button.style.transition = "color 0.5s ease-in-out";
@@ -253,10 +261,9 @@ pin_confirm.forEach((input_2, key_2) => {
                 // Focus on the first input
                 pin_set[0].focus();
               }, 3000);
-             
+
               //////////////////////////////////////////////
               //Changes so far but not if you switch mid entering (bug)
-
 
               // Enable the Submit Button
               submit_pins.disabled = false;
@@ -276,7 +283,7 @@ pin_confirm.forEach((input_2, key_2) => {
               });
 
               // Replace the clear pins button with new HTML
-              const reset_button = document.getElementById('reset_button');
+              const reset_button = document.getElementById("reset_button");
               reset_button.innerHTML = `Pins Dont Match`;
               reset_button.style.color = "#FF0000";
 
@@ -287,12 +294,12 @@ pin_confirm.forEach((input_2, key_2) => {
                 reset_button.style.transition = "color 0.5s ease-in-out";
                 reset_button.style.opacity = "50%";
 
-                 // NOW REMOVE THE PIN FIELDS
+                // NOW REMOVE THE PIN FIELDS
                 pin_set.forEach((input_1) => {
                   input_1.value = "";
                 });
                 pin_confirm.forEach((input_2) => {
-                    input_2.value = "";
+                  input_2.value = "";
                 });
 
                 // change the color of the pin inputs to white
@@ -311,18 +318,16 @@ pin_confirm.forEach((input_2, key_2) => {
                 pin_set[0].focus();
               }, 2000);
 
-             
-
               ///////////////////////////////////////////
               ///////////////////////////////////////////
               ////////////MATCH NOTIFICATION/////////////
               ///////////////////////////////////////////
               // Remove the Match Notification
-             
+
               // match_notify.classList.remove('entered');
 
               // Display the No Match Notification
-             
+
               // no_match_notify.classList.add('entered');
 
               // Disable the Submit Button
@@ -335,7 +340,6 @@ pin_confirm.forEach((input_2, key_2) => {
   });
 });
 
-
 // PIN BACKSPACE FUNCTIONALITY
 
 // Pin Set Row
@@ -347,20 +351,18 @@ pin_set.forEach((input, index) => {
       // If the input is empty AND we're not on the first input, move to previous input
       if (input.value === "" && index !== 0) {
         // Prevent default backspace behavior
-        e.preventDefault(); 
+        e.preventDefault();
         // Focus previous input
-        pin_set[index - 1].focus(); 
+        pin_set[index - 1].focus();
         // Clear the previous input's value
-        pin_set[index - 1].value = ""; 
+        pin_set[index - 1].value = "";
       }
-      
+
       // If the input has a value, just let the backspace clear it normally
       // No need to change focus in this case
     }
   });
-  
 });
-
 
 // // Pin Confirm Row
 pin_confirm.forEach((input, index) => {
@@ -371,21 +373,18 @@ pin_confirm.forEach((input, index) => {
       // If the input is empty AND we're not on the first input, move to previous input
       if (input.value === "" && index > 0) {
         // Prevent default backspace behavior
-        e.preventDefault(); 
+        e.preventDefault();
         // Focus previous input
-        pin_confirm[index - 1].focus(); 
+        pin_confirm[index - 1].focus();
         // Clear the previous input's value
-        pin_confirm[index - 1].value = ""; 
+        pin_confirm[index - 1].value = "";
       }
-      
+
       // If the input has a value, just let the backspace clear it normally
       // No need to change focus in this case
     }
   });
 });
-
-
-
 
 // CLEAR BUTTON FUNCTIONALITY
 ////////////////////////////////////////////////////
@@ -414,7 +413,7 @@ const reset = () => {
 };
 
 // Add event listener to the reset button
-reset_pins.addEventListener('click', (e) => {
+reset_pins.addEventListener("click", (e) => {
   // so submit doesn't refresh the page
   e.preventDefault();
   // Test print button function
@@ -423,40 +422,35 @@ reset_pins.addEventListener('click', (e) => {
   reset();
 });
 
-
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 // Event Listener for Submit Button
-submit_pins.addEventListener('click', (e) => {
-  // so submit doesn't refresh the page
+submit_pins.addEventListener("click", (e) => {
   e.preventDefault();
-  // Test print button function
+
   console.log("Submit Button Pressed");
-  // Encode and send the pin values
-  // This is where you encode the pin numbers
-  // Map through the confirm Pin
-  const pin_confirm_value = [...pin_confirm].map((each_pin_confirm) => each_pin_confirm.value).join("");
-  // Encode parameters
-  const encodedPinConfirm = encodeURIComponent(pin_confirm_value);
-  // Retrieve the URL Parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  // Get the Encoded First Name from the URL Parameters and decode it
-  const encodedFirstName = urlParams.get('first_name') ? decodeURIComponent(urlParams.get('first_name')) : 'No First Name';
-  // May need to get the name by value 
-  console.log(encodedFirstName);
-  // Get the Encoded Last Name from the URL Parameters and decode it
-  const encodedLastName = urlParams.get('last_name') ? decodeURIComponent(urlParams.get('last_name')) : 'No Last Name';
-  // Redirect to the URL parameters to the next page
-  window.location.href = `acct_type.html?first_name=${encodedFirstName}&last_name=${encodedLastName}&pin_confirm=${encodedPinConfirm}`;
+
+  const pinConfirmValue = [...pin_confirm]
+    .map((pinInput) => pinInput.value)
+    .join("");
+
+  const pendingRegistration = JSON.parse(
+    sessionStorage.getItem("pendingRegistration"),
+  );
+
+  if (!pendingRegistration) {
+    console.error("No pending registration was found.");
+    return;
+  }
+
+  pendingRegistration.pin = pinConfirmValue;
+
+  sessionStorage.setItem(
+    "pendingRegistration",
+    JSON.stringify(pendingRegistration),
+  );
+
+  // Continue without placing the name or PIN in the URL
+  window.location.href = "acct_type.html";
 });
-
-
-// // search for first name and last name in the URL
-// const urlParams = new URLSearchParams(window.location.search);  
-// // get the first name from the URL
-// const first_name = urlParams.get('first_name') ? decodeURIComponent (urlParams.get('first_name')) : 'No First Name';
-// // get the last name from the URL
-// const last_name = urlParams.get('last_name') ? decodeURIComponent (urlParams.get('last_name')) : 'No Last Name';
-// // get the pin number from the URL
-// const encodedPinConfirm = urlParams.get('pin_confirm') ? decodeURIComponent (urlParams.get('pin_confirm')) : 'No Pin Number';
