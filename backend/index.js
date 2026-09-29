@@ -215,6 +215,94 @@ app.post("/users", async (req, res) => {
   }
 });
 
+// Create a time entry
+app.post("/time-entries", async (req, res) => {
+  try {
+    const { userId, clockIn, clockOut } = req.body || {};
+
+    const normalizedUserId = Number(userId);
+    const clockInDate = new Date(clockIn);
+    const clockOutDate = new Date(clockOut);
+
+    if (
+      !Number.isInteger(normalizedUserId) ||
+      normalizedUserId <= 0 ||
+      typeof clockIn !== "string" ||
+      typeof clockOut !== "string"
+    ) {
+      return res.status(400).json({
+        error:
+          "A valid user ID, clock-in time, and clock-out time are required",
+      });
+    }
+
+    if (
+      Number.isNaN(clockInDate.getTime()) ||
+      Number.isNaN(clockOutDate.getTime())
+    ) {
+      return res.status(400).json({
+        error: "Clock-in and clock-out must be valid timestamps",
+      });
+    }
+
+    const durationMilliseconds = clockOutDate.getTime() - clockInDate.getTime();
+
+    if (durationMilliseconds <= 0) {
+      return res.status(400).json({
+        error: "Clock-out must be after clock-in",
+      });
+    }
+
+    const maximumDurationMilliseconds = 24 * 60 * 60 * 1000;
+
+    if (durationMilliseconds > maximumDurationMilliseconds) {
+      return res.status(400).json({
+        error: "A time entry cannot exceed 24 hours",
+      });
+    }
+
+    const result = await pool.query(
+      `INSERT INTO time_entries (
+         user_id,
+         clock_in,
+         clock_out
+       )
+       SELECT
+         id,
+         $2,
+         $3
+       FROM users
+       WHERE id = $1
+         AND role = 'employee'
+       RETURNING
+         id,
+         user_id,
+         clock_in,
+         clock_out,
+         EXTRACT(EPOCH FROM (clock_out - clock_in)) / 3600
+           AS total_hours,
+         created_at`,
+      [normalizedUserId, clockInDate.toISOString(), clockOutDate.toISOString()],
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        error: "Employee not found",
+      });
+    }
+
+    result.rows[0].total_hours = Number(result.rows[0].total_hours);
+
+    return res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Failed to create time entry",
+    });
+  }
+});
+
 // Port the app to listen on the specified port
 app.listen(port, () => {
   console.log(`Viking Arena Time Card API is running on ${port}`);
