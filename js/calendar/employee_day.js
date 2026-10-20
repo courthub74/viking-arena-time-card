@@ -1,184 +1,112 @@
-// Test print the page
-console.log("Employee Day.js loaded");
+(() => {
+  console.log("employee_day.js loaded");
 
-// Query the submit button
-const submit_button_employee_hours = document.getElementById('submit_employee_hours');
+  const submitButton = document.getElementById("submit_employee_hours");
 
-// Submit Button Event
-submit_button_employee_hours.addEventListener('click', (e) => {
+  function convertTo24Hour(hourValue, period) {
+    let hour = Number(hourValue);
 
-    // prevent default
-    e.preventDefault();
-
-    // Test Print
-    console.log("Submit Button pressed");
-
-    // Query the current Date
-    const current_date = document.getElementById('current_day');
-
-    // Set the value in a variable
-    let the_day = current_date.value 
-
-    // Test Print
-    console.log(the_day);
-
-    ///////////////////////////////////////////////////////////
-
-    // Query the TIME IN 
-
-    // Hour
-    const time_in_hour = document.getElementById('in_hour');
-
-    // Test Print
-    // console.log(time_in_hour.value);
-
-    // Minute 
-    const time_in_minute = document.getElementById('in_minute');
-
-    // Test Print
-    // console.log(time_in_minute.value);
-
-    // AM / PM
-    const time_in_period = document.getElementById('in_ampm');
-
-    // Test Print
-    // console.log(time_in_period.value);
-
-    // Concatenate the values
-    let time_in_whole = `${time_in_hour.value} ${time_in_minute.value} ${time_in_period.value}`
-
-    console.log(`The Time In (employee_day.js): ${time_in_whole}`);
-    ////////////////////////////////////////////////////////////////
-
-    // Query the TIME OUT 
-
-    // Hour
-    const time_out_hour = document.getElementById('out_hour');
-
-    // Test Print
-    // console.log(time_out_hour.value);
-
-    // Minute 
-    const time_out_minute = document.getElementById('out_minute');
-
-    // Test Print
-    // console.log(time_out_minute.value);
-
-    // AM / PM
-    const time_out_period = document.getElementById('out_ampm');
-
-    // Test Print
-    // console.log(time_out_period.value);
-
-    // Concatenate the values
-    let time_out_whole = `${time_out_hour.value} ${time_out_minute.value} ${time_out_period.value}`
-
-    // Test Print the concatenation
-    console.log(`The Time Out (employee_day.js): ${time_out_whole}`);
-    ////////////////////////////////////////////////////////////////
-
-    // Get current logged-in user from session storage
-    const currentUser = JSON.parse(sessionStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('session')) || null;
-
-    // Decode the current username and store it in a variable
-    // const currentUsername = currentUser ? currentUser.username : null;
-    let currentUsername = decodeURIComponent(currentUser.username);
-    // Test print
-    console.log("Current User:", currentUsername);
-    
-
-    // If No User Logged in
-    if (!currentUser) {
-        alert('No user is currently logged in. Please log in first.');
-        return;
+    if (period === "AM" && hour === 12) {
+      hour = 0;
+    } else if (period === "PM" && hour !== 12) {
+      hour += 12;
     }
 
-    // Get all users from localStorage (by creating a new variable)
-        // This is for the comparison to find the currentUser amongst all users 
-            // To push the hours
-    const allUsers = JSON.parse(localStorage.getItem('users')) || [];
+    return hour;
+  }
 
-    // Test print 
-    console.log(allUsers);
+  function buildLocalDateTime(dateValue, hourValue, minuteValue, period) {
+    const [year, month, day] = dateValue.split("-").map(Number);
+    const hour = convertTo24Hour(hourValue, period);
+    const minute = Number(minuteValue);
 
-    
+    return new Date(year, month - 1, day, hour, minute, 0, 0);
+  }
 
-    // Create an entry object with the time information
-    /////////////////////////////////////
-    /////////////////////////////////////
-    /////////////////////////////////////
-    /////////////////////////////////////
-    // const timeEntry = {
-    //     date: the_day,
-    //     timeIn: time_in_whole,
-    //     timeOut: time_out_whole
-    // };
-    const timeEntry = {
-        date: the_day,
-        inTime: time_in_whole,
-        outTime: time_out_whole,
-        user: currentUser.username,
-    };
-    /////////////////////////////////////
-    /////////////////////////////////////
-    /////////////////////////////////////
-    /////////////////////////////////////
-    /////////////////////////////////////
+  submitButton.addEventListener("click", async (event) => {
+    event.preventDefault();
 
-    ////////////////////////////////////////////////////////////////////////////////////////
+    const currentUserString =
+      sessionStorage.getItem("currentUser") ||
+      sessionStorage.getItem("session");
 
-    // Iterate through all users
-
-    // compare current user to all users
-
-    // if one of all users matches the current
-
-    // push the time in and time out to the current users JSON in the localStorage
-
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
-    // Testers
-
-    console.log("Current user object:", currentUser);
-    // Problem is here
-        // SOLVED I didn't parse through the session get item
-    console.log("Current user's username:", currentUser.username);
-    console.log("All users:", allUsers);
-    console.log("All usernames:", allUsers.map(user => user.username));
-
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
-
-    // // Find the logged-in user in the users array by username
-    const userIndex = allUsers.findIndex(user => user.username === currentUser.username);
-
-    // // Test print
-    console.log(userIndex);
-
-    // // If user is not there, alert us
-    if (userIndex === -1) {
-        alert('User not found in database');
-        return;
+    if (!currentUserString) {
+      alert("No user is currently logged in. Please log in first.");
+      window.location.href = "../../index.html";
+      return;
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////
+    const currentUser = JSON.parse(currentUserString);
 
-    // If hours array doesn't exist yet for this user, create it
-    if (!allUsers[userIndex].hours) {
-        allUsers[userIndex].hours = [];
+    if (!Number.isInteger(Number(currentUser.id))) {
+      alert("The logged-in employee does not have a valid user ID.");
+      return;
     }
 
-    // Add the new hours entry to the user's time array
-    allUsers[userIndex].hours.push(timeEntry);
+    if (currentUser.role !== "employee") {
+      alert("Only employee accounts can submit hours.");
+      return;
+    }
 
-    // Save it back to localStorage
-    localStorage.setItem('users', JSON.stringify(allUsers));
-    
-    // Test print 
-    console.log(`Time in for ${currentUser.username} is ${currentUser.time_in_hour} :${currentUser.time_in_minute}`);
+    const datePicker = document.getElementById("current_day");
+    const entryDate = datePicker.dataset.isoDate;
 
-    // Redirect to Time Confirmation page
-    window.location.href = '../../html/calendar/employee_day_confirm.html';
-});
+    if (!entryDate) {
+      alert("A valid work date could not be determined.");
+      return;
+    }
 
+    const clockIn = buildLocalDateTime(
+      entryDate,
+      document.getElementById("in_hour").value,
+      document.getElementById("in_minute").value,
+      document.getElementById("in_ampm").value,
+    );
 
+    const clockOut = buildLocalDateTime(
+      entryDate,
+      document.getElementById("out_hour").value,
+      document.getElementById("out_minute").value,
+      document.getElementById("out_ampm").value,
+    );
+
+    // A clock-out at or before clock-in represents an overnight shift.
+    if (clockOut <= clockIn) {
+      clockOut.setDate(clockOut.getDate() + 1);
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
+
+    try {
+      const response = await fetch("http://localhost:3000/time-entries", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: Number(currentUser.id),
+          clockIn: clockIn.toISOString(),
+          clockOut: clockOut.toISOString(),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit hours");
+      }
+
+      // Temporarily retain the saved database response for the confirmation page.
+      sessionStorage.setItem("lastTimeEntry", JSON.stringify(data));
+
+      window.location.href = "../../html/calendar/employee_day_confirm.html";
+    } catch (error) {
+      console.error("Time-entry submission failed:", error);
+      alert(error.message);
+
+      submitButton.disabled = false;
+      submitButton.textContent = "Submit Hours";
+    }
+  });
+})();
