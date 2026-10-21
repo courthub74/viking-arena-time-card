@@ -215,6 +215,61 @@ app.post("/users", async (req, res) => {
   }
 });
 
+// Get all time entries for one employee
+app.get("/users/:userId/time-entries", async (req, res) => {
+  try {
+    const normalizedUserId = Number(req.params.userId);
+
+    if (!Number.isInteger(normalizedUserId) || normalizedUserId <= 0) {
+      return res.status(400).json({
+        error: "A valid employee ID is required",
+      });
+    }
+
+    const employeeResult = await pool.query(
+      `SELECT id
+       FROM users
+       WHERE id = $1
+         AND role = 'employee'`,
+      [normalizedUserId],
+    );
+
+    if (employeeResult.rows.length === 0) {
+      return res.status(404).json({
+        error: "Employee not found",
+      });
+    }
+
+    const result = await pool.query(
+      `SELECT
+         id,
+         user_id,
+         clock_in,
+         clock_out,
+         EXTRACT(EPOCH FROM (clock_out - clock_in)) / 3600
+           AS total_hours,
+         created_at
+       FROM time_entries
+       WHERE user_id = $1
+       ORDER BY clock_in ASC`,
+      [normalizedUserId],
+    );
+
+    const timeEntries = result.rows.map((entry) => ({
+      ...entry,
+      total_hours: Number(entry.total_hours),
+    }));
+
+    return res.json(timeEntries);
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Failed to retrieve time entries",
+    });
+  }
+});
+
 // Create a time entry
 app.post("/time-entries", async (req, res) => {
   try {
