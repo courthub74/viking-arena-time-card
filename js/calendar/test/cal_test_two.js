@@ -214,6 +214,13 @@ function displayExistingEntryData(selectedDate, selectedMonth, selectedYear) {
     (entry) => entry.date === selectedDateString,
   );
 
+  // If hours entered change the cancel button font to close
+  const closeModalButton = document.getElementById("close_modal");
+
+  if (closeModalButton) {
+    closeModalButton.textContent = existingEntry ? "Close" : "Cancel";
+  }
+
   // Get the time picker input fields
   const timePickerIn = document.getElementById("time-picker-in");
   const timePickerOut = document.getElementById("time-picker-out");
