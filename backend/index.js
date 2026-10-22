@@ -358,6 +358,98 @@ app.post("/time-entries", async (req, res) => {
   }
 });
 
+// Update an existing employee time entry
+app.put("/time-entries/:entryId", async (req, res) => {
+  try {
+    const entryId = Number(req.params.entryId);
+    const { userId, clockIn, clockOut } = req.body || {};
+    const normalizedUserId = Number(userId);
+
+    if (
+      !Number.isInteger(entryId) ||
+      entryId <= 0 ||
+      !Number.isInteger(normalizedUserId) ||
+      normalizedUserId <= 0 ||
+      typeof clockIn !== "string" ||
+      typeof clockOut !== "string"
+    ) {
+      return res.status(400).json({
+        error:
+          "Valid entry and employee IDs, clock-in, and clock-out are required",
+      });
+    }
+
+    const clockInDate = new Date(clockIn);
+    const clockOutDate = new Date(clockOut);
+
+    if (
+      Number.isNaN(clockInDate.getTime()) ||
+      Number.isNaN(clockOutDate.getTime())
+    ) {
+      return res.status(400).json({
+        error: "Clock-in and clock-out must be valid timestamps",
+      });
+    }
+
+    const durationMilliseconds = clockOutDate.getTime() - clockInDate.getTime();
+
+    if (durationMilliseconds <= 0) {
+      return res.status(400).json({
+        error: "Clock-out must be after clock-in",
+      });
+    }
+
+    if (durationMilliseconds > 24 * 60 * 60 * 1000) {
+      return res.status(400).json({
+        error: "A time entry cannot exceed 24 hours",
+      });
+    }
+
+    const result = await pool.query(
+      `UPDATE time_entries AS entry
+       SET clock_in = $3,
+           clock_out = $4,
+           updated_at = now()
+       FROM users AS employee
+       WHERE entry.id = $1
+         AND entry.user_id = $2
+         AND employee.id = entry.user_id
+         AND employee.role = 'employee'
+       RETURNING
+         entry.id,
+         entry.user_id,
+         entry.clock_in,
+         entry.clock_out,
+         EXTRACT(EPOCH FROM (entry.clock_out - entry.clock_in)) / 3600
+           AS total_hours,
+         entry.created_at,
+         entry.updated_at`,
+      [
+        entryId,
+        normalizedUserId,
+        clockInDate.toISOString(),
+        clockOutDate.toISOString(),
+      ],
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        error: "Employee time entry not found",
+      });
+    }
+
+    result.rows[0].total_hours = Number(result.rows[0].total_hours);
+
+    return res.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Failed to update time entry",
+    });
+  }
+});
+
 // Port the app to listen on the specified port
 app.listen(port, () => {
   console.log(`Viking Arena Time Card API is running on ${port}`);
