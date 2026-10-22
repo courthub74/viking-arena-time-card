@@ -515,135 +515,229 @@ function renderCalendar(month, year) {
   }, 100);
 }
 
-// Function to set up submit functionality
 function setupSubmitFunctionality(modalDate, selectedDate, month, year) {
   const submitButton = document.getElementById("submit_employee_hours_modal");
+
   if (!submitButton) return;
 
-  // Remove existing listener
-  const newSubmitButton = submitButton.cloneNode(true); // could also use submitButton.cloneNode(false)
-  // instead I just moved the enableSubmitButton inside this function
-  submitButton.parentNode.replaceChild(newSubmitButton, submitButton);
-  // ABOVE CLONES THE BUTTON TO REMOVE ANY EXISTING LISTENERS
+  const newSubmitButton = submitButton.cloneNode(true);
+  submitButton.replaceWith(newSubmitButton);
+  newSubmitButton.disabled = true;
 
-  // Enable Submit Button on modal
-  function enableSubmitButton() {
-    // Query the timepickers
-    const inHourSelect = document.getElementById("in_hour");
-    const inMinuteSelect = document.getElementById("in_minute");
-    const outHourSelect = document.getElementById("out_hour");
-    const outMinuteSelect = document.getElementById("out_minute");
-    const in_ampm = document.getElementById("in_ampm");
-    const out_ampm = document.getElementById("out_ampm");
+  const fields = {
+    inHour: document.getElementById("in_hour"),
+    inMinute: document.getElementById("in_minute"),
+    inPeriod: document.getElementById("in_ampm"),
+    outHour: document.getElementById("out_hour"),
+    outMinute: document.getElementById("out_minute"),
+    outPeriod: document.getElementById("out_ampm"),
+  };
 
+  const workDate = new Date(year, month, Number(selectedDate));
+  const dateLabel = workDate.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  });
+
+  const existingEntry = getUserHours().find(
+    (entry) => entry.date === dateLabel,
+  );
+
+  function populateTime(date, hourField, minuteField, periodField) {
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+
+    // Preserve saved minutes even if the picker normally uses 5-minute steps.
     if (
-      !newSubmitButton ||
-      !inHourSelect ||
-      !inMinuteSelect ||
-      !outHourSelect ||
-      !outMinuteSelect ||
-      !in_ampm ||
-      !out_ampm
+      ![...minuteField.options].some(
+        (option) => Number(option.value) === minute,
+      )
     ) {
-      console.error("One or more elements are missing");
-      return;
+      minuteField.add(
+        new Option(String(minute).padStart(2, "0"), String(minute)),
+      );
     }
 
-    // add event listeners to the time pickers
-    inHourSelect.addEventListener("change", () => {
-      newSubmitButton.disabled = false;
-      console.log("In Hour changed");
-    });
-    inMinuteSelect.addEventListener("change", () => {
-      newSubmitButton.disabled = false;
-    });
-    outHourSelect.addEventListener("change", () => {
-      newSubmitButton.disabled = false;
-    });
-    outMinuteSelect.addEventListener("change", () => {
-      newSubmitButton.disabled = false;
-    });
-    in_ampm.addEventListener("change", () => {
-      newSubmitButton.disabled = false;
-    });
-    out_ampm.addEventListener("change", () => {
-      newSubmitButton.disabled = false;
-    });
+    hourField.value = String(hour % 12 || 12);
+    minuteField.value = String(minute);
+    periodField.value = hour >= 12 ? "PM" : "AM";
   }
 
-  // Call the function to enable the submit button
-  try {
-    enableSubmitButton();
-  } catch (error) {
-    console.error("Error enabling submit button:", error);
+  if (existingEntry) {
+    populateTime(
+      new Date(existingEntry.clockIn),
+      fields.inHour,
+      fields.inMinute,
+      fields.inPeriod,
+    );
+
+    populateTime(
+      new Date(existingEntry.clockOut),
+      fields.outHour,
+      fields.outMinute,
+      fields.outPeriod,
+    );
   }
 
-  // Add new listener
-  document
-    .getElementById("submit_employee_hours_modal")
-    .addEventListener("click", function () {
-      const inHour = document.getElementById("in_hour").value;
-      const inMinute = document.getElementById("in_minute").value;
-      const outHour = document.getElementById("out_hour").value;
-      const outMinute = document.getElementById("out_minute").value;
-      const inAmpm = document.getElementById("in_ampm").value;
-      const outAmpm = document.getElementById("out_ampm").value;
+  // Replace old pencil handlers so each one uses the currently selected entry.
+  [
+    [
+      "time-picker-in",
+      "in_time_span",
+      fields.inHour,
+      fields.inMinute,
+      fields.inPeriod,
+    ],
+    [
+      "time-picker-out",
+      "out_time_span",
+      fields.outHour,
+      fields.outMinute,
+      fields.outPeriod,
+    ],
+  ].forEach(([containerId, spanId, hour, minute, period]) => {
+    const oldButton = document
+      .getElementById(containerId)
+      .querySelector(".edit-time-button");
 
-      const currentUser =
-        JSON.parse(sessionStorage.getItem("currentUser")) ||
-        JSON.parse(sessionStorage.getItem("session"));
-      if (!currentUser) {
-        console.error("No user logged in");
-        return;
+    if (!oldButton) return;
+
+    const editButton = oldButton.cloneNode(true);
+    editButton.type = "button";
+    oldButton.replaceWith(editButton);
+
+    editButton.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      hour.style.display = "block";
+      minute.style.display = "block";
+      period.style.display = "block";
+
+      document.getElementById(spanId).textContent = "";
+    });
+  });
+
+  let saving = false;
+
+  Object.values(fields).forEach((field) => {
+    field.onchange = () => {
+      if (!saving) newSubmitButton.disabled = false;
+    };
+  });
+
+  function buildTimestamp(hourField, minuteField, periodField) {
+    const hour12 = Number(hourField.value);
+    const minute = Number(minuteField.value);
+    const period = periodField.value;
+
+    if (
+      !hourField.value ||
+      !minuteField.value ||
+      !Number.isInteger(hour12) ||
+      hour12 < 1 ||
+      hour12 > 12 ||
+      !Number.isInteger(minute) ||
+      minute < 0 ||
+      minute > 59 ||
+      !["AM", "PM"].includes(period)
+    ) {
+      throw new Error("Please select valid clock-in and clock-out times");
+    }
+
+    const hour24 = (hour12 % 12) + (period === "PM" ? 12 : 0);
+
+    return new Date(year, month, Number(selectedDate), hour24, minute, 0, 0);
+  }
+
+  newSubmitButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    if (saving) return;
+
+    let saved = false;
+
+    try {
+      const userString = sessionStorage.getItem("currentUser");
+      const user = userString ? JSON.parse(userString) : null;
+      const userId = Number(user?.id);
+
+      if (
+        !user ||
+        user.role !== "employee" ||
+        !Number.isInteger(userId) ||
+        userId <= 0
+      ) {
+        throw new Error("Please log in with a valid employee account");
       }
 
-      const userName = decodeURIComponent(currentUser.username);
-      const allUsers = JSON.parse(localStorage.getItem("users")) || [];
-      const userIndex = allUsers.findIndex(
-        (user) => user.username === currentUser.username,
+      const clockIn = buildTimestamp(
+        fields.inHour,
+        fields.inMinute,
+        fields.inPeriod,
       );
 
-      if (userIndex === -1) {
-        console.log("User not found in local storage");
-        return;
-      }
-
-      const timeEntry = {
-        date: modalDate.value,
-        inTime: `${inHour}:${inMinute} ${inAmpm}`,
-        outTime: `${outHour}:${outMinute} ${outAmpm}`,
-        user: userName,
-      };
-
-      // Check if entry already exists for this date
-      const userHours = allUsers[userIndex].hours || [];
-      const existingEntryIndex = userHours.findIndex(
-        (entry) => entry.date === modalDate.value,
+      const clockOut = buildTimestamp(
+        fields.outHour,
+        fields.outMinute,
+        fields.outPeriod,
       );
 
-      if (existingEntryIndex !== -1) {
-        // Update existing entry
-        userHours[existingEntryIndex] = timeEntry;
-        console.log("Time entry updated:", timeEntry);
-      } else {
-        // Add new entry
-        userHours.push(timeEntry);
-        console.log("Time entry submitted:", timeEntry);
+      if (clockOut.getTime() === clockIn.getTime()) {
+        throw new Error("Clock-in and clock-out cannot be identical");
       }
 
-      // Update local storage
-      allUsers[userIndex].hours = userHours;
-      localStorage.setItem("users", JSON.stringify(allUsers));
+      // Earlier clock-out times belong to the following calendar day.
+      if (clockOut < clockIn) {
+        clockOut.setDate(clockOut.getDate() + 1);
+      }
 
-      // Close modal and refresh display
+      saving = true;
+      newSubmitButton.disabled = true;
+      newSubmitButton.textContent = "Saving...";
+
+      const url = existingEntry
+        ? `http://localhost:3000/time-entries/${existingEntry.id}`
+        : "http://localhost:3000/time-entries";
+
+      const response = await fetch(url, {
+        method: existingEntry ? "PUT" : "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId,
+          clockIn: clockIn.toISOString(),
+          clockOut: clockOut.toISOString(),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to save hours");
+      }
+
+      saved = true;
       document.getElementById("cal_modal").style.display = "none";
 
-      // disable the submit button
-      newSubmitButton.disabled = true;
-
-      // Re-render the calendar to reflect changes
+      await loadUserHours();
       renderCalendar(currentMonth, currentYear);
-    });
+
+      console.log("Time entry saved to PostgreSQL:", data);
+    } catch (error) {
+      console.error("Monthly time-entry save:", error);
+
+      alert(
+        saved
+          ? "Hours were saved, but the calendar could not refresh. Reload the page."
+          : error.message,
+      );
+    } finally {
+      saving = false;
+      newSubmitButton.disabled = saved;
+      newSubmitButton.textContent = "Submit Hours";
+    }
+  });
 }
 
 // Function to change the month
