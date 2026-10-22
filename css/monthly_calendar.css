@@ -1164,7 +1164,20 @@ input:focus {
 }
 
 .time-picker span {
-  opacity: 50%;
+  opacity: 1;
+}
+
+#cal_modal .edit-time-button {
+  background: transparent !important;
+  border: none;
+  box-shadow: none;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+#cal_modal .edit-time-button img {
+  opacity: 1 !important;
+  filter: brightness(0) invert(1) !important;
 }
 
 .submit {
