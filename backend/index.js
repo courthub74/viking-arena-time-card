@@ -561,6 +561,30 @@ app.get("/session", async (req, res) => {
   }
 });
 
+// Destroy the server-side session and clear its cookie.
+app.post("/logout", (req, res) => {
+  req.session.destroy((error) => {
+    if (error) {
+      console.error(error);
+
+      return res.status(500).json({
+        error: "Failed to log out",
+      });
+    }
+
+    res.clearCookie("viking.sid", {
+      path: "/",
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+    });
+
+    return res.json({
+      message: "Logged out successfully",
+    });
+  });
+});
+
 // Port the app to listen on the specified port
 app.listen(port, () => {
   console.log(`Viking Arena Time Card API is running on ${port}`);
