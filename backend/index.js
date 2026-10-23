@@ -139,16 +139,50 @@ app.post("/login", async (req, res) => {
       });
     }
 
-    return res.json({
-      message: "Login successful",
-      user: {
-        id: user.id,
-        firstName: user.first_name,
-        lastName: user.last_name,
-        role: user.role,
-        jobTitle: user.job_title,
-      },
+    // Old Successful Response Block
+    // return res.json({
+    //   message: "Login successful",
+    //   user: {
+    //     id: user.id,
+    //     firstName: user.first_name,
+    //     lastName: user.last_name,
+    //     role: user.role,
+    //     jobTitle: user.job_title,
+    //   },
+    // });
+
+    // Now we Replace any previous session after successful PIN verification.
+    req.session.regenerate((error) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).json({
+          error: "Failed to create login session",
+        });
+      }
+
+      req.session.userId = user.id;
+
+      req.session.save((error) => {
+        if (error) {
+          console.error(error);
+          return res.status(500).json({
+            error: "Failed to save login session",
+          });
+        }
+
+        return res.json({
+          message: "Login successful",
+          user: {
+            id: user.id,
+            firstName: user.first_name,
+            lastName: user.last_name,
+            role: user.role,
+            jobTitle: user.job_title,
+          },
+        });
+      });
     });
+    // Catch Block
   } catch (error) {
     console.error(error);
 
@@ -480,6 +514,49 @@ app.put("/time-entries/:entryId", async (req, res) => {
 
     return res.status(500).json({
       error: "Failed to update time entry",
+    });
+  }
+});
+
+// Does browser send cookie to backend
+// Check the current server-side login session
+app.get("/session", async (req, res) => {
+  try {
+    if (!req.session.userId) {
+      return res.status(401).json({
+        error: "Not logged in",
+      });
+    }
+
+    const result = await pool.query(
+      `SELECT id, first_name, last_name, role, job_title
+       FROM users
+       WHERE id = $1`,
+      [req.session.userId],
+    );
+
+    const user = result.rows[0];
+
+    if (!user) {
+      return res.status(401).json({
+        error: "Not logged in",
+      });
+    }
+
+    return res.json({
+      user: {
+        id: user.id,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        role: user.role,
+        jobTitle: user.job_title,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Failed to check login session",
     });
   }
 });
