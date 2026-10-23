@@ -14,14 +14,48 @@ const bcrypt = require("bcrypt");
 // cors for cross-origin requests
 const cors = require("cors");
 
+// session and pg session imports
+const session = require("express-session");
+const PgSession = require("connect-pg-simple")(session);
+
 // Create an Express app
 const app = express();
 
 // port for the server to listen on
 const port = 3000;
 
-app.use(cors());
+if (!process.env.SESSION_SECRET) {
+  throw new Error("SESSION_SECRET is required in backend/.env");
+}
+
+app.use(
+  cors({
+    origin: "http://localhost:5500",
+    credentials: true,
+  }),
+);
+
 app.use(express.json());
+
+app.use(
+  session({
+    store: new PgSession({
+      pool,
+      tableName: "user_sessions",
+      createTableIfMissing: true,
+    }),
+    name: "viking.sid",
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false, // Local HTTP development
+      sameSite: "lax",
+      maxAge: 8 * 60 * 60 * 1000,
+    },
+  }),
+);
 
 // Define routes
 app.get("/", (req, res) => {
