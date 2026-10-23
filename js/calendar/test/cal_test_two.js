@@ -71,6 +71,9 @@ async function loadUserHours() {
 
   const response = await fetch(
     `http://localhost:3000/users/${userId}/time-entries`,
+    {
+      credentials: "include",
+    },
   );
 
   const data = await response.json();
@@ -701,6 +704,7 @@ function setupSubmitFunctionality(modalDate, selectedDate, month, year) {
 
       const response = await fetch(url, {
         method: existingEntry ? "PUT" : "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

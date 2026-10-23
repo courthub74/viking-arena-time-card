@@ -81,6 +81,7 @@
     try {
       const response = await fetch("http://localhost:3000/time-entries", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

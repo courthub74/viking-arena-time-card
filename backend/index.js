@@ -1,6 +1,6 @@
 // API
 
-// Import required modules
+// IMPORTS - required modules
 
 // express
 const express = require("express");
@@ -28,6 +28,10 @@ if (!process.env.SESSION_SECRET) {
   throw new Error("SESSION_SECRET is required in backend/.env");
 }
 
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+// MIDDLEWARE
 app.use(
   cors({
     origin: "http://localhost:5500",
@@ -57,7 +61,54 @@ app.use(
   }),
 );
 
-// Define routes
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// Require a valid employee login for employee-only operations.
+async function requireEmployee(req, res, next) {
+  try {
+    if (!req.session.userId) {
+      return res.status(401).json({
+        error: "Not logged in",
+      });
+    }
+
+    const result = await pool.query(
+      `SELECT id, role
+       FROM users
+       WHERE id = $1`,
+      [req.session.userId],
+    );
+
+    const user = result.rows[0];
+
+    if (!user) {
+      return res.status(401).json({
+        error: "Not logged in",
+      });
+    }
+
+    if (user.role !== "employee") {
+      return res.status(403).json({
+        error: "Employee access required",
+      });
+    }
+
+    req.authenticatedUser = user;
+    next();
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Failed to verify login session",
+    });
+  }
+}
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+// ROUTES
 app.get("/", (req, res) => {
   res.send("Viking Arena Time Card API is running.");
 });
@@ -284,7 +335,7 @@ app.post("/users", async (req, res) => {
 });
 
 // Get all time entries for one employee
-app.get("/users/:userId/time-entries", async (req, res) => {
+app.get("/users/:userId/time-entries", requireEmployee, async (req, res) => {
   try {
     const normalizedUserId = Number(req.params.userId);
 
@@ -293,6 +344,14 @@ app.get("/users/:userId/time-entries", async (req, res) => {
         error: "A valid employee ID is required",
       });
     }
+
+    if (normalizedUserId !== req.authenticatedUser.id) {
+      return res.status(403).json({
+        error: "You can only view your own time entries",
+      });
+    }
+
+    // Existing employeeResult query continues here.
 
     const employeeResult = await pool.query(
       `SELECT id
@@ -339,11 +398,12 @@ app.get("/users/:userId/time-entries", async (req, res) => {
 });
 
 // Create a time entry
-app.post("/time-entries", async (req, res) => {
+app.post("/time-entries", requireEmployee, async (req, res) => {
   try {
-    const { userId, clockIn, clockOut } = req.body || {};
+    const { clockIn, clockOut } = req.body || {};
 
-    const normalizedUserId = Number(userId);
+    const normalizedUserId = req.authenticatedUser.id;
+
     const clockInDate = new Date(clockIn);
     const clockOutDate = new Date(clockOut);
 
@@ -427,11 +487,13 @@ app.post("/time-entries", async (req, res) => {
 });
 
 // Update an existing employee time entry
-app.put("/time-entries/:entryId", async (req, res) => {
+app.put("/time-entries/:entryId", requireEmployee, async (req, res) => {
   try {
     const entryId = Number(req.params.entryId);
-    const { userId, clockIn, clockOut } = req.body || {};
-    const normalizedUserId = Number(userId);
+    const { clockIn, clockOut } = req.body || {};
+
+    // For DB user ID
+    const normalizedUserId = req.authenticatedUser.id;
 
     if (
       !Number.isInteger(entryId) ||
