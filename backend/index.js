@@ -708,6 +708,66 @@ app.get("/manager/employees", requireManager, async (req, res) => {
   }
 });
 
+// Get one employee's time entries for manager review.
+app.get(
+  "/manager/employees/:userId/time-entries",
+  requireManager,
+  async (req, res) => {
+    try {
+      const userId = Number(req.params.userId);
+
+      if (!Number.isInteger(userId) || userId <= 0) {
+        return res.status(400).json({
+          error: "A valid employee ID is required",
+        });
+      }
+
+      const employeeResult = await pool.query(
+        `SELECT id, first_name, last_name, job_title
+         FROM users
+         WHERE id = $1 AND role = 'employee'`,
+        [userId],
+      );
+
+      if (employeeResult.rows.length === 0) {
+        return res.status(404).json({
+          error: "Employee not found",
+        });
+      }
+
+      const result = await pool.query(
+        `SELECT
+           id,
+           user_id,
+           clock_in,
+           clock_out,
+           EXTRACT(EPOCH FROM (clock_out - clock_in)) / 3600
+             AS total_hours,
+           created_at,
+           updated_at
+         FROM time_entries
+         WHERE user_id = $1
+         ORDER BY clock_in ASC, id ASC`,
+        [userId],
+      );
+
+      return res.json({
+        employee: employeeResult.rows[0],
+        timeEntries: result.rows.map((entry) => ({
+          ...entry,
+          total_hours: Number(entry.total_hours),
+        })),
+      });
+    } catch (error) {
+      console.error(error);
+
+      return res.status(500).json({
+        error: "Failed to retrieve employee time entries",
+      });
+    }
+  },
+);
+
 // Port the app to listen on the specified port
 app.listen(port, () => {
   console.log(`Viking Arena Time Card API is running on ${port}`);
