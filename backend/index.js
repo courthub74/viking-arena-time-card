@@ -105,6 +105,47 @@ async function requireEmployee(req, res, next) {
   }
 }
 
+// for manager operations
+async function requireManager(req, res, next) {
+  try {
+    if (!req.session.userId) {
+      return res.status(401).json({
+        error: "Not logged in",
+      });
+    }
+
+    const result = await pool.query(
+      `SELECT id, role
+       FROM users
+       WHERE id = $1`,
+      [req.session.userId],
+    );
+
+    const user = result.rows[0];
+
+    if (!user) {
+      return res.status(401).json({
+        error: "Not logged in",
+      });
+    }
+
+    if (user.role !== "manager") {
+      return res.status(403).json({
+        error: "Manager access required",
+      });
+    }
+
+    req.authenticatedUser = user;
+    next();
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Failed to verify login session",
+    });
+  }
+}
+
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
@@ -645,6 +686,26 @@ app.post("/logout", (req, res) => {
       message: "Logged out successfully",
     });
   });
+});
+
+// List employees for the manager's hours review.
+app.get("/manager/employees", requireManager, async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT id, first_name, last_name, job_title
+       FROM users
+       WHERE role = 'employee'
+       ORDER BY last_name, first_name, id`,
+    );
+
+    return res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Failed to retrieve employees",
+    });
+  }
 });
 
 // Port the app to listen on the specified port
