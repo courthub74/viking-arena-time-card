@@ -1,221 +1,169 @@
-// Test print
-console.log("Employee hours list JS loaded");
+(() => {
+  const API = "http://localhost:3000";
 
-// Get employee names from the URL
-const urlParams = new URLSearchParams(window.location.search);
-const employeeName = urlParams.get("username");
-// const cleanEmployeeName = employeeName ? employeeName.trim() : '';
-const cleanEmployeeName = decodeURIComponent(employeeName).trim();
-console.log("cleanEmployeeName:", cleanEmployeeName);
+  async function getJson(path) {
+    const response = await fetch(`${API}${path}`, {
+      credentials: "include",
+    });
 
-// store it in variable
-const employeeNameFromUrl = employeeName;
-console.log("employeeFromURL", employeeNameFromUrl);
+    if (response.status === 401) {
+      window.location.replace("../../index.html");
+      return null;
+    }
 
-// Log the employee name for debugging
-console.log(`Employee name from URL: ${employeeName}`);
-// Check if employeeName is not null or undefined
-if (employeeName) {
-  // Log the employee name for debugging
-  console.log(`Employee name from URL: ${employeeName}`);
-}
+    const data = await response.json();
 
-// If employeeName is null or undefined, you can handle it accordingly
-else {
-  console.error("Employee name not found in URL parameters.");
-}
+    if (!response.ok) {
+      throw new Error(data.error || "Unable to load employee hours.");
+    }
 
-// Query the employee name element from the DOM
-const employeeNameHours = document.getElementById("emp_name_box");
-// Check if the employeeNameHours element exists
-if (employeeNameHours) {
-  // Set the text content of the employee name element
-  employeeNameHours.textContent = employeeName;
-}
+    return data;
+  }
 
-///////////////////////////////////////////////////////////
-// Function to fetch employee hours data
-// First get selected user's employee hours from session storage
+  function createRow(entry) {
+    const clockIn = new Date(entry.clock_in);
+    const clockOut = new Date(entry.clock_out);
 
-// Initialize userIndex
-let userIndex = -1;
+    const day = clockIn.toLocaleDateString("en-US", {
+      weekday: "short",
+    });
+    const month = clockIn.toLocaleDateString("en-US", {
+      month: "short",
+    });
+    const date = clockIn.toLocaleDateString("en-US", {
+      day: "2-digit",
+    });
 
-// Get all users from localStorage
-const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const timeOptions = {
+      hour: "2-digit",
+      minute: "2-digit",
+    };
 
-// Debug: Log all users and cleanEmployeeName
-console.log("allUsers:", allUsers);
-console.log("cleanEmployeeName:", cleanEmployeeName);
+    const inTime = clockIn.toLocaleTimeString("en-US", timeOptions);
+    const outTime = clockOut.toLocaleTimeString("en-US", timeOptions);
 
-// copy to clipboard function HERE
-function copyToClipboard(text, button) {
-  navigator.clipboard
-    .writeText(text)
-    .then(() => {
-      console.log("Copied to clipboard:", text);
+    const li = document.createElement("li");
+    li.style.listStyleType = "none";
 
-      button.textContent = "✓Copied";
-      button.classList.add("copied");
+    const row = document.createElement("div");
+    row.className = "emp_hours_list";
+
+    function addElement(tag, className, text) {
+      const element = document.createElement(tag);
+      element.className = className;
+      element.textContent = text;
+      row.appendChild(element);
+      return element;
+    }
+
+    const dayElement = addElement("div", "emp_hours_list_item", day);
+    dayElement.style.fontWeight = "bold";
+
+    addElement("span", "pipe", "|");
+    addElement("div", "emp_hours_list_item", month);
+    addElement("span", "comma", ",");
+    addElement("div", "emp_hours_list_item", date);
+    addElement("span", "pipe", "|");
+    addElement("div", "emp_hours_list_item", inTime);
+    addElement("span", "line", "-");
+    addElement("div", "emp_hours_list_item", outTime);
+
+    const copyButton = addElement("button", "copy-button", "Copy");
+    copyButton.type = "button";
+
+    copyButton.addEventListener("click", async () => {
+      const startDate = clockIn.toLocaleDateString("en-US");
+      const endDate = clockOut.toLocaleDateString("en-US");
+
+      // Include the end date when the shift runs overnight.
+      const endText = startDate === endDate ? outTime : `${endDate} ${outTime}`;
+
+      try {
+        await navigator.clipboard.writeText(
+          `${startDate} | ${inTime} | ${endText}`,
+        );
+
+        copyButton.textContent = "✓Copied";
+        copyButton.classList.add("copied");
+      } catch (error) {
+        console.error("Copy failed:", error);
+        copyButton.textContent = "Try again";
+      }
 
       setTimeout(() => {
-        button.textContent = "Copy";
-        button.classList.remove("copied");
+        copyButton.textContent = "Copy";
+        copyButton.classList.remove("copied");
       }, 2500);
-    })
-    .catch((error) => {
-      console.error("Failed to copy:", error);
     });
-}
 
-// Find the user
-allUsers.forEach((user, index) => {
-  // Decode the username to handle any URL encoding
-  const decodedUsername = decodeURIComponent(user.username).trim();
-  if (decodedUsername === employeeNameFromUrl) {
-    console.log(`Found user at index ${index}:`, user);
-    console.log(employeeNameFromUrl);
-    userIndex = index;
-    // print the user hours
-    // console.log('User hours:', user.hours);
-    // NOW we can fetch the hours for this user
-    const userHours = user.hours || [];
-    console.log("User hours:", userHours);
-    // for each user hour, display to the emp_hours
-    const empHoursList = document.getElementById("emp_hours");
-    if (empHoursList) {
-      empHoursList.innerHTML = ""; // Clear existing content
-      userHours.forEach((hour) => {
-        const li = document.createElement("li");
-        li.style.listStyleType = "none"; // Remove bullet points from list items
-        // Style the list item (styling can be done via CSS)
-        // li.className = 'emp_hours_list_item';
+    li.appendChild(row);
+    return li;
+  }
 
-        // TOTAL FOR NOTE
-        /////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////
-        // set the total hours
-        // hour.totalHours = hour.outTime - hour.inTime;
-        // Format the date and times for display
-        // const formattedDate = new Date(hour.date).toLocaleDateString('en-US', {
-        //     weekday: 'short',
-        //     year: 'numeric',
-        //     month: 'short',
-        //     day: '2-digit'
-        // });
-        // hour.date = formattedDate; // Update the date format
-        ///////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////
+  async function initializeEmployeeHours() {
+    const hoursContainer = document.getElementById("emp_hours");
+    const employeeName = document.getElementById("emp_name_box");
 
-        // THE WHOLE DATE TO BE PARSED TO LOCAL DATE STRING
-        const originalDate = new Date(hour.date);
+    if (!hoursContainer || !employeeName) return;
 
-        // DAY
-        const formattedDay = originalDate.toLocaleDateString("en-US", {
-          weekday: "short",
-        });
-        console.log(`The Formatted Day: ${formattedDay}`);
+    employeeName.textContent = "Employee";
+    hoursContainer.textContent = "Loading hours…";
 
-        // MONTH
-        const formattedMonth = originalDate.toLocaleDateString("en-US", {
-          month: "short",
-        });
-        console.log(`The Formatted Month: ${formattedMonth}`);
+    try {
+      const session = await getJson("/session");
+      if (!session) return;
 
-        // DATE
-        const formattedDate = originalDate.toLocaleDateString("en-US", {
-          day: "2-digit",
-        });
-        console.log(`The Formatted Date: ${formattedDate}`);
+      const manager = session.user;
 
-        // YEAR
-        const formattedYear = originalDate.toLocaleDateString("en-US", {
-          year: "numeric",
-        });
-        console.log(`The Formatted Year: ${formattedYear}`);
+      if (manager.role !== "manager") {
+        window.location.replace("../../html/dashboards/employee.html");
+        return;
+      }
 
-        // Store Formats to print to list:
-        hour.dayFormat = formattedDay;
-        hour.monthFormat = formattedMonth;
-        hour.dateFormat = formattedDate;
-        hour.yearFormat = formattedYear;
+      const managerName = `${manager.firstName} ${manager.lastName}`.trim();
 
-        // Or keep the original date intact:
-        // hour.date remains unchanged
+      for (const id of ["manager_name", "profile_scheduler_name"]) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = managerName;
+      }
 
-        // Create the hour entry list
-        // Give the class of 'last-line'
-        // Remove 'last-line' on all of the others
+      const account = document.getElementById("profile_scheduler_account");
+      if (account) account.textContent = "Manager";
 
-        li.innerHTML = `
-                    <div class="emp_hours_list">
-                        <div class="emp_hours_list_item" style="font-weight:bold;">${hour.dayFormat}</div>
-                        <span class="pipe">|</span>
-                        <div class="emp_hours_list_item">${hour.monthFormat}</div>
-                        <span class="comma">,</span>
-                        <div class="emp_hours_list_item">${hour.dateFormat}</div>
-                        <span class="pipe">|</span>
-                        <div class="emp_hours_list_item">${hour.inTime}</div>
-                        <span class="line">-</span>
-                        <div class="emp_hours_list_item">${hour.outTime}</div>
-                        
-                        <button type="button" class="copy-button" onclick="copyToClipboard('${hour.date} | ${hour.inTime} | ${hour.outTime}', this)">Copy</button>
-                    </div>
-                `;
-        empHoursList.appendChild(li);
+      const params = new URLSearchParams(window.location.search);
+      const userId = Number(params.get("userId"));
+
+      if (!Number.isSafeInteger(userId) || userId <= 0) {
+        throw new Error("Select an employee from the employee hours list.");
+      }
+
+      const data = await getJson(`/manager/employees/${userId}/time-entries`);
+      if (!data) return;
+
+      employeeName.textContent =
+        `${data.employee.first_name} ${data.employee.last_name}`.trim();
+
+      hoursContainer.replaceChildren();
+
+      if (data.timeEntries.length === 0) {
+        hoursContainer.textContent = "No hours recorded for this employee.";
+        return;
+      }
+
+      data.timeEntries.forEach((entry) => {
+        hoursContainer.appendChild(createRow(entry));
       });
-      //   // copy to clipboard function HERE
-      //   function copyToClipboard(text) {
-      //     navigator.clipboard
-      //       .writeText(text)
-      //       .then(() => {
-      //         console.log("Copied to clipboard:", text);
-      //       })
-      //       .catch((error) => {
-      //         console.error("Failed to copy:", error);
-      //       });
-      //   }
-    } else {
-      console.error("emp_hours element not found in the DOM.");
+    } catch (error) {
+      console.error("Failed to load employee hours:", error);
+      hoursContainer.textContent = error.message;
     }
   }
-});
 
-// Debug: Log final userIndex
-console.log("Final userIndex:", userIndex);
-
-/////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-// JS for the side bar
-// Get Current User Name
-const nowUser =
-  sessionStorage.getItem("currentUser") || sessionStorage.getItem("session");
-// Parse the current user from session storage
-const nowUserParsed = nowUser ? JSON.parse(nowUser) : null;
-// Test print
-console.log("nowUserParsed:", nowUserParsed);
-// Decode the username to handle any URL encoding
-if (nowUserParsed) {
-  nowUserParsed.username = decodeURIComponent(nowUserParsed.username).trim();
-}
-// Render the userName object
-const currentUserName = nowUserParsed.username;
-// Test Print
-console.log(`Current User is: ${currentUserName}`);
-
-// // Check if the empName element exists
-if (currentUserName) {
-  // Query the sidebar profile elements
-  const profileName = document.getElementById("profile_scheduler_name");
-  // Set the text content of the employee name element
-  profileName.textContent = currentUserName;
-  // Place the Account Type in the manager name element
-  const acctType = document.getElementById("profile_scheduler_account");
-  // Set the text content of the account type element
-  acctType.textContent = nowUserParsed.accountType || "Manager"; // Default to 'Manager' if not set
-  // Place the user name in the manager name element (Page Header)
-  const managerName = document.getElementById("manager_name");
-  // Set the text content of the manager name element
-  managerName.textContent = currentUserName;
-} else {
-  console.log(`${currentUserName} NOT found`);
-}
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeEmployeeHours, {
+      once: true,
+    });
+  } else {
+    initializeEmployeeHours();
+  }
+})();
