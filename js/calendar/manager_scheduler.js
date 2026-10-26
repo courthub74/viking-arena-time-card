@@ -1,177 +1,96 @@
-console.log("manager_scheduler.js loaded");
+(() => {
+  async function initializeManagerEmployees() {
+    const container = document.getElementById("employee_hours_buttons");
+    if (!container) return;
 
-// Retrieve the current user from session storage
-var currentUser = sessionStorage.getItem('currentUser') || sessionStorage.getItem('session');
+    container.textContent = "Loading employees…";
 
-// Parse the current user from JSON string to object
-var currentUser = JSON.parse(currentUser);
+    try {
+      const sessionResponse = await fetch("http://localhost:3000/session", {
+        credentials: "include",
+      });
+      const sessionData = await sessionResponse.json();
 
-// Test Print
-console.log(`(manager_schedulerJS)The Current User is: ${currentUser.username}`);
+      if (sessionResponse.status === 401) {
+        window.location.replace("../../index.html");
+        return;
+      }
 
-// Display the current users's name in the header
-const managerNameSidebar = document.getElementById('profile_scheduler_name');
+      if (!sessionResponse.ok) {
+        throw new Error(sessionData.error || "Failed to check login session");
+      }
 
-// Decode the username from the session storage
-const loggedName = currentUser.username ? decodeURIComponent(currentUser.username) : 'Not Logged In';
+      const manager = sessionData.user;
 
-// Test Print the logged user
-console.log(`(manager_schedulerJS)The logged in name is: ${loggedName}`);
+      if (manager.role !== "manager") {
+        window.location.replace("../../html/dashboards/employee.html");
+        return;
+      }
 
-// Query the header for name
-const nameHeader = document.getElementById('manager_name');
+      const managerName = `${manager.firstName} ${manager.lastName}`.trim();
 
-// Set the name header to logged in user
-nameHeader.innerHTML = loggedName;
+      for (const id of ["manager_name", "profile_scheduler_name"]) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = managerName;
+      }
 
-// Set the sidebar name to logged in account
-managerNameSidebar.innerHTML = loggedName;
+      const accountElement = document.getElementById(
+        "profile_scheduler_account",
+      );
+      if (accountElement) accountElement.textContent = "Manager";
 
-// Query the sidebar for the current user
-const managerAccountSidebar = document.getElementById('profile_scheduler_account');
+      const response = await fetch("http://localhost:3000/manager/employees", {
+        credentials: "include",
+      });
+      const employees = await response.json();
 
-// Decode the account type from the session storage
-const loggedAccountType = currentUser.accountType ? decodeURIComponent(currentUser.accountType) : 'Not Logged In';
+      if (!response.ok) {
+        throw new Error(employees.error || "Failed to retrieve employees");
+      }
 
-// Test Print the account type
-console.log(`(manager_schedulerJS)The logged in account type is: ${loggedAccountType}`);
+      container.replaceChildren();
 
-// change the innerHTML of sidebar account type header to the current user's account type
-managerAccountSidebar.innerHTML = loggedAccountType;
+      if (employees.length === 0) {
+        container.textContent = "No employees found.";
+        return;
+      }
 
+      employees.forEach((employee) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "employee_hours_btn";
 
-// Load the DOM content before executing the script
-document.addEventListener('DOMContentLoaded', function() {
-    // BUTTON LOGIC  
-    //////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////
-    // THIS IS WHERE YOU LOOP THROUGH THE EMPLOYEES FOR EMPLOYEE HOURS BUTTONS
+        const name = document.createElement("p");
+        name.className = "employee_name";
+        name.textContent =
+          `${employee.first_name} ${employee.last_name}`.trim();
 
-    // FIRST RETRIEVE THE USERS FROM THE LOCAL STORAGE BASE
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+        const clock = document.createElement("img");
+        clock.src = "../../img/dashboard_logos/blue_hours.png";
+        clock.className = "emp_clock";
+        clock.alt = "";
 
-    // Test print
-    console.log(users);
+        button.append(name, clock);
 
-    // NOW make the button below for each user
-
-    /**
-     * <button class="employee_hours_btn">
-            <p class="employee_name">Employee Name</p>
-            <img src="../../img/dashboard_logos/blue_hours.png" class="emp_clock" alt="emp_clock">
-        </button>
-    */
-
-    // FIRST Query the 'employee_hours_buttons' section for the 
-        // buttons to be generated there
-    const employee_hours_button_div = document.getElementById('employee_hours_buttons');
-    // Test Print
-    console.log(`(manager_schedulerJS)Employee hours button div: ${employee_hours_button_div}`);
-
-    // BUTTON GENERATION
-    // For every user create a button with the user name
-    // FIRST iterate through the users (using forEach since you don't need to modify any array elements)
-    users.forEach(user => {
-
-        // Filter the managers out (only display employees) 
-        // Conditional
-        if (user.accountType === "Manager") {
-            // make it not display return nothing
-            console.log(`(manager_schedulerJS)Skipping user: ${user.username} as they are a Manager.`);
-            return;
-        } 
-        // Create the button
-        const button = document.createElement('button');
-        // Make the button a child of the 'employee hours button div'
-        employee_hours_button_div.appendChild(button);
-
-        // Style the button
-            // in this case (already styled just give it the css class)
-        button.className = 'employee_hours_btn';
-        // Query the employee_hours_btn
-        // const employee_hours_btn = document.querySelectorAll('employee_hours_btn');
-
-        // Give the button an id
-        button.id = `employee_hours_btn`;
-
-        // Create the p tag 
-        const employee_tag = document.createElement('p');
-
-        // Create the id for the employee name element (employee name)
-        employee_tag.id = 'employee_name';
-
-        // Append the p tag to the button
-        button.appendChild(employee_tag);
-
-        // Decode the user.username
-        employee_tag.innerHTML = decodeURIComponent(user.username);
-
-        // Give the tag its css class
-        employee_tag.className = 'employee_name';
-
-        // Place the clock on the button
-        // create the image
-        const clock_img = document.createElement('img');
-        // Source the image
-        clock_img.src = '../../img/dashboard_logos/blue_hours.png';
-        // Append to the button
-        button.appendChild(clock_img);
-        // give clock the css class assigned
-        clock_img.className = 'emp_clock'; 
-    });
-
-    // EMPLOYEE HOURS BUTTONS
-    // Query the employee hours button by its id
-    // This is the button that will be clicked to redirect to the employee hours page
-    // Query the employee buttons by their class
-    const employee_hours_btn = document.querySelectorAll('.employee_hours_btn');
-    // Get the employees by their class
-    // const employee_hours_btn = document.getElementById('employee_hours_btn');
-    // Add an event listener to the employee hours buttons
-    // When clicked, it should redirect to the employee hours page with the username as a query parameter
-    // Add an event listener to the employee hours buttons
-    // Loop through each employee hours button
-    employee_hours_btn.forEach(btn => {
-        // Add a click event listener to each button
-        btn.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default action if necessary
-            console.log("Employee hours button clicked");
-            // Store the user name in a variable to read for later rendering
-            //  const employeeName = user.username;
-            // Get the employee name from the button that was clicked (BY CLASS)
-            const employeeName = this.querySelector('.employee_name').innerText;
-            console.log(`Employee name from button: ${employeeName}`);
-            // Check if the clicked element is a button with the class 'employee_hours_btn'
-            if (employeeName) {
-                // Get the employee name from the button
-                // if innerText name matches the name from local storage
-                // Get the users from local storage
-                // AND PARSE through the users to find the employee with the matching username
-                console.log(users);
-                if (employeeName === loggedName) {
-                    // Log a message indicating that the logged in user is the one clicked
-                    console.log(`Employee hours button clicked for logged in user: ${loggedName}`);
-                    // Redirect to the employee hours page with the username as a query parameter
-                    window.location.href = `../../html/manager/emp_hours_list.html?username=${encodeURIComponent(loggedName)}`;
-                    return; // Exit the function after redirecting
-                }
-                
-                // Log the employee name for debugging
-                console.log(`Employee hours button clicked for: ${employeeName}`);
-                // Optionally, you can store the employee name in session storage
-                
-                // Redirect to the employee hours page with the username as a query parameter
-                window.location.href = `../../html/manager/emp_hours_list.html?username=${encodeURIComponent(employeeName)}`;
-                // Log the redirection for debugging
-                console.log(`Redirecting to employee hours page for: ${employeeName}`);
-            }
+        button.addEventListener("click", () => {
+          window.location.href =
+            "../../html/manager/emp_hours_list.html" +
+            `?userId=${encodeURIComponent(employee.id)}`;
         });
+
+        container.appendChild(button);
+      });
+    } catch (error) {
+      console.error("Failed to load manager employee list:", error);
+      container.textContent = error.message;
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeManagerEmployees, {
+      once: true,
     });
-});
-
-
-
-
-
-// FIRST RETRIEVE THE USERS FROM THE MONGO DB 
+  } else {
+    initializeManagerEmployees();
+  }
+})();

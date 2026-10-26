@@ -693,6 +693,10 @@ header {
   gap: 1em;
 }
 
+.employee_hours_btn:hover {
+  background-color: var(--dashboard-hover);
+}
+
 /* Employee Name */
 .employee_name {
   color: var(--employee-names);
