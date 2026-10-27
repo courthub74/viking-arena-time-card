@@ -768,6 +768,59 @@ app.get(
   },
 );
 
+// Get employee shifts that started on a selected Detroit calendar date.
+app.get("/manager/time-entries", requireManager, async (req, res) => {
+  try {
+    const date = req.query.date;
+
+    if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      return res.status(400).json({
+        error: "A date in YYYY-MM-DD format is required",
+      });
+    }
+
+    // Check that the date exists, including leap-year handling.
+    const parsedDate = new Date(`${date}T00:00:00Z`);
+
+    if (
+      Number.isNaN(parsedDate.getTime()) ||
+      parsedDate.toISOString().slice(0, 10) !== date
+    ) {
+      return res.status(400).json({
+        error: "A valid calendar date is required",
+      });
+    }
+
+    const result = await pool.query(
+      `SELECT
+         entry.id,
+         entry.user_id,
+         employee.first_name,
+         employee.last_name,
+         entry.clock_in,
+         entry.clock_out
+       FROM time_entries AS entry
+       JOIN users AS employee ON employee.id = entry.user_id
+       WHERE employee.role = 'employee'
+         AND entry.clock_in >=
+             ($1::date::timestamp AT TIME ZONE 'America/Detroit')
+         AND entry.clock_in <
+             (($1::date + 1)::timestamp AT TIME ZONE 'America/Detroit')
+       ORDER BY entry.clock_in, employee.last_name,
+                employee.first_name, entry.id`,
+      [date],
+    );
+
+    return res.json(result.rows);
+  } catch (error) {
+    console.error("Failed to retrieve calendar entries:", error);
+
+    return res.status(500).json({
+      error: "Failed to retrieve employee hours for this date",
+    });
+  }
+});
+
 // Port the app to listen on the specified port
 app.listen(port, () => {
   console.log(`Viking Arena Time Card API is running on ${port}`);

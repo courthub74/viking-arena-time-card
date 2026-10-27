@@ -1,348 +1,248 @@
-// Test Print
-console.log("manager_calendar.js loaded");
+(() => {
+  const API = "http://localhost:3000";
+  const TIME_ZONE = "America/Detroit";
 
-// Get current month and year
-const currentDate = new Date();
-let currentMonth = currentDate.getMonth();
-let currentYear = currentDate.getFullYear();
+  const today = new Date();
+  let currentMonth = today.getMonth();
+  let currentYear = today.getFullYear();
+  let requestNumber = 0;
 
-// Initialize month names array
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-// Function to RENDER THE CALENDAR for a specific month and year
-function renderCalendar(month, year) {
-  // Get the table body
   const calendarBody = document.getElementById("calendar-body");
-  if (!calendarBody) {
-    console.error("Calendar table body not found");
-    return;
+  const monthHeader = document.getElementById("current-month");
+  const modal = document.getElementById("cal_modal");
+  const closeButton = document.getElementById("close_modal");
+  const dateDisplay = document.getElementById("current_day");
+  const employeesContainer = document.getElementById("employees_worked");
+
+  async function getJson(path) {
+    const response = await fetch(`${API}${path}`, {
+      credentials: "include",
+    });
+
+    if (response.status === 401) {
+      window.location.replace("../../index.html");
+      return null;
+    }
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Unable to load employee hours.");
+    }
+
+    return data;
   }
 
-  calendarBody.innerHTML = "";
+  function formatTime(timestamp) {
+    return new Date(timestamp).toLocaleTimeString("en-US", {
+      timeZone: TIME_ZONE,
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
 
-  // Get first day of month (0 = Sunday, 1 = Monday, etc.)
-  const firstDay = new Date(year, month, 1).getDay();
+  function renderEmployeesWorked(entries) {
+    employeesContainer.replaceChildren();
 
-  // Get number of days in month
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
+    if (entries.length === 0) {
+      employeesContainer.textContent =
+        "No employee hours recorded for this date.";
+      return;
+    }
 
-  // Create calendar rows and cells
-  let date = 1;
+    entries.forEach((entry) => {
+      const row = document.createElement("div");
+      row.className = "employee-worked-row";
 
-  // Always create exactly 6 rows for the calendar (standard calendar view)
-  for (let i = 0; i < 6; i++) {
-    // Create table row
-    const row = document.createElement("tr");
+      const name = document.createElement("span");
+      name.className = "employee-worked-name";
+      name.textContent = `${entry.first_name} ${entry.last_name}`.trim();
 
-    // Create cells for each day of the week
-    for (let j = 0; j < 7; j++) {
-      // Each day cell is created here
-      const cell = document.createElement("td");
+      const hours = document.createElement("span");
+      hours.className = "employee-worked-hours";
+      hours.textContent = `${formatTime(entry.clock_in)} - ${formatTime(entry.clock_out)}`;
 
-      /////////////// FOR HOURS MODAL /////////////////
-      ////////////////////////////////////////////////
-      ////////////////////////////////////////////////
-      // Add class to be queryable in javascript
-      // here you will query all the cells and when each is clicked
-      // the modal will open.  There you will enter date and hours worked
-      // and then save it to the database
-      cell.classList.add("calendar-cell");
+      row.append(name, hours);
+      employeesContainer.appendChild(row);
+    });
+  }
 
-      // The JS will query all the cells and when each is clicked
-      // the modal will open.  There you will enter date and hours worked
-      let eachDay = document.querySelectorAll(".calendar-cell");
+  async function showDate(year, month, day) {
+    const date = [
+      year,
+      String(month + 1).padStart(2, "0"),
+      String(day).padStart(2, "0"),
+    ].join("-");
 
-      // Add data attribute to each cell for the date
-      cell.setAttribute("data-date", `${date}`);
-      // Add data attribute to each cell for the month
-      cell.setAttribute("data-month", `${month}`);
-      // Add data attribute to each cell for the year
-      cell.setAttribute("data-year", `${year}`);
-      // Add data attribute to each cell for the day of the week
-      cell.setAttribute("data-day", `${j}`);
+    dateDisplay.value = `${monthNames[month]} ${day}, ${year}`;
+    employeesContainer.textContent = "Loading employee hours…";
+    modal.classList.add("modal_active");
 
-      //////////////////////////////////////////////////////////////////////////////
-      //////////////////////////////////////////////////////////////////////////////
-      //////////////////////////////////////////////////////////////////////////////
-      // Query the modal to open and close it
-      const modal = document.getElementById("cal_modal");
-      // CLOSE MODAL BUTTON
-      const closeModal = document.getElementById("close_modal");
-      // These event listeners are to be relocated outside of the eachDay.forEach function to prevent multiple event listeners being added each time a cell is clicked.  This will cause the modal to close immediately after opening it.
-      window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-          modal.classList.remove("modal_active"); // Hide the modal
-          console.log(`${modal.classList} normal class of the modal`);
-        }
-      });
-      // Add event listener to close the modal when clicking the close button
-      closeModal.addEventListener("click", function () {
-        modal.classList.remove("modal_active"); // Hide the modal
-        console.log(`${modal.classList} normal class of the modal`);
-      });
-      // Add event listener to close the modal when pressing the escape key
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-          // closeModal();
-          modal.classList.remove("modal_active"); // Hide the modal
-          console.log(`${modal.classList} normal class of the modal`);
-        }
-      });
+    // Ignore an older response if the user has since selected another date.
+    const thisRequest = ++requestNumber;
 
-      /////////////////////////////////////////////////////////////////////
-      /////////////////////////////////////////////////////////////////////
-      /////////////////////////////////////////////////////////////////////
-      // Add event listener to each cell
-      // MODAL FOR EACH DAY TO POPUP
-      // This will open a modal or perform an action when a cell is clicked
-      eachDay.forEach(function (cell) {
-        // Add click event listener to each cell
-        cell.addEventListener("click", function (e) {
-          e.stopPropagation(); // Prevent event bubbling
-          e.preventDefault(); // Prevent default action if used in onclick
-          ////////////////////////////////////////////////////////////////
-          ////////////////////////////////////////////////////////////////
+    try {
+      const entries = await getJson(
+        `/manager/time-entries?date=${encodeURIComponent(date)}`,
+      );
 
-          // Populate the PAGE HEADER with the Logged User name
-          const pageHeader = document.getElementById("employee_name_month");
-          console.log(`This is the Page Header: ${pageHeader.innerText}`);
-          // Parse the user name
-          // const loggedUser = JSON.parse(sessionStorage.getItem('loggedUser') || sessionStorage.getItem('session'));
-          const userString =
-            sessionStorage.getItem("currentUser") ||
-            sessionStorage.getItem("session") ||
-            null;
-          //Error handling for null userString
-          const loggedUser = userString ? JSON.parse(userString) : null;
-          // Get the user name from the logged user object
-          console.log(`The Logged User: ${loggedUser.username}`);
-          // Decode the user name from the logged user object
-          const decodedUser = decodeURIComponent(loggedUser.username);
-          pageHeader.innerHTML = `${decodedUser}`; // Populate the header with the logged user name
+      if (!entries || thisRequest !== requestNumber) return;
 
-          //////////////////////////////////////////////////////
-          // Populate the modal with the clicked date
-          const cellDate = cell.textContent;
-          const cellMonth = month + 1; // Add 1 to month since it's 0-indexed
-          const cellYear = year;
+      renderEmployeesWorked(entries);
+    } catch (error) {
+      if (thisRequest !== requestNumber) return;
 
-          // Create date format used by employee hours data
-          const formattedMonth = monthNames[cellMonth - 1];
-          const formattedDate = String(cellDate).padStart(2, "0");
+      console.error("Failed to load calendar hours:", error);
+      employeesContainer.textContent = error.message;
+    }
+  }
 
-          const clickedDate = `${formattedMonth} ${formattedDate}, ${cellYear}`;
+  function renderCalendar() {
+    calendarBody.replaceChildren();
+    monthHeader.textContent = `${monthNames[currentMonth]} ${currentYear}`;
 
-          console.log(`Clicked Date: ${clickedDate}`);
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-          // EMPLOYEES WORKED HOURS IN THE MODAL
-          const users = JSON.parse(localStorage.getItem("users")) || [];
+    let day = 1;
 
-          const employeesWorked = users
-            .filter((user) => user.accountType !== "Manager")
-            .map((user) => {
-              const hoursWorked = user.hours?.find(
-                (hour) => hour.date === clickedDate,
-              );
+    for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
+      const row = document.createElement("tr");
 
-              return {
-                username: decodeURIComponent(user.username),
-                hours: hoursWorked,
-              };
-            })
-            .filter((employee) => employee.hours);
+      for (let column = 0; column < 7; column++) {
+        const cell = document.createElement("td");
+        cell.classList.add("calendar-cell");
 
-          console.log("Employees Worked:", employeesWorked);
+        if ((rowIndex === 0 && column < firstDay) || day > daysInMonth) {
+          cell.classList.add("empty");
+        } else {
+          const selectedDay = day;
+          const selectedMonth = currentMonth;
+          const selectedYear = currentYear;
 
-          // DATE ESTABLISHED IN THE MODAL
-          // Set The DatePicker to the clicked date
-          const now = new Date(); // This goes in the top date picker
-          // make now the date in the cell clicked
-          now.setDate(cellDate); // Set the date to the cell clicked
-          // Query the DatePicker element
-          const datePicker = document.getElementById("current_day");
-          // Set the value of the DatePicker to the current date in YYYY-MM-DD format
-          datePicker.value = now.toISOString().split("T")[0]; // YYYY-MM-DD
-          // Set the value of the DatePicker to month name
-          datePicker.value = now.toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "2-digit",
+          const dayLabel = document.createElement("span");
+          dayLabel.className = "the_date_number";
+          dayLabel.textContent = selectedDay;
+          cell.appendChild(dayLabel);
+
+          if (
+            selectedDay === today.getDate() &&
+            selectedMonth === today.getMonth() &&
+            selectedYear === today.getFullYear()
+          ) {
+            cell.classList.add("today");
+          }
+
+          cell.addEventListener("click", () => {
+            document
+              .querySelectorAll("#calendar-body .selected")
+              .forEach((selected) => selected.classList.remove("selected"));
+
+            cell.classList.add("selected");
+            showDate(selectedYear, selectedMonth, selectedDay);
           });
 
-          renderEmployeesWorked(employeesWorked);
-
-          // Open modal or perform action here
-          console.log(`Clicked on ${cell.textContent}`);
-          // Open the modal (you can use a library or custom code to show the modal)
-          modal.classList.add("modal_active"); // Show the modal
-          // pageHeader.classList.add('modal_active'); // Fade out the top of page
-          // Test Print
-          console.log(`${modal.classList}the new class of the modal`);
-          // console.log(`${pageHeader.classList} the new class of the page header`);
-          // Add event listener to close the modal when clicking outside of it
-        });
-      });
-
-      ///////////////////////////////////////////////////////
-      ///////CELL CONTENT (THE DATE)
-      const cellContent = document.createElement("span");
-
-      // give it a general class to style change
-      cellContent.classList.add("the_date_number");
-
-      // Add dates starting from the correct day of the week
-      if (i === 0 && j < firstDay) {
-        // Empty cells before the first day of month
-        cell.classList.add("empty");
-      } else if (date > daysInMonth) {
-        // Empty cells after the last day of month
-        cell.classList.add("empty");
-      } else {
-        // Regular day cells
-        cellContent.textContent = date;
-
-        // Check if it's today
-        if (
-          date === currentDate.getDate() &&
-          month === currentDate.getMonth() &&
-          year === currentDate.getFullYear()
-        ) {
-          cell.classList.add("today");
+          day++;
         }
 
-        // Add click handler
-        cell.addEventListener("click", function () {
-          // Remove any previously selected cell
-          const selectedCells = document.querySelectorAll(".selected");
-          selectedCells.forEach((cell) => cell.classList.remove("selected"));
-
-          // Mark this cell as selected
-          this.classList.add("selected");
-        });
-
-        date++;
+        row.appendChild(cell);
       }
-      // The Date appended to the cell appended to the calendar
-      cell.appendChild(cellContent);
-      row.appendChild(cell);
+
+      calendarBody.appendChild(row);
     }
-    calendarBody.appendChild(row);
-  }
-}
-
-// RENDER EMPLOYEES WORKED FUNCTION
-function renderEmployeesWorked(employees) {
-  const container = document.getElementById("employees_worked");
-
-  // Clear results from previously clicked date
-  container.innerHTML = "";
-
-  // No employees worked this date
-  if (employees.length === 0) {
-    container.textContent = "No employee hours recorded for this date.";
-    return;
   }
 
-  // Render every employee who worked this date
-  employees.forEach((employee) => {
-    const employeeRow = document.createElement("div");
-    employeeRow.className = "employee-worked-row";
+  // The month buttons call these functions from the existing HTML.
+  window.prevMonth = function () {
+    currentMonth--;
 
-    const employeeName = document.createElement("span");
-    employeeName.className = "employee-worked-name";
-    employeeName.textContent = employee.username;
-
-    const employeeHours = document.createElement("span");
-    employeeHours.className = "employee-worked-hours";
-    employeeHours.textContent = `${employee.hours.inTime} - ${employee.hours.outTime}`;
-
-    employeeRow.appendChild(employeeName);
-    employeeRow.appendChild(employeeHours);
-
-    container.appendChild(employeeRow);
-  });
-}
-
-// CANCEL BUTTON
-
-// STYLE THE CELLS FUNCTION
-
-// Function to update calendar header
-function updateCalendarHeader(month, year) {
-  document.getElementById("current-month").textContent =
-    `${monthNames[month]} ${year}`;
-}
-
-// Modified DOMContentLoaded event listener
-document.addEventListener("DOMContentLoaded", function () {
-  renderCalendar(currentMonth, currentYear);
-  updateCalendarHeader(currentMonth, currentYear);
-
-  // Style cells with time entries AFTER the calendar is rendered
-  //   styleCellsWithTimeEntries();
-});
-
-// Also call styleCellsWithTimeEntries after month navigation
-function prevMonth() {
-  currentMonth = currentMonth <= 0 ? 11 : currentMonth - 1;
-  currentYear = currentMonth === 11 ? currentYear - 1 : currentYear;
-  renderCalendar(currentMonth, currentYear);
-  updateCalendarHeader(currentMonth, currentYear);
-
-  // Re-style cells after rendering new month
-  //   styleCellsWithTimeEntries();
-
-  return false;
-}
-
-function nextMonth() {
-  currentMonth = currentMonth >= 11 ? 0 : currentMonth + 1;
-  currentYear = currentMonth === 0 ? currentYear + 1 : currentYear;
-  renderCalendar(currentMonth, currentYear);
-  updateCalendarHeader(currentMonth, currentYear);
-
-  // Re-style cells after rendering new month
-  //   styleCellsWithTimeEntries();
-
-  return false;
-}
-
-///////////////////////////////////////////////////////////////////
-///////////////////BACK TO DASHBOARD LINK///////////////////////////////
-// Query the back to dashboard link and add an event listener to it
-const backToDashboardLink = document.getElementById("link_back");
-
-if (backToDashboardLink) {
-  backToDashboardLink.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent the default link behavior
-
-    // Retrieving the User Role
-    const userType =
-      sessionStorage.getItem("currentUser") ||
-      sessionStorage.getItem("session") ||
-      null;
-    const userTypeAcc = userType ? JSON.parse(userType) : null;
-    const userRole = userTypeAcc.accountType;
-
-    if (userRole === "Manager") {
-      // Redirect to manager dashboard
-      window.location.href = "../../html/dashboards/manager.html"; // Replace with the actual URL for the manager dashboard
-    } else {
-      // Default redirect to the main dashboard
-      window.location.href = "../../html/dashboards/employee.html"; // Replace with the actual URL for the main dashboard
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
     }
+
+    renderCalendar();
+    return false;
+  };
+
+  window.nextMonth = function () {
+    currentMonth++;
+
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+
+    renderCalendar();
+    return false;
+  };
+
+  function closeModal() {
+    requestNumber++;
+    modal.classList.remove("modal_active");
+  }
+
+  closeButton.addEventListener("click", closeModal);
+
+  window.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
   });
-}
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeModal();
+  });
+
+  document.getElementById("link_back").addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.href = "../../html/dashboards/manager.html";
+  });
+
+  async function initialize() {
+    try {
+      const session = await getJson("/session");
+      if (!session) return;
+
+      if (session.user.role !== "manager") {
+        window.location.replace("../../html/dashboards/employee.html");
+        return;
+      }
+
+      const managerName =
+        `${session.user.firstName} ${session.user.lastName}`.trim();
+
+      for (const id of [
+        "employee_name",
+        "employee_name_month",
+        "profile_calendar_name",
+      ]) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = managerName;
+      }
+
+      const account = document.getElementById("profile_calendar_account");
+      if (account) account.textContent = "Manager";
+
+      renderCalendar();
+    } catch (error) {
+      console.error("Failed to initialize manager calendar:", error);
+      monthHeader.textContent = error.message;
+    }
+  }
+
+  initialize();
+})();
