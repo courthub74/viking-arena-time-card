@@ -34,7 +34,7 @@ if (!process.env.SESSION_SECRET) {
 // MIDDLEWARE
 app.use(
   cors({
-    origin: "http://localhost:5500",
+    origin: ["http://localhost:5500", "http://127.0.0.1:5500"],
     credentials: true,
   }),
 );
@@ -818,6 +818,234 @@ app.get("/manager/time-entries", requireManager, async (req, res) => {
     return res.status(500).json({
       error: "Failed to retrieve employee hours for this date",
     });
+  }
+});
+
+// Validate a schedule date.
+function isValidScheduleDate(value) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return false;
+  }
+
+  const parsed = new Date(`${value}T00:00:00Z`);
+
+  return (
+    !Number.isNaN(parsed.getTime()) &&
+    parsed.toISOString().slice(0, 10) === value
+  );
+}
+
+const scheduleSlotJobs = {
+  driver_one_am: "zamboni_driver",
+  driver_two_am: "zamboni_driver",
+  driver_one_pm: "zamboni_driver",
+  driver_two_pm: "zamboni_driver",
+  skate_guard_one: "skate_guard",
+  skate_guard_two: "skate_guard",
+};
+
+// Retrieve a day's planned assignments.
+app.get("/manager/schedules/:date", requireManager, async (req, res) => {
+  const date = req.params.date;
+
+  if (!isValidScheduleDate(date)) {
+    return res.status(400).json({
+      error: "A valid date in YYYY-MM-DD format is required",
+    });
+  }
+
+  try {
+    const result = await pool.query(
+      `SELECT
+         shift.id,
+         shift.slot,
+         shift.user_id,
+         employee.first_name,
+         employee.last_name,
+         to_char(shift.start_time, 'HH24:MI') AS start_time,
+         to_char(shift.end_time, 'HH24:MI') AS end_time,
+         shift.ends_at_close
+       FROM scheduled_shifts AS shift
+       JOIN users AS employee ON employee.id = shift.user_id
+       WHERE shift.schedule_date = $1::date
+       ORDER BY shift.slot`,
+      [date],
+    );
+
+    return res.json({
+      date,
+      shifts: result.rows,
+    });
+  } catch (error) {
+    console.error("Failed to retrieve schedule:", error);
+
+    return res.status(500).json({
+      error: "Failed to retrieve schedule",
+    });
+  }
+});
+
+// Replace a day's planned assignments.
+app.put("/manager/schedules/:date", requireManager, async (req, res) => {
+  const date = req.params.date;
+  const shifts = req.body?.shifts;
+
+  if (!isValidScheduleDate(date)) {
+    return res.status(400).json({
+      error: "A valid date in YYYY-MM-DD format is required",
+    });
+  }
+
+  if (!Array.isArray(shifts) || shifts.length > 6) {
+    return res.status(400).json({
+      error: "Provide an array containing up to six shifts",
+    });
+  }
+
+  const usedSlots = new Set();
+  const timePattern = /^([01]\d|2[0-3]):[0-5]\d$/;
+
+  for (const shift of shifts) {
+    if (
+      !shift ||
+      typeof shift !== "object" ||
+      !Object.hasOwn(scheduleSlotJobs, shift.slot) ||
+      usedSlots.has(shift.slot)
+    ) {
+      return res.status(400).json({
+        error: "Each shift must have a valid, unique slot",
+      });
+    }
+
+    usedSlots.add(shift.slot);
+
+    if (!Number.isSafeInteger(shift.userId) || shift.userId <= 0) {
+      return res.status(400).json({
+        error: "Each shift requires a valid employee ID",
+      });
+    }
+
+    if (
+      typeof shift.startTime !== "string" ||
+      !timePattern.test(shift.startTime) ||
+      typeof shift.endsAtClose !== "boolean"
+    ) {
+      return res.status(400).json({
+        error: "Provide a valid start time and endsAtClose value",
+      });
+    }
+
+    if (shift.endsAtClose) {
+      if (shift.endTime !== null) {
+        return res.status(400).json({
+          error: "End time must be null when the shift ends at Close",
+        });
+      }
+    } else if (
+      typeof shift.endTime !== "string" ||
+      !timePattern.test(shift.endTime) ||
+      shift.endTime === shift.startTime
+    ) {
+      return res.status(400).json({
+        error: "Provide an end time different from the start time",
+      });
+    }
+  }
+
+  let client;
+
+  try {
+    client = await pool.connect();
+    await client.query("BEGIN");
+
+    // Serialize simultaneous saves for the same date.
+    await client.query("SELECT pg_advisory_xact_lock(hashtext($1))", [
+      `viking-schedule:${date}`,
+    ]);
+
+    const employeeIds = [...new Set(shifts.map((shift) => shift.userId))];
+
+    const employees = await client.query(
+      `SELECT id, role, job_title
+       FROM users
+       WHERE id = ANY($1::integer[])
+       ORDER BY id
+       FOR SHARE`,
+      [employeeIds],
+    );
+
+    const employeesById = new Map(
+      employees.rows.map((employee) => [employee.id, employee]),
+    );
+
+    for (const shift of shifts) {
+      const employee = employeesById.get(shift.userId);
+
+      if (
+        !employee ||
+        employee.role !== "employee" ||
+        employee.job_title !== scheduleSlotJobs[shift.slot]
+      ) {
+        await client.query("ROLLBACK");
+
+        return res.status(400).json({
+          error: "An employee does not match the selected scheduling role",
+        });
+      }
+    }
+
+    await client.query(
+      "DELETE FROM scheduled_shifts WHERE schedule_date = $1::date",
+      [date],
+    );
+
+    for (const shift of shifts) {
+      await client.query(
+        `INSERT INTO scheduled_shifts (
+           schedule_date,
+           slot,
+           user_id,
+           start_time,
+           end_time,
+           ends_at_close,
+           created_by
+         )
+         VALUES ($1::date, $2, $3, $4::time, $5::time, $6, $7)`,
+        [
+          date,
+          shift.slot,
+          shift.userId,
+          shift.startTime,
+          shift.endTime,
+          shift.endsAtClose,
+          req.authenticatedUser.id,
+        ],
+      );
+    }
+
+    await client.query("COMMIT");
+
+    return res.json({
+      message: "Schedule saved successfully",
+      date,
+      savedShifts: shifts.length,
+    });
+  } catch (error) {
+    if (client) {
+      try {
+        await client.query("ROLLBACK");
+      } catch (rollbackError) {
+        console.error("Schedule rollback failed:", rollbackError);
+      }
+    }
+
+    console.error("Failed to save schedule:", error);
+
+    return res.status(500).json({
+      error: "Failed to save schedule",
+    });
+  } finally {
+    if (client) client.release();
   }
 });
 
