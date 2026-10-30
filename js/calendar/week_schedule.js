@@ -70,110 +70,121 @@ document.addEventListener("keydown", function (event) {
 });
 
 // Create div elements for each employee's hours based on the day selection
-function createEmployeeHoursDivs() {
-  const employeeHoursContainer = document.getElementById("zam-day-table");
-  if (!employeeHoursContainer) {
-    console.warn('Element with id "zam-day-table" not found.');
-    return;
+let scheduleDisplayRequest = 0;
+
+async function createEmployeeHoursDivs() {
+  const container = document.getElementById("zam-day-table");
+  if (!container) return;
+
+  const thisRequest = ++scheduleDisplayRequest;
+
+  const selectedDate = [
+    currentDate.getFullYear(),
+    String(currentDate.getMonth() + 1).padStart(2, "0"),
+    String(currentDate.getDate()).padStart(2, "0"),
+  ].join("-");
+
+  container.replaceChildren();
+  container.style.display = "flex";
+  container.style.flexDirection = "column";
+
+  // Clear the second table too, preventing leftover results.
+  const guardTable = document.getElementById("skate-guard-one-table");
+  if (guardTable) guardTable.replaceChildren();
+
+  function showMessage(message) {
+    container.replaceChildren();
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = message;
+    container.appendChild(paragraph);
   }
 
-  employeeHoursContainer.innerHTML = ""; // Clear previous content
-  // Style the container
-  employeeHoursContainer.style.display = "flex";
-  employeeHoursContainer.style.flexDirection = "column";
+  function formatScheduleTime(value) {
+    const [hours, minutes] = value.split(":");
+    const hour = Number(hours);
 
-  // Retrieve schedules data from local storage
-  const schedules = JSON.parse(localStorage.getItem("schedules")) || [];
-  // Check if schedules exist
-  if (schedules.length === 0) {
-    console.warn("No schedules found in local storage.");
-    // Show a message to the user
-    const noScheduleDiv = document.createElement("div");
-    noScheduleDiv.innerHTML = "<p>No schedules available for this date.</p>";
-    employeeHoursContainer.appendChild(noScheduleDiv);
-    return;
+    return `${hour % 12 || 12}:${minutes} ` + `${hour >= 12 ? "PM" : "AM"}`;
   }
 
-  // Filter schedules from updateDayDisplay function
-  console.log(`Filtering schedules for date: ${currentDate.toDateString()}`);
-  console.log("Current Date:", currentDate);
-  console.log("Schedules from local storage:", schedules);
+  showMessage("Loading schedule…");
 
-  // Fill in JS with date selected from the day selected button
-  const selectedDate = currentDate.toISOString().split("T")[0]; // Format date as YYYY-MM-DD
-  console.log("Selected Date:", selectedDate);
-
-  // Filter schedules for the selected date
-  const filteredSchedules = schedules.filter((schedule) => {
-    return schedule.date === selectedDate;
-  });
-
-  // Check if any schedules match the selected date
-  if (filteredSchedules.length === 0) {
-    console.warn(`No schedules found for date: ${selectedDate}`);
-    // Show a message to the user
-    const noScheduleDiv = document.createElement("div");
-    noScheduleDiv.innerHTML = `<p>No schedules found for ${formatDate(currentDate)}.</p>`;
-    employeeHoursContainer.appendChild(noScheduleDiv);
-    return;
-  }
-
-  // Check if we have drivers or skate guards before creating containers
-  let hasDrivers = false;
-  let hasSkateGuards = false;
-
-  // Check what employee types exist in the filtered schedules
-  filteredSchedules.forEach((schedule) => {
-    if (schedule.drivers) {
-      hasDrivers = true;
-    }
-    if (schedule.skate_guards || schedule.skateGuards) {
-      hasSkateGuards = true;
-    }
-  });
-
-  // Only create containers if we have employees for that role
-  let driversContainer = null;
-  let skateGuardsContainer = null;
-
-  if (hasDrivers) {
-    driversContainer = createRoleContainer("Drivers", employeeHoursContainer);
-  }
-  if (hasSkateGuards) {
-    skateGuardsContainer = createRoleContainer(
-      "Skate Guards",
-      employeeHoursContainer,
+  try {
+    const response = await fetch(
+      `http://localhost:3000/manager/schedules/${selectedDate}`,
+      { credentials: "include" },
     );
+
+    if (response.status === 401) {
+      window.location.replace("../../index.html");
+      return;
+    }
+
+    const data = await response.json();
+
+    // Ignore responses for a day the user has already moved away from.
+    if (thisRequest !== scheduleDisplayRequest) return;
+
+    if (!response.ok) {
+      throw new Error(data.error || "Unable to load schedule.");
+    }
+
+    container.replaceChildren();
+
+    if (data.shifts.length === 0) {
+      showMessage("No schedules available for this date.");
+      return;
+    }
+
+    const slotOrder = [
+      "driver_one_am",
+      "driver_two_am",
+      "driver_one_pm",
+      "driver_two_pm",
+      "skate_guard_one",
+      "skate_guard_two",
+    ];
+
+    const shifts = [...data.shifts].sort(
+      (a, b) => slotOrder.indexOf(a.slot) - slotOrder.indexOf(b.slot),
+    );
+
+    const drivers = shifts.filter((shift) => shift.slot.startsWith("driver_"));
+
+    const guards = shifts.filter((shift) =>
+      shift.slot.startsWith("skate_guard_"),
+    );
+
+    function renderGroup(title, role, assignments) {
+      if (assignments.length === 0) return;
+
+      const group = createRoleContainer(title, container);
+
+      assignments.forEach((shift) => {
+        createEmployeeDiv(
+          {
+            slot: shift.slot,
+            scheduleDate: selectedDate,
+            name: `${shift.first_name} ${shift.last_name}`.trim(),
+            start_time: formatScheduleTime(shift.start_time),
+            end_time: shift.ends_at_close
+              ? "Close"
+              : formatScheduleTime(shift.end_time),
+          },
+          role,
+          group,
+        );
+      });
+    }
+
+    renderGroup("Drivers", "Driver", drivers);
+    renderGroup("Skate Guards", "Skate Guard", guards);
+  } catch (error) {
+    if (thisRequest !== scheduleDisplayRequest) return;
+
+    console.error("Failed to display schedule:", error);
+    showMessage(error.message);
   }
-
-  // Process each schedule
-  filteredSchedules.forEach((schedule) => {
-    // Handle drivers
-    if (schedule.drivers && driversContainer) {
-      if (Array.isArray(schedule.drivers)) {
-        schedule.drivers.forEach((driver) => {
-          createEmployeeDiv(driver, "Driver", driversContainer);
-        });
-      } else {
-        createEmployeeDiv(schedule.drivers, "Driver", driversContainer);
-      }
-    }
-
-    // Handle skate guards
-    if (
-      (schedule.skate_guards || schedule.skateGuards) &&
-      skateGuardsContainer
-    ) {
-      const skateGuards = schedule.skate_guards || schedule.skateGuards;
-      if (Array.isArray(skateGuards)) {
-        skateGuards.forEach((guard) => {
-          createEmployeeDiv(guard, "Skate Guard", skateGuardsContainer);
-        });
-      } else {
-        createEmployeeDiv(skateGuards, "Skate Guard", skateGuardsContainer);
-      }
-    }
-  });
 }
 
 // Helper function to create role containers
@@ -288,6 +299,24 @@ function createEmployeeDiv(employee, role, container) {
         <img src="../../img/edit-buttons/white-edit-pen.png" alt="Edit" style="width:18px;height:18px;vertical-align:middle;">
     </button>
     `;
+
+  const editButton = employeeDiv.querySelector(".edit-button");
+
+  if (editButton) {
+    editButton.type = "button";
+    editButton.setAttribute("aria-label", `Edit schedule for ${employee.name}`);
+
+    editButton.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const params = new URLSearchParams({
+        date: employee.scheduleDate,
+        slot: employee.slot,
+      });
+
+      window.location.href = `../../html/calendar/manager_weekly.html?${params.toString()}`;
+    });
+  }
   container.appendChild(employeeDiv);
 }
 

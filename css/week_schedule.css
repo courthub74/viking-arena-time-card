@@ -1564,3 +1564,16 @@ input:focus {
   margin-bottom: 10px;
   padding-bottom: 5px;
 }
+
+/* Schedule edit pencils: day mode */
+body:not(.dark-mode) #weekly_schedule .edit-button {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  opacity: 1;
+}
+
+body:not(.dark-mode) #weekly_schedule .edit-button img {
+  filter: brightness(0);
+  opacity: 1;
+}
