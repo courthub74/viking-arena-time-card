@@ -1049,6 +1049,45 @@ app.put("/manager/schedules/:date", requireManager, async (req, res) => {
   }
 });
 
+// Employees can view the shared daily schedule.
+app.get("/employee/schedules/:date", requireEmployee, async (req, res) => {
+  const date = req.params.date;
+
+  if (!isValidScheduleDate(date)) {
+    return res.status(400).json({
+      error: "A valid date in YYYY-MM-DD format is required",
+    });
+  }
+
+  try {
+    const result = await pool.query(
+      `SELECT
+         shift.slot,
+         employee.first_name,
+         employee.last_name,
+         to_char(shift.start_time, 'HH24:MI') AS start_time,
+         to_char(shift.end_time, 'HH24:MI') AS end_time,
+         shift.ends_at_close
+       FROM scheduled_shifts AS shift
+       JOIN users AS employee ON employee.id = shift.user_id
+       WHERE shift.schedule_date = $1::date
+       ORDER BY shift.slot`,
+      [date],
+    );
+
+    return res.json({
+      date,
+      shifts: result.rows,
+    });
+  } catch (error) {
+    console.error("Failed to retrieve employee schedule:", error);
+
+    return res.status(500).json({
+      error: "Failed to retrieve schedule",
+    });
+  }
+});
+
 // Port the app to listen on the specified port
 app.listen(port, () => {
   console.log(`Viking Arena Time Card API is running on ${port}`);
