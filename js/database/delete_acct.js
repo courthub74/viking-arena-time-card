@@ -1,339 +1,195 @@
-// Test Print Page
-console.log("Delete User Page");
+(() => {
+  const api = "http://localhost:3000";
+  const pins = [...document.querySelectorAll(".pin_put")];
+  const openButton = document.getElementById("delete_acct");
+  const confirmButton = document.getElementById("confirm_delete");
+  const cancelButton = document.getElementById("cancel_delete");
+  const clearButton = document.getElementById("reset_button");
+  const forgotButton = document.getElementById("forgot_button");
+  const backButton = document.getElementById("link_back_delete");
+  const modal = document.getElementById("confirmation_modal");
 
-// Query the ELEMENTS
+  let currentUser = null;
+  let saving = false;
 
-// Query the pin inputs
-const pinField = document.querySelectorAll('.pin_put');
+  const readPin = () => pins.map((input) => input.value).join("");
 
-// Clear button
-const clearPinsButton = document.getElementById('reset_button');
+  function updateButton() {
+    openButton.disabled = saving || !currentUser || !/^\d{4}$/.test(readPin());
+  }
 
-// Forgot Pin button
-const forgotPinButton = document.getElementById('forgot_button');
+  function clearPins() {
+    pins.forEach((input) => {
+      input.value = "";
+      input.style.color = "";
+    });
 
-// Delete Account button
-const delete_acct_button = document.querySelector('#delete_acct');
+    updateButton();
+    pins[0].focus();
+  }
 
-// Test Print ELEMENTS
-console.log(`The Pin field: ${pinField}`);
-console.log(`The Clear Pins field: ${clearPinsButton}`);
-console.log(`The Forgot Pins Button: ${forgotPinButton}`);
+  function returnToLogin() {
+    sessionStorage.removeItem("currentUser");
+    sessionStorage.removeItem("session");
+    window.location.replace("../../index.html");
+  }
 
-// Match pin number to the one in LocalStorage and enable the Delete Account Button
-pinField.forEach((input, key) => {
-    input.addEventListener('keyup', (e) => {
-        if (input.value) {
-            // Move to next input if there is a next input
-            if (key < pinField.length - 1) {
-                pinField[key + 1].focus();
-            }
-            // If the last input is filled, move focus to the delete account button
-            if (key === pinField.length - 1) {
-                delete_acct_button.focus();
-            }
-            // Test Print the pin fields filled
-            console.log("Pin field filled");
-            // If there is all 4 digits entered
-            if (key === 3) {
-                // Let's read the pins for matching to the LocalStorage or Database
-                const delete_acct_pins = [...pinField].map(each_pinField => each_pinField.value).join('');
-                // Print the value of the pin field
-                console.log(`Pin value: ${delete_acct_pins}`);
-                // NOW check if the pin is correct
+  function setText(id, value) {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
+  }
 
-                // FIRST get LOGGED IN USER
-                const loggedUser = JSON.parse(sessionStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('session'));
-                // Error Handling (in this case if user gets logged out)
-                if (!loggedUser) {
-                    alert("User got logged out");
-                    // return;
-                }
-                // Test Print Logged User
-                console.log("Full loggedUser object:", loggedUser);
-                console.log(`${loggedUser.username} is now logged in`);
-                // THEN get all users info and parse it from localStorage or Database
-                const allUsers = JSON.parse(localStorage.getItem('users')) || [];
-                // Test print the sessionIDs
-                console.log("All users:", allUsers.map(user => user.id));
-                // Get Logged User Index (session ID because the session storage labels it that way)
-                const loggedUserIndex = allUsers.findIndex(user => user.username === loggedUser.username);
-                // Test Print Index
-                console.log(loggedUserIndex);
-                // Current user sessionID
-                console.log(`Current user id#: ${allUsers[loggedUserIndex].id}`);
-                // Current user Name
-                console.log(`Current user name ${allUsers[loggedUserIndex].username}`);
-                // Current user pin 
-                console.log(`Current user pin#: ${allUsers[loggedUserIndex].pin}`);
+  // These buttons are inside a form.
+  [
+    openButton,
+    confirmButton,
+    cancelButton,
+    clearButton,
+    forgotButton,
+    backButton,
+  ].forEach((button) => {
+    if (button) button.type = "button";
+  });
 
-                //Store the current pin in a variable
-                const logOutPin = allUsers[loggedUserIndex].pin;
-                // NOW Check if the pins match
-                if (delete_acct_pins === logOutPin) {
-                    // enable delete acct button
-                    delete_acct_button.disabled = false;
-                    // turn the inputs green
-                    pinField.forEach(pin => {
-                        // Test Print
-                        console.log("entering pins");
-                        // check if its darkmode
-                        const isDarkMode = document.body.classList.contains('dark-mode');
-                        // Set the color based on the mode
-                        pin.style.color = isDarkMode ? "#00FF00" : "#16BC00";
-                        pin.style.transition = "color 0.5s ease-in-out";
-                    });
-                    // If PINS CORRECT
-                    // change the clear pins to pin correct
-                    // query clear pins
-                    const clear_pins_del_page = document.getElementById('reset_button');
-                    clear_pins_del_page.innerHTML = "Pin is Correct";
-                    // also change the color to green based on mode as well
-                    const isDarkMode = document.body.classList.contains('dark-mode');
-                    clear_pins_del_page.style.color = isDarkMode ? "#00FF00" : "#16BC00"; // Darker Green for light mode
-                    // make the forgot pin dissapear
-                    // query the pins
-                    const forgotPinDelete = document.getElementById('forgot_button');
-                    forgotPinDelete.style.opacity =  "0%";
-                    // SetTimeOut below
-                    setTimeout(() => {
-                        clear_pins_del_page.innerHTML = "Clear Pin fields";
-                        const isDarkMode = document.body.classList.contains('dark-mode');
-                        // Set color back based on theme
-                        clear_pins_del_page.style.color = isDarkMode ? "#ffffff" : "#000000";
-                        clear_pins_del_page.transition = "color 0.5s ease-in-out";
-                        // Set opacity based on theme
-                        clear_pins_del_page.style.opacity = isDarkMode ? "45%" : "70%";
-                        // Make the forgot pin button reappear
-                        forgotPinDelete.style.opacity = "100%";
+  openButton.disabled = true;
+  confirmButton.disabled = true;
 
-                        // Focus on the first input
-                        // pinField[0].focus();
-                    }
-                    , 2000) // 2 seconds delay
-                } else {
-                    // After Pins cleared
-                    // Make the delete button disabled again
-                    delete_acct_button.disabled = true;
+  pins.forEach((input, index) => {
+    input.addEventListener("input", () => {
+      input.value = input.value.replace(/\D/g, "").slice(0, 1);
 
-                    // 
-                    // AND IF PIN IS INCORRECT
-                    // Repeat ABOVE just turn the colors red
-                    // Change the Clear Pins to red
-                    // query the clear pins
-                    const clear_pins_del_page = document.getElementById('reset_button');
-                    clear_pins_del_page.innerHTML = "Pin is Incorrect";
-                    // also change the color to red
-                    const isDarkMode = document.body.classList.contains('dark-mode');
-                    clear_pins_del_page.style.color = isDarkMode ? "#BC0000" : "#BC0000"; // Darker Red for light mode
-                    // make the forgot pins button go away
-                    // first query it
-                    const forgotPinDelete = document.getElementById('forgot_button');
-                    forgotPinDelete.style.opacity = "0%";
-                    // change the pinfield to red
-                    pinField.forEach(pin => {
-                        // Test Print 
-                        console.log("Entering Pins");
-                        // check if its darkmode
-                        const isDarkMode = document.body.classList.contains('dark-mode');
-                        // Set the color based on the mode
-                        pin.style.color = isDarkMode ? "#BC0000" : "#BC0000";
-                        pin.style.transition = "color 0.5s ease-in-out";
-                    });
-                    // Time Out for it to return to original state
-                    setTimeout(() => {
-                        clear_pins_del_page.innerHTML = "Clear Pin fields";
-                        const isDarkMode = document.body.classList.contains('dark-mode');
-                        clear_pins_del_page.style.color = isDarkMode ? "#ffffff" : "#000000";
-                        clear_pins_del_page.style.transition = "color 0.5s ease-in-out";
-                        clear_pins_del_page.style.opacity = isDarkMode ? "50%" : "70%"
-                        // Reset opacity based on theme
-                        // forgotPinDelete.style.opacity = isDarkMode ? "55%" : "70%";
-                        forgotPinDelete.style.opacity = "100%";
-                        // Reset the pin fields
-                        pinField.forEach(pin => {
-                            pin.value = '';
-                            pin.style.color = ''; // Reset the color to default
-                        });
+      if (input.value && index < pins.length - 1) {
+        pins[index + 1].focus();
+      }
 
-                        // Focus on the first input
-                        pinField[0].focus();
+      updateButton();
+    });
 
-                    }, 2000); // 2 seconds delay
-                }
-            } 
-        }
-    })
-})
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Backspace" && !input.value && index > 0) {
+        pins[index - 1].focus();
+      }
+    });
+  });
 
+  clearButton.addEventListener("click", clearPins);
 
-function deleteAccount() {
-    // Get logged in user from session storage
-    const logOutUser = JSON.parse(sessionStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('session'));
-    
-    // Error Handling (in this case if user gets logged out)
-    if (!logOutUser) {
-        alert("User not found. You may have been logged out.");
-        window.location.href = '../../index.html';
-        return;
-    }
-    
-    // Get all users from local storage
-    const allUsers = JSON.parse(localStorage.getItem('users')) || [];
-    
-    // Debug logs
-    console.log("Current user:", logOutUser);
-    console.log("All users before deletion:", allUsers);
+  forgotButton.addEventListener("click", () => {
+    alert("PIN recovery is not available yet.");
+  });
 
-    // Lets use ID's to delete acct by as names can be redundant
+  openButton.addEventListener("click", () => {
+    if (openButton.disabled) return;
 
-    // Match the logged in user in all users to retrieve the id of current user
-    // const logOutUserIndex = allUsers.findIndex(user => user.sessionId === logOutUser.sessionId);
+    // PIN correctness is checked only by the server on confirmation.
+    modal.classList.add("modal_active");
+  });
 
-    // BELOW is getting the user name from all users in the local storage
-    const logOutUserIndex = allUsers.findIndex(user => user.username === logOutUser.username);
+  cancelButton.addEventListener("click", () => {
+    if (saving) return;
 
-    // Test the index
-    console.log(`The User current: ${logOutUserIndex}`);
+    modal.classList.remove("modal_active");
+    clearPins();
+  });
 
-    // Decode User Name if it's encoded
-    let nameDecoded = logOutUser.username;
+  backButton.addEventListener("click", () => {
+    if (saving || !currentUser) return;
+
+    window.location.href =
+      currentUser.role === "manager"
+        ? "../dashboards/manager.html"
+        : "../dashboards/employee.html";
+  });
+
+  confirmButton.addEventListener("click", async () => {
+    if (saving || !currentUser) return;
+
+    const pin = readPin();
+    if (!/^\d{4}$/.test(pin)) return;
+
+    saving = true;
+    updateButton();
+    confirmButton.disabled = true;
+    cancelButton.disabled = true;
+    confirmButton.textContent = "Deactivating…";
+
     try {
-        nameDecoded = decodeURIComponent(logOutUser.username);
-    } catch (e) {
-        // If decoding fails, use original name
+      const response = await fetch(`${api}/account/deactivate`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pin }),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 401) {
+        returnToLogin();
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error(data.error || "Unable to deactivate account");
+      }
+
+      returnToLogin();
+    } catch (error) {
+      alert(error.message);
+      modal.classList.remove("modal_active");
+      clearPins();
+    } finally {
+      saving = false;
+      confirmButton.disabled = !currentUser;
+      cancelButton.disabled = false;
+      confirmButton.textContent = "Yes, Deactivate";
+      updateButton();
     }
+  });
 
-    // Tells you at what index the user logged in is at in the users array
-    // if (logOutUserIndex === -1) {
-    //     alert(`Unable to find your account in the database`);
-    // } else {
-    //     alert(`${nameDecoded} is at the index of ${logOutUserIndex} in the localStorage DB`);
-    // }
+  async function loadProfile() {
+    try {
+      const response = await fetch(`${api}/session`, {
+        credentials: "include",
+      });
 
-    // Remove the user from the array
-    allUsers.splice(logOutUserIndex, 1);
-    
-    // Save the updated array to localStorage
-    localStorage.setItem('users', JSON.stringify(allUsers));
-    
-    // Clear user session (logs them out in this case)
-    sessionStorage.removeItem('currentUser');
-    sessionStorage.removeItem('session');
+      if (response.status === 401) {
+        returnToLogin();
+        return;
+      }
 
-    // Alert the Account Deletion (for testing purposes)
-    alert(`${nameDecoded}'s account has been deleted successfully.`);
+      if (!response.ok) {
+        throw new Error("Unable to verify your login. Reload the page.");
+      }
 
-    // Redirect to the index page
-    window.location.href = '../../index.html';
-}
+      const data = await response.json();
+      currentUser = data.user;
 
-// JavaScript to populate the modal with user info
+      if (!currentUser) {
+        throw new Error("No user profile was returned");
+      }
 
-// Get logged in user from session storage
-const loggedUser = JSON.parse(sessionStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('session'));
-// Error Handling (in this case if user gets logged out)
-// if (!loggedUser) {
-//     alert("User not found. You may have been logged out.");
-//     window.location.href = '../../index.html';
-//     return;
-// }
+      const name = `${currentUser.firstName} ${currentUser.lastName}`;
+      const role = currentUser.role === "manager" ? "Manager" : "Employee";
 
-// Decode User Name if it's encoded
-let nameDecoded = loggedUser.username;
-try {
-    nameDecoded = decodeURIComponent(loggedUser.username);
-} catch (e) {
-    // If decoding fails, use original name
-}
+      [
+        "employee_name",
+        "employee_name_delete",
+        "confirm_employee_name",
+        "profile_name",
+      ].forEach((id) => setText(id, name));
 
-// Decoding the account type if it's encoded
-let accountTypeDecoded = loggedUser.accountType;
-try {
-    accountTypeDecoded = decodeURIComponent(loggedUser.accountType);
-} catch (e) {
-    // If decoding fails, use original account type
-}
+      setText("confirm_account_type", role);
+      setText("profile_account", role);
 
-// NOW we query the user and account fields in the modal
-const userNameField = document.getElementById('confirm_employee_name');
-const userAccountField = document.getElementById('confirm_account_type');
-const userAccountNameHeader = document.getElementById('employee_name_delete');
+      confirmButton.disabled = false;
+      updateButton();
+    } catch (error) {
+      currentUser = null;
+      updateButton();
+      confirmButton.disabled = true;
+      alert(error.message);
+    }
+  }
 
-// change the header to the user name
-userAccountNameHeader.innerHTML = `${nameDecoded}`;
-
-// Test Print the logged in user
-console.log("Full loggedUser object:", loggedUser);
-console.log(`${loggedUser.username} is now logged in`);
-
-// Set the user name and account info in the modal
-userNameField.innerHTML = `${nameDecoded}`;
-userAccountField.innerHTML = `${accountTypeDecoded}`;
-
-// Add Event Listener
-delete_acct_button.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    // Test Print
-    console.log("Delete Account Clicked");
-
-    // Pop up the delete confirmation modal
-
-    // query the modal
-    const modal = document.getElementById('confirmation_modal');
-    // Make it visible
-    modal.classList.add('modal_active');
-    
-    // call the delete account functions this is now in the modal confirm button
-    // deleteAccount();
-});
-
-// query the modal cancel button
-const modalCancelButton = document.getElementById('cancel_delete');
-// query the modal confirm button
-const modalConfirmButton = document.getElementById('confirm_delete');
-
-// CANCEL / Close Confirmation Button
-modalCancelButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    // Test Print
-    console.log("Cancel Delete Confirmation Clicked");
-    // Hide the modal
-    const modal = document.getElementById('confirmation_modal');
-    modal.classList.remove('modal_active');
-    // Reset the pin fields
-    pinField.forEach(pin => {
-        pin.value = '';
-        pin.style.color = ''; // Reset the color to default
-    });
-    // Focus on the first input
-    pinField[0].focus();
-});
-
-// Yes DELETE Account button
-   modalConfirmButton.addEventListener('click', (e) => {
-       e.preventDefault();
-       // Test Print
-       console.log("Delete Account Clicked");
-       // call the delete account functions
-       deleteAccount();
-});
-
-
-// Query the back to dashboard link and add an event listener to it
-const backToDashboardLink = document.getElementById('link_back_delete');
-
-if (backToDashboardLink) {
-    backToDashboardLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-        const userRole = sessionStorage.getItem('accountType'); // Assuming you store the user role in local storage
-        if (userRole === 'manager') {
-            // Redirect to manager dashboard
-            window.location.href = '../../html/dashboards/manager.html'; // Replace with the actual URL for the manager dashboard
-        } else {
-            // Default redirect to the main dashboard
-            window.location.href = '../../html/dashboards/employee.html'; // Replace with the actual URL for the main dashboard
-        }
-    });
-};
+  loadProfile();
+})();

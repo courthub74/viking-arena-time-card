@@ -65,6 +65,7 @@ app.use(
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // Require a valid employee login for employee-only operations.
+// REQUIRE EMPLOYEE
 async function requireEmployee(req, res, next) {
   try {
     if (!req.session.userId) {
@@ -76,7 +77,8 @@ async function requireEmployee(req, res, next) {
     const result = await pool.query(
       `SELECT id, role
        FROM users
-       WHERE id = $1`,
+       WHERE id = $1
+       AND deactivated_at IS NULL`,
       [req.session.userId],
     );
 
@@ -106,6 +108,7 @@ async function requireEmployee(req, res, next) {
 }
 
 // for manager operations
+// REQUIRE MANAGER
 async function requireManager(req, res, next) {
   try {
     if (!req.session.userId) {
@@ -117,7 +120,8 @@ async function requireManager(req, res, next) {
     const result = await pool.query(
       `SELECT id, role
        FROM users
-       WHERE id = $1`,
+       WHERE id = $1
+       AND deactivated_at IS NULL`,
       [req.session.userId],
     );
 
@@ -176,6 +180,7 @@ app.get("/users", async (req, res) => {
     const result = await pool.query(
       `SELECT id, first_name, last_name, role, job_title, created_at
        FROM users
+       WHERE deactivated_at IS NULL
        ORDER BY id`,
     );
 
@@ -208,8 +213,9 @@ app.post("/login", async (req, res) => {
 
     const result = await pool.query(
       `SELECT id, first_name, last_name, role, job_title, pin_hash
-       FROM users
-       WHERE id = $1`,
+   FROM users
+   WHERE id = $1
+     AND deactivated_at IS NULL`,
       [normalizedUserId],
     );
 
@@ -686,6 +692,79 @@ app.post("/logout", (req, res) => {
       message: "Logged out successfully",
     });
   });
+});
+
+/////////
+///HERE NEW ROUTE
+
+// Deactivate only the account belonging to the current session.
+app.post("/account/deactivate", async (req, res) => {
+  try {
+    const userId = req.session.userId;
+
+    if (!userId) {
+      return res.status(401).json({ error: "Not logged in" });
+    }
+
+    const { pin } = req.body;
+
+    if (typeof pin !== "string" || !/^\d{4}$/.test(pin)) {
+      return res.status(400).json({
+        error: "A four-digit PIN is required",
+      });
+    }
+
+    const result = await pool.query(
+      `SELECT id, pin_hash
+       FROM users
+       WHERE id = $1
+         AND deactivated_at IS NULL`,
+      [userId],
+    );
+
+    const user = result.rows[0];
+
+    if (!user) {
+      return res.status(401).json({ error: "Not logged in" });
+    }
+
+    const pinMatches = await bcrypt.compare(pin, user.pin_hash);
+
+    if (!pinMatches) {
+      return res.status(403).json({ error: "Incorrect PIN" });
+    }
+
+    await pool.query(
+      `UPDATE users
+       SET deactivated_at = NOW(),
+           updated_at = NOW()
+       WHERE id = $1
+         AND deactivated_at IS NULL`,
+      [userId],
+    );
+
+    // Existing authorization checks also block this account's other sessions.
+    req.session.destroy((error) => {
+      if (error) {
+        console.error("Session cleanup after deactivation:", error);
+      }
+
+      res.clearCookie("viking.sid", {
+        path: "/",
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+      });
+
+      return res.json({ message: "Account deactivated successfully" });
+    });
+  } catch (error) {
+    console.error("Account deactivation failed:", error);
+
+    return res.status(500).json({
+      error: "Failed to deactivate account",
+    });
+  }
 });
 
 // List employees for the manager's hours review.

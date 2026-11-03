@@ -184,14 +184,14 @@
         <!-- Page Header -->
         <label class="page_header_label" for="employee_name">
           <span class="del_acct_label" id="employee_name_delete"></span>
-          <span class="page_header">&nbsp;|&nbsp;Delete Account</span>
+          <span class="page_header">&nbsp;|&nbsp;Deactivate Account</span>
         </label>
 
         <!-- <label class="delete_account">First enter your pin#</label> -->
 
         <!-- Pin # -->
         <div class="pin_number">
-          <label for="pin_num">Enter pin# to delete account:</label>
+          <label for="pin_num">Enter PIN to deactivate account:</label>
           <div class="pin_field" id="login_pin_field">
             <input
               type="password"
@@ -236,7 +236,7 @@
 
         <!-- Submit Button -->
         <button class="delete_acct" id="delete_acct" disabled>
-          Delete Account
+          Deactivate Account
         </button>
 
         <!-- CONFIRMATION MODAL -->
@@ -248,7 +248,10 @@
           </label>
 
           <div class="modal-content">
-            <p class="modal_header">Are you sure you want to delete profile?</p>
+            <p class="modal_header">
+              Deactivate your account? You will be signed out and unable to log
+              in. Your recorded hours and schedules will be preserved.
+            </p>
             <!-- Account Info Square -->
             <div class="account_info_square">
               <div class="account_info_div">
@@ -269,7 +272,7 @@
             <!-- Delete Account Buttons -->
             <div class="del_acct_buttons">
               <button class="confirm_delete" id="confirm_delete">
-                Yes, Delete it
+                Yes, Deactivate
               </button>
               <button class="cancel_delete" id="cancel_delete">Cancel</button>
             </div>
@@ -291,7 +294,7 @@
     <script src="../../js/slide-in.js"></script>
 
     <!-- EMPLOYEE -->
-    <script src="../../js/data/employee.js"></script>
+    <!-- <script src="../../js/data/employee.js"></script> -->
 
     <!-- DELETE ACCOUNT -->
     <script src="../../js/database/delete_acct.js"></script>
