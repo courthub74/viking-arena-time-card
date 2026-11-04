@@ -202,11 +202,21 @@ function setupSubmitButtonListener() {
     } catch (error) {
       console.error("Failed to save schedule:", error);
       alert(error.message);
+      ///////////////////////
     } finally {
       saving = false;
       button.textContent = originalLabel;
       button.disabled = true;
+
+      if (
+        document.getElementById("cal_modal").classList.contains("modal_active")
+      ) {
+        document
+          .getElementById("driver-one-am")
+          .dispatchEvent(new Event("change", { bubbles: true }));
+      }
     }
+    /////////////////////////
   });
 
   submitListenerAdded = true;
@@ -451,7 +461,24 @@ async function openScheduleModal(dayDate) {
       const ids = fields[shift.slot];
       if (!ids) throw new Error("The schedule contains an unknown slot.");
 
-      selectValue(ids[0], String(shift.user_id));
+      const employeeSelect = document.getElementById(ids[0]);
+      const employeeId = String(shift.user_id);
+
+      if (
+        ![...employeeSelect.options].some(
+          (option) => option.value === employeeId,
+        )
+      ) {
+        const savedOption = document.createElement("option");
+
+        savedOption.value = employeeId;
+        savedOption.textContent = `${shift.first_name} ${shift.last_name} (inactive)`;
+        savedOption.disabled = true;
+
+        employeeSelect.appendChild(savedOption);
+      }
+
+      selectValue(ids[0], employeeId);
       selectValue(ids[1], pickerTime(shift.start_time));
       selectValue(
         ids[2],
@@ -513,9 +540,12 @@ async function populateDropdowns() {
   populateTimePickers();
 
   try {
-    const response = await fetch("http://localhost:3000/manager/employees", {
-      credentials: "include",
-    });
+    const response = await fetch(
+      "http://localhost:3000/manager/scheduling-employees",
+      {
+        credentials: "include",
+      },
+    );
 
     if (response.status === 401) {
       window.location.replace("../../index.html");

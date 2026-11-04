@@ -640,7 +640,8 @@ app.get("/session", async (req, res) => {
     const result = await pool.query(
       `SELECT id, first_name, last_name, role, job_title
        FROM users
-       WHERE id = $1`,
+       WHERE id = $1
+       AND deactivated_at IS NULL`,
       [req.session.userId],
     );
 
@@ -763,6 +764,27 @@ app.post("/account/deactivate", async (req, res) => {
 
     return res.status(500).json({
       error: "Failed to deactivate account",
+    });
+  }
+});
+
+// List active employees for new schedule assignments.
+app.get("/manager/scheduling-employees", requireManager, async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT id, first_name, last_name, job_title
+       FROM users
+       WHERE role = 'employee'
+         AND deactivated_at IS NULL
+       ORDER BY last_name, first_name, id`,
+    );
+
+    return res.json(result.rows);
+  } catch (error) {
+    console.error("Failed to retrieve scheduling employees:", error);
+
+    return res.status(500).json({
+      error: "Failed to retrieve scheduling employees",
     });
   }
 });
@@ -1045,7 +1067,7 @@ app.put("/manager/schedules/:date", requireManager, async (req, res) => {
     const employeeIds = [...new Set(shifts.map((shift) => shift.userId))];
 
     const employees = await client.query(
-      `SELECT id, role, job_title
+      `SELECT id, role, job_title, deactivated_at
        FROM users
        WHERE id = ANY($1::integer[])
        ORDER BY id
@@ -1057,8 +1079,42 @@ app.put("/manager/schedules/:date", requireManager, async (req, res) => {
       employees.rows.map((employee) => [employee.id, employee]),
     );
 
+    const savedShifts = await client.query(
+      `SELECT slot, user_id,
+          to_char(start_time, 'HH24:MI') AS start_time,
+          to_char(end_time, 'HH24:MI') AS end_time,
+          ends_at_close
+          FROM scheduled_shifts
+          WHERE schedule_date = $1::date`,
+      [date],
+    );
+
+    const savedBySlot = new Map(
+      savedShifts.rows.map((shift) => [shift.slot, shift]),
+    );
+
     for (const shift of shifts) {
       const employee = employeesById.get(shift.userId);
+
+      if (employee?.deactivated_at) {
+        const saved = savedBySlot.get(shift.slot);
+
+        const unchanged =
+          saved &&
+          saved.user_id === shift.userId &&
+          saved.start_time === shift.startTime &&
+          saved.end_time === shift.endTime &&
+          saved.ends_at_close === shift.endsAtClose;
+
+        if (!unchanged) {
+          await client.query("ROLLBACK");
+
+          return res.status(400).json({
+            error:
+              "Inactive employees cannot receive new or changed shifts. Replace the employee or remove the shift.",
+          });
+        }
+      }
 
       if (
         !employee ||
