@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="../../img/hazel-park-logo/viking-arena-logo.png"
+      type="image/png"
+    />
+    <title>Viking Time Card</title>
+
+    <!-- CSS -->
+
+    <!-- BASE STYLES -->
+    <link rel="stylesheet" href="../../css/base.css" />
+
+    <!-- NAVIGATION STYLES -->
+    <link rel="stylesheet" href="../../css/navigation.css" />
+
+    <!-- FORMS STYLES -->
+    <link rel="stylesheet" href="../../css/forms.css" />
+
+    <!-- MANAGER DASHBOARD STYLES -->
+    <link rel="stylesheet" href="../../css/manager_dash.css" />
+
+    <!-- MANAGER INVITATION -->
+    <link rel="stylesheet" href="../../css/manager_invitation.css" />
+  </head>
+  <body>
+    <!-- Container -->
+    <div class="container">
+      <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+
+      <!-- THE NAVBAR AND SIDE MENU-->
+      <nav class="main_nav">
+        <!-- Burger -->
+        <div class="viking_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            class="viking_img"
+            alt="viking_ice_arena"
+          />
+          <p class="logo_text">Time Card</p>
+        </div>
+
+        <!-- Light/Dark -->
+        <div class="menu_button">
+          <!-- Day/Nite -->
+          <button id="menu_burgers">
+            <img
+              src="../../img/hamburgers/hamburger_blue.png"
+              class="burger"
+              id="burger_one"
+              alt="menu"
+            />
+            <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
+          </button>
+        </div>
+      </nav>
+
+      <!-- SLIDE IN MENU -->
+      <div class="side-menu">
+        <!-- Header Logo -->
+        <div class="slide_header_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            alt="logo"
+          />
+          <p class="slide_in_logo_text">Time Card</p>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="menu_items">
+          <a href="#" class="menu-item"
+            ><span>Tech Support</span
+            ><img
+              src="../../img/slide-in-menu/tech_support.png"
+              alt="tech_support"
+          /></a>
+          <a href="#" class="menu-item"
+            ><span>Messaging</span
+            ><img src="../../img/slide-in-menu/messaging.png" alt="messaging"
+          /></a>
+          <button id="theme_switch" class="menu-item">
+            <span>Day/Nite Mode</span
+            ><img
+              src="../../img/slide-in-menu/day_nite.png"
+              alt="theme_switch"
+            />
+          </button>
+        </div>
+        <!-- Logged in Profile -->
+        <div class="profile">
+          <div class="profile_header">
+            <p class="profile_text">Profile</p>
+            <img
+              src="../../img/slide-in-menu/profile.png"
+              class="profile_circle"
+            />
+          </div>
+
+          <!-- Profile Name -->
+          <div class="profile_info">
+            <label>Name:</label>
+            <p class="profile_text_data" id="profile_name"></p>
+          </div>
+
+          <!-- Profile Account Type -->
+          <div class="profile_info">
+            <label>Account type:</label>
+            <p class="profile_text_data" id="profile_account"></p>
+          </div>
+
+          <!-- Profile Pin Number -->
+          <!-- This you will turn into a password output -->
+          <div class="profile_info">
+            <div class="pin_and_peak">
+              <button class="delete_account_button" id="delete_acct_slide">
+                <p class="delete_text">Delete Profile</p>
+              </button>
+              <!-- Pin Number -->
+              <!-- <div class="pin_profile_div">
+                            <label>Pin #:</label>
+                            <p class="profile_pin" id="profile_pin">****</p>
+                        </div> -->
+
+              <!-- Pin Code peak -->
+              <!-- <div class="pin_code_peak">
+                            <button id="pin_code_peak">
+                                <img src="./img/slide-in-menu/pin_peek.png">
+                            </button>
+                        </div> -->
+            </div>
+          </div>
+        </div>
+        <!-- Delete Button -->
+        <div class="delete_account_div">
+          <button
+            class="logout_account_button"
+            id="logout_manager"
+            onclick="logoutUser()"
+          >
+            <img src="../../img/logout/white_logout.png" class="logout_logo" />
+            <p class="logout_text">
+              <!-- <a href="../../index.html">Log Out</a> -->
+              Log Out
+            </p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Overlay -->
+      <div class="menu-overlay"></div>
+
+      <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+
+      <!-- THE PAGE -->
+
+      <!-- THE FORM -->
+      <form id="manager_invitation_form">
+        <label class="page_header_label">
+          <span class="acct_type_label" id="manager_name"></span>
+          <span class="page_header">&nbsp;|&nbsp;Manager Invitation</span>
+        </label>
+
+        <p>
+          Create a single-use invitation for a new manager. It expires after 24
+          hours. Share it only with the intended manager.
+        </p>
+
+        <button type="submit" class="submit" id="generate_invitation" disabled>
+          Create Invitation
+        </button>
+
+        <p id="invitation_status" role="status" aria-live="polite"></p>
+
+        <div id="invitation_result" hidden>
+          <label for="invitation_token">Invitation code</label>
+          <textarea
+            id="invitation_token"
+            rows="3"
+            readonly
+            spellcheck="false"
+            style="width: 100%; box-sizing: border-box"
+          ></textarea>
+
+          <p id="invitation_expiry"></p>
+
+          <button type="button" class="submit" id="copy_invitation">
+            Copy Invitation Code
+          </button>
+
+          <p>
+            Copy this code before leaving the page. It cannot be retrieved
+            again.
+          </p>
+        </div>
+
+        <a href="../dashboards/manager.html">Back to Dashboard</a>
+      </form>
+    </div>
+
+    <!-- DARKMODE -->
+    <!-- <script src="/viking_arena_time_card/js/darkmode.js"></script> -->
+    <script src="../../js/darkmode.js"></script>
+
+    <!-- SLIDE IN -->
+    <!-- <script src="/viking_arena_time_card/js/slide-in.js"></script> -->
+    <script src="../../js/slide-in.js"></script>
+
+    <!-- MANAGER -->
+    <!-- <script src="../../js/data/manager.js"></script> -->
+
+    <!-- DELETE ACCOUNT SLIDE IN BUTTON -->
+    <script src="../../js/dashboard/delete_acct_slide.js"></script>
+
+    <!-- DASHBOARD -->
+    <!-- <script src="../../js/dashboard/manager_buttons.js"></script> -->
+
+    <!-- LOGOUT -->
+    <script src="../../js/database/logout.js"></script>
+
+    <!-- MANAGER INVITATION -->
+    <script src="../../js/dashboard/manager_invitation.js"></script>
+
+    <!-- CALENDAR -->
+    <!-- <script src="../../js/calendar/manager_calendar.js"></script> -->
+  </body>
+</html>

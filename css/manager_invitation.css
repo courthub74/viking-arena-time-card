@@ -1,0 +1,73 @@
+#manager_invitation_form {
+  padding: 0 1rem 2rem;
+  box-sizing: border-box;
+}
+
+#manager_invitation_form > p {
+  margin: 1.5rem 0;
+  line-height: 1.6;
+}
+
+#manager_invitation_form .submit {
+  margin: 1.5rem 0;
+}
+
+#invitation_status {
+  min-height: 1.5em;
+}
+
+#invitation_status:empty {
+  display: none;
+}
+
+#invitation_result {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #83b6df;
+  border-radius: 12px;
+}
+
+#invitation_result[hidden] {
+  display: none;
+}
+
+#invitation_result label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+#invitation_token {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  font: inherit;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+#invitation_result p {
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+#invitation_expiry {
+  overflow-wrap: anywhere;
+}
+
+#manager_invitation_form > a {
+  display: block;
+  margin-top: 2rem;
+  padding: 0.75rem 0;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  #manager_invitation_form {
+    padding-inline: 0.5rem;
+  }
+
+  #invitation_result {
+    padding: 1rem;
+  }
+}

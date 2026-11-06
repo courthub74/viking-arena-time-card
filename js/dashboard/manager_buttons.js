@@ -29,7 +29,6 @@ manager_hours.addEventListener("click", function (e) {
     manager_hours.classList.remove("clicked");
   }, 1000);
   setTimeout(() => {
-    window.location.href = "../../manager_scheduler.html";
     window.location.href = "../../html/calendar/manager_scheduler.html";
   }, 1000);
 });
@@ -45,6 +44,23 @@ manager_schedule.addEventListener("click", function (e) {
     window.location.href = "../../html/calendar/manager_weekly.html";
   }, 1000);
 });
+
+// Create Manager Invitation
+const managerInvitationButton = document.getElementById(
+  "create_manager_invitation",
+);
+
+if (managerInvitationButton) {
+  managerInvitationButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    managerInvitationButton.classList.add("clicked");
+
+    setTimeout(() => {
+      managerInvitationButton.classList.remove("clicked");
+      window.location.href = "../../html/manager/manager_invitation.html";
+    }, 1000);
+  });
+}
 
 // Get Monthly Schedule
 employee_calendar.addEventListener("click", function (e) {
