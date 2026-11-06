@@ -160,35 +160,6 @@ function setupSubmitButtonListener() {
         });
       }
 
-      // if (shifts.length === 0) {
-      //   const hasDriver = shifts.some(({ slot }) => slot.startsWith("driver_"));
-      //   const hasGuard = shifts.some(({ slot }) =>
-      //     slot.startsWith("skate_guard_"),
-      //   );
-
-      //   // Test
-      //   console.log(
-      //     "Schedule warning check",
-      //     shifts.map(({ slot }) => slot),
-      //     {
-      //       hasDriver,
-      //       hasGuard,
-      //     },
-      //   );
-      //   /////////////////////////////////
-
-      //   if (hasGuard && !hasDriver) {
-      //     const proceed = window.confirm(
-      //       "No Zamboni driver is scheduled for this day. " +
-      //         "Confirm the ice will be ready before skating and arrange a cut if needed.\n\n" +
-      //         "Save this schedule anyway?",
-      //     );
-
-      //     if (!proceed) return;
-      //   }
-      //   throw new Error("Add at least one complete assignment.");
-      // }
-
       if (shifts.length === 0) {
         throw new Error("Add at least one complete assignment.");
       }
