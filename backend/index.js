@@ -18,6 +18,9 @@ const cors = require("cors");
 const session = require("express-session");
 const PgSession = require("connect-pg-simple")(session);
 
+// Generate invitation tokens and hash them for storage
+const crypto = require("node:crypto");
+
 // Create an Express app
 const app = express();
 
@@ -154,6 +157,40 @@ async function requireManager(req, res, next) {
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 // ROUTES
+
+// Create a single-use manager invitation valid for 24 hours
+app.post("/manager/invitations", requireManager, async (req, res) => {
+  try {
+    const token = crypto.randomBytes(32).toString("hex");
+
+    const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
+
+    const { rows } = await pool.query(
+      `INSERT INTO public.manager_invitations
+         (token_hash, created_by, expires_at)
+       VALUES ($1, $2, now() + interval '24 hours')
+       RETURNING id, expires_at`,
+      [tokenHash, req.authenticatedUser.id],
+    );
+
+    res.set("Cache-Control", "no-store");
+
+    return res.status(201).json({
+      invitation: {
+        id: rows[0].id,
+        token,
+        expiresAt: rows[0].expires_at,
+      },
+    });
+  } catch (error) {
+    console.error("Failed to create manager invitation:", error);
+
+    return res.status(500).json({
+      error: "Unable to create manager invitation.",
+    });
+  }
+});
+
 app.get("/", (req, res) => {
   res.send("Viking Arena Time Card API is running.");
 });
@@ -213,9 +250,9 @@ app.post("/login", async (req, res) => {
 
     const result = await pool.query(
       `SELECT id, first_name, last_name, role, job_title, pin_hash
-   FROM users
-   WHERE id = $1
-     AND deactivated_at IS NULL`,
+       FROM users
+       WHERE id = $1
+       AND deactivated_at IS NULL`,
       [normalizedUserId],
     );
 
@@ -378,6 +415,132 @@ app.post("/users", async (req, res) => {
     return res.status(500).json({
       error: "Failed to create user",
     });
+  }
+});
+
+// Register a manager using a single-use invitation
+app.post("/manager/invitations/redeem", async (req, res) => {
+  res.set("Cache-Control", "no-store");
+
+  const { token, firstName, lastName, pin } = req.body || {};
+
+  if (
+    typeof token !== "string" ||
+    typeof firstName !== "string" ||
+    typeof lastName !== "string" ||
+    typeof pin !== "string"
+  ) {
+    return res.status(400).json({
+      error: "Invitation token, first name, last name, and PIN are required",
+    });
+  }
+
+  const normalizedFirstName = firstName.trim();
+  const normalizedLastName = lastName.trim();
+  const normalizedPin = pin.trim();
+
+  if (
+    !normalizedFirstName ||
+    !normalizedLastName ||
+    normalizedFirstName.length > 50 ||
+    normalizedLastName.length > 50
+  ) {
+    return res.status(400).json({
+      error: "First name and last name must contain 1–50 characters",
+    });
+  }
+
+  if (!/^\d{4}$/.test(normalizedPin)) {
+    return res.status(400).json({
+      error: "PIN must contain exactly four digits",
+    });
+  }
+
+  if (!/^[a-f0-9]{64}$/.test(token)) {
+    return res.status(400).json({
+      error: "Invitation is invalid or unavailable",
+    });
+  }
+
+  let client;
+
+  try {
+    const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
+
+    const pinHash = await bcrypt.hash(normalizedPin, 12);
+
+    client = await pool.connect();
+    await client.query("BEGIN");
+
+    // Lock this invitation so concurrent requests cannot reuse it.
+    const invitationResult = await client.query(
+      `SELECT id
+       FROM public.manager_invitations
+       WHERE token_hash = $1
+         AND used_at IS NULL
+         AND revoked_at IS NULL
+         AND expires_at > clock_timestamp()
+       FOR UPDATE`,
+      [tokenHash],
+    );
+
+    if (invitationResult.rowCount !== 1) {
+      await client.query("ROLLBACK");
+
+      return res.status(400).json({
+        error: "Invitation is invalid or unavailable",
+      });
+    }
+
+    const userResult = await client.query(
+      `INSERT INTO public.users
+         (first_name, last_name, role, job_title, pin_hash)
+       VALUES ($1, $2, 'manager', 'manager', $3)
+       RETURNING id, first_name, last_name, role, job_title`,
+      [normalizedFirstName, normalizedLastName, pinHash],
+    );
+
+    const user = userResult.rows[0];
+
+    // Check expiry again after obtaining the lock.
+    const usedResult = await client.query(
+      `UPDATE public.manager_invitations
+       SET used_at = clock_timestamp(), used_by = $1
+       WHERE id = $2
+         AND used_at IS NULL
+         AND revoked_at IS NULL
+         AND expires_at > clock_timestamp()
+       RETURNING id`,
+      [user.id, invitationResult.rows[0].id],
+    );
+
+    if (usedResult.rowCount !== 1) {
+      await client.query("ROLLBACK");
+
+      return res.status(400).json({
+        error: "Invitation is invalid or unavailable",
+      });
+    }
+
+    await client.query("COMMIT");
+
+    return res.status(201).json(user);
+  } catch (error) {
+    if (client) {
+      try {
+        await client.query("ROLLBACK");
+      } catch (rollbackError) {
+        console.error("Invitation rollback failed:", rollbackError);
+      }
+    }
+
+    console.error("Manager registration failed:", error);
+
+    return res.status(500).json({
+      error: "Unable to register manager",
+    });
+  } finally {
+    if (client) client.release();
   }
 });
 
