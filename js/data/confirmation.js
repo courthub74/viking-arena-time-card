@@ -46,6 +46,7 @@ if (!pendingRegistration) {
     try {
       const response = await fetch(`${API_BASE_URL}/users`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -63,6 +64,16 @@ if (!pendingRegistration) {
         throw new Error(data.error || "Registration failed");
       }
 
+      // Account creation succeeded. Remove temporary data, including the PIN.
+      sessionStorage.removeItem("pendingRegistration");
+      sessionStorage.removeItem("currentUser");
+
+      if (!data.authenticated) {
+        alert("Your account was created. Please log in to continue.");
+        window.location.replace("../../index.html");
+        return;
+      }
+
       const currentUser = {
         id: data.id,
         username: `${data.first_name} ${data.last_name}`,
@@ -70,22 +81,13 @@ if (!pendingRegistration) {
         lastName: data.last_name,
         role: data.role,
         accountType: "Employee",
-        // jobTitle: data.job_title,
-        // Use the job title from the pending registration if the API response doesn't include it
-        jobTitle: data.job_title || pendingRegistration.jobTitle,
+        jobTitle: data.job_title,
         loginTime: new Date().toISOString(),
       };
 
       sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-      // Remove the temporary object, including the PIN
-      sessionStorage.removeItem("pendingRegistration");
-
-      const encodedUsername = encodeURIComponent(currentUser.username);
-
-      window.location.href =
-        `../dashboards/employee.html?username=${encodedUsername}` +
-        `&acct_type=Employee`;
+      window.location.replace("../dashboards/employee.html");
     } catch (error) {
       console.error(error);
 

@@ -153,6 +153,28 @@ async function requireManager(req, res, next) {
   }
 }
 
+// HELPER
+// Establish a fresh authenticated session before responding.
+function startUserSession(req, userId) {
+  return new Promise((resolve, reject) => {
+    req.session.regenerate((error) => {
+      if (error) return reject(error);
+
+      req.session.userId = userId;
+
+      req.session.save((error) => {
+        if (error) {
+          // Avoid leaving this request marked as authenticated.
+          delete req.session.userId;
+          return reject(error);
+        }
+
+        resolve();
+      });
+    });
+  });
+}
+
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
@@ -408,7 +430,24 @@ app.post("/users", async (req, res) => {
       [normalizedFirstName, normalizedLastName, normalizedJobTitle, pinHash],
     );
 
-    return res.status(201).json(result.rows[0]);
+    const user = result.rows[0];
+
+    try {
+      await startUserSession(req, user.id);
+    } catch (sessionError) {
+      console.error("Registration session failed:", sessionError);
+
+      return res.status(201).json({
+        ...user,
+        authenticated: false,
+        message: "Account created. Please log in to continue.",
+      });
+    }
+
+    return res.status(201).json({
+      ...user,
+      authenticated: true,
+    });
   } catch (error) {
     console.error(error);
 
