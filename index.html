@@ -1,183 +1,252 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-        <link rel="icon" href="./img/hazel-park-logo/viking-arena-logo.png" type="image/png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="./img/hazel-park-logo/viking-arena-logo.png"
+      type="image/png"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Viking Time Card</title>
 
-      <!-- CSS -->
-      <link rel="stylesheet" href="./css/base.css">
-      <link rel="stylesheet" href="./css/navigation.css">
-      <link rel="stylesheet" href="./css/forms.css">
-      <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/navigation.css" />
+    <link rel="stylesheet" href="./css/forms.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
     <!-- Container -->
     <div class="container">
+      <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
 
-
-        <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-
-        
-
-        <!-- THE NAVBAR AND SIDE MENU-->
-        <nav class="main_nav">
-            <!-- Burger -->
-            <div class="viking_logo">
-                <img src="./img/hazel-park-logo/viking-arena-logo.png" class="viking_img" alt="viking_ice_arena">
-                <p class="logo_text">Time Card</p>
-            </div>
-            
-            <!-- Light/Dark -->
-            <div class="menu_button">
-                <!-- Day/Nite -->
-                <button id="menu_burgers">
-                    <img src="./img/hamburgers/hamburger_blue.png" class="burger" id="burger_one" alt="menu">
-                    <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
-                </button>
-            </div>
-        </nav>
-
-        <!-- SLIDE IN MENU -->
-        <div class="side-menu">
-            <!-- Header Logo -->
-             <div class="slide_header_logo">
-                <img src="./img/hazel-park-logo/viking-arena-logo.png"  alt="logo">
-                <p class="slide_in_logo_text">Time Card</p>
-             </div>
-            
-             <!-- Menu Items -->
-             <div class="menu_items">
-                <a href="#" class="menu-item"><span>Tech Support</span><img src="./img/slide-in-menu/tech_support.png" alt="tech_support"></a>
-                <!-- <a href="#" class="menu-item"><span>Messaging</span><img src="./img/slide-in-menu/messaging.png" alt="messaging"></a> -->
-                <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
-                <button id="theme_switch" class="menu-item"><span>Day/Nite Mode</span><img src="./img/slide-in-menu/day_nite.png" alt="theme_switch"></button>
-             </div>
-            <!-- Logged in Profile -->
-            <div class="profile">
-                <div class="profile_header">
-                    <p class="profile_text">Not Logged In</p>
-                    <img src="./img/slide-in-menu/profile.png" class="profile_circle">
-                </div>
-
-                <!-- Profile Name -->
-                 <div class="profile_info">
-                    <label>Name:</label>
-                    <p class="profile_text_data" id="profile_name">________</p>
-                 </div>
-
-                 <!-- Profile Account Type -->
-                 <div class="profile_info">
-                    <label>Account type:</label>
-                    <p class="profile_text_data" id="profile_account">________</p>
-                 </div>
-
-                 <!-- Profile Pin Number -->
-                  <!-- This you will turn into a password output -->
-                 <div class="profile_info">
-                    <div class="pin_and_peak">
-                        <!-- <button class="delete_account_button" id="delete_account">
-                            <p class="delete_text">Delete Account</p>
-                        </button> -->
-                    </div>
-                 </div>
-            </div>
-           
+      <!-- THE NAVBAR AND SIDE MENU-->
+      <nav class="main_nav">
+        <!-- Burger -->
+        <div class="viking_logo">
+          <img
+            src="./img/hazel-park-logo/viking-arena-logo.png"
+            class="viking_img"
+            alt="viking_ice_arena"
+          />
+          <p class="logo_text">Time Card</p>
         </div>
 
-        <!-- Overlay -->
-        <div class="menu-overlay"></div>
+        <!-- Light/Dark -->
+        <div class="menu_button">
+          <!-- Day/Nite -->
+          <button id="menu_burgers">
+            <img
+              src="./img/hamburgers/hamburger_blue.png"
+              class="burger"
+              id="burger_one"
+              alt="menu"
+            />
+            <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
+          </button>
+        </div>
+      </nav>
 
-        <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+      <!-- SLIDE IN MENU -->
+      <div class="side-menu">
+        <!-- Header Logo -->
+        <div class="slide_header_logo">
+          <img src="./img/hazel-park-logo/viking-arena-logo.png" alt="logo" />
+          <p class="slide_in_logo_text">Time Card</p>
+        </div>
 
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
+        <!-- Menu Items -->
+        <div class="menu_items">
+          <a href="#" class="menu-item"
+            ><span>Tech Support</span
+            ><img src="./img/slide-in-menu/tech_support.png" alt="tech_support"
+          /></a>
+          <!-- <a href="#" class="menu-item"><span>Messaging</span><img src="./img/slide-in-menu/messaging.png" alt="messaging"></a> -->
+          <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
+          <button id="theme_switch" class="menu-item">
+            <span>Day/Nite Mode</span
+            ><img src="./img/slide-in-menu/day_nite.png" alt="theme_switch" />
+          </button>
+        </div>
+        <!-- Logged in Profile -->
+        <div class="profile">
+          <div class="profile_header">
+            <p class="profile_text">Not Logged In</p>
+            <img src="./img/slide-in-menu/profile.png" class="profile_circle" />
+          </div>
 
-        <!-- THE PAGE -->
+          <!-- Profile Name -->
+          <div class="profile_info">
+            <label>Name:</label>
+            <p class="profile_text_data" id="profile_name">________</p>
+          </div>
 
-        <!-- THE FORM -->
-        <form>
+          <!-- Profile Account Type -->
+          <div class="profile_info">
+            <label>Account type:</label>
+            <p class="profile_text_data" id="profile_account">________</p>
+          </div>
 
-            <!-- Select Dropdown -->
-            <div class="users_drop_container">
-                <label for="name_select">Select your Name:</label>
-                <select name="users" id="users_dropdown">
-                    <!-- <option value="" selected class="drop_label"></option> -->
-                    <!-- ------------- -->
-                     <!-- NAMES ADDED FROM LOCAL STORAGE -->
-                </select>
+          <!-- Profile Pin Number -->
+          <!-- This you will turn into a password output -->
+          <div class="profile_info">
+            <div class="pin_and_peak">
+              <!-- <button class="delete_account_button" id="delete_account">
+                            <p class="delete_text">Delete Account</p>
+                        </button> -->
             </div>
+          </div>
+        </div>
+      </div>
 
-            <!-- Pin # -->
-            <div class="pin_number">
-                <label for="pin_num">Enter your pin #:</label>
-                    <div class="pin_field" id="login_pin_field">
-                        <input type="password" class="pin_put" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin_put" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin_put" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                        <input type="password" class="pin_put" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    </div>
+      <!-- Overlay -->
+      <div class="menu-overlay"></div>
 
-                    <!-- Pin Handling Buttons -->
-                    <div class="pin_buttons" id="pin_buttons">
-                        <!-- Reset Pins Button -->
-                        <button class="reset_button" id="reset_button">Clear fields</button>
-                        <!-- Forgot Pin Button -->
-                        <button class="reset_button" id="forgot_button">Forgot Pin?</button>
-                    </div>
-            </div>
+      <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
 
-            <!-- Pin Match Alert-->
-            <div class="pin_match_confirm" id="pin_match_confirm">
-                <!-- <p class="match_">Match <img src="/viking_arena_time_card/img/pins-match/match.png" class="pin_match" alt="match"></p> -->
-                <p class="match_">Pins Match <img src="../../img/pins-match/match.png" class="pin_match" alt="match"></p>
-                <!-- <p class="no_match">No Match <img src="/viking_arena_time_card/img/pins-match/no_match.png" class="pin_match" alt="no_match"></p> -->
-                <p class="no_match">Pins don't Match <img src="../../img/pins-match/no_match.png" class="pin_match" alt="no_match"></p>
-           </div>
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
 
-            <!-- Submit Button -->
-            <button class="submit" id="submit_login" disabled>Login</button>
+      <!-- THE PAGE -->
 
-            <!-- Create account button -->
-            <div class="create_acct_div">
-                <p class="or">No account? <a href="./html/registration/name.html" class="create_acct">Create an account</a></p>
-            </div>
+      <!-- THE FORM -->
+      <form>
+        <!-- Select Dropdown -->
+        <div class="users_drop_container">
+          <label for="name_select">Select your Name:</label>
+          <select name="users" id="users_dropdown">
+            <!-- <option value="" selected class="drop_label"></option> -->
+            <!-- ------------- -->
+            <!-- NAMES ADDED FROM LOCAL STORAGE -->
+          </select>
+        </div>
 
-            <!-- Footer -->
-            <!-- <footer>
+        <!-- Pin # -->
+        <div class="pin_number">
+          <label for="pin_num">Enter your pin #:</label>
+          <div class="pin_field" id="login_pin_field">
+            <input
+              type="password"
+              class="pin_put"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+          </div>
+
+          <!-- Pin Handling Buttons -->
+          <div class="pin_buttons" id="pin_buttons">
+            <!-- Reset Pins Button -->
+            <button class="reset_button" id="reset_button">Clear fields</button>
+            <!-- Forgot Pin Button -->
+            <button class="reset_button" id="forgot_button">Forgot Pin?</button>
+          </div>
+        </div>
+
+        <!-- Pin Match Alert-->
+        <div class="pin_match_confirm" id="pin_match_confirm">
+          <!-- <p class="match_">Match <img src="/viking_arena_time_card/img/pins-match/match.png" class="pin_match" alt="match"></p> -->
+          <p class="match_">
+            Pins Match
+            <img
+              src="../../img/pins-match/match.png"
+              class="pin_match"
+              alt="match"
+            />
+          </p>
+          <!-- <p class="no_match">No Match <img src="/viking_arena_time_card/img/pins-match/no_match.png" class="pin_match" alt="no_match"></p> -->
+          <p class="no_match">
+            Pins don't Match
+            <img
+              src="../../img/pins-match/no_match.png"
+              class="pin_match"
+              alt="no_match"
+            />
+          </p>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="submit" id="submit_login" disabled>Login</button>
+
+        <!-- Create account links -->
+        <div class="create_acct_div login_account_links">
+          <p class="or">
+            No account?
+            <a href="./html/registration/name.html" class="create_acct">
+              Create an account
+            </a>
+          </p>
+
+          <p class="or">
+            Have a manager invitation?
+            <a
+              href="./html/registration/accept_manager_invitation.html"
+              class="create_acct"
+            >
+              Register as a manager
+            </a>
+          </p>
+        </div>
+
+        <!-- Footer -->
+        <!-- <footer>
                 <p>&copy; <span id="currentYear"></span> Courdevelops. All Rights Reserved</p>
                 <script>
                     document.getElementById("currentYear").innerHTML = new Date().getFullYear();
                 </script>
             </footer> -->
-        </form>
+      </form>
 
-        <!-- Footer -->
-        <footer>
-            <p>&copy; <span id="currentYear"></span> Courdevelops. All rights reserved.</p>
-            <script>
-                document.getElementById("currentYear").innerHTML = new Date().getFullYear();
-            </script>
-        </footer>
+      <!-- Footer -->
+      <footer>
+        <p>
+          &copy; <span id="currentYear"></span> Courdevelops. All rights
+          reserved.
+        </p>
+        <script>
+          document.getElementById("currentYear").innerHTML =
+            new Date().getFullYear();
+        </script>
+      </footer>
     </div>
 
     <!-- DARKMODE -->
@@ -188,6 +257,5 @@
 
     <!-- LOGIN -->
     <script src="./js/data/login.js"></script>
-    
-</body>
+  </body>
 </html>

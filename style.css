@@ -171,3 +171,17 @@ label {
     font-size: medium;
   }
 }
+
+.create_acct_div.login_account_links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.login_account_links .or {
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+}
