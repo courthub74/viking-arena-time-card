@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="../../img/hazel-park-logo/viking-arena-logo.png"
+      type="image/png"
+    />
+    <title>Viking Time Card</title>
+
+    <!-- CSS -->
+
+    <!-- BASE STYLES -->
+    <link rel="stylesheet" href="../../css/base.css" />
+
+    <!-- NAVIGATION STYLES -->
+    <link rel="stylesheet" href="../../css/navigation.css" />
+
+    <!-- FORMS STYLES -->
+    <link rel="stylesheet" href="../../css/forms.css" />
+
+    <!-- NAME STYLES -->
+    <link rel="stylesheet" href="../../css/name.css" />
+
+    <link rel="stylesheet" href="../../css/accept_manager_invitation.css" />
+  </head>
+  <body>
+    <!-- Container -->
+    <div class="container">
+      <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+
+      <!-- THE NAVBAR AND SIDE MENU-->
+      <nav class="main_nav">
+        <!-- Burger -->
+        <div class="viking_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            class="viking_img"
+            alt="viking_ice_arena"
+          />
+          <p class="logo_text">Time Card</p>
+        </div>
+
+        <!-- Light/Dark -->
+        <div class="menu_button">
+          <!-- Day/Nite -->
+          <button id="menu_burgers">
+            <img
+              src="../../img/hamburgers/hamburger_blue.png"
+              class="burger"
+              id="burger_one"
+              alt="menu"
+            />
+            <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
+          </button>
+        </div>
+      </nav>
+
+      <!-- SLIDE IN MENU -->
+      <div class="side-menu">
+        <!-- Header Logo -->
+        <div class="slide_header_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            alt="logo"
+          />
+          <p class="slide_in_logo_text">Time Card</p>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="menu_items">
+          <a href="#" class="menu-item"
+            ><span>Tech Support</span
+            ><img
+              src="../../img/slide-in-menu/tech_support.png"
+              alt="tech_support"
+          /></a>
+          <!-- <a href="#" class="menu-item"><span>Messaging</span><img src="../../img/slide-in-menu/messaging.png" alt="messaging"></a> -->
+          <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
+          <button id="theme_switch" class="menu-item">
+            <span>Day/Nite Mode</span
+            ><img
+              src="../../img/slide-in-menu/day_nite.png"
+              alt="theme_switch"
+            />
+          </button>
+        </div>
+        <!-- Logged in Profile -->
+        <div class="profile">
+          <div class="profile_header">
+            <p class="profile_text">Profile</p>
+            <img
+              src="../../img/slide-in-menu/profile.png"
+              class="profile_circle"
+            />
+          </div>
+
+          <!-- Profile Name -->
+          <div class="profile_info">
+            <label>Name:</label>
+            <p class="profile_text_data" id="profile_name">________</p>
+          </div>
+
+          <!-- Profile Account Type -->
+          <div class="profile_info">
+            <label>Account type:</label>
+            <p class="profile_text_data" id="profile_account">________</p>
+          </div>
+
+          <!-- Profile Pin Number -->
+          <!-- This you will turn into a password output -->
+          <div class="profile_info">
+            <div class="pin_and_peak">
+              <!-- <button class="delete_account_button" id="delete_account">
+                            <p class="delete_text">Delete Account</p>
+                        </button> -->
+              <!-- Pin Number -->
+              <!-- <div class="pin_profile_div">
+                            <label>Pin #:</label>
+                            <p class="profile_pin" id="profile_pin">****</p>
+                        </div> -->
+
+              <!-- Pin Code peak -->
+              <!-- <div class="pin_code_peak">
+                            <button id="pin_code_peak">
+                                <img src="./img/slide-in-menu/pin_peek.png">
+                            </button>
+                        </div> -->
+            </div>
+          </div>
+        </div>
+        <!-- Delete Button -->
+        <!-- <div class="delete_account_div">
+                <button class="logout_account_button" id="logout_account">
+                    <img src="../../img/logout/white_logout.png" class="logout_logo">
+                    <p class="logout_text">Log Out</p>
+                </button>
+             </div>  -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="menu-overlay"></div>
+
+      <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+
+      <!-- THE PAGE -->
+
+      <!-- THE FORM -->
+      <form id="accept_invitation_form">
+        <div class="name_fields">
+          <label>Create your manager account:</label>
+
+          <div class="registration_names">
+            <label for="invitation_code">Invitation code</label>
+            <input
+              type="text"
+              id="invitation_code"
+              required
+              minlength="64"
+              maxlength="64"
+              autocomplete="off"
+              autocapitalize="none"
+              spellcheck="false"
+            />
+          </div>
+
+          <div class="registration_names">
+            <label for="firstname">First name</label>
+            <input
+              type="text"
+              id="firstname"
+              required
+              maxlength="50"
+              autocomplete="given-name"
+            />
+          </div>
+
+          <div class="registration_names">
+            <label for="lastname">Last name</label>
+            <input
+              type="text"
+              id="lastname"
+              required
+              maxlength="50"
+              autocomplete="family-name"
+            />
+          </div>
+
+          <div class="registration_names">
+            <label for="manager_pin">Choose a four-digit PIN</label>
+            <input
+              type="password"
+              id="manager_pin"
+              required
+              inputmode="numeric"
+              pattern="[0-9]{4}"
+              minlength="4"
+              maxlength="4"
+              autocomplete="new-password"
+            />
+          </div>
+
+          <div class="registration_names">
+            <label for="confirm_pin">Confirm PIN</label>
+            <input
+              type="password"
+              id="confirm_pin"
+              required
+              inputmode="numeric"
+              pattern="[0-9]{4}"
+              minlength="4"
+              maxlength="4"
+              autocomplete="new-password"
+            />
+          </div>
+        </div>
+
+        <!-- Pin Match Confirm -->
+        <div
+          class="pin_match_confirm"
+          id="pin_match_confirm"
+          role="status"
+          aria-live="polite"
+        >
+          <p class="match_">
+            PINs match
+            <img
+              src="../../img/pins-match/match.png"
+              class="pin_match"
+              alt=""
+            />
+          </p>
+
+          <p class="no_match">
+            PINs don't match
+            <img
+              src="../../img/pins-match/no_match.png"
+              class="pin_match"
+              alt=""
+            />
+          </p>
+        </div>
+
+        <div class="name_notify">
+          <p id="invitation_notify" role="status" aria-live="polite"></p>
+        </div>
+
+        <button type="submit" class="submit" id="accept_invitation" disabled>
+          Create Manager Account
+        </button>
+      </form>
+
+      <!-- Back Button -->
+      <a href="../../index.html" class="go_back">Back to Login</a>
+    </div>
+
+    <!-- DARKMODE -->
+    <!-- <script src="/viking_arena_time_card/js/darkmode.js"></script> -->
+    <script src="../../js/darkmode.js"></script>
+
+    <!-- SLIDE IN -->
+    <!-- <script src="/viking_arena_time_card/js/slide-in.js"></script> -->
+    <script src="../../js/slide-in.js"></script>
+
+    <!-- MANAGER INVITATIONS -->
+    <script src="../../js/database/accept_manager_invitation.js"></script>
+  </body>
+</html>

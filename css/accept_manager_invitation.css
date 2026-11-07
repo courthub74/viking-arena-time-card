@@ -1,0 +1,35 @@
+#accept_invitation_form .pin_match_confirm {
+  position: static;
+  box-sizing: border-box;
+  min-height: 2rem;
+  margin: 0.75rem 0;
+  padding: 0;
+}
+
+#accept_invitation_form .match_,
+#accept_invitation_form .no_match {
+  position: static;
+  margin: 0;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  gap: 0.5rem;
+  line-height: 1.5;
+}
+
+#accept_invitation_form .name_notify {
+  margin: 0;
+  padding: 0;
+}
+
+#accept_invitation_form .name_notify:has(#invitation_notify:empty) {
+  display: none;
+}
+
+#accept_invitation_form #invitation_notify {
+  margin: 0;
+  line-height: 1.5;
+}
+
+#accept_invitation_form .submit {
+  margin-top: 0.5rem;
+}
