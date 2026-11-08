@@ -1,103 +1,77 @@
-// THE ALGRORITHM FOR GETTING FROM THE URL PARAMETERS
+document.addEventListener("DOMContentLoaded", async () => {
+  const employeeName = document.getElementById("employee_name");
+  const profileName = document.getElementById("profile_name");
+  const profileAccount = document.getElementById("profile_account");
 
-// Page One
+  if (employeeName) employeeName.textContent = "Checking session…";
+  if (profileName) profileName.textContent = "";
+  if (profileAccount) profileAccount.textContent = "";
 
-// Query the input
-// Get the input.value
-// store it in a variable
-// Encode the variable
-// Redirect to the next page with URL parameters
+  try {
+    const response = await fetch("http://localhost:3000/session", {
+      credentials: "include",
+      cache: "no-store",
+    });
 
-// Page Two
-// retrieve the URL parameters
-
-//////////////////////////////////////////////////////////////////////
-// THE ALGORITHM FOR GETTING FROM THE URL PARAMETERS
-//////////////////////////////////////////////////////////////////////
-
-// For the Header and slide ins on the dashboard page
-
-// At the top of your JS file or in a DOMContentLoaded event listener
-document.addEventListener("DOMContentLoaded", function () {
-  ///////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////
-  // REGISTRATION PART (I assume you don't have the session storage yet)
-  ///////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////
-
-  // Query the slide in profile name
-  const slide_in_profile_name = document.getElementById("profile_name");
-  // Query the slide in account type
-  const slide_in_account_type = document.getElementById("profile_account");
-  // Get logged in user from session storage
-  // Get the name from the URL parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const logged_name = urlParams.get("username")
-    ? decodeURIComponent(urlParams.get("username"))
-    : "Not Logged In";
-  const logged_acct_type = urlParams.get("acct_type")
-    ? decodeURIComponent(urlParams.get("acct_type"))
-    : "N/A";
-  // Set the sidebar elements to the logged in user
-  slide_in_profile_name.innerHTML = logged_name;
-  slide_in_account_type.innerHTML = logged_acct_type;
-
-  // Query the name header
-  const name_header = document.querySelector("#employee_name");
-
-  // Set the name header to the logged in user
-  name_header.innerHTML = logged_name;
-
-  /////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////
-  const storedCurrentUser = sessionStorage.getItem("currentUser");
-
-  if (!storedCurrentUser) {
-    console.log("(employee.js) No current user found. Redirecting to login.");
-
-    window.location.replace("../../index.html");
-    return;
-  }
-
-  const currentUser = JSON.parse(storedCurrentUser);
-
-  if (currentUser.role !== "employee") {
-    console.log("(employee.js) Current user does not have the employee role.");
-
-    if (currentUser.role === "manager") {
-      window.location.replace("./manager.html");
-    } else {
+    if (response.status === 401) {
+      sessionStorage.removeItem("currentUser");
       window.location.replace("../../index.html");
+      return;
     }
 
-    return;
+    if (!response.ok) {
+      throw new Error(
+        "Unable to verify your session. Please refresh to retry.",
+      );
+    }
+
+    const { user } = await response.json();
+
+    if (!user || !Number.isSafeInteger(user.id)) {
+      throw new Error("The server returned an invalid session.");
+    }
+
+    if (user.role === "manager") {
+      window.location.replace("./manager.html");
+      return;
+    }
+
+    if (user.role !== "employee") {
+      sessionStorage.removeItem("currentUser");
+      window.location.replace("../../index.html");
+      return;
+    }
+
+    const username = `${user.firstName} ${user.lastName}`.trim();
+
+    // Keep compatibility with pages that read currentUser.
+    // Authentication is verified by the API, not this stored object.
+    const currentUser = {
+      id: user.id,
+      username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      role: user.role,
+      accountType: "Employee",
+      jobTitle: user.jobTitle,
+    };
+
+    sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+    if (employeeName) employeeName.textContent = username;
+    if (profileName) profileName.textContent = username;
+    if (profileAccount) profileAccount.textContent = "Employee";
+    document.body.classList.remove("session-checking");
+  } catch (error) {
+    document.body.classList.remove("session-checking");
+    console.error("Employee session check failed:", error);
+
+    sessionStorage.removeItem("currentUser");
+
+    if (employeeName) {
+      employeeName.textContent = "Session verification unavailable";
+    }
+
+    alert(error.message);
   }
-
-  console.log(
-    `(employee.js) Current user: ${currentUser.username}; role: ${currentUser.role}`,
-  );
-
-  const loggedName = currentUser.username || "Not Logged In";
-  const loggedAccountType = currentUser.accountType || "Not Logged In";
-
-  const employeeNameHeader = document.getElementById("employee_name");
-  const sidebarNameHeader = document.getElementById("profile_name");
-  const sidebarAccountTypeHeader = document.getElementById("profile_account");
-
-  if (employeeNameHeader) {
-    employeeNameHeader.textContent = loggedName;
-  }
-
-  if (sidebarNameHeader) {
-    sidebarNameHeader.textContent = loggedName;
-  }
-
-  if (sidebarAccountTypeHeader) {
-    sidebarAccountTypeHeader.textContent = loggedAccountType;
-  }
-
-  console.log(`(employee.js) Logged-in name: ${loggedName}`);
-  console.log(`(employee.js) Logged-in account type: ${loggedAccountType}`);
 });
