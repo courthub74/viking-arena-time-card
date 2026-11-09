@@ -563,7 +563,23 @@ app.post("/manager/invitations/redeem", async (req, res) => {
 
     await client.query("COMMIT");
 
-    return res.status(201).json(user);
+    // Registration is committed before starting the login session.
+    try {
+      await startUserSession(req, user.id);
+    } catch (sessionError) {
+      console.error("Manager registration session failed:", sessionError);
+
+      return res.status(201).json({
+        ...user,
+        authenticated: false,
+        message: "Account created. Please log in to continue.",
+      });
+    }
+
+    return res.status(201).json({
+      ...user,
+      authenticated: true,
+    });
   } catch (error) {
     if (client) {
       try {

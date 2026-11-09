@@ -76,7 +76,7 @@
         "http://localhost:3000/manager/invitations/redeem",
         {
           method: "POST",
-          credentials: "omit",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             token: token.value.trim(),
@@ -93,7 +93,9 @@
         throw new Error(result.error || "Unable to create manager account.");
       }
 
+      // Success Block
       completed = true;
+      showPinMatch();
       form.reset();
 
       form.querySelectorAll("input").forEach((input) => {
@@ -101,8 +103,29 @@
       });
 
       button.textContent = "Account Created";
-      notify.textContent =
-        "Your manager account was created. Select Back to Login to sign in.";
+
+      // Clear any profile cached from a previous login.
+      sessionStorage.removeItem("currentUser");
+
+      if (!result.authenticated) {
+        notify.textContent =
+          "Your manager account was created. Please log in to continue.";
+        return;
+      }
+
+      const currentUser = {
+        id: result.id,
+        username: `${result.first_name} ${result.last_name}`,
+        firstName: result.first_name,
+        lastName: result.last_name,
+        role: result.role,
+        accountType: "Manager",
+        jobTitle: result.job_title,
+      };
+
+      sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+      window.location.replace("../dashboards/manager.html");
     } catch (error) {
       notify.textContent = error.message;
       button.textContent = "Create Manager Account";
