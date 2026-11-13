@@ -15,7 +15,7 @@
   const readPin = () => pins.map((input) => input.value).join("");
 
   function updateButton() {
-    openButton.disabled = saving || !currentUser || !/^\d{4}$/.test(readPin());
+    openButton.disabled = saving || !currentUser || !/^\d{6}$/.test(readPin());
   }
 
   function clearPins() {
@@ -105,7 +105,7 @@
     if (saving || !currentUser) return;
 
     const pin = readPin();
-    if (!/^\d{4}$/.test(pin)) return;
+    if (!/^\d{6}$/.test(pin)) return;
 
     saving = true;
     updateButton();

@@ -982,6 +982,13 @@ footer {
   /* display: block; */
 }
 
+.pin_field .pin_put {
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
 /* For wider screens narrow the form */
 
 /* Landscape */

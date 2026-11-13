@@ -1,186 +1,301 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../img/hazel-park-logo/viking-arena-logo.png" type="image/png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="../../img/hazel-park-logo/viking-arena-logo.png"
+      type="image/png"
+    />
     <title>Viking Time Card</title>
 
-      <!-- CSS -->
+    <!-- CSS -->
 
-      <!-- BASE STYLES -->
-      <link rel="stylesheet" href="../../css/base.css">
+    <!-- BASE STYLES -->
+    <link rel="stylesheet" href="../../css/base.css" />
 
-      <!-- NAVIGATION STYLES -->
-      <link rel="stylesheet" href="../../css/navigation.css">
+    <!-- NAVIGATION STYLES -->
+    <link rel="stylesheet" href="../../css/navigation.css" />
 
-      <!-- FORMS STYLES -->
-      <link rel="stylesheet" href="../../css/forms.css">
+    <!-- FORMS STYLES -->
+    <link rel="stylesheet" href="../../css/forms.css" />
 
-        <!-- PIN NUMBER STYLES -->
-      <link rel="stylesheet" href="../../css/pin_number.css">
-</head>
-<body>
-
+    <!-- PIN NUMBER STYLES -->
+    <link rel="stylesheet" href="../../css/pin_number.css" />
+  </head>
+  <body>
     <!-- Container -->
     <div class="container">
+      <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------- -->
 
+      <!-- THE NAVBAR AND SIDE MENU-->
+      <nav class="main_nav">
+        <!-- Burger -->
+        <div class="viking_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            class="viking_img"
+            alt="viking_ice_arena"
+          />
+          <p class="logo_text">Time Card</p>
+        </div>
 
+        <!-- Light/Dark -->
+        <div class="menu_button">
+          <!-- Day/Nite -->
+          <button id="menu_burgers">
+            <img
+              src="../../img/hamburgers/hamburger_blue.png"
+              class="burger"
+              id="burger_one"
+              alt="menu"
+            />
+            <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
+          </button>
+        </div>
+      </nav>
 
-        <!-- --------------COPY HERE TO THE OTHER LINE FIELD--------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
-        <!-- -------------------------------------------------------------- -->
+      <!-- SLIDE IN MENU -->
+      <div class="side-menu">
+        <!-- Header Logo -->
+        <div class="slide_header_logo">
+          <img
+            src="../../img/hazel-park-logo/viking-arena-logo.png"
+            alt="logo"
+          />
+          <p class="slide_in_logo_text">Time Card</p>
+        </div>
 
+        <!-- Menu Items -->
+        <div class="menu_items">
+          <a href="#" class="menu-item"
+            ><span>Tech Support</span
+            ><img
+              src="../../img/slide-in-menu/tech_support.png"
+              alt="tech_support"
+          /></a>
+          <!-- <a href="#" class="menu-item"><span>Messaging</span><img src="../../img/slide-in-menu/messaging.png" alt="messaging"></a> -->
+          <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
+          <button id="theme_switch" class="menu-item">
+            <span>Day/Nite Mode</span
+            ><img
+              src="../../img/slide-in-menu/day_nite.png"
+              alt="theme_switch"
+            />
+          </button>
+        </div>
+        <!-- Logged in Profile -->
+        <div class="profile">
+          <div class="profile_header">
+            <p class="profile_text">Profile</p>
+            <img
+              src="../../img/slide-in-menu/profile.png"
+              class="profile_circle"
+            />
+          </div>
 
-        <!-- THE NAVBAR AND SIDE MENU-->
-        <nav class="main_nav">
-            <!-- Burger -->
-            <div class="viking_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png" class="viking_img" alt="viking_ice_arena">
-                <p class="logo_text">Time Card</p>
-            </div>
-            
-            <!-- Light/Dark -->
-            <div class="menu_button">
-                <!-- Day/Nite -->
-                <button id="menu_burgers">
-                    <img src="../../img/hamburgers/hamburger_blue.png" class="burger" id="burger_one" alt="menu">
-                    <!-- <img src="./img/hamburgers/hamburger-blue.png" class="burger" id="burger_two" alt="menu"> -->
-                </button>
-            </div>
-        </nav>
+          <!-- Profile Name -->
+          <div class="profile_info">
+            <label>Name:</label>
+            <p class="profile_text_data" id="profile_name">________</p>
+          </div>
 
-        <!-- SLIDE IN MENU -->
-        <div class="side-menu">
-            <!-- Header Logo -->
-             <div class="slide_header_logo">
-                <img src="../../img/hazel-park-logo/viking-arena-logo.png"  alt="logo">
-                <p class="slide_in_logo_text">Time Card</p>
-             </div>
-            
-             <!-- Menu Items -->
-             <div class="menu_items">
-                <a href="#" class="menu-item"><span>Tech Support</span><img src="../../img/slide-in-menu/tech_support.png" alt="tech_support"></a>
-                <!-- <a href="#" class="menu-item"><span>Messaging</span><img src="../../img/slide-in-menu/messaging.png" alt="messaging"></a> -->
-                <!-- <a href="#" class="menu-item"><span>Schedule Requests</span></a> -->
-                <button id="theme_switch" class="menu-item"><span>Day/Nite Mode</span><img src="../../img/slide-in-menu/day_nite.png" alt="theme_switch"></button>
-             </div>
-            <!-- Logged in Profile -->
-            <div class="profile">
-                <div class="profile_header">
-                    <p class="profile_text">Profile</p>
-                    <img src="../../img/slide-in-menu/profile.png" class="profile_circle">
-                </div>
+          <!-- Profile Account Type -->
+          <div class="profile_info">
+            <label>Account type:</label>
+            <p class="profile_text_data" id="profile_account">________</p>
+          </div>
 
-                <!-- Profile Name -->
-                <div class="profile_info">
-                    <label>Name:</label>
-                    <p class="profile_text_data" id="profile_name">________</p>
-                 </div>
-
-                 <!-- Profile Account Type -->
-                 <div class="profile_info">
-                    <label>Account type:</label>
-                    <p class="profile_text_data" id="profile_account">________</p>
-                 </div>
-
-                 <!-- Profile Pin Number -->
-                  <!-- This you will turn into a password output -->
-                 <div class="profile_info">
-                    <div class="pin_and_peak">
-                        <!-- <button class="delete_account_button" id="delete_account">
+          <!-- Profile Pin Number -->
+          <!-- This you will turn into a password output -->
+          <div class="profile_info">
+            <div class="pin_and_peak">
+              <!-- <button class="delete_account_button" id="delete_account">
                             <p class="delete_text">Delete Account</p>
                         </button> -->
-                        <!-- Pin Number -->
-                        <!-- <div class="pin_profile_div">
+              <!-- Pin Number -->
+              <!-- <div class="pin_profile_div">
                             <label>Pin #:</label>
                             <p class="profile_pin" id="profile_pin">****</p>
                         </div> -->
 
-                         <!-- Pin Code peak -->
-                        <!-- <div class="pin_code_peak">
+              <!-- Pin Code peak -->
+              <!-- <div class="pin_code_peak">
                             <button id="pin_code_peak">
                                 <img src="./img/slide-in-menu/pin_peek.png">
                             </button>
                         </div> -->
-                    </div>
-                 </div>
             </div>
-             <!-- Delete Button -->
-             <!-- <div class="delete_account_div">
+          </div>
+        </div>
+        <!-- Delete Button -->
+        <!-- <div class="delete_account_div">
                 <button class="logout_account_button" id="logout_account">
                     <img src="../../img/logout/white_logout.png" class="logout_logo">
                     <p class="logout_text">Log Out</p>
                 </button>
              </div>  -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="menu-overlay"></div>
+
+      <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+      <!---------------------------------------------------------- -->
+
+      <!-- THE PAGE -->
+
+      <!-- THE FORM -->
+      <form>
+        <label>Let's set a 6-digit pin to login:</label>
+
+        <!-- PIN FIELDS -->
+        <div class="pin_number">
+          <label class="name_label" for="pin_num">Set pin #:</label>
+          <div class="pin_field" id="pin_field_set">
+            <input
+              type="password"
+              class="pin_put_set"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put_set"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put_set"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put_set"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put_set"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put_set"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+          </div>
         </div>
 
-        <!-- Overlay -->
-        <div class="menu-overlay"></div>
+        <!-- Pin # -->
+        <div class="pin_number">
+          <label class="name_label" for="pin_num">Confirm pin #:</label>
+          <div class="pin_field" id="pin_field_confirm">
+            <input
+              type="password"
+              class="pin_put_confirm"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put_confirm"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put_confirm"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put_confirm"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put_confirm"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="password"
+              class="pin_put_confirm"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+          </div>
+          <!-- Reset Pins Button -->
+          <button class="reset_button" id="reset_button">
+            Clear Pin fields
+          </button>
+        </div>
 
-        <!-- ----------COPY ABOVE FOR ALL OTHER PAGES REDO---------- -->
+        <!-- Pin Match Alert-->
+        <div class="pin_match_confirm" id="pin_match_confirm">
+          <!-- <p class="match_">Match <img src="/viking_arena_time_card/img/pins-match/match.png" class="pin_match" alt="match"></p> -->
+          <p class="match_">
+            Pins Match
+            <img
+              src="../../img/pins-match/match.png"
+              class="pin_match"
+              alt="match"
+            />
+          </p>
+          <!-- <p class="no_match">No Match <img src="/viking_arena_time_card/img/pins-match/no_match.png" class="pin_match" alt="no_match"></p> -->
+          <p class="no_match">
+            Pins don't Match
+            <img
+              src="../../img/pins-match/no_match.png"
+              class="pin_match"
+              alt="no_match"
+            />
+          </p>
+        </div>
 
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-        <!---------------------------------------------------------- -->
-
-        <!-- THE PAGE -->
-
-        <!-- THE FORM -->
-        <form>
-
-            <label>Let's set a 4-digit pin to login:</label>
-
-            <!-- PIN FIELDS -->
-            <div class="pin_number">
-                <label class="name_label" for="pin_num">Set pin #:</label>
-                <div class="pin_field" id="pin_field_set">
-                    <input type="password" class="pin_put_set" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="password" class="pin_put_set" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="password" class="pin_put_set" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="password" class="pin_put_set" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                </div>
-            </div>
-
-             <!-- Pin # -->
-             <div class="pin_number">
-                <label class="name_label" for="pin_num">Confirm pin #:</label>
-                <div class="pin_field" id="pin_field_confirm">
-                    <input type="password" class="pin_put_confirm" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="password" class="pin_put_confirm" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="password" class="pin_put_confirm" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                    <input type="password" class="pin_put_confirm" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-                </div>
-                <!-- Reset Pins Button -->
-                <button class="reset_button" id="reset_button">Clear Pin fields</button>
-            </div>
-
-            <!-- Pin Match Alert-->
-            <div class="pin_match_confirm" id="pin_match_confirm">
-                <!-- <p class="match_">Match <img src="/viking_arena_time_card/img/pins-match/match.png" class="pin_match" alt="match"></p> -->
-                <p class="match_">Pins Match <img src="../../img/pins-match/match.png" class="pin_match" alt="match"></p>
-                <!-- <p class="no_match">No Match <img src="/viking_arena_time_card/img/pins-match/no_match.png" class="pin_match" alt="no_match"></p> -->
-                <p class="no_match">Pins don't Match <img src="../../img/pins-match/no_match.png" class="pin_match" alt="no_match"></p>
-           </div>
-
-
-            <!-- Submit Button -->
-            <button class="submit" id="submit_login" disabled>Next</button>
-        </form>
+        <!-- Submit Button -->
+        <button class="submit" id="submit_login" disabled>Next</button>
+      </form>
     </div>
 
     <!-- DARKMODE -->
@@ -194,6 +309,5 @@
     <!-- PIN NUMBER KEYSTROKES -->
     <!-- <script src="/viking_arena_time_card/js/data/pin_numbers.js"></script> -->
     <script src="../../js/data/pin_numbers.js"></script>
-    
-</body>
+  </body>
 </html>

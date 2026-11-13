@@ -21,7 +21,7 @@
     if (saving || completed) return;
 
     const bothComplete =
-      /^\d{4}$/.test(pin.value) && /^\d{4}$/.test(confirmPin.value);
+      /^\d{6}$/.test(pin.value) && /^\d{6}$/.test(confirmPin.value);
 
     if (!bothComplete) return;
 
@@ -45,7 +45,7 @@
       lastName.value.trim().length > 0 &&
       firstName.value.trim().length <= 50 &&
       lastName.value.trim().length <= 50 &&
-      /^\d{4}$/.test(pin.value) &&
+      /^\d{6}$/.test(pin.value) &&
       pin.value === confirmPin.value;
 
     button.disabled = saving || completed || !valid;

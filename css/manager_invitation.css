@@ -62,6 +62,13 @@
   text-align: center;
 }
 
+.copy_success_icon {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
+  margin-left: 0.3em;
+}
+
 @media (max-width: 600px) {
   #manager_invitation_form {
     padding-inline: 0.5rem;

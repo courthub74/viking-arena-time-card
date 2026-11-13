@@ -30,7 +30,7 @@ if (!pendingRegistration) {
 
   confirmedName.textContent = fullName;
   confirmedAccountType.textContent = jobTitleLabel;
-  confirmedPin.textContent = "••••";
+  confirmedPin.textContent = "•".repeat(pendingRegistration.pin.length);
 
   sidebarName.textContent = fullName;
   sidebarAccountType.textContent = jobTitleLabel;

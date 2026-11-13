@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const pin = getEnteredPin();
 
-      if (pin.length === 4) {
+      if (pin.length === 6) {
         await verifyLogin(pin);
       }
     });

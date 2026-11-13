@@ -263,10 +263,10 @@ app.post("/login", async (req, res) => {
       !Number.isInteger(normalizedUserId) ||
       normalizedUserId <= 0 ||
       typeof pin !== "string" ||
-      !/^\d{4}$/.test(pin)
+      !/^\d{6}$/.test(pin)
     ) {
       return res.status(400).json({
-        error: "A valid user and four-digit PIN are required",
+        error: "A valid user and six-digit PIN are required",
       });
     }
 
@@ -403,9 +403,9 @@ app.post("/users", async (req, res) => {
       });
     }
 
-    if (!/^\d{4}$/.test(normalizedPin)) {
+    if (!/^\d{6}$/.test(normalizedPin)) {
       return res.status(400).json({
-        error: "PIN must contain exactly four digits",
+        error: "PIN must contain exactly six digits",
       });
     }
 
@@ -489,9 +489,9 @@ app.post("/manager/invitations/redeem", async (req, res) => {
     });
   }
 
-  if (!/^\d{4}$/.test(normalizedPin)) {
+  if (!/^\d{6}$/.test(normalizedPin)) {
     return res.status(400).json({
-      error: "PIN must contain exactly four digits",
+      error: "PIN must contain exactly six digits",
     });
   }
 
@@ -927,9 +927,9 @@ app.post("/account/deactivate", async (req, res) => {
 
     const { pin } = req.body;
 
-    if (typeof pin !== "string" || !/^\d{4}$/.test(pin)) {
+    if (typeof pin !== "string" || !/^\d{6}$/.test(pin)) {
       return res.status(400).json({
-        error: "A four-digit PIN is required",
+        error: "A six-digit PIN is required",
       });
     }
 

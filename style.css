@@ -43,6 +43,20 @@ label {
   font-weight: 500;
 }
 
+/* Keep all six login PIN boxes within the form width */
+#login_pin_field {
+  display: flex;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+#login_pin_field .pin_put {
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
 @media (hover: hover) {
   .submit:not(:disabled):hover {
     filter: brightness(1.08);

@@ -93,7 +93,13 @@
   copyButton.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(tokenField.value);
-      status.textContent = "Invitation code copied.";
+
+      const check = document.createElement("img");
+      check.src = "../../img/pins-match/match.png";
+      check.alt = "";
+      check.className = "copy_success_icon";
+
+      status.replaceChildren("Invitation code copied. ", check);
     } catch {
       tokenField.focus();
       tokenField.select();
