@@ -3,7 +3,7 @@
 // BASIC LOGIN ALGORITHM
 // 1. Get the username and pin from the input fields
 // 2. Validate the inputs (username and pin)
-// 3. Check if the username exists in the database (LocalStorage)
+// 3. Check if the username exists in the database (LocalStorage was used previously, but now we are using PostgreSQL)
 // 4. If the username exists, check if the pin matches the one in the database
 // 5. If the pin matches, log the user in and redirect to the appropriate page
 // 6. If the pin doesn't match, keep the login button disabled and turn the clear pins field into notification colors

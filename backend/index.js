@@ -21,6 +21,9 @@ const PgSession = require("connect-pg-simple")(session);
 // Generate invitation tokens and hash them for storage
 const crypto = require("node:crypto");
 
+// express-rate-limit for rate limiting
+const { rateLimit } = require("express-rate-limit");
+
 // Create an Express app
 const app = express();
 
@@ -253,101 +256,170 @@ app.get("/users", async (req, res) => {
   }
 });
 
+// LOGIN RATE LIMITING
+// Starting settings for Viking; adjust as usage grows.
+const LOGIN_WINDOW_MS = 5 * 60 * 1000;
+const LOGIN_IP_LIMIT = 50;
+const LOGIN_ACCOUNT_LIMIT = 5;
+
+// Broad protection for the login endpoint.
+// Counts all requests, including successful logins.
+const loginIpLimiter = rateLimit({
+  windowMs: LOGIN_WINDOW_MS,
+  limit: LOGIN_IP_LIMIT,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  identifier: "login-ip",
+  requestPropertyName: "loginIpRateLimit",
+  message: {
+    error:
+      "Too many login requests from this connection. Please try again shortly.",
+  },
+});
+
+// Validate before creating an account-specific counter.
+function validateLoginInput(req, res, next) {
+  const { userId, pin } = req.body ?? {};
+  const normalizedUserId = Number(userId);
+
+  if (
+    !Number.isSafeInteger(normalizedUserId) ||
+    normalizedUserId <= 0 ||
+    typeof pin !== "string" ||
+    !/^\d{6}$/.test(pin)
+  ) {
+    return res.status(400).json({
+      error: "A valid user and six-digit PIN are required",
+    });
+  }
+
+  req.loginUserId = normalizedUserId;
+  next();
+}
+
+// Account protection applies across different connections.
+// Only incorrect credentials remain counted after a response.
+const loginAccountLimiter = rateLimit({
+  windowMs: LOGIN_WINDOW_MS,
+  limit: LOGIN_ACCOUNT_LIMIT,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  identifier: "login-account",
+  requestPropertyName: "loginAccountRateLimit",
+
+  keyGenerator: (req) => `user:${req.loginUserId}`,
+
+  skipSuccessfulRequests: true,
+  requestWasSuccessful: (req, res) => res.statusCode !== 401,
+
+  message: {
+    error:
+      "Too many failed login attempts for this account. Please try again shortly.",
+  },
+});
+
 // Verify a user's login credentials
-app.post("/login", async (req, res) => {
-  try {
-    const { userId, pin } = req.body;
-    const normalizedUserId = Number(userId);
+app.post(
+  "/login",
+  loginIpLimiter,
+  validateLoginInput,
+  loginAccountLimiter,
+  async (req, res) => {
+    try {
+      const { pin } = req.body;
+      const normalizedUserId = req.loginUserId;
 
-    if (
-      !Number.isInteger(normalizedUserId) ||
-      normalizedUserId <= 0 ||
-      typeof pin !== "string" ||
-      !/^\d{6}$/.test(pin)
-    ) {
-      return res.status(400).json({
-        error: "A valid user and six-digit PIN are required",
-      });
-    }
+      // Validate input again for safety, even though middleware already checked it.
+      // if (
+      //   !Number.isInteger(normalizedUserId) ||
+      //   normalizedUserId <= 0 ||
+      //   typeof pin !== "string" ||
+      //   !/^\d{6}$/.test(pin)
+      // ) {
+      //   return res.status(400).json({
+      //     error: "A valid user and six-digit PIN are required",
+      //   });
+      // }
 
-    const result = await pool.query(
-      `SELECT id, first_name, last_name, role, job_title, pin_hash
+      const result = await pool.query(
+        `SELECT id, first_name, last_name, role, job_title, pin_hash
        FROM users
        WHERE id = $1
        AND deactivated_at IS NULL`,
-      [normalizedUserId],
-    );
+        [normalizedUserId],
+      );
 
-    const user = result.rows[0];
+      const user = result.rows[0];
 
-    // Use one generic message so the response does not reveal
-    // whether the user or PIN was incorrect.
-    if (!user) {
-      return res.status(401).json({
-        error: "Invalid user or PIN",
-      });
-    }
-
-    const pinMatches = await bcrypt.compare(pin, user.pin_hash);
-
-    if (!pinMatches) {
-      return res.status(401).json({
-        error: "Invalid user or PIN",
-      });
-    }
-
-    // Old Successful Response Block
-    // return res.json({
-    //   message: "Login successful",
-    //   user: {
-    //     id: user.id,
-    //     firstName: user.first_name,
-    //     lastName: user.last_name,
-    //     role: user.role,
-    //     jobTitle: user.job_title,
-    //   },
-    // });
-
-    // Now we Replace any previous session after successful PIN verification.
-    req.session.regenerate((error) => {
-      if (error) {
-        console.error(error);
-        return res.status(500).json({
-          error: "Failed to create login session",
+      // Use one generic message so the response does not reveal
+      // whether the user or PIN was incorrect.
+      if (!user) {
+        return res.status(401).json({
+          error: "Invalid user or PIN",
         });
       }
 
-      req.session.userId = user.id;
+      const pinMatches = await bcrypt.compare(pin, user.pin_hash);
 
-      req.session.save((error) => {
+      if (!pinMatches) {
+        return res.status(401).json({
+          error: "Invalid user or PIN",
+        });
+      }
+
+      // Old Successful Response Block
+      // return res.json({
+      //   message: "Login successful",
+      //   user: {
+      //     id: user.id,
+      //     firstName: user.first_name,
+      //     lastName: user.last_name,
+      //     role: user.role,
+      //     jobTitle: user.job_title,
+      //   },
+      // });
+
+      // Now we Replace any previous session after successful PIN verification.
+      req.session.regenerate((error) => {
         if (error) {
           console.error(error);
           return res.status(500).json({
-            error: "Failed to save login session",
+            error: "Failed to create login session",
           });
         }
 
-        return res.json({
-          message: "Login successful",
-          user: {
-            id: user.id,
-            firstName: user.first_name,
-            lastName: user.last_name,
-            role: user.role,
-            jobTitle: user.job_title,
-          },
+        req.session.userId = user.id;
+
+        req.session.save((error) => {
+          if (error) {
+            console.error(error);
+            return res.status(500).json({
+              error: "Failed to save login session",
+            });
+          }
+
+          return res.json({
+            message: "Login successful",
+            user: {
+              id: user.id,
+              firstName: user.first_name,
+              lastName: user.last_name,
+              role: user.role,
+              jobTitle: user.job_title,
+            },
+          });
         });
       });
-    });
-    // Catch Block
-  } catch (error) {
-    console.error(error);
+      // Catch Block
+    } catch (error) {
+      console.error(error);
 
-    return res.status(500).json({
-      error: "Failed to process login",
-    });
-  }
-});
+      return res.status(500).json({
+        error: "Failed to process login",
+      });
+    }
+  },
+);
 
 // PUBLIC employee registration
 app.post("/users", async (req, res) => {
