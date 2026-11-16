@@ -12,6 +12,25 @@
     return inputs.map((input) => input.value).join("");
   }
 
+  // Validate PIN format and predictability
+  function getPinError(pin) {
+    if (!/^\d{6}$/.test(pin)) {
+      return "PIN must contain exactly six digits";
+    }
+
+    if (
+      /^(\d)\1{5}$/.test(pin) ||
+      /^(\d{2})\1{2}$/.test(pin) ||
+      /^(\d{3})\1$/.test(pin) ||
+      "0123456789".includes(pin) ||
+      "9876543210".includes(pin)
+    ) {
+      return "Choose a less predictable PIN—avoid repeats and counting sequences.";
+    }
+
+    return null;
+  }
+
   function pinsMatch() {
     return (
       pinInputs.length === PIN_LENGTH &&
@@ -22,34 +41,45 @@
   }
 
   function validate() {
-    const complete =
+    const firstRowComplete =
       pinInputs.length === PIN_LENGTH &&
+      pinInputs.every((input) => /^\d$/.test(input.value));
+
+    const complete =
+      firstRowComplete &&
       confirmInputs.length === PIN_LENGTH &&
-      allInputs.every((input) => /^\d$/.test(input.value));
+      confirmInputs.every((input) => /^\d$/.test(input.value));
+
+    const pinError = firstRowComplete ? getPinError(readPin(pinInputs)) : null;
 
     const matches = pinsMatch();
+    const valid = matches && !pinError;
+
     const darkMode = document.body.classList.contains("dark-mode");
     const successColor = darkMode ? "#00FF00" : "#16BC00";
 
-    submitButton.disabled = !matches;
+    let message = "Clear Pin fields";
+    let color = "";
+
+    if (pinError) {
+      message = pinError;
+      color = "#FF0000";
+    } else if (complete) {
+      message = matches ? "PINs Match" : "PINs don't match";
+      color = matches ? successColor : "#FF0000";
+    }
+
+    submitButton.disabled = !valid;
 
     allInputs.forEach((input) => {
-      input.style.color = complete ? (matches ? successColor : "#FF0000") : "";
+      input.style.color = color;
     });
 
-    resetButton.textContent = complete
-      ? matches
-        ? "PINs Match"
-        : "PINs don't match"
-      : "Clear Pin fields";
+    resetButton.textContent = message;
+    resetButton.style.color = color;
+    resetButton.style.opacity = color ? "1" : "";
 
-    resetButton.style.color = complete
-      ? matches
-        ? successColor
-        : "#FF0000"
-      : "";
-
-    resetButton.style.opacity = complete ? "1" : "";
+    return valid;
   }
 
   function configureRow(inputs, nextRow) {
@@ -70,7 +100,7 @@
           inputs.every((field) => /^\d$/.test(field.value))
         ) {
           nextRow[0]?.focus();
-        } else if (pinsMatch()) {
+        } else if (pinsMatch() && !getPinError(readPin(pinInputs))) {
           submitButton.focus();
         }
       });
@@ -102,9 +132,8 @@
 
   submitButton.addEventListener("click", (event) => {
     event.preventDefault();
-    validate();
 
-    if (!pinsMatch()) return;
+    if (!validate()) return;
 
     const pendingRegistration = JSON.parse(
       sessionStorage.getItem("pendingRegistration"),

@@ -421,6 +421,36 @@ app.post(
   },
 );
 
+// Rules for newly created PINs.
+// Returns an error message, or null when the PIN passes.
+function validateNewPin(pin) {
+  if (typeof pin !== "string" || !/^\d{6}$/.test(pin)) {
+    return "PIN must contain exactly six digits";
+  }
+
+  const repeatedDigit = /^(\d)\1{5}$/.test(pin);
+  const repeatedPair = /^(\d{2})\1{2}$/.test(pin);
+  const repeatedTriple = /^(\d{3})\1$/.test(pin);
+
+  const ascendingSequence = "0123456789".includes(pin);
+  const descendingSequence = "9876543210".includes(pin);
+
+  if (
+    repeatedDigit ||
+    repeatedPair ||
+    repeatedTriple ||
+    ascendingSequence ||
+    descendingSequence
+  ) {
+    return (
+      "Choose a less predictable six-digit PIN. " +
+      "Avoid repeated digits, repeated patterns, and counting sequences."
+    );
+  }
+
+  return null;
+}
+
 // PUBLIC employee registration
 app.post("/users", async (req, res) => {
   try {
@@ -475,9 +505,11 @@ app.post("/users", async (req, res) => {
       });
     }
 
-    if (!/^\d{6}$/.test(normalizedPin)) {
+    const pinError = validateNewPin(normalizedPin);
+
+    if (pinError) {
       return res.status(400).json({
-        error: "PIN must contain exactly six digits",
+        error: pinError,
       });
     }
 
@@ -561,9 +593,11 @@ app.post("/manager/invitations/redeem", async (req, res) => {
     });
   }
 
-  if (!/^\d{6}$/.test(normalizedPin)) {
+  const pinError = validateNewPin(normalizedPin);
+
+  if (pinError) {
     return res.status(400).json({
-      error: "PIN must contain exactly six digits",
+      error: pinError,
     });
   }
 
