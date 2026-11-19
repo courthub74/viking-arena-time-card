@@ -21,6 +21,9 @@ const PgSession = require("connect-pg-simple")(session);
 // Generate invitation tokens and hash them for storage
 const crypto = require("node:crypto");
 
+// login rate limit store
+const LoginRateLimitStore = require("./login-rate-limit-store");
+
 // express-rate-limit for rate limiting
 const { rateLimit } = require("express-rate-limit");
 
@@ -271,6 +274,8 @@ const loginIpLimiter = rateLimit({
   legacyHeaders: false,
   identifier: "login-ip",
   requestPropertyName: "loginIpRateLimit",
+  store: new LoginRateLimitStore("login-ip"),
+  passOnStoreError: false,
   message: {
     error:
       "Too many login requests from this connection. Please try again shortly.",
@@ -306,6 +311,8 @@ const loginAccountLimiter = rateLimit({
   legacyHeaders: false,
   identifier: "login-account",
   requestPropertyName: "loginAccountRateLimit",
+  store: new LoginRateLimitStore("login-account"),
+  passOnStoreError: false,
 
   keyGenerator: (req) => `user:${req.loginUserId}`,
 
