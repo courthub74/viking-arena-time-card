@@ -27,6 +27,9 @@ const LoginRateLimitStore = require("./login-rate-limit-store");
 // express-rate-limit for rate limiting
 const { rateLimit } = require("express-rate-limit");
 
+// Import the SQL query for inserting time entries
+const { insertTimeEntrySql } = require("./time-entry-query");
+
 // Create an Express app
 const app = express();
 
@@ -71,7 +74,7 @@ app.use(
 );
 
 /////////////////////////////////////////////////
-/////////////////////////////////////////////////
+///////LOGIN SESSION CHECKS/////////////////////
 /////////////////////////////////////////////////
 // Require a valid employee login for employee-only operations.
 // REQUIRE EMPLOYEE
@@ -186,6 +189,7 @@ function startUserSession(req, userId) {
 //////////////////////////////////////////////////
 // ROUTES
 
+////////MANAGER INVITATIONS ROUTE////////////////////////
 // Create a single-use manager invitation valid for 24 hours
 app.post("/manager/invitations", requireManager, async (req, res) => {
   try {
@@ -219,6 +223,7 @@ app.post("/manager/invitations", requireManager, async (req, res) => {
   }
 });
 
+// HEALTH CHECK
 app.get("/", (req, res) => {
   res.send("Viking Arena Time Card API is running.");
 });
@@ -568,6 +573,8 @@ app.post("/users", async (req, res) => {
   }
 });
 
+//////////////////////////////////////////////////////////////
+////////////////////PROMOTED MANAGER REGISTRATION/////////////
 // Register a manager using a single-use invitation
 app.post("/manager/invitations/redeem", async (req, res) => {
   res.set("Cache-Control", "no-store");
@@ -785,6 +792,7 @@ app.post("/time-entries", requireEmployee, async (req, res) => {
     const clockInDate = new Date(clockIn);
     const clockOutDate = new Date(clockOut);
 
+    // Validate input types and values
     if (
       !Number.isInteger(normalizedUserId) ||
       normalizedUserId <= 0 ||
@@ -797,6 +805,7 @@ app.post("/time-entries", requireEmployee, async (req, res) => {
       });
     }
 
+    // If the Number is not a number then return 400 error
     if (
       Number.isNaN(clockInDate.getTime()) ||
       Number.isNaN(clockOutDate.getTime())
@@ -806,6 +815,7 @@ app.post("/time-entries", requireEmployee, async (req, res) => {
       });
     }
 
+    // Calculate the duration in milliseconds
     const durationMilliseconds = clockOutDate.getTime() - clockInDate.getTime();
 
     if (durationMilliseconds <= 0) {
@@ -822,29 +832,13 @@ app.post("/time-entries", requireEmployee, async (req, res) => {
       });
     }
 
-    const result = await pool.query(
-      `INSERT INTO time_entries (
-         user_id,
-         clock_in,
-         clock_out
-       )
-       SELECT
-         id,
-         $2,
-         $3
-       FROM users
-       WHERE id = $1
-         AND role = 'employee'
-       RETURNING
-         id,
-         user_id,
-         clock_in,
-         clock_out,
-         EXTRACT(EPOCH FROM (clock_out - clock_in)) / 3600
-           AS total_hours,
-         created_at`,
-      [normalizedUserId, clockInDate.toISOString(), clockOutDate.toISOString()],
-    );
+    // Insert the new time entry into the database
+    // using the imported SQL query from 'time-entry-query.js'.
+    const result = await pool.query(insertTimeEntrySql, [
+      normalizedUserId,
+      clockInDate,
+      clockOutDate,
+    ]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({
